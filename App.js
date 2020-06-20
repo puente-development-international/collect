@@ -5,7 +5,7 @@ import {
   Platform, StatusBar, StyleSheet, View
 } from 'react-native';
 
-import useCachedResources from './hooks/useCachedResources';
+import useCachedResources from './modules/cached-resources/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 
