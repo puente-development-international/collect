@@ -18,18 +18,15 @@ const setAuth = createAction('SET_AUTHENTICATION');
 
 const reducer = handleActions(
   {
-    [setProfile]: (state, { payload }) => {
-      console.log(payload);
-      return {
-        ...state,
-        username: payload.username,
-        email: payload.email,
-        firstName: payload.first_name,
-        lastName: payload.last_name,
-        role: payload.role,
-        organization: payload.organization
-      };
-    },
+    [setProfile]: (state, { payload }) => ({
+      ...state,
+      username: payload.username,
+      email: payload.email,
+      firstName: payload.first_name,
+      lastName: payload.last_name,
+      role: payload.role,
+      organization: payload.organization
+    }),
     [setAuth]: (state, { payload }) => {
       if (payload === true) {
         return { ...state, isAuthenticated: true };

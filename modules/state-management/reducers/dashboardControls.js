@@ -23,14 +23,14 @@ const reducer = handleActions(
         model: payload.model
       };
     },
-    [setFilters]: (state, { payload }) => {
-      /* if (payload === true){
-            return { ...state, isAuthenticated:true };
-        }
-        else{
-            return { ...state, isAuthenticated:false };
-        }  */
-    },
+    // [setFilters]: (state, { payload }) => {
+    //    if (payload === true){
+    //         return { ...state, isAuthenticated:true };
+    //     }
+    //     else{
+    //         return { ...state, isAuthenticated:false };
+    //     }
+    // },
   },
   defaultState
 );
