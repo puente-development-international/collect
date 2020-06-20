@@ -1,9 +1,9 @@
-import { createAction, handleActions } from "redux-actions";
+import { createAction, handleActions } from 'redux-actions';
 
 const defaultState = {
-  model:"",
+  model: '',
   filters: {
-    community:"",
+    community: '',
 
   }
 
@@ -11,24 +11,24 @@ const defaultState = {
 
 // ACTIONS
 
-const setModel = createAction("SET_MODEL");
-const setFilters = createAction("SET_FILTERS")
+const setModel = createAction('SET_MODEL');
+const setFilters = createAction('SET_FILTERS');
 
 const reducer = handleActions(
   {
     [setModel]: (state, { payload }) => {
-      console.log(payload)
-      return  {
-        ...state, 
-        model:payload.model
-      }
+      console.log(payload);
+      return {
+        ...state,
+        model: payload.model
+      };
     },
     [setFilters]: (state, { payload }) => {
-        /*if (payload === true){
-            return { ...state, isAuthenticated:true }; 
+      /* if (payload === true){
+            return { ...state, isAuthenticated:true };
         }
         else{
-            return { ...state, isAuthenticated:false }; 
+            return { ...state, isAuthenticated:false };
         }  */
     },
   },

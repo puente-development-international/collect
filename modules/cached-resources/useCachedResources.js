@@ -12,7 +12,6 @@ export default function useCachedResources() {
       try {
         SplashScreen.preventAutoHideAsync();
 
-        // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
           'space-mono': require('../../assets/fonts/SpaceMono-Regular.ttf'),
