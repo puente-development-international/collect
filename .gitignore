@@ -1,5 +1,7 @@
-node_modules
+node_modules/
+coverage/
 .expo
+.vscode
 npm-debug.*
 *.jks
 *.p8
@@ -10,4 +12,4 @@ npm-debug.*
 web-build/
 
 # macOS
-.DS_Store
+.DS_Store*
