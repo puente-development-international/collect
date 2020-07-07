@@ -1,7 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "env-cmd -f .env.dev expo start",
     "reinstall": "rm package-lock.json && rm -rf node_modules/ && npm install",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -49,6 +49,7 @@
     "@babel/core": "7.10.2",
     "babel-eslint": "10.1.0",
     "babel-preset-expo": "8.1.0",
+    "env-cmd": "^10.1.0",
     "eslint": "7.1.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-plugin-import": "2.20.2",
