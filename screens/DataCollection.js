@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     color: '#000',
     padding: 10
   }
-})
+});
