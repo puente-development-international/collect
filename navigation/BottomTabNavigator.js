@@ -3,7 +3,8 @@ import * as React from 'react';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import DataCollection from '../screens/DataCollection';
+import DataAnalysis from '../screens/DataAnalysis';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -21,18 +22,27 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={HomeScreen}
         options={{
           title: 'Get Started',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-code-working" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-home" />,
         }}
       />
       <BottomTab.Screen
-        name="Links"
-        component={LinksScreen}
+        name="Data_Collection"
+        component={DataCollection}
         options={{
-          title: 'Resources',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          title: 'Data Collection',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-folder" />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Data_Analysis"
+        component={DataAnalysis}
+        options={{
+          title: 'Data Analysis',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-analytics" />,
         }}
       />
     </BottomTab.Navigator>
+
   );
 }
 
@@ -41,8 +51,10 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Home':
-      return 'How to get started';
-    case 'Links':
-      return 'Links to learn more';
+      return 'Home';
+    case 'Data_Collection':
+      return 'Data Collection';
+    case 'Data_Analysis':
+      return 'Data Analysis';
   }
 }
