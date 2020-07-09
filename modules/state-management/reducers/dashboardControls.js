@@ -16,13 +16,10 @@ const setFilters = createAction('SET_FILTERS');
 
 const reducer = handleActions(
   {
-    [setModel]: (state, { payload }) => {
-      console.log(payload);
-      return {
-        ...state,
-        model: payload.model
-      };
-    },
+    [setModel]: (state, { payload }) => ({
+      ...state,
+      model: payload.model
+    }),
     // [setFilters]: (state, { payload }) => {
     //    if (payload === true){
     //         return { ...state, isAuthenticated:true };
