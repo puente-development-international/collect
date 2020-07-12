@@ -5,6 +5,8 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { retrieveHelloFunction } from '../services/parse/crud'
+
 
 export default function HomeScreen() {
   return (
@@ -19,9 +21,10 @@ export default function HomeScreen() {
 }
 
 function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
-  );
+  // WebBrowser.openBrowserAsync(
+  //   'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
+  // );
+  retrieveHelloFunction()
 }
 
 HomeScreen.navigationOptions = {
