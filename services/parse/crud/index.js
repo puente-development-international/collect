@@ -1,12 +1,8 @@
 import { Parse } from 'parse/react-native';
 
 function retrieveHelloFunction() {
-  Parse.Cloud.run(`hello`).then((result) => {
-    console.log(result);
-    return result;
-
-  })
+  Parse.Cloud.run('hello').then((result) => result);
 }
 
 
-export { retrieveHelloFunction }
+export default retrieveHelloFunction;

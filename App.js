@@ -5,10 +5,10 @@ import {
   Platform, StatusBar, StyleSheet, View
 } from 'react-native';
 
-import useCachedResources from './modules/cached-resources/useCachedResources';
+// import useCachedResources from './modules/cached-resources/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
-import { initialize } from './services/parse/auth'
+import initialize from './services/parse/auth';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +17,7 @@ export default class App extends React.Component {
     super(props);
     initialize();
   }
+
   render() {
     // const isLoadingComplete = useCachedResources();
 

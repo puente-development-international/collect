@@ -1,11 +1,10 @@
-import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
 import {
   Platform, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { retrieveHelloFunction } from '../services/parse/crud'
+import retrieveHelloFunction from '../services/parse/crud';
 
 
 export default function HomeScreen() {
@@ -21,10 +20,7 @@ export default function HomeScreen() {
 }
 
 function handleHelpPress() {
-  // WebBrowser.openBrowserAsync(
-  //   'https://docs.expo.io/versions/latest/get-started/create-a-new-app/#making-your-first-change'
-  // );
-  retrieveHelloFunction()
+  retrieveHelloFunction();
 }
 
 HomeScreen.navigationOptions = {
