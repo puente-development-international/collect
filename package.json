@@ -1,7 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "env-cmd -f .env.dev expo start",
+    "start": "expo start",
     "reinstall": "rm package-lock.json && rm -rf node_modules/ && npm install",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -11,7 +11,8 @@
     "test-run": "jest --forceExit --detectOpenHandles && codecov",
     "lint": "./node_modules/.bin/eslint '**/*.{js,jsx}' --quiet",
     "lint-fix": "./node_modules/.bin/eslint '**/*.{js,jsx}' --fix",
-    "publish": "expo publish && expo build:ios && expo build:android"
+    "publish-staging": "expo publish --release-channel staging && expo build:ios --release-channel staging && expo build:android --release-channel staging",
+    "publish-prod": "expo publish --release-channel prod && expo build:ios --release-channel prod && expo build:android --release-channel prod"
   },
   "jest": {
     "preset": "jest-expo",
@@ -31,6 +32,7 @@
     "expo-linking": "1.0.1",
     "expo-splash-screen": "0.2.3",
     "expo-web-browser": "8.2.1",
+    "parse": "2.14.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
