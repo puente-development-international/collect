@@ -5,6 +5,7 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 
 import retrieveHelloFunction from '../services/parse/crud';
+import { initialize, retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction, retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction } from '../services/parse/auth';
 
 
 export default function HomeScreen() {
@@ -15,12 +16,72 @@ export default function HomeScreen() {
           <Text style={styles.text}>HomeScreen</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.welcomeContainer}>
+        <TouchableOpacity onPress={handleSignUpPress} style={styles.helpLink}>
+          <Text style={styles.text}>Sign Up</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.welcomeContainer}>
+        <TouchableOpacity onPress={handleSignInPress} style={styles.helpLink}>
+          <Text style={styles.text}>Sign In</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.welcomeContainer}>
+        <TouchableOpacity onPress={handleSignOutPress} style={styles.helpLink}>
+          <Text style={styles.text}>Sign Out</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.welcomeContainer}>
+        <TouchableOpacity onPress={handleForgotPasswordPress} style={styles.helpLink}>
+          <Text style={styles.text}>Forgot Password</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.welcomeContainer}>
+        <TouchableOpacity onPress={handleCurrentUserPress} style={styles.helpLink}>
+          <Text style={styles.text}>Current User</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.welcomeContainer}>
+        <TouchableOpacity onPress={handleDeleteUserPress} style={styles.helpLink}>
+          <Text style={styles.text}>Delete User</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 }
 
 function handleHelpPress() {
+  initialize();
   retrieveHelloFunction();
+}
+
+function handleSignUpPress() {
+  initialize();
+  retrieveSignUpFunction();
+}
+
+function handleSignInPress() {
+  const post_params = {
+    username: 'dragon_queen',
+    password: 'dracarys'
+  };
+  retrieveSignInFunction(post_params);
+}
+
+function handleSignOutPress() {
+  retrieveSignOutFunction();
+}
+
+function handleForgotPasswordPress() {
+  retrieveForgotPasswordFunction();
+}
+
+function handleCurrentUserPress() {
+  retrieveCurrentUserFunction();
+}
+
+function handleDeleteUserPress() {
+  retrieveDeleteUserFunction();
 }
 
 HomeScreen.navigationOptions = {
@@ -35,7 +96,7 @@ const styles = StyleSheet.create({
   text: {
     flex: 1,
     color: '#000',
-    padding: 10,
+    padding: 0,
   },
   developmentModeText: {
     marginBottom: 20,
@@ -49,8 +110,8 @@ const styles = StyleSheet.create({
   },
   welcomeContainer: {
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
+    marginTop: 0,
+    marginBottom: 0,
   },
   welcomeImage: {
     width: 100,
@@ -113,7 +174,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   helpLink: {
-    paddingVertical: 15,
+    paddingVertical: 0,
   },
   helpLinkText: {
     fontSize: 14,
