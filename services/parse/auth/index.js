@@ -1,5 +1,5 @@
 import { Parse } from 'parse/react-native';
-import { AsyncStorage, NativeModules } from 'react-native';
+import { AsyncStorage } from 'react-native';
 import getEnvVars from '../../../environment';
 
 
@@ -12,37 +12,61 @@ function initialize() {
   console.log(`Initialize Parse with App ID:${parseAppId}, Javascript Key: ${parseJavascriptKey}`); // eslint-disable-line
 }
 
-function retrieveSignUpFunction() {
-  const params = {
-    firstname: 'test1',
-    lastname: 'test2',
-    username: 'check10',
-    password: '12345',
-    email: 'notreal110@gmail.com',
-    organization: 'nonprofit-9'
-  };
-  Parse.Cloud.run("signup", params).then((result) => result);
+function retrieveSignUpFunction(params) {
+  Parse.Cloud.run('signup', params).then((result) => result);
 }
 
-function retrieveSignInFunction(postParameters) {
-  Parse.Cloud.run('signin', postParameters).then((result) => result);
+function retrieveSignInFunction(username, password) {
+  return new Promise((resolve, reject) => {
+    // sign in with either username or email handled with logIn
+    Parse.User.logIn(String(username), String(password)).then((user) => {
+      // console.log(`User logged in successful with username: ${user.get('username')}`);
+      // console.log(user);
+      resolve(user);
+    }, (error) => {
+      // console.log(`Error: ${error.code} ${error.message}`);
+      reject(error);
+    });
+  });
 }
+
 
 function retrieveSignOutFunction() {
-  Parse.Cloud.run('signout').then((result) => result);
+  return new Promise((resolve, reject) => {
+    Parse.User.logOut().then((result) => {
+      // console.log(result);
+      resolve(result);
+    }, (error) => {
+      reject(error);
+    });
+  });
 }
 
-function retrieveForgotPasswordFunction() {
-  Parse.Cloud.run('forgotPassword').then((result) => result);
+function retrieveForgotPasswordFunction(params) {
+  Parse.Cloud.run('forgotPassword', params).then((result) => result);
 }
 
 function retrieveCurrentUserFunction() {
-  Parse.Cloud.run('currentUser').then((result) => result);
+  const u = Parse.User.current();
+  if (u) {
+    const user = new Parse.User();
+    user.id = u.id;
+    user.name = u.get('username');
+    user.email = u.get('email');
+    user.organization = u.get('organization');
+    user.role = u.get('role');
+    // console.log(user);
+    return user;
+  }
+  // console.log(null);
+  return null;
 }
 
-function retrieveDeleteUserFunction() {
-  Parse.Cloud.run('deleteUser').then((result) => result);
+function retrieveDeleteUserFunction(params) {
+  Parse.Cloud.run('deleteUser', params).then((result) => result);
 }
 
-export { initialize, retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction, retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction };
-
+export {
+  initialize, retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
+  retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction
+};
