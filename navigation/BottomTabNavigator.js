@@ -56,5 +56,7 @@ function getHeaderTitle(route) {
       return 'Data Collection';
     case 'Data_Analysis':
       return 'Data Analysis';
+    default:
+      return 'Home';
   }
 }

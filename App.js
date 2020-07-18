@@ -1,32 +1,40 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
+import React from 'react';
 import {
   Platform, StatusBar, StyleSheet, View
 } from 'react-native';
 
-import useCachedResources from './modules/cached-resources/useCachedResources';
+// import useCachedResources from './modules/cached-resources/useCachedResources';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
+import { initialize } from './services/parse/auth/index';
 
 const Stack = createStackNavigator();
 
-export default function App() {
-  const isLoadingComplete = useCachedResources();
-
-  if (!isLoadingComplete) {
-    return null;
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    initialize();
   }
-  return (
-    <View style={styles.container}>
-      {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
-      <NavigationContainer linking={LinkingConfiguration}>
-        <Stack.Navigator>
-          <Stack.Screen name="Root" component={BottomTabNavigator} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
-  );
+
+  render() {
+    // const isLoadingComplete = useCachedResources();
+
+    // if (!isLoadingComplete) {
+    //   return null;
+    // }
+    return (
+      <View style={styles.container}>
+        {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
+        <NavigationContainer linking={LinkingConfiguration}>
+          <Stack.Navigator>
+            <Stack.Screen name="Root" component={BottomTabNavigator} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
