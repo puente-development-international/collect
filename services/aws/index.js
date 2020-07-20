@@ -9,28 +9,28 @@ function retrievePuenteAutofillData(parameter) {
       parameter: 'all'
     }
   })
-    .then(function (response) {
+    .then((response) => {
       // console.log(response['data']);
       // return response['data'];
-      var results = []
-      response['data'].forEach(object => {
+      const results = [];
+      response.data.forEach((object) => {
         // console.log(city);
         // console.log(city['City']);
         if (!results.includes(object[parameter])) {
-          results.push(object[parameter])
+          results.push(object[parameter]);
         }
       });
       console.log(parameter);
       console.log(results);
       return results;
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
-    })
+    });
   //   .finally(function (data) {
   //     console.log("API Gateway and Lambda Finished")
   //     return data;
   //   });
 }
 
-export { retrievePuenteAutofillData }
+export default retrievePuenteAutofillData;

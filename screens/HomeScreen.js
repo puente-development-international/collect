@@ -9,9 +9,9 @@ import {
   retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
   retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction
 } from '../services/parse/auth';
-import { retrievePuenteAutofillData } from '../services/aws';
+import retrievePuenteAutofillData from '../services/aws';
 // import Autocomplete from 'react-native-autocomplete-input';
-import AutoFill from '../components/AutoFill'
+import AutoFill from '../components/AutoFill';
 
 
 export default function HomeScreen() {
