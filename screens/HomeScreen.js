@@ -9,6 +9,9 @@ import {
   retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
   retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction
 } from '../services/parse/auth';
+import { retrievePuenteAutofillData } from '../services/aws';
+// import Autocomplete from 'react-native-autocomplete-input';
+import AutoFill from '../components/AutoFill'
 
 
 export default function HomeScreen() {
@@ -56,7 +59,15 @@ export default function HomeScreen() {
             <Text style={styles.text}>Delete User</Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.clickText}>
+          <TouchableOpacity onPress={handleAutoFillClick} style={styles.helpLink}>
+            <Text style={styles.text}>Autofill GET</Text>
+          </TouchableOpacity>
+        </View>
       </View>
+      <AutoFill parameter="City" />
+      <AutoFill parameter="Province" />
+      <AutoFill parameter="Communities" />
     </ScrollView>
   );
 }
@@ -105,6 +116,10 @@ function handleDeleteUserPress() {
     userId: 'tBtyt5JfD6'
   };
   retrieveDeleteUserFunction(credentials);
+}
+
+function handleAutoFillClick() {
+  retrievePuenteAutofillData('City');
 }
 
 HomeScreen.navigationOptions = {

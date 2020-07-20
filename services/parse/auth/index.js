@@ -47,7 +47,7 @@ function retrieveForgotPasswordFunction(params) {
 }
 
 function retrieveCurrentUserFunction() {
-  const u = Parse.User.current();
+  const u = Parse.User.currentUser();
   if (u) {
     const user = new Parse.User();
     user.id = u.id;
