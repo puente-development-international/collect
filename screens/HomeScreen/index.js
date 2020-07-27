@@ -4,13 +4,13 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import retrieveHelloFunction from '../services/parse/crud';
+import retrieveHelloFunction from '../../services/parse/crud';
 import {
   retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
   retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction
-} from '../services/parse/auth';
+} from '../../services/parse/auth';
 
-import { getTasks } from '../services/tasky';
+import { getTasks } from '../../services/tasky';
 
 
 export default class HomeScreen extends React.Component {
