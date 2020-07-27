@@ -9,9 +9,10 @@ import {
   retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
   retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction
 } from '../../services/parse/auth';
+import retrievePuenteAutofillData from '../../services/aws';
+import AutoFill from '../../components/AutoFill';
 
 import { getTasks } from '../../services/tasky';
-
 
 export default class HomeScreen extends React.Component {
   constructor() {
@@ -88,6 +89,14 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
+        <View style={styles.clickText}>
+          <TouchableOpacity onPress={handleAutoFillClick} style={styles.helpLink}>
+            <Text style={styles.text}>Autofill GET</Text>
+          </TouchableOpacity>
+        </View>
+        <AutoFill parameter="City" />
+        <AutoFill parameter="Province" />
+        <AutoFill parameter="Communities" />
       </ScrollView>
     );
   }
@@ -139,6 +148,9 @@ function handleDeleteUserPress() {
   retrieveDeleteUserFunction(credentials);
 }
 
+function handleAutoFillClick() {
+  retrievePuenteAutofillData('City');
+}
 
 HomeScreen.navigationOptions = {
   header: null,

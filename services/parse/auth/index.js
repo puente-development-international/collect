@@ -2,7 +2,6 @@ import { Parse } from 'parse/react-native';
 import { AsyncStorage } from 'react-native';
 import getEnvVars from '../../../environment';
 
-
 function initialize() {
   const { parseAppId, parseJavascriptKey, parseServerUrl } = getEnvVars();
 
@@ -30,7 +29,6 @@ function retrieveSignInFunction(username, password) {
   });
 }
 
-
 function retrieveSignOutFunction() {
   return new Promise((resolve, reject) => {
     Parse.User.logOut().then((result) => {
@@ -47,7 +45,7 @@ function retrieveForgotPasswordFunction(params) {
 }
 
 function retrieveCurrentUserFunction() {
-  const u = Parse.User.current();
+  const u = Parse.User.currentUser();
   if (u) {
     const user = new Parse.User();
     user.id = u.id;
