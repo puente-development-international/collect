@@ -4,5 +4,4 @@ function retrieveHelloFunction() {
   Parse.Cloud.run('hello').then((result) => result);
 }
 
-
 export default retrieveHelloFunction;

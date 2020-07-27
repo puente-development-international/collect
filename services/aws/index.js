@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-
 function retrievePuenteAutofillData(parameter) {
   return axios.get('https://98kngyxax2.execute-api.us-east-1.amazonaws.com/default/s3-json-to-client', {
     params: {

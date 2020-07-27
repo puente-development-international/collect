@@ -1,7 +1,6 @@
 import axios from 'axios';
 import getEnvVars from '../../../environment';
 
-
 function getTasks() {
   const { taskyUrlApi } = getEnvVars();
 
@@ -14,6 +13,5 @@ function getTasks() {
       console.log(error);
     });
 }
-
 
 export { getTasks };

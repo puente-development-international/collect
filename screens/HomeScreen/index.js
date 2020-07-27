@@ -14,7 +14,6 @@ import AutoFill from '../../components/AutoFill';
 
 import { getTasks } from '../../services/tasky';
 
-
 export default class HomeScreen extends React.Component {
   constructor() {
     super();
