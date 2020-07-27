@@ -8,9 +8,9 @@ import retrieveHelloFunction from '../../services/parse/crud';
 import {
   retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
   retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction
-} from '../services/parse/auth';
-import retrievePuenteAutofillData from '../services/aws';
-import AutoFill from '../components/AutoFill';
+} from '../../services/parse/auth';
+import retrievePuenteAutofillData from '../../services/aws';
+import AutoFill from '../../components/AutoFill';
 
 import { getTasks } from '../../services/tasky';
 
@@ -95,11 +95,11 @@ export default class HomeScreen extends React.Component {
             <Text style={styles.text}>Autofill GET</Text>
           </TouchableOpacity>
         </View>
-      <AutoFill parameter="City" />
-      <AutoFill parameter="Province" />
-      <AutoFill parameter="Communities" />
-    </ScrollView>
-  );
+        <AutoFill parameter="City" />
+        <AutoFill parameter="Province" />
+        <AutoFill parameter="Communities" />
+      </ScrollView>
+    );
   }
 }
 
