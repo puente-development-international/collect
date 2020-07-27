@@ -1,75 +1,106 @@
-import * as React from 'react';
+import React from 'react';
 import {
   Platform, StyleSheet, Text, TouchableOpacity, View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import retrieveHelloFunction from '../services/parse/crud';
+import retrieveHelloFunction from '../../services/parse/crud';
 import {
   retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
   retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction
 } from '../services/parse/auth';
 import retrievePuenteAutofillData from '../services/aws';
-// import Autocomplete from 'react-native-autocomplete-input';
 import AutoFill from '../components/AutoFill';
 
+import { getTasks } from '../../services/tasky';
 
-export default function HomeScreen() {
-  return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <View style={styles.row}>
-        <View style={styles.clickText}>
-          <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.text}>HomeScreen</Text>
-          </TouchableOpacity>
+
+export default class HomeScreen extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      tasks: null
+    };
+  }
+
+  showTasks = async () => {
+    await getTasks().then((result) => {
+      this.setState({
+        tasks: result
+      });
+    });
+  }
+
+  render() {
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <View style={styles.row}>
+          <View style={styles.clickText}>
+            <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
+              <Text style={styles.text}>HomeScreen</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.clickText}>
+            <TouchableOpacity onPress={handleSignUpPress} style={styles.helpLink}>
+              <Text style={styles.text}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.clickText}>
-          <TouchableOpacity onPress={handleSignUpPress} style={styles.helpLink}>
-            <Text style={styles.text}>Sign Up</Text>
-          </TouchableOpacity>
+        <View style={styles.row}>
+          <View style={styles.clickText}>
+            <TouchableOpacity onPress={handleSignInPress} style={styles.helpLink}>
+              <Text style={styles.text}>Sign In</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.clickText}>
+            <TouchableOpacity onPress={handleSignOutPress} style={styles.helpLink}>
+              <Text style={styles.text}>Sign Out</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      <View style={styles.row}>
-        <View style={styles.clickText}>
-          <TouchableOpacity onPress={handleSignInPress} style={styles.helpLink}>
-            <Text style={styles.text}>Sign In</Text>
-          </TouchableOpacity>
+        <View style={styles.row}>
+          <View style={styles.clickText}>
+            <TouchableOpacity onPress={handleForgotPasswordPress} style={styles.helpLink}>
+              <Text style={styles.text}>Forgot Password</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.clickText}>
+            <TouchableOpacity onPress={handleCurrentUserPress} style={styles.helpLink}>
+              <Text style={styles.text}>Current User</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.clickText}>
-          <TouchableOpacity onPress={handleSignOutPress} style={styles.helpLink}>
-            <Text style={styles.text}>Sign Out</Text>
-          </TouchableOpacity>
+        <View style={styles.row}>
+          <View style={styles.clickText}>
+            <TouchableOpacity onPress={handleDeleteUserPress} style={styles.helpLink}>
+              <Text style={styles.text}>Delete User</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      <View style={styles.row}>
-        <View style={styles.clickText}>
-          <TouchableOpacity onPress={handleForgotPasswordPress} style={styles.helpLink}>
-            <Text style={styles.text}>Forgot Password</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.clickText}>
-          <TouchableOpacity onPress={handleCurrentUserPress} style={styles.helpLink}>
-            <Text style={styles.text}>Current User</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.row}>
-        <View style={styles.clickText}>
-          <TouchableOpacity onPress={handleDeleteUserPress} style={styles.helpLink}>
-            <Text style={styles.text}>Delete User</Text>
-          </TouchableOpacity>
+        <View style={styles.row}>
+          <View style={styles.clickText}>
+            <TouchableOpacity onPress={this.showTasks} style={styles.helpLink}>
+              <Text style={styles.text}>Tasks</Text>
+              {this.state.tasks != null
+                && this.state.tasks.map((task, i) => (
+                  <View key={i}>
+                    <Text>{task.name}</Text>
+                  </View>
+                ))}
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.clickText}>
           <TouchableOpacity onPress={handleAutoFillClick} style={styles.helpLink}>
             <Text style={styles.text}>Autofill GET</Text>
           </TouchableOpacity>
         </View>
-      </View>
       <AutoFill parameter="City" />
       <AutoFill parameter="Province" />
       <AutoFill parameter="Communities" />
     </ScrollView>
   );
+  }
 }
 
 function handleHelpPress() {
