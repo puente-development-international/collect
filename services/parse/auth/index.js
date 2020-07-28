@@ -13,7 +13,7 @@ function initialize() {
 }
 
 function retrieveSignUpFunction(params) {
-  Parse.Cloud.run('signup', params).then((result) => result);
+  Parse.Cloud.run('signup', params).then((result) => console.log(result));
 }
 
 function retrieveSignInFunction(username, password) {
@@ -21,7 +21,9 @@ function retrieveSignInFunction(username, password) {
     // sign in with either username or email handled with logIn
     Parse.User.logIn(String(username), String(password)).then((user) => {
       // console.log(`User logged in successful with username: ${user.get('username')}`);
-      // console.log(user);
+      // console.log(user.get('sessionToken'));
+      // Parse.User.become(user.get('sessionToken'));
+      console.log(user);
       resolve(user);
     }, (error) => {
       // console.log(`Error: ${error.code} ${error.message}`);
@@ -34,7 +36,7 @@ function retrieveSignInFunction(username, password) {
 function retrieveSignOutFunction() {
   return new Promise((resolve, reject) => {
     Parse.User.logOut().then((result) => {
-      // console.log(result);
+      console.log(result);
       resolve(result);
     }, (error) => {
       reject(error);
@@ -43,11 +45,11 @@ function retrieveSignOutFunction() {
 }
 
 function retrieveForgotPasswordFunction(params) {
-  Parse.Cloud.run('forgotPassword', params).then((result) => result);
+  Parse.Cloud.run('forgotPassword', params).then((result) => console.log(result));
 }
 
 function retrieveCurrentUserFunction() {
-  const u = Parse.User.currentUser();
+  const u = Parse.User.current();
   if (u) {
     const user = new Parse.User();
     user.id = u.id;
@@ -55,15 +57,15 @@ function retrieveCurrentUserFunction() {
     user.email = u.get('email');
     user.organization = u.get('organization');
     user.role = u.get('role');
-    // console.log(user);
+    console.log(user);
     return user;
   }
-  // console.log(null);
+  console.log(null);
   return null;
 }
 
 function retrieveDeleteUserFunction(params) {
-  Parse.Cloud.run('deleteUser', params).then((result) => result);
+  Parse.Cloud.run('deleteUser', params).then((result) => cosole.log(result));
 }
 
 export {
