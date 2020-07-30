@@ -8,10 +8,10 @@ function getTasks() {
     .then(async (response) => {
       const data = await response.data.tasks;
       return data;
-    })
-    .catch((error) => {
-      console.log(error);
     });
+  // .catch((error) => {
+  //   console.log(error);
+  // });
 }
 
-export { getTasks };
+export default getTasks;

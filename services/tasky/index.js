@@ -1,5 +1,3 @@
-import { getTasks } from './tasks';
+import getTasks from './tasks';
 
-export {
-  getTasks
-};
+export default getTasks;
