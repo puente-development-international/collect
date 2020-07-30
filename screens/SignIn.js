@@ -11,8 +11,6 @@ export default function SignIn() {
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={(values) => {
-        // console.log(values.username);
-        // console.log(values.password);
         retrieveSignInFunction(values.username, values.password);
       }}
     >

@@ -13,7 +13,6 @@ export default function SignUp() {
         firstname: '', lastname: '', password: '', email: '', phonenumber: '', organization: ''
       }}
       onSubmit={(values) => {
-        // console.log(values);
         retrieveSignUpFunction(values);
       }}
     >

@@ -10,17 +10,12 @@ function retrievePuenteAutofillData(parameter) {
     }
   })
     .then((response) => {
-      // console.log(response['data']);
       const results = [];
       response.data.forEach((object) => {
-        // console.log(city);
-        // console.log(city['City']);
         if (!results.includes(object[parameter])) {
           results.push(object[parameter]);
         }
       });
-      // console.log(parameter);
-      // console.log(results);
       return results;
     })
     .catch((error) => {
