@@ -13,7 +13,8 @@
     "lint": "./node_modules/.bin/eslint '**/*.{js,jsx}' --quiet",
     "lint-fix": "./node_modules/.bin/eslint '**/*.{js,jsx}' --fix",
     "publish-staging": "expo publish --release-channel staging && expo build:ios --release-channel staging && expo build:android --release-channel staging",
-    "publish-prod": "expo publish --release-channel prod && expo build:ios --release-channel prod && expo build:android --release-channel prod"
+    "publish-prod": "expo publish --release-channel prod && expo build:ios --release-channel prod && expo build:android --release-channel prod",
+    "gh-prune": "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
   },
   "jest": {
     "preset": "jest-expo",
@@ -49,14 +50,12 @@
     "react-test-renderer": "16.13.0",
     "redux": "4.0.5",
     "redux-actions": "2.6.5",
-    "standard-version": "8.0.1",
     "styled-components": "5.1.1"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
     "babel-eslint": "10.1.0",
     "babel-preset-expo": "8.1.0",
-    "env-cmd": "10.1.0",
     "eslint": "7.4.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-plugin-import": "2.20.2",
