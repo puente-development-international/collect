@@ -5,17 +5,20 @@ import {
 import { Formik } from 'formik';
 import { retrieveSignInFunction } from '../services/parse/auth';
 
-export default SignIn = props => {
+// props should be passed in here if needed
+export default function SignIn() {
   return (
     <Formik
       initialValues={{ username: '', password: '' }}
-      onSubmit={values => {
-        console.log(values.username);
-        console.log(values.password);
+      onSubmit={(values) => {
+        // console.log(values.username);
+        // console.log(values.password);
         retrieveSignInFunction(values.username, values.password);
       }}
     >
-      {({ handleChange, handleBlur, handleSubmit, values }) => (
+      {({
+        handleChange, handleBlur, handleSubmit, values
+      }) => (
         <View style={styles.containter}>
           <View style={styles.inputContainer}>
             <Text style={styles.text}>Enter Username:</Text>
@@ -42,7 +45,7 @@ export default SignIn = props => {
       )}
     </Formik>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
