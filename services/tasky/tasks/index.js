@@ -14,4 +14,4 @@ function getTasks() {
     });
 }
 
-export { getTasks };
+export default getTasks;
