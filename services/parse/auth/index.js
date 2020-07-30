@@ -52,11 +52,9 @@ function retrieveCurrentUserFunction() {
     user.email = u.get('email');
     user.organization = u.get('organization');
     user.role = u.get('role');
-    // console.log(user);
     return user;
   }
-  // console.log(null);
-  return null;
+  return u;
 }
 
 function retrieveDeleteUserFunction(params) {

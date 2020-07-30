@@ -12,6 +12,8 @@ import {
 import retrievePuenteAutofillData from '../../services/aws';
 import AutoFill from '../../components/AutoFill';
 import getTasks from '../../services/tasky';
+import { saveUser } from '../../modules/state-management/reducers/login';
+import configureStore from '../../modules/state-management/configure-store';
 
 export default class HomeScreen extends React.Component {
   constructor() {
@@ -137,11 +139,11 @@ function handleForgotPasswordPress() {
 }
 
 function handleCurrentUserPress() {
-  retrieveCurrentUserFunction();
+  const user = retrieveCurrentUserFunction();
+  configureStore().dispatch(saveUser(user));
 }
 
 function handleDeleteUserPress() {
-  // needs to be adjuste ot pull in a user id that signs up
   const credentials = {
     userId: 'tBtyt5JfD6'
   };

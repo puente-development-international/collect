@@ -2,12 +2,14 @@ import { createAction, handleActions } from 'redux-actions';
 import { storeData } from '../../../async-storage';
 
 const defaultState = {
-  userId: null,
-  sessionId: null,
+  email: null,
   username: null,
-  password: null,
-  role: null,
+  firstname: null,
+  lastname: null,
+  objectId: null,
   organization: null,
+  role: null,
+  sessionToken: null,
   isAuthenticated: false,
 };
 
@@ -32,7 +34,7 @@ const reducer = handleActions(
         ...state,
         sessionId: payload.sessionId || state.sessionId,
         username: payload.username || state.username,
-        password: payload.password || state.password,
+        // password: payload.password || state.password,
         role: payload.role || state.role,
         organization: payload.organization || state.organization
       };
