@@ -3,7 +3,6 @@ import {
   StyleSheet, Text, View
 } from 'react-native';
 
-
 export default function DataCollection() {
   return (
     <View style={styles.container}>

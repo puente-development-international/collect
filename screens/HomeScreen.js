@@ -13,7 +13,6 @@ import retrievePuenteAutofillData from '../services/aws';
 // import Autocomplete from 'react-native-autocomplete-input';
 import AutoFill from '../components/AutoFill';
 
-
 export default function HomeScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
