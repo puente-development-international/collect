@@ -11,7 +11,7 @@ import {
 } from '../../services/parse/auth';
 import retrievePuenteAutofillData from '../../services/aws';
 import AutoFill from '../../components/AutoFill';
-import { getTasks } from '../../services/tasky';
+import getTasks from '../../services/tasky';
 
 export default class HomeScreen extends React.Component {
   constructor() {
@@ -30,6 +30,7 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
+    const { tasks } = this.state;
     return (
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.row}>
@@ -79,8 +80,8 @@ export default class HomeScreen extends React.Component {
           <View style={styles.clickText}>
             <TouchableOpacity onPress={this.showTasks} style={styles.helpLink}>
               <Text style={styles.text}>Tasks</Text>
-              {this.state.tasks != null
-                && this.state.tasks.map((task, i) => (
+              {tasks != null
+                && tasks.map((task, i) => (
                   <View key={i}>
                     <Text>{task.name}</Text>
                   </View>
