@@ -5,6 +5,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import DataCollection from '../screens/DataCollection';
 import DataAnalysis from '../screens/DataAnalysis';
+import SignUp from '../screens/SignUp';
+import SignIn from '../screens/SignIn';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
@@ -41,6 +43,22 @@ export default function BottomTabNavigator({ navigation, route }) {
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-analytics" />,
         }}
       />
+      <BottomTab.Screen
+        name="Sign_Up"
+        component={SignUp}
+        options={{
+          title: 'Sign up',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-arrow-forward" />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Sign_In"
+        component={SignIn}
+        options={{
+          title: 'Sign In',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-arrow-forward" />,
+        }}
+      />
     </BottomTab.Navigator>
 
   );
@@ -56,6 +74,10 @@ function getHeaderTitle(route) {
       return 'Data Collection';
     case 'Data_Analysis':
       return 'Data Analysis';
+    case 'Sign_Up':
+      return 'Sign Up';
+    case 'Sign_In':
+      return 'Sign In';
     default:
       return 'Home';
   }
