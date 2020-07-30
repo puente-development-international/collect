@@ -11,7 +11,6 @@ import {
 } from '../../services/parse/auth';
 import retrievePuenteAutofillData from '../../services/aws';
 import AutoFill from '../../components/AutoFill';
-
 import { getTasks } from '../../services/tasky';
 
 export default class HomeScreen extends React.Component {
@@ -110,16 +109,16 @@ function handleSignUpPress() {
   const params = {
     firstname: 'native-test',
     lastname: 'tester',
-    username: 'joe-email-2',
+    // username: 'sprint-test-2',
     password: '12345',
-    email: 'emailtest-2@gmail.com',
-    organization: 'native-testing'
+    email: 'sprinttest-20@gmail.com',
+    organization: 'sprint-testing'
   };
   retrieveSignUpFunction(params);
 }
 
 function handleSignInPress() {
-  const username = 'joe-email-2';
+  const username = 'sprinttest-2@gmail.com';
   const password = '12345';
 
   retrieveSignInFunction(username, password);

@@ -19,11 +19,10 @@ function retrieveSignInFunction(username, password) {
   return new Promise((resolve, reject) => {
     // sign in with either username or email handled with logIn
     Parse.User.logIn(String(username), String(password)).then((user) => {
-      // console.log(`User logged in successful with username: ${user.get('username')}`);
-      // console.log(user);
+      console.log(`User logged in successful with username: ${user.get('username')}`); // eslint-disable-line
       resolve(user);
     }, (error) => {
-      // console.log(`Error: ${error.code} ${error.message}`);
+      console.log(`Error: ${error.code} ${error.message}`); // eslint-disable-line
       reject(error);
     });
   });
@@ -45,7 +44,7 @@ function retrieveForgotPasswordFunction(params) {
 }
 
 function retrieveCurrentUserFunction() {
-  const u = Parse.User.currentUser();
+  const u = Parse.User.current();
   if (u) {
     const user = new Parse.User();
     user.id = u.id;

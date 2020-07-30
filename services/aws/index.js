@@ -10,7 +10,6 @@ function retrievePuenteAutofillData(parameter) {
   })
     .then((response) => {
       // console.log(response['data']);
-      // return response['data'];
       const results = [];
       response.data.forEach((object) => {
         // console.log(city);
@@ -19,17 +18,13 @@ function retrievePuenteAutofillData(parameter) {
           results.push(object[parameter]);
         }
       });
-      console.log(parameter);
-      console.log(results);
+      // console.log(parameter);
+      // console.log(results);
       return results;
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error); // eslint-disable-line
     });
-  //   .finally(function (data) {
-  //     console.log("API Gateway and Lambda Finished")
-  //     return data;
-  //   });
 }
 
 export default retrievePuenteAutofillData;
