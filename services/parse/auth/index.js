@@ -13,7 +13,13 @@ function initialize() {
 }
 
 function retrieveSignUpFunction(params) {
-  Parse.Cloud.run('signup', params).then((result) => result);
+  return new Promise((resolve, reject) => {
+    Parse.Cloud.run('signup', params).then((result) => {
+      resolve(result);
+    }, (error) => {
+      reject(error);
+    });
+  });
 }
 
 function retrieveSignInFunction(username, password) {
