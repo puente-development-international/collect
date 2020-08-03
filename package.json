@@ -2,6 +2,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
+    "start-clear": "expo start --clear",
     "reinstall": "rm package-lock.json && rm -rf node_modules/ && npm install",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -12,7 +13,8 @@
     "lint": "./node_modules/.bin/eslint '**/*.{js,jsx}' --quiet",
     "lint-fix": "./node_modules/.bin/eslint '**/*.{js,jsx}' --fix",
     "publish-staging": "expo publish --release-channel staging && expo build:ios --release-channel staging && expo build:android --release-channel staging",
-    "publish-prod": "expo publish --release-channel prod && expo build:ios --release-channel prod && expo build:android --release-channel prod"
+    "publish-prod": "expo publish --release-channel prod && expo build:ios --release-channel prod && expo build:android --release-channel prod",
+    "gh-prune": "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
   },
   "jest": {
     "preset": "jest-expo",
@@ -21,10 +23,12 @@
   },
   "dependencies": {
     "@expo/vector-icons": "10.0.6",
+    "@react-native-community/async-storage": "1.11.0",
     "@react-native-community/masked-view": "0.1.6",
     "@react-navigation/bottom-tabs": "5.5.1",
     "@react-navigation/native": "5.5.0",
     "@react-navigation/stack": "5.4.1",
+    "axios": "0.19.2",
     "expo": "37.0.12",
     "expo-asset": "8.1.5",
     "expo-constants": "9.0.0",
@@ -32,10 +36,12 @@
     "expo-linking": "1.0.1",
     "expo-splash-screen": "0.2.3",
     "expo-web-browser": "8.2.1",
+    "formik": "2.1.5",
     "parse": "2.14.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
+    "react-native-autocomplete-input": "4.2.0",
     "react-native-gesture-handler": "1.6.1",
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "2.2.0",
@@ -44,15 +50,13 @@
     "react-test-renderer": "16.13.0",
     "redux": "4.0.5",
     "redux-actions": "2.6.5",
-    "standard-version": "8.0.0",
     "styled-components": "5.1.1"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
     "babel-eslint": "10.1.0",
     "babel-preset-expo": "8.1.0",
-    "env-cmd": "^10.1.0",
-    "eslint": "7.1.0",
+    "eslint": "7.4.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
