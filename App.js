@@ -9,6 +9,9 @@ import {
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 import LinkingConfiguration from './navigation/LinkingConfiguration';
 import { initialize } from './services/parse/auth/index';
+import SignIn from './screens/SignIn';
+import SignUp from './screens/SignUp';
+
 
 const Stack = createStackNavigator();
 
@@ -29,6 +32,8 @@ export default class App extends React.Component {
         {Platform.OS === 'ios' && <StatusBar barStyle="dark-content" />}
         <NavigationContainer linking={LinkingConfiguration}>
           <Stack.Navigator>
+            <Stack.Screen name="Sign In" component={SignIn} />
+            <Stack.Screen name="Sign Up" component={SignUp} />
             <Stack.Screen name="Root" component={BottomTabNavigator} />
           </Stack.Navigator>
         </NavigationContainer>

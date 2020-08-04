@@ -1,115 +1,123 @@
 import React from 'react';
 import {
-  StyleSheet, TextInput, Button, View, Text
+  SafeAreaView,
+  Button,
+  ActivityIndicator,
 } from 'react-native';
 import { Formik } from 'formik';
-import { retrieveSignUpFunction } from '../services/parse/auth';
+import * as yup from 'yup';
+import { retrieveSignUpFunction, retrieveSignInFunction } from '../services/parse/auth';
 
-// props should be passed in here if needed
-export default function SignUp() {
+import FormInput from '../components/FormInput';
+
+const validationSchema = yup.object().shape({
+  firstname: yup
+    .string()
+    .label('First Name')
+    .required(),
+  lastname: yup
+    .string()
+    .label('Last Name')
+    .required(),
+  email: yup
+    .string()
+    .label('Email')
+    .email(),
+  phonenumber: yup
+    .string()
+    .label('Phone Number')
+    .min(10, 'Seems a bit short..')
+    .required(),
+  organization: yup
+    .string()
+    .label('Username')
+    .required(),
+  password: yup
+    .string()
+    .label('Password')
+    .required()
+    .min(7, 'Seems a bit short...')
+});
+
+// export default () => (
+export default function SignUp({ navigation }) {
   return (
-    <Formik
-      initialValues={{
-        firstname: '', lastname: '', password: '', email: '', phonenumber: '', organization: ''
-      }}
-      onSubmit={(values) => {
-        // console.log(values);
-        retrieveSignUpFunction(values);
-      }}
-    >
-      {({
-        handleChange, handleBlur, handleSubmit, values
-      }) => (
-        <View style={styles.containter}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.text}>Enter First Name:</Text>
-            <TextInput
-              onChangeText={handleChange('firstname')}
-              onBlur={handleBlur('firstname')}
-              value={values.firstname}
-              style={styles.input}
+    <SafeAreaView style={{ marginTop: 90 }}>
+      <Formik
+        initialValues={{
+          firstname: '', lastname: '', email: '', phonenumber: '', password: '', organization: ''
+        }}
+        onSubmit={(values, actions) => {
+          retrieveSignUpFunction(values)
+            .then((user) => {
+              const userString = JSON.stringify(user);
+              const userValues = JSON.parse(userString);
+              const { username } = userValues;
+              // sign user in after successful sign up
+              retrieveSignInFunction(username, values.password)
+                .then(() => {
+                  // user signed in and signed up
+                  navigation.navigate('Root');
+                }, () => {
+                  // sign in failed, alert user
+                });
+            }, () => {
+              // sign up failed alert user
+            });
+          setTimeout(() => {
+            actions.setSubmitting(false);
+          }, 1000);
+        }}
+        validationSchema={validationSchema}
+      >
+        {(formikProps) => (
+          <>
+            <FormInput
+              label="First Name"
+              formikProps={formikProps}
+              formikKey="firstname"
+              placeholder="John"
+              autoFocus
             />
-          </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.text}>Enter Last Name:</Text>
-            <TextInput
-              onChangeText={handleChange('lastname')}
-              onBlur={handleBlur('lastname')}
-              value={values.lastname}
-              style={styles.input}
+            <FormInput
+              label="Last Name"
+              formikProps={formikProps}
+              formikKey="lastname"
+              placeholder="Doe"
             />
-          </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.text}>Enter Email:</Text>
-            <TextInput
-              onChangeText={handleChange('email')}
-              onBlur={handleBlur('email')}
-              value={values.email}
-              style={styles.input}
+            <FormInput
+              label="Email"
+              formikProps={formikProps}
+              formikKey="email"
+              placeholder="johndoe@example.com"
             />
-          </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.text}>Enter Phone Number:</Text>
-            <TextInput
-              onChangeText={handleChange('phonenumber')}
-              onBlur={handleBlur('phonenumber')}
-              value={values.phonenumber}
-              style={styles.input}
+            <FormInput
+              label="Phone Number"
+              formikProps={formikProps}
+              formikKey="phonenumber"
+              placeholder="11118675309"
             />
-          </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.text}>Enter Password:</Text>
-            <TextInput
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              value={values.password}
-              style={styles.input}
+            <FormInput
+              label="Password"
+              formikProps={formikProps}
+              formikKey="password"
+              placeholder="Password Here"
+              secureTextEntry
             />
-          </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.text}>Enter Organization:</Text>
-            <TextInput
-              onChangeText={handleChange('organization')}
-              onBlur={handleBlur('organization')}
-              value={values.organization}
-              style={styles.input}
+            <FormInput
+              label="Organization"
+              formikProps={formikProps}
+              formikKey="organization"
+              placeholder="Puente"
             />
-          </View>
-          <View style={styles.button}>
-            <Button onPress={handleSubmit} title="Submit" />
-          </View>
-        </View>
-      )}
-    </Formik>
+            {formikProps.isSubmitting ? (
+              <ActivityIndicator />
+            ) : (
+              <Button title="Submit" onPress={formikProps.handleSubmit} />
+            )}
+          </>
+        )}
+      </Formik>
+    </SafeAreaView>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    flexDirection: 'row'
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    padding: 10
-  },
-  text: {
-    color: '#000',
-    flex: 1,
-    height: 50,
-    padding: 10,
-    alignItems: 'flex-end'
-  },
-  input: {
-    flex: 1,
-    backgroundColor: '#ccc',
-    height: 40,
-    padding: 10,
-    alignItems: 'stretch'
-
-  },
-  button: {
-    padding: 10
-  }
-});

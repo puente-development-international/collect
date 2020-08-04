@@ -12,12 +12,18 @@ function initialize() {
 }
 
 function retrieveSignUpFunction(params) {
-  Parse.Cloud.run('signup', params).then((result) => result);
+  return new Promise((resolve, reject) => {
+    Parse.Cloud.run('signup', params).then((result) => {
+      resolve(result);
+    }, (error) => {
+      reject(error);
+    });
+  });
 }
 
 function retrieveSignInFunction(username, password) {
   return new Promise((resolve, reject) => {
-    // sign in with either username or email handled with logIn
+    // sign in with either phonenumber (username) or email handled with logIn
     Parse.User.logIn(String(username), String(password)).then((user) => {
       console.log(`User logged in successful with username: ${user.get('username')}`); // eslint-disable-line
       resolve(user);
@@ -31,7 +37,6 @@ function retrieveSignInFunction(username, password) {
 function retrieveSignOutFunction() {
   return new Promise((resolve, reject) => {
     Parse.User.logOut().then((result) => {
-      // console.log(result);
       resolve(result);
     }, (error) => {
       reject(error);
@@ -52,10 +57,8 @@ function retrieveCurrentUserFunction() {
     user.email = u.get('email');
     user.organization = u.get('organization');
     user.role = u.get('role');
-    // console.log(user);
     return user;
   }
-  // console.log(null);
   return null;
 }
 

@@ -112,7 +112,7 @@ function handleSignUpPress() {
     lastname: 'tester',
     // username: 'sprint-test-2',
     password: '12345',
-    email: 'sprinttest-20@gmail.com',
+    email: 'sprinttest-21@gmail.com',
     organization: 'sprint-testing'
   };
   retrieveSignUpFunction(params);
