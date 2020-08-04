@@ -36,7 +36,7 @@ const validationSchema = yup.object().shape({
     .string()
     .label('Password')
     .required()
-    .min(7, 'Seems a bit short...')
+    .min(4, 'Seems a bit short...')
 });
 
 // export default () => (
@@ -95,7 +95,7 @@ export default function SignUp({ navigation }) {
               label="Phone Number"
               formikProps={formikProps}
               formikKey="phonenumber"
-              placeholder="11118675309"
+              placeholder="123-456-7890"
             />
             <FormInput
               label="Password"
@@ -113,8 +113,8 @@ export default function SignUp({ navigation }) {
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button title="Submit" onPress={formikProps.handleSubmit} />
-            )}
+                <Button title="Submit" onPress={formikProps.handleSubmit} />
+              )}
           </>
         )}
       </Formik>
