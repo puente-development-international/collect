@@ -1,79 +1,73 @@
 import React from 'react';
 import {
-  StyleSheet, TextInput, Button, View, Text
+  SafeAreaView,
+  Button,
+  ActivityIndicator,
 } from 'react-native';
 import { Formik } from 'formik';
+import * as yup from 'yup';
 import { retrieveSignInFunction } from '../services/parse/auth';
+import FormInput from '../components/FormInput';
 
-// props should be passed in here if needed
-export default function SignIn() {
+const validationSchema = yup.object().shape({
+  username: yup
+    .string()
+    .label('Username')
+    .required(),
+  password: yup
+    .string()
+    .label('Password')
+    .required()
+    .min(4, 'Seems a bit short...')
+});
+
+// export default () => (
+export default function SignUp({ navigation }) {
+  const handleSignUp = () => {
+    navigation.navigate('Sign Up');
+  };
   return (
-    <Formik
-      initialValues={{ username: '', password: '' }}
-      onSubmit={(values) => {
-        // console.log(values.username);
-        // console.log(values.password);
-        retrieveSignInFunction(values.username, values.password);
-      }}
-    >
-      {({
-        handleChange, handleBlur, handleSubmit, values
-      }) => (
-        <View style={styles.containter}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.text}>Enter Username:</Text>
-            <TextInput
-              onChangeText={handleChange('username')}
-              onBlur={handleBlur('username')}
-              value={values.username}
-              style={styles.input}
+    <SafeAreaView style={{ marginTop: 90 }}>
+      <Formik
+        initialValues={{ username: '', password: '' }}
+        onSubmit={(values, actions) => {
+          retrieveSignInFunction(values.username, values.password)
+            .then(() => {
+              navigation.navigate('Root');
+            }, () => {
+              // error some sort of alert
+            });
+          setTimeout(() => {
+            actions.setSubmitting(false);
+          }, 1000);
+        }}
+        validationSchema={validationSchema}
+      >
+        {(formikProps) => (
+          <>
+            <FormInput
+              label="Username"
+              formikProps={formikProps}
+              formikKey="username"
+              placeholder="johndoe@example.com"
+              autoFocus
             />
-          </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.text}>Enter Password:</Text>
-            <TextInput
-              onChangeText={handleChange('password')}
-              onBlur={handleBlur('password')}
-              value={values.password}
-              style={styles.input}
+            <FormInput
+              label="Password"
+              formikProps={formikProps}
+              formikKey="password"
+              placeholder="Password here"
+              secureTextEntry
             />
-          </View>
-          <View style={styles.button}>
-            <Button onPress={handleSubmit} title="Submit" />
-          </View>
-        </View>
-      )}
-    </Formik>
+            {formikProps.isSubmitting ? (
+              <ActivityIndicator />
+            ) : (
+                <Button title="Submit" onPress={formikProps.handleSubmit} />
+              )}
+            <Button title="Don't have an account, Sign Up!" onPress={handleSignUp} />
+          </>
+        )}
+      </Formik>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    flexDirection: 'row'
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    padding: 10
-  },
-  text: {
-    color: '#000',
-    flex: 1,
-    height: 50,
-    padding: 10,
-    alignItems: 'flex-end'
-  },
-  input: {
-    flex: 1,
-    backgroundColor: '#ccc',
-    height: 40,
-    padding: 10,
-    alignItems: 'stretch'
-
-  },
-  button: {
-    padding: 10
-  }
-});
