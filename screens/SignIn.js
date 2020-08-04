@@ -18,7 +18,7 @@ const validationSchema = yup.object().shape({
     .string()
     .label('Password')
     .required()
-    .min(7, 'Seems a bit short...')
+    .min(4, 'Seems a bit short...')
 });
 
 // export default () => (
@@ -62,8 +62,8 @@ export default function SignUp({ navigation }) {
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button title="Submit" onPress={formikProps.handleSubmit} />
-            )}
+                <Button title="Submit" onPress={formikProps.handleSubmit} />
+              )}
             <Button title="Don't have an account, Sign Up!" onPress={handleSignUp} />
           </>
         )}
