@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   Button,
   ActivityIndicator,
+  View,
+  StyleSheet
 } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import CheckBox from 'react-native-check-box';
 import { retrieveSignInFunction } from '../services/parse/auth';
 import FormInput from '../components/FormInput';
 
@@ -26,6 +29,7 @@ export default function SignUp({ navigation }) {
   const handleSignUp = () => {
     navigation.navigate('Sign Up');
   };
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <SafeAreaView style={{ marginTop: 90 }}>
       <Formik
@@ -52,18 +56,34 @@ export default function SignUp({ navigation }) {
               placeholder="johndoe@example.com"
               autoFocus
             />
-            <FormInput
-              label="Password"
-              formikProps={formikProps}
-              formikKey="password"
-              placeholder="Password here"
-              secureTextEntry
-            />
+            {!showPassword ? (
+              <FormInput
+                label="Password"
+                formikProps={formikProps}
+                formikKey="password"
+                placeholder="Password here"
+                secureTextEntry
+              />
+            ) : (
+              <FormInput
+                label="Password"
+                formikProps={formikProps}
+                formikKey="password"
+                placeholder="Password here"
+              />
+            )}
+            <View style={styles.container}>
+              <CheckBox
+                onClick={() => setShowPassword(!showPassword)}
+                isChecked={showPassword}
+                rightText="Show Password"
+              />
+            </View>
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-                <Button title="Submit" onPress={formikProps.handleSubmit} />
-              )}
+              <Button title="Submit" onPress={formikProps.handleSubmit} />
+            )}
             <Button title="Don't have an account, Sign Up!" onPress={handleSignUp} />
           </>
         )}
@@ -71,3 +91,9 @@ export default function SignUp({ navigation }) {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginLeft: 20,
+  },
+});
