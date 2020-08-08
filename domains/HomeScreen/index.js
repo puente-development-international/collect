@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  Platform, StyleSheet, Text, TouchableOpacity, View
+  Platform, StyleSheet, Text, View
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Button } from 'react-native-paper';
 
 import retrieveHelloFunction from '../../services/parse/crud';
 import {
@@ -34,65 +35,58 @@ export default class HomeScreen extends React.Component {
     return (
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.row}>
-          <View style={styles.clickText}>
-            <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.text}>HomeScreen</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.clickText}>
-            <TouchableOpacity onPress={handleSignUpPress} style={styles.helpLink}>
-              <Text style={styles.text}>Sign Up</Text>
-            </TouchableOpacity>
-          </View>
+          <Button onPress={handleHelpPress} mode="contained">
+            HomeScreen
+          </Button>
+          <Button onPress={handleSignUpPress}>
+            Sign Up
+          </Button>
+        </View>
+        <View style={styles.row}>
+          <Button onPress={handleSignInPress} compact>
+            <Text>Sign In</Text>
+          </Button>
+          <Button onPress={handleSignOutPress} mode="outlined">
+            <Text>Sign Out</Text>
+          </Button>
         </View>
         <View style={styles.row}>
           <View style={styles.clickText}>
-            <TouchableOpacity onPress={handleSignInPress} style={styles.helpLink}>
-              <Text style={styles.text}>Sign In</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.clickText}>
-            <TouchableOpacity onPress={handleSignOutPress} style={styles.helpLink}>
-              <Text style={styles.text}>Sign Out</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.row}>
-          <View style={styles.clickText}>
-            <TouchableOpacity onPress={handleForgotPasswordPress} style={styles.helpLink}>
+            <Button onPress={handleForgotPasswordPress} style={styles.helpLink}>
               <Text style={styles.text}>Forgot Password</Text>
-            </TouchableOpacity>
+            </Button>
           </View>
           <View style={styles.clickText}>
-            <TouchableOpacity onPress={handleCurrentUserPress} style={styles.helpLink}>
+            <Button onPress={handleCurrentUserPress} style={styles.helpLink}>
               <Text style={styles.text}>Current User</Text>
-            </TouchableOpacity>
+            </Button>
           </View>
         </View>
         <View style={styles.row}>
           <View style={styles.clickText}>
-            <TouchableOpacity onPress={handleDeleteUserPress} style={styles.helpLink}>
+            <Button onPress={handleDeleteUserPress} style={styles.helpLink}>
               <Text style={styles.text}>Delete User</Text>
-            </TouchableOpacity>
+            </Button>
           </View>
         </View>
         <View style={styles.row}>
           <View style={styles.clickText}>
-            <TouchableOpacity onPress={this.showTasks} style={styles.helpLink}>
+            <Button onPress={this.showTasks} style={styles.helpLink}>
               <Text style={styles.text}>Tasks</Text>
-              {tasks != null
-                && tasks.map((task, i) => (
-                  <View key={i}>
-                    <Text>{task.name}</Text>
-                  </View>
-                ))}
-            </TouchableOpacity>
+            </Button>
+
+            {tasks != null
+              && tasks.map((task) => (
+                <View key={task.task_id}>
+                  <Text>{task.name}</Text>
+                </View>
+              ))}
           </View>
         </View>
         <View style={styles.clickText}>
-          <TouchableOpacity onPress={handleAutoFillClick} style={styles.helpLink}>
+          <Button onPress={handleAutoFillClick} style={styles.helpLink}>
             <Text style={styles.text}>Autofill GET</Text>
-          </TouchableOpacity>
+          </Button>
         </View>
         <AutoFill parameter="City" />
         <AutoFill parameter="Province" />
@@ -246,7 +240,7 @@ const styles = StyleSheet.create({
   },
   helpLinkText: {
     fontSize: 14,
-    color: '#2e78b7',
+    // color: '#2e78b7',
   },
   clickText: {
     borderRadius: 10,

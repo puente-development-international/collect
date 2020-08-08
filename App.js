@@ -8,18 +8,16 @@ import MainNavigation from './components/MainNavigation';
 import configureStore from './modules/state-management/configure-store';
 
 // STYLING
-import theme from './modules/theme'
+import theme from './modules/theme';
 
 const store = configureStore();
 
-const App = () => {
-  return (
-    <StoreProvider store={store}>
-      <PaperProvider theme={theme}>
-        <MainNavigation />
-      </PaperProvider>
-    </StoreProvider>
-  );
-}
+const App = () => (
+  <StoreProvider store={store}>
+    <PaperProvider theme={theme}>
+      <MainNavigation />
+    </PaperProvider>
+  </StoreProvider>
+);
 
-export default App
+export default App;
