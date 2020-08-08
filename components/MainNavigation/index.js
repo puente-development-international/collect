@@ -11,7 +11,6 @@ import { initialize } from '../../services/parse/auth/index';
 import SignIn from '../../domains/SignIn';
 import SignUp from '../../domains/SignUp';
 
-
 const Stack = createStackNavigator();
 
 export default class MainNavigation extends React.Component {
