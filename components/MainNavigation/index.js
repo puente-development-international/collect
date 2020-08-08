@@ -8,8 +8,8 @@ import {
 import BottomTabNavigator from './BottomTabNavigator.';
 import LinkingConfiguration from './LinkingConfiguration';
 import { initialize } from '../../services/parse/auth/index';
-import SignIn from '../../screens/SignIn';
-import SignUp from '../../screens/SignUp';
+import SignIn from '../../domains/SignIn';
+import SignUp from '../../domains/SignUp';
 
 
 const Stack = createStackNavigator();

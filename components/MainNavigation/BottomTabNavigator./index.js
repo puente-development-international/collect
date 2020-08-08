@@ -2,9 +2,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 
 import TabBarIcon from '../../../components/TabBarIcon';
-import HomeScreen from '../../../screens/HomeScreen';
-import DataCollection from '../../../screens/DataCollection';
-import DataAnalysis from '../../../screens/DataAnalysis';
+import HomeScreen from '../../../domains/HomeScreen';
+import DataCollection from '../../../domains/DataCollection';
+import DataAnalysis from '../../../domains/DataAnalysis';
 
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
