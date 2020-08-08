@@ -9,6 +9,11 @@ Here are some quick npm commands to get started:
 - `npm lint-fix`: Run the ESLinter.
 
 
+## Resources
+
+- [React Native Paper](https://callstack.github.io/react-native-paper/index.html)
+
+
 ## Standards
 [![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/expo-community/standard-version-expo)
 

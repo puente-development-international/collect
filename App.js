@@ -1,18 +1,24 @@
 // REACT
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { Provider as StoreProvider } from 'react-redux';
 import MainNavigation from './components/MainNavigation';
 
 // REDUX
 import configureStore from './modules/state-management/configure-store';
 
+// STYLING
+import theme from './modules/theme'
+
 const store = configureStore();
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <MainNavigation />
-    </Provider>
+    <StoreProvider store={store}>
+      <PaperProvider theme={theme}>
+        <MainNavigation />
+      </PaperProvider>
+    </StoreProvider>
   );
 }
 

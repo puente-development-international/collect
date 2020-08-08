@@ -24,13 +24,15 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "0.1.0"
+      "buildNumber": "0.1.0",
+      "bundleIdentifier": "com.puente.collect"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "android": {
-      "versionCode": 370000100
+      "versionCode": 370000100,
+      "package": "com.puente.collect"
     }
   }
 }
