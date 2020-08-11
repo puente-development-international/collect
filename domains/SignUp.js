@@ -113,8 +113,8 @@ export default function SignUp({ navigation }) {
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-                <Button title="Submit" onPress={formikProps.handleSubmit} />
-              )}
+              <Button title="Submit" onPress={formikProps.handleSubmit} />
+            )}
           </>
         )}
       </Formik>
