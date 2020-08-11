@@ -1,4 +1,6 @@
 {
+  "name": "puente-reactnative",
+  "version": "0.1.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -14,7 +16,8 @@
     "lint-fix": "./node_modules/.bin/eslint '**/*.{js,jsx}' --fix",
     "publish-staging": "expo publish --release-channel staging && expo build:ios --release-channel staging && expo build:android --release-channel staging",
     "publish-prod": "expo publish --release-channel prod && expo build:ios --release-channel prod && expo build:android --release-channel prod",
-    "gh-prune": "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
+    "gh-prune": "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done",
+    "release": "npx standard-version --release-as minor"
   },
   "jest": {
     "preset": "jest-expo",
@@ -43,6 +46,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
     "react-native-autocomplete-input": "4.2.0",
     "react-native-gesture-handler": "1.6.1",
+    "react-native-paper": "4.0.1",
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "2.2.0",
     "react-native-web": "0.11.7",
@@ -51,7 +55,6 @@
     "redux": "4.0.5",
     "redux-actions": "2.6.5",
     "styled-components": "5.1.1",
-    "standard-version": "8.0.0",
     "yup": "0.29.2"
   },
   "devDependencies": {
@@ -63,7 +66,9 @@
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.20.0",
-    "jest-expo": "37.0.0"
+    "jest-expo": "37.0.0",
+    "standard-version": "7.1.0",
+    "standard-version-expo": "1.0.3"
   },
   "private": true
 }
