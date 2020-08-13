@@ -14,6 +14,7 @@ import * as yup from 'yup';
 import { retrieveSignUpFunction, retrieveSignInFunction } from '../services/parse/auth';
 
 import FormInput from '../components/FormInput';
+import TermsModal from '../components/TermsModal';
 // STYLING
 import theme from '../modules/theme';
 
@@ -128,7 +129,7 @@ export default function SignUp({ navigation }) {
                 formikKey="organization"
                 placeholder="Puente"
               />
-              <Button mode="text" theme={theme} dark color="#3E81FD" style={styles.serviceButton} onPress={showModal}>View the terms and service</Button>
+              <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={showModal}>View the terms and service</Button>
               <View style={styles.container}>
                 <Text style={styles.serviceText}>
                   By checking this box, I ackowledge that I have read and
@@ -148,29 +149,9 @@ export default function SignUp({ navigation }) {
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
-              )}
-              <Portal theme={theme}>
-                <Modal
-                  visible={visible}
-                  theme={theme}
-                  contentContainerStyle={styles.modal}
-                  onDismiss={hideModal}
-                >
-                  <Headline theme={theme}>Terms and Service</Headline>
-                  <Text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident,
-                    sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </Text>
-                </Modal>
-              </Portal>
+                  <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
+                )}
+              <TermsModal visible={visible} hideModal={hideModal} />
             </>
           )}
         </Formik>
@@ -195,11 +176,6 @@ const styles = StyleSheet.create({
   serviceText: {
     flex: 5,
     fontSize: 10
-  },
-  modal: {
-    backgroundColor: 'white',
-    padding: 30,
-    margin: 30
   },
   submitButton: {
     marginLeft: 20,
