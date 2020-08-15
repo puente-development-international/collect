@@ -22,7 +22,7 @@ const validationSchema = yup.object().shape({
 });
 
 // export default () => (
-export default function SignUp({ navigation }) {
+export default function SignIn({ navigation }) {
   const handleSignUp = () => {
     navigation.navigate('Sign Up');
   };

@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 import {
-  Checkbox, Button, Modal, Text, Portal, Headline
+  Checkbox, Button, Text
 } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Formik } from 'formik';
@@ -149,8 +149,8 @@ export default function SignUp({ navigation }) {
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                  <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
-                )}
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
+              )}
               <TermsModal visible={visible} hideModal={hideModal} />
             </>
           )}

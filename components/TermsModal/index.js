@@ -8,13 +8,14 @@ import {
 import theme from '../../modules/theme';
 
 export default function TermsModal(props) {
+  const { visible, hideModal } = props;
   return (
     <Portal theme={theme}>
       <Modal
-        visible={props.visible}
+        visible={visible}
         theme={theme}
         contentContainerStyle={styles.modal}
-        onDismiss={props.hideModal}
+        onDismiss={hideModal}
       >
         <Headline theme={theme}>Terms and Service</Headline>
         <Text>
@@ -30,7 +31,7 @@ export default function TermsModal(props) {
         </Text>
       </Modal>
     </Portal>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -39,4 +40,4 @@ const styles = StyleSheet.create({
     padding: 30,
     margin: 30
   },
-})
+});
