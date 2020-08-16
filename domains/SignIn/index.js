@@ -3,21 +3,24 @@
 import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
-  Button,
   ActivityIndicator,
   View,
   StyleSheet,
   Alert,
-  Modal,
   Text,
-  TouchableHighlight
 } from 'react-native';
+import {
+  Checkbox, Button,
+} from 'react-native-paper';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import CheckBox from 'react-native-check-box';
-import { retrieveSignInFunction } from '../services/parse/auth';
-import FormInput from '../components/FormInput';
-import { storeData, getData } from '../modules/async-storage';
+import { retrieveSignInFunction } from '../../services/parse/auth';
+import FormInput from '../../components/FormInput';
+import CredentialsModal from './CredentialsModal';
+import { storeData, getData } from '../../modules/async-storage';
+
+// STYLING
+import theme from '../../modules/theme';
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -51,7 +54,8 @@ export default function SignIn({ navigation }) {
       // clicking out side of alert will not cancel
     );
   };
-  const [showPassword, setShowPassword] = useState(false);
+
+  const [checked, setChecked] = React.useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [user, setUser] = useState(null);
   const [load] = useState(false);
@@ -65,7 +69,7 @@ export default function SignIn({ navigation }) {
     });
   }, [load]);
   return (
-    <SafeAreaView style={{ marginTop: 90 }}>
+    <SafeAreaView style={{ marginTop: 20 }}>
       <Formik
         initialValues={{ username: '', password: '' }}
         onSubmit={(values, actions) => {
@@ -101,7 +105,7 @@ export default function SignIn({ navigation }) {
               placeholder="johndoe@example.com"
               autoFocus
             />
-            {!showPassword ? (
+            {!checked ? (
               <FormInput
                 label="Password"
                 formikProps={formikProps}
@@ -118,52 +122,32 @@ export default function SignIn({ navigation }) {
               />
             )}
             <View style={styles.container}>
-              <CheckBox
-                onClick={() => setShowPassword(!showPassword)}
-                isChecked={showPassword}
-                rightText="Show Password"
-              />
+              <View style={styles.checkbox}>
+                <Checkbox
+                  disabled={false}
+                  theme={theme}
+                  status={checked ? 'checked' : 'unchecked'}
+                  onPress={() => {
+                    setChecked(!checked);
+                  }}
+                />
+              </View>
+              <Text style={styles.passwordText}>Show Password</Text>
             </View>
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button title="Submit" onPress={formikProps.handleSubmit} />
+              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
             )}
-            <Button title="Don't have an account, Sign Up!" onPress={handleSignUp} />
-            <Modal
-              animationType="slide"
-              transparent
-              visible={modalVisible}
-            >
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                  <Text style={styles.modalText}>
-                    Would you like to use your saved login credentials to sign in?
-                  </Text>
-                  <View style={styles.modalButtons}>
-                    <TouchableHighlight
-                      style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
-                      onPress={() => {
-                        setModalVisible(!modalVisible);
-                        formikProps.values.username = user.username;
-                        formikProps.values.password = user.password;
-                        formikProps.handleSubmit();
-                      }}
-                    >
-                      <Text style={styles.textStyle}>Yes</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight
-                      style={{ ...styles.openButton, backgroundColor: '#2196F3' }}
-                      onPress={() => {
-                        setModalVisible(!modalVisible);
-                      }}
-                    >
-                      <Text style={styles.textStyle}>No</Text>
-                    </TouchableHighlight>
-                  </View>
-                </View>
-              </View>
-            </Modal>
+            <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
+              Don&apos;t have an account, Sign Up!
+            </Button>
+            <CredentialsModal
+              modalVisible={modalVisible}
+              formikProps={formikProps}
+              user={user}
+              setModalVisible={setModalVisible}
+            />
           </>
         )}
       </Formik>
@@ -174,45 +158,23 @@ export default function SignIn({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     marginLeft: 20,
+    flexDirection: 'row'
   },
-  centeredView: {
+  passwordText: {
+    flex: 10,
+    fontSize: 15,
+    marginLeft: 10
+  },
+  checkbox: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22
+    borderRadius: 5,
+    marginLeft: 20,
+    backgroundColor: 'white'
   },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5
+  submitButton: {
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 15,
+    marginBottom: 10,
   },
-  openButton: {
-    backgroundColor: '#F194FF',
-    borderRadius: 10,
-    padding: 10,
-    elevation: 2
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center'
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center'
-  },
-  modalButtons: {
-    flexDirection: 'row',
-    padding: 10
-  }
 });
