@@ -7,7 +7,6 @@ export default {
       path: 'root',
       screens: {
         Home: 'home',
-        Links: 'links',
         Data_Collection: 'data_collection',
         Data_Analysis: 'data_analysis',
         Sign_Up: 'sign_up',
