@@ -6,17 +6,17 @@ import {
   View
 } from 'react-native';
 import {
-  Checkbox, Button, Modal, Text, Portal, Headline
+  Checkbox, Button, Text
 } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { retrieveSignUpFunction, retrieveSignInFunction } from '../services/parse/auth';
+import { retrieveSignUpFunction, retrieveSignInFunction } from '../../services/parse/auth';
 
-import FormInput from '../components/FormInput';
-import TermsModal from '../components/TermsModal';
+import FormInput from '../../components/FormInput';
+import TermsModal from '../../components/TermsModal';
 // STYLING
-import theme from '../modules/theme';
+import theme from '../../modules/theme';
 
 const validationSchema = yup.object().shape({
   firstname: yup
@@ -34,13 +34,17 @@ const validationSchema = yup.object().shape({
   phonenumber: yup
     .string()
     .label('Phone Number')
-    .min(10, 'Seems a bit short..')
-    .required(),
+    .min(10, 'Seems a bit short..'),
   organization: yup
     .string()
     .label('Username')
     .required(),
   password: yup
+    .string()
+    .label('Password')
+    .required()
+    .min(4, 'Seems a bit short...'),
+  password2: yup
     .string()
     .label('Password')
     .required()
@@ -149,8 +153,8 @@ export default function SignUp({ navigation }) {
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                  <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
-                )}
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
+              )}
               <TermsModal visible={visible} hideModal={hideModal} />
             </>
           )}
