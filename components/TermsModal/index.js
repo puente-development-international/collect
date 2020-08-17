@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import {
-  Modal, Text, Portal, Headline
+  Modal, Text, Portal, Headline, Button
 } from 'react-native-paper';
 
 // STYLING
@@ -15,7 +15,7 @@ export default function TermsModal(props) {
         visible={visible}
         theme={theme}
         contentContainerStyle={styles.modal}
-        onDismiss={hideModal}
+        dismissable={false}
       >
         <Headline theme={theme}>Terms and Service</Headline>
         <Text>
@@ -29,6 +29,7 @@ export default function TermsModal(props) {
           Excepteur sint occaecat cupidatat non proident,
           sunt in culpa qui officia deserunt mollit anim id est laborum.
         </Text>
+        <Button mode="contained" theme={theme} color="#3E81FD" style={styles.button} onPress={hideModal}>Ok</Button>
       </Modal>
     </Portal>
   );
@@ -40,4 +41,7 @@ const styles = StyleSheet.create({
     padding: 30,
     margin: 30
   },
+  button: {
+    marginTop: 30
+  }
 });
