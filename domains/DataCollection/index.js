@@ -17,11 +17,9 @@ export default function DataCollection({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: .5,
-    // backgroundColor: '#fff',
   },
   line: {
     flex: .5,
     padding: 10,
-    // backgroundColor: '#fff'
   }
 });
