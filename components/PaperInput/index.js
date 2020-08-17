@@ -15,7 +15,7 @@ const PaperInput = (props) => {
         label={label}
         onChangeText={formikProps.handleChange(formikKey)}
         onBlur={formikProps.handleBlur(formikKey)}
-        {...rest}
+        {...rest} //eslint-disable-line
       />
       <Text style={{ color: 'red' }}>
         {formikProps.touched[formikKey] && formikProps.errors[formikKey]}

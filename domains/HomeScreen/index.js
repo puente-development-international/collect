@@ -4,8 +4,6 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button } from 'react-native-paper';
-// import retrievePuenteAutofillData from '../../services/aws';
-import AutoFill from '../../components/AutoFill';
 import getTasks from '../../services/tasky';
 
 export default class HomeScreen extends React.Component {

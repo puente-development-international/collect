@@ -16,10 +16,10 @@ export default function DataCollection({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: .5,
+    flex: 0.5,
   },
   line: {
-    flex: .5,
+    flex: 0.5,
     padding: 10,
   }
 });
