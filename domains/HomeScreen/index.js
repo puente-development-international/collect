@@ -4,8 +4,6 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button } from 'react-native-paper';
-// import retrievePuenteAutofillData from '../../services/aws';
-import AutoFill from '../../components/AutoFill';
 import getTasks from '../../services/tasky';
 
 export default class HomeScreen extends React.Component {
@@ -43,14 +41,10 @@ export default class HomeScreen extends React.Component {
               ))}
           </View>
         </View>
-        {/* <View style={styles.clickText}>
-          <Button onPress={handleAutoFillClick} style={styles.helpLink}>
-            <Text style={styles.text}>Autofill GET</Text>
-          </Button>
-        </View> */}
-        <AutoFill parameter="City" />
+
+        {/* <AutoFill parameter="City" />
         <AutoFill parameter="Province" />
-        <AutoFill parameter="Communities" />
+        <AutoFill parameter="Communities" /> */}
       </ScrollView>
     );
   }

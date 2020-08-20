@@ -4,4 +4,14 @@ function retrieveHelloFunction() {
   Parse.Cloud.run('hello').then((result) => result);
 }
 
-export default retrieveHelloFunction;
+function postObjectsToClass(params) {
+  return new Promise((resolve, reject) => {
+    Parse.Cloud.run('postObjectsToClass', params).then((result) => {
+      resolve(result);
+    }, (error) => {
+      reject(error);
+    });
+  });
+}
+
+export { retrieveHelloFunction, postObjectsToClass };

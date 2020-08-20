@@ -3,22 +3,23 @@ import {
   StyleSheet, Text, View
 } from 'react-native';
 
-export default function DataCollection() {
+import Forms from './Forms';
+
+export default function DataCollection({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome to the data collection page.</Text>
+      <Text style={styles.line}>Welcome to the data collection page.</Text>
+      <Forms style={styles.line} navigation={navigation} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: 0.5,
   },
-  text: {
-    flex: 1,
-    color: '#000',
-    padding: 10
+  line: {
+    flex: 0.5,
+    padding: 10,
   }
 });
