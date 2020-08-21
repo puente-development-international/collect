@@ -1,6 +1,8 @@
 /* eslint no-param-reassign: ["error",
 { "props": true, "ignorePropertyModificationsFor": ["formikProps"] }] */
-import React, { useState, useEffect } from 'react';
+import React, {
+  useContext, useState, useEffect
+} from 'react';
 import {
   SafeAreaView,
   ActivityIndicator,
@@ -21,6 +23,9 @@ import { storeData, getData } from '../../modules/async-storage';
 
 // STYLING
 import theme from '../../modules/theme';
+// Languages
+import { LocalizationContext } from '../../App';
+import '../../locales/English/en.json';
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -59,6 +64,8 @@ export default function SignIn({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
   const [user, setUser] = useState(null);
   const [load] = useState(false);
+
+  const { t } = useContext(LocalizationContext);
 
   useEffect(() => {
     getData('credentials').then((values) => {
@@ -99,7 +106,7 @@ export default function SignIn({ navigation }) {
         {(formikProps) => (
           <>
             <FormInput
-              label="Username"
+              label={t('signIn.username')}
               formikProps={formikProps}
               formikKey="username"
               placeholder="johndoe@example.com"
@@ -107,7 +114,7 @@ export default function SignIn({ navigation }) {
             />
             {!checked ? (
               <FormInput
-                label="Password"
+                label={t('signIn.password')}
                 formikProps={formikProps}
                 formikKey="password"
                 placeholder="Password here"
@@ -115,7 +122,7 @@ export default function SignIn({ navigation }) {
               />
             ) : (
               <FormInput
-                label="Password"
+                label={t('signIn.password')}
                 formikProps={formikProps}
                 formikKey="password"
                 placeholder="Password here"
@@ -132,15 +139,15 @@ export default function SignIn({ navigation }) {
                   }}
                 />
               </View>
-              <Text style={styles.passwordText}>Show Password</Text>
+              <Text style={styles.passwordText}>{t('signIn.showPassword')}</Text>
             </View>
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
+              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{t('signIn.submit')}</Button>
             )}
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
-              Don&apos;t have an account, Sign Up!
+              {t('signIn.signUpLink')}
             </Button>
             <CredentialsModal
               modalVisible={modalVisible}

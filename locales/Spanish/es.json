@@ -1,0 +1,24 @@
+{
+  "signUp": {
+    "firstName": "Nombre de pila",
+    "lastName": "Apellido",
+    "email": "Email",
+    "phoneNumber": "Número de teléfono",
+    "password": "Contraseña",
+    "organization": "Organización",
+    "termsOfService": {
+      "view": "Ver los términos y el servicio",
+      "acknoledgement": "Al marcar esta casilla, reconozco que he leído y comprendido los Términos y el acuerdo de servicio."
+    },
+    "submit": "Enviar",
+    "toEnglish": "Cambiar el idioma al inglés",
+    "toSpanish": "Cambio de idioma al español"
+  },
+  "signIn": {
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "showPassword": "Mostrar contraseña",
+    "submit": "Enviar",
+    "signUpLink": "No tienes una cuenta, regístrate!"
+  }
+}

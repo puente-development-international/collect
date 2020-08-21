@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   SafeAreaView,
   ActivityIndicator,
@@ -17,6 +17,10 @@ import FormInput from '../../components/FormInput';
 import TermsModal from '../../components/TermsModal';
 // STYLING
 import theme from '../../modules/theme';
+import { LocalizationContext } from '../../App';
+// Languages
+// import { strings } from '../../locales/i18n';
+// import i18n from 'i18n-js';
 
 const validationSchema = yup.object().shape({
   firstname: yup
@@ -58,6 +62,8 @@ export default function SignUp({ navigation }) {
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
+  // const { t, locale, setLocale } = useContext(LocalizationContext);
+  const { t, setLocale } = useContext(LocalizationContext);
 
   return (
     <ScrollView>
@@ -95,49 +101,50 @@ export default function SignUp({ navigation }) {
         >
           {(formikProps) => (
             <>
+              <Button mode="contained" theme={theme} onPress={() => setLocale('en')}>{t('signUp.toEnglish')}</Button>
+              <Button mode="contained" theme={theme} onPress={() => setLocale('es')}>{t('signUp.toSpanish')}</Button>
               <FormInput
-                label="First Name"
+                label={t('signUp.firstName')}
                 formikProps={formikProps}
                 formikKey="firstname"
                 placeholder="John"
                 autoFocus
               />
               <FormInput
-                label="Last Name"
+                label={t('signUp.lastName')}
                 formikProps={formikProps}
                 formikKey="lastname"
                 placeholder="Doe"
               />
               <FormInput
-                label="Email"
+                label={t('signUp.email')}
                 formikProps={formikProps}
                 formikKey="email"
                 placeholder="johndoe@example.com"
               />
               <FormInput
-                label="Phone Number"
+                label={t('signUp.phoneNumber')}
                 formikProps={formikProps}
                 formikKey="phonenumber"
                 placeholder="123-456-7890"
               />
               <FormInput
-                label="Password"
+                label={t('signUp.password')}
                 formikProps={formikProps}
                 formikKey="password"
                 placeholder="Password Here"
                 secureTextEntry
               />
               <FormInput
-                label="Organization"
+                label={t('signUp.organization')}
                 formikProps={formikProps}
                 formikKey="organization"
                 placeholder="Puente"
               />
-              <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={showModal}>View the terms and service</Button>
+              <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={showModal}>{t('signUp.termsOfService.view')}</Button>
               <View style={styles.container}>
                 <Text style={styles.serviceText}>
-                  By checking this box, I ackowledge that I have read and
-                  understood the Terms and Service agreement.
+                  {t('signUp.termsOfService.acknoledgement')}
                 </Text>
                 <View style={styles.checkbox}>
                   <Checkbox
@@ -153,8 +160,9 @@ export default function SignUp({ navigation }) {
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{t('signUp.submit')}</Button>
               )}
+
               <TermsModal visible={visible} hideModal={hideModal} />
             </>
           )}
