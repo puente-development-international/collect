@@ -39,13 +39,13 @@ const validationSchema = yup.object().shape({
     .min(4, 'Seems a bit short...')
 });
 
-// export default () => (
 const SignIn = ({ navigation }) => {
   const [checked, setChecked] = React.useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [user, setUser] = useState(null);
-  const [load] = useState(false);
   const [language, setLanguage] = useState('en');
+
+  const load = false;
 
   useEffect(() => {
     getData('credentials').then((values) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Picker } from 'native-base';
 
-const listLanguage = [
+const languages = [
   {
     key: 'en', label: '🇺🇸'
   },
@@ -20,7 +20,7 @@ const LanguagePicker = (props) => {
       selectedValue={language}
       onValueChange={onChangeLanguage}
     >
-      {listLanguage.map((lang) => <Picker.Item key={lang.key} value={lang.key} label={lang.label} />)}
+      {languages.map((lang) => <Picker.Item key={lang.key} value={lang.key} label={lang.label} />)}
     </Picker>
   );
 };

@@ -70,7 +70,7 @@ export default function SignUp({ navigation }) {
           }}
           onSubmit={(values, actions) => {
             if (!checked) {
-              alert('Error, terms and service need to be agreed to.'); console.log(error); // eslint-disable-line
+              alert('Error, terms and service need to be agreed to.'); // eslint-disable-line
             } else {
               retrieveSignUpFunction(values)
                 .then((user) => {
@@ -97,8 +97,6 @@ export default function SignUp({ navigation }) {
         >
           {(formikProps) => (
             <>
-              {/* <Button mode="contained" theme={theme} onPress={() => setLocale('en')}>{t('signUp.toEnglish')}</Button>
-              <Button mode="contained" theme={theme} onPress={() => setLocale('es')}>{t('signUp.toSpanish')}</Button> */}
               <FormInput
                 label={I18n.t('signUp.firstName')}
                 formikProps={formikProps}
