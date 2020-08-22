@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   ActivityIndicator,
@@ -17,10 +17,8 @@ import FormInput from '../../components/FormInput';
 import TermsModal from '../../components/TermsModal';
 // STYLING
 import theme from '../../modules/theme';
-import { LocalizationContext } from '../../App';
-// Languages
-// import { strings } from '../../locales/i18n';
-// import i18n from 'i18n-js';
+
+import I18n from '../../modules/i18n';
 
 const validationSchema = yup.object().shape({
   firstname: yup
@@ -62,8 +60,6 @@ export default function SignUp({ navigation }) {
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  // const { t, locale, setLocale } = useContext(LocalizationContext);
-  const { t, setLocale } = useContext(LocalizationContext);
 
   return (
     <ScrollView>
@@ -101,50 +97,50 @@ export default function SignUp({ navigation }) {
         >
           {(formikProps) => (
             <>
-              <Button mode="contained" theme={theme} onPress={() => setLocale('en')}>{t('signUp.toEnglish')}</Button>
-              <Button mode="contained" theme={theme} onPress={() => setLocale('es')}>{t('signUp.toSpanish')}</Button>
+              {/* <Button mode="contained" theme={theme} onPress={() => setLocale('en')}>{t('signUp.toEnglish')}</Button>
+              <Button mode="contained" theme={theme} onPress={() => setLocale('es')}>{t('signUp.toSpanish')}</Button> */}
               <FormInput
-                label={t('signUp.firstName')}
+                label={I18n.t('signUp.firstName')}
                 formikProps={formikProps}
                 formikKey="firstname"
                 placeholder="John"
                 autoFocus
               />
               <FormInput
-                label={t('signUp.lastName')}
+                label={I18n.t('signUp.lastName')}
                 formikProps={formikProps}
                 formikKey="lastname"
                 placeholder="Doe"
               />
               <FormInput
-                label={t('signUp.email')}
+                label={I18n.t('signUp.email')}
                 formikProps={formikProps}
                 formikKey="email"
                 placeholder="johndoe@example.com"
               />
               <FormInput
-                label={t('signUp.phoneNumber')}
+                label={I18n.t('signUp.phoneNumber')}
                 formikProps={formikProps}
                 formikKey="phonenumber"
                 placeholder="123-456-7890"
               />
               <FormInput
-                label={t('signUp.password')}
+                label={I18n.t('signUp.password')}
                 formikProps={formikProps}
                 formikKey="password"
                 placeholder="Password Here"
                 secureTextEntry
               />
               <FormInput
-                label={t('signUp.organization')}
+                label={I18n.t('signUp.organization')}
                 formikProps={formikProps}
                 formikKey="organization"
                 placeholder="Puente"
               />
-              <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={showModal}>{t('signUp.termsOfService.view')}</Button>
+              <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={showModal}>{I18n.t('signUp.termsOfService.view')}</Button>
               <View style={styles.container}>
                 <Text style={styles.serviceText}>
-                  {t('signUp.termsOfService.acknoledgement')}
+                  {I18n.t('signUp.termsOfService.acknoledgement')}
                 </Text>
                 <View style={styles.checkbox}>
                   <Checkbox
@@ -160,7 +156,7 @@ export default function SignUp({ navigation }) {
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{t('signUp.submit')}</Button>
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
               )}
 
               <TermsModal visible={visible} hideModal={hideModal} />

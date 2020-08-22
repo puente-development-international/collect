@@ -1,7 +1,7 @@
 /* eslint no-param-reassign: ["error",
 { "props": true, "ignorePropertyModificationsFor": ["formikProps"] }] */
 import React, {
-  useContext, useState, useEffect
+  useState, useEffect
 } from 'react';
 import {
   SafeAreaView,
@@ -18,14 +18,14 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { retrieveSignInFunction } from '../../services/parse/auth';
 import FormInput from '../../components/FormInput';
+import LanguagePicker from '../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
 import { storeData, getData } from '../../modules/async-storage';
 
+import I18n from '../../modules/i18n';
+
 // STYLING
 import theme from '../../modules/theme';
-// Languages
-import { LocalizationContext } from '../../App';
-import '../../locales/English/en.json';
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -40,10 +40,26 @@ const validationSchema = yup.object().shape({
 });
 
 // export default () => (
-export default function SignIn({ navigation }) {
+const SignIn = ({ navigation }) => {
+  const [checked, setChecked] = React.useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [user, setUser] = useState(null);
+  const [load] = useState(false);
+  const [language, setLanguage] = useState('en');
+
+  useEffect(() => {
+    getData('credentials').then((values) => {
+      setUser(values);
+      if (values != null) {
+        setModalVisible(true);
+      }
+    });
+  }, [load]);
+
   const handleSignUp = () => {
     navigation.navigate('Sign Up');
   };
+
   const handleSaveCredentials = (values) => {
     Alert.alert(
       'Credentials',
@@ -60,23 +76,16 @@ export default function SignIn({ navigation }) {
     );
   };
 
-  const [checked, setChecked] = React.useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [user, setUser] = useState(null);
-  const [load] = useState(false);
-
-  const { t } = useContext(LocalizationContext);
-
-  useEffect(() => {
-    getData('credentials').then((values) => {
-      setUser(values);
-      if (values != null) {
-        setModalVisible(true);
-      }
+  const handleLanguage = (lang) => {
+    setLanguage({
+      lang
     });
-  }, [load]);
+    I18n.locale = lang;
+  };
+
   return (
     <SafeAreaView style={{ marginTop: 20 }}>
+      <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
       <Formik
         initialValues={{ username: '', password: '' }}
         onSubmit={(values, actions) => {
@@ -106,7 +115,7 @@ export default function SignIn({ navigation }) {
         {(formikProps) => (
           <>
             <FormInput
-              label={t('signIn.username')}
+              label={I18n.t('signIn.username')}
               formikProps={formikProps}
               formikKey="username"
               placeholder="johndoe@example.com"
@@ -114,7 +123,7 @@ export default function SignIn({ navigation }) {
             />
             {!checked ? (
               <FormInput
-                label={t('signIn.password')}
+                label={I18n.t('signIn.password')}
                 formikProps={formikProps}
                 formikKey="password"
                 placeholder="Password here"
@@ -122,7 +131,7 @@ export default function SignIn({ navigation }) {
               />
             ) : (
               <FormInput
-                label={t('signIn.password')}
+                label={I18n.t('signIn.password')}
                 formikProps={formikProps}
                 formikKey="password"
                 placeholder="Password here"
@@ -139,15 +148,15 @@ export default function SignIn({ navigation }) {
                   }}
                 />
               </View>
-              <Text style={styles.passwordText}>{t('signIn.showPassword')}</Text>
+              <Text style={styles.passwordText}>{I18n.t('signIn.showPassword')}</Text>
             </View>
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{t('signIn.submit')}</Button>
+              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
             )}
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
-              {t('signIn.signUpLink')}
+              {I18n.t('signIn.signUpLink')}
             </Button>
             <CredentialsModal
               modalVisible={modalVisible}
@@ -160,7 +169,7 @@ export default function SignIn({ navigation }) {
       </Formik>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -185,3 +194,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+export default SignIn;
