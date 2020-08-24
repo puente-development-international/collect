@@ -71,7 +71,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.20.0",
     "jest-expo": "37.0.0",
-    "standard-version": "8.0.1",
+    "standard-version": "9.0.0",
     "standard-version-expo": "1.0.3"
   },
   "private": true
