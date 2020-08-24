@@ -12,6 +12,7 @@ Here are some quick npm commands to get started:
 ## Resources
 
 - [React Native Paper](https://callstack.github.io/react-native-paper/index.html)
+- [Native Base](https://docs.nativebase.io/)
 
 
 ## Standards
