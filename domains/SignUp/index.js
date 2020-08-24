@@ -18,6 +18,8 @@ import TermsModal from '../../components/TermsModal';
 // STYLING
 import theme from '../../modules/theme';
 
+import I18n from '../../modules/i18n';
+
 const validationSchema = yup.object().shape({
   firstname: yup
     .string()
@@ -68,7 +70,7 @@ export default function SignUp({ navigation }) {
           }}
           onSubmit={(values, actions) => {
             if (!checked) {
-              alert('Error, terms and service need to be agreed to.'); console.log(error); // eslint-disable-line
+              alert('Error, terms and service need to be agreed to.'); // eslint-disable-line
             } else {
               retrieveSignUpFunction(values)
                 .then((user) => {
@@ -96,48 +98,47 @@ export default function SignUp({ navigation }) {
           {(formikProps) => (
             <>
               <FormInput
-                label="First Name"
+                label={I18n.t('signUp.firstName')}
                 formikProps={formikProps}
                 formikKey="firstname"
                 placeholder="John"
                 autoFocus
               />
               <FormInput
-                label="Last Name"
+                label={I18n.t('signUp.lastName')}
                 formikProps={formikProps}
                 formikKey="lastname"
                 placeholder="Doe"
               />
               <FormInput
-                label="Email"
+                label={I18n.t('signUp.email')}
                 formikProps={formikProps}
                 formikKey="email"
                 placeholder="johndoe@example.com"
               />
               <FormInput
-                label="Phone Number"
+                label={I18n.t('signUp.phoneNumber')}
                 formikProps={formikProps}
                 formikKey="phonenumber"
                 placeholder="123-456-7890"
               />
               <FormInput
-                label="Password"
+                label={I18n.t('signUp.password')}
                 formikProps={formikProps}
                 formikKey="password"
                 placeholder="Password Here"
                 secureTextEntry
               />
               <FormInput
-                label="Organization"
+                label={I18n.t('signUp.organization')}
                 formikProps={formikProps}
                 formikKey="organization"
                 placeholder="Puente"
               />
-              <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={showModal}>View the terms and service</Button>
+              <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={showModal}>{I18n.t('signUp.termsOfService.view')}</Button>
               <View style={styles.container}>
                 <Text style={styles.serviceText}>
-                  By checking this box, I ackowledge that I have read and
-                  understood the Terms and Service agreement.
+                  {I18n.t('signUp.termsOfService.acknoledgement')}
                 </Text>
                 <View style={styles.checkbox}>
                   <Checkbox
@@ -153,8 +154,9 @@ export default function SignUp({ navigation }) {
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
               )}
+
               <TermsModal visible={visible} hideModal={hideModal} />
             </>
           )}

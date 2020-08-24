@@ -12,12 +12,14 @@ import theme from './modules/theme';
 
 const store = configureStore();
 
-const App = () => (
-  <StoreProvider store={store}>
-    <PaperProvider theme={theme}>
-      <MainNavigation />
-    </PaperProvider>
-  </StoreProvider>
-);
+export default function App() {
+  return (
+    <StoreProvider store={store}>
+      <PaperProvider theme={theme}>
+        <MainNavigation />
+      </PaperProvider>
+    </StoreProvider>
+  );
+}
 
-export default App;
+// export default App;
