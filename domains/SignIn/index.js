@@ -21,13 +21,12 @@ import FormInput from '../../components/FormInput';
 import LanguagePicker from '../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
 import { storeData, getData } from '../../modules/async-storage';
-import Autofill from '../../components/AutoFill'
+import Autofill from '../../components/AutoFill';
 
 import I18n from '../../modules/i18n';
 
 // STYLING
 import theme from '../../modules/theme';
-import AutoFill from '../../components/AutoFill';
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -91,7 +90,6 @@ const SignIn = ({ navigation }) => {
       <Formik
         initialValues={{ username: '', password: '', city: '' }}
         onSubmit={(values, actions) => {
-          console.log(values);
           retrieveSignInFunction(values.username, values.password)
             .then(() => {
               getData('credentials')
@@ -133,13 +131,13 @@ const SignIn = ({ navigation }) => {
                 secureTextEntry
               />
             ) : (
-                <FormInput
-                  label={I18n.t('signIn.password')}
-                  formikProps={formikProps}
-                  formikKey="password"
-                  placeholder="Password here"
-                />
-              )}
+              <FormInput
+                label={I18n.t('signIn.password')}
+                formikProps={formikProps}
+                formikKey="password"
+                placeholder="Password here"
+              />
+            )}
             <View style={styles.container}>
               <View style={styles.checkbox}>
                 <Checkbox
@@ -154,15 +152,15 @@ const SignIn = ({ navigation }) => {
               <Text style={styles.passwordText}>{I18n.t('signIn.showPassword')}</Text>
             </View>
             <Autofill
-              parameter='City'
+              parameter="City"
               formikProps={formikProps}
               formikKey="city"
             />
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
-              )}
+              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
+            )}
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
               {I18n.t('signIn.signUpLink')}
             </Button>

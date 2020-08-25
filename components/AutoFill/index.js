@@ -69,9 +69,10 @@ export default class AutoFill extends Component {
           renderItem={({ item }) => (
             // you can change the view you want to show in suggestion from here
             <TouchableOpacity onPress={() => {
-              this.setState({ query: item })
-              formikProps.setFieldValue(formikKey, item)
-            }}>
+              this.setState({ query: item });
+              formikProps.setFieldValue(formikKey, item);
+            }}
+            >
               <Text style={styles.itemText}>
                 {item}
               </Text>
@@ -82,8 +83,8 @@ export default class AutoFill extends Component {
           {fields.length > 0 ? (
             <Text style={styles.infoText}>{query}</Text>
           ) : (
-              <Text style={styles.infoText}>{placeholder}</Text>
-            )}
+            <Text style={styles.infoText}>{placeholder}</Text>
+          )}
         </View>
       </View>
     );
