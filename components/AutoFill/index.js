@@ -46,7 +46,7 @@ export default class AutoFill extends Component {
     const { query } = this.state;
     const fields = this.findField(query);
     const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
-    const { parameter } = this.props;
+    const { parameter, formikProps, formikKey } = this.props;
     const placeholder = `Enter the ${parameter} here`;
 
     return (
@@ -61,11 +61,17 @@ export default class AutoFill extends Component {
           defaultValue={query}
           /* onchange of the text changing the state of the query which will trigger
           the findFilm method to show the suggestions */
-          onChangeText={(text) => this.setState({ query: text })}
+          onChangeText={(text) => {
+            this.setState({ query: text });
+            formikProps.setFieldValue(formikKey, text);
+          }}
           placeholder={placeholder}
           renderItem={({ item }) => (
             // you can change the view you want to show in suggestion from here
-            <TouchableOpacity onPress={() => this.setState({ query: item })}>
+            <TouchableOpacity onPress={() => {
+              this.setState({ query: item })
+              formikProps.setFieldValue(formikKey, item)
+            }}>
               <Text style={styles.itemText}>
                 {item}
               </Text>
@@ -76,8 +82,8 @@ export default class AutoFill extends Component {
           {fields.length > 0 ? (
             <Text style={styles.infoText}>{query}</Text>
           ) : (
-            <Text style={styles.infoText}>{placeholder}</Text>
-          )}
+              <Text style={styles.infoText}>{placeholder}</Text>
+            )}
         </View>
       </View>
     );
@@ -90,6 +96,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     marginTop: 40,
+    marginBottom: 40,
   },
   autocompleteContainer: {
     backgroundColor: '#ffffff',
