@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Platform, StyleSheet, Text, View
 } from 'react-native';
@@ -6,49 +6,35 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Button } from 'react-native-paper';
 import getTasks from '../../services/tasky';
 
-export default class HomeScreen extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      tasks: null
-    };
-  }
+const HomeScreen = () => {
+  const [tasks, setTasks] = useState(null);
 
-  showTasks = async () => {
+  const showTasks = async () => {
     await getTasks().then((result) => {
-      this.setState({
-        tasks: result
-      });
+      setTasks(result);
     });
-  }
+  };
 
-  render() {
-    const { tasks } = this.state;
-    return (
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+      <View style={styles.row}>
+        <Button onPress={showTasks} mode="contained">
+          <Text style={styles.text}>Tasks</Text>
+        </Button>
 
-        <View style={styles.row}>
-          <View>
-            <Button onPress={this.showTasks} mode="contained">
-              <Text style={styles.text}>Tasks</Text>
-            </Button>
-
-            {tasks != null
-              && tasks.map((task) => (
-                <View key={task.task_id}>
-                  <Text>{task.name}</Text>
-                </View>
-              ))}
-          </View>
-        </View>
-
-        {/* <AutoFill parameter="City" />
-        <AutoFill parameter="Province" />
-        <AutoFill parameter="Communities" /> */}
-      </ScrollView>
-    );
-  }
-}
+        {tasks != null
+          && tasks.map((task) => (
+            <View key={task.task_id}>
+              <Text>{task.name}</Text>
+            </View>
+          ))}
+      </View>
+      <View style={styles.row}>
+        <Text style={styles.text}>My Pinned Forms</Text>
+      </View>
+    </ScrollView>
+  );
+};
 
 HomeScreen.navigationOptions = {
   header: null,
@@ -89,3 +75,5 @@ const styles = StyleSheet.create({
     alignItems: 'stretch'
   }
 });
+
+export default HomeScreen;

@@ -6,21 +6,25 @@ import { Text, TextInput } from 'react-native-paper';
 
 const PaperInput = (props) => {
   const {
-    label, formikProps, formikKey, ...rest
+    label, formikProps, formikKey, fieldType, ...rest
   } = props;
 
   return (
-    <View>
-      <TextInput
-        label={label}
-        onChangeText={formikProps.handleChange(formikKey)}
-        onBlur={formikProps.handleBlur(formikKey)}
-        {...rest} //eslint-disable-line
-      />
-      <Text style={{ color: 'red' }}>
-        {formikProps.touched[formikKey] && formikProps.errors[formikKey]}
-      </Text>
-    </View>
+    <>
+      {fieldType === 'input' && (
+        <View>
+          <TextInput
+            label={label}
+            onChangeText={formikProps.handleChange(formikKey)}
+            onBlur={formikProps.handleBlur(formikKey)}
+            {...rest} //eslint-disable-line
+          />
+          <Text style={{ color: 'red' }}>
+            {formikProps.touched[formikKey] && formikProps.errors[formikKey]}
+          </Text>
+        </View>
+      )}
+    </>
   );
 };
 
