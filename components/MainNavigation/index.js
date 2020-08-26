@@ -10,6 +10,8 @@ import LinkingConfiguration from './LinkingConfiguration';
 import { initialize } from '../../services/parse/auth/index';
 import SignIn from '../../domains/SignIn';
 import SignUp from '../../domains/SignUp';
+import GetPinCode from '../../domains/PinCode/GetPinCode';
+import StorePinCode from '../../domains/PinCode/StorePinCode';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +34,8 @@ export default class MainNavigation extends React.Component {
           <Stack.Navigator>
             <Stack.Screen name="Sign In" component={SignIn} />
             <Stack.Screen name="Sign Up" component={SignUp} />
+            <Stack.Screen name="GetPincode" component={GetPinCode} />
+            <Stack.Screen name="StorePincode" component={StorePinCode} />
             <Stack.Screen name="Root" component={BottomTabNavigator} />
           </Stack.Navigator>
         </NavigationContainer>

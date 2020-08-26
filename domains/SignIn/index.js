@@ -20,7 +20,7 @@ import { retrieveSignInFunction } from '../../services/parse/auth';
 import FormInput from '../../components/FormInput';
 import LanguagePicker from '../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
-import { storeData, getData } from '../../modules/async-storage';
+import { storeData, getData, deleteData } from '../../modules/async-storage';
 
 import I18n from '../../modules/i18n';
 
@@ -67,7 +67,10 @@ const SignIn = ({ navigation }) => {
       [
         {
           text: 'Yes',
-          onPress: () => storeData(values, 'credentials')
+          onPress: () => {
+            storeData(values, 'credentials');
+            navigation.navigate('StorePincode');
+          }
         },
         { text: 'No', style: 'cancel' },
       ],
@@ -81,6 +84,10 @@ const SignIn = ({ navigation }) => {
       lang
     });
     I18n.locale = lang;
+  };
+
+  const deleteCreds = () => {
+    deleteData('credentials');
   };
 
   return (
@@ -163,10 +170,12 @@ const SignIn = ({ navigation }) => {
               formikProps={formikProps}
               user={user}
               setModalVisible={setModalVisible}
+              navigation={navigation}
             />
           </>
         )}
       </Formik>
+      <Button onPress={deleteCreds}>Delete Credentials</Button>
     </SafeAreaView>
   );
 };
