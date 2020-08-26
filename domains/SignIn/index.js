@@ -167,6 +167,7 @@ const SignIn = ({ navigation }) => {
           </>
         )}
       </Formik>
+
     </SafeAreaView>
   );
 };

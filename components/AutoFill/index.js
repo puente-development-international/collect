@@ -5,13 +5,9 @@ import {
 import Autocomplete from 'react-native-autocomplete-input';
 import retrievePuenteAutofillData from '../../services/aws';
 
-// Demo base API to get the data for the Autocomplete suggestion
 export default class AutoFill extends Component {
   constructor(props) {
     super(props);
-    // Initialization of state
-    // films will contain the array of suggestion
-    // query will have the input from the autocomplete input
     this.state = {
       fields: [],
       query: '',
@@ -19,12 +15,9 @@ export default class AutoFill extends Component {
   }
 
   componentDidMount() {
-    // First method to be called after components mount
-    // fetch the data from the server for the suggestion
     const { parameter } = this.props;
     retrievePuenteAutofillData(parameter)
       .then((data) => {
-        // console.log(data);
         this.state.fields = data;
       });
   }
@@ -32,7 +25,6 @@ export default class AutoFill extends Component {
   findField(query) {
     // method called everytime when we change the value of the input
     if (query === '') {
-      // if the query is null then return blank
       return [];
     }
 
@@ -46,7 +38,7 @@ export default class AutoFill extends Component {
     const { query } = this.state;
     const fields = this.findField(query);
     const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
-    const { parameter } = this.props;
+    const { parameter, formikProps, formikKey } = this.props;
     const placeholder = `Enter the ${parameter} here`;
 
     return (
@@ -61,11 +53,18 @@ export default class AutoFill extends Component {
           defaultValue={query}
           /* onchange of the text changing the state of the query which will trigger
           the findFilm method to show the suggestions */
-          onChangeText={(text) => this.setState({ query: text })}
+          onChangeText={(text) => {
+            this.setState({ query: text });
+            formikProps.setFieldValue(formikKey, text);
+          }}
           placeholder={placeholder}
           renderItem={({ item }) => (
             // you can change the view you want to show in suggestion from here
-            <TouchableOpacity onPress={() => this.setState({ query: item })}>
+            <TouchableOpacity onPress={() => {
+              this.setState({ query: item });
+              formikProps.setFieldValue(formikKey, item);
+            }}
+            >
               <Text style={styles.itemText}>
                 {item}
               </Text>
@@ -90,6 +89,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     marginTop: 40,
+    marginBottom: 40,
   },
   autocompleteContainer: {
     backgroundColor: '#ffffff',
