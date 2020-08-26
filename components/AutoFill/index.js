@@ -5,13 +5,9 @@ import {
 import Autocomplete from 'react-native-autocomplete-input';
 import retrievePuenteAutofillData from '../../services/aws';
 
-// Demo base API to get the data for the Autocomplete suggestion
 export default class AutoFill extends Component {
   constructor(props) {
     super(props);
-    // Initialization of state
-    // films will contain the array of suggestion
-    // query will have the input from the autocomplete input
     this.state = {
       fields: [],
       query: '',
@@ -19,12 +15,9 @@ export default class AutoFill extends Component {
   }
 
   componentDidMount() {
-    // First method to be called after components mount
-    // fetch the data from the server for the suggestion
     const { parameter } = this.props;
     retrievePuenteAutofillData(parameter)
       .then((data) => {
-        // console.log(data);
         this.state.fields = data;
       });
   }
@@ -32,7 +25,6 @@ export default class AutoFill extends Component {
   findField(query) {
     // method called everytime when we change the value of the input
     if (query === '') {
-      // if the query is null then return blank
       return [];
     }
 
