@@ -9,6 +9,8 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 import PaperInput from '../../../../components/PaperInput';
+import * as Network from 'expo-network';
+import { storeData, getData } from '../../../../modules/async-storage';
 
 const formValues = {
   fname: '',
@@ -52,6 +54,15 @@ const PatientIDForm = ({ navigation }) => {
   const toRoot = () => {
     navigation.navigate('Root');
   };
+
+  // checks whether user is connected to internet, return true if connected, false otherwise
+  // maybe on componentDidMount calling this function and then create another function to upload 
+  // the objects and delete them afterwards. NEEDs to BE FLESHED OUT
+  async function checkOnlineStatus() {
+    let status = await Network.getNetworkStateAsync();
+    const { isConnected } = status;
+    return isConnected;
+  }
   return (
     <Formik
       initialValues={formValues}
@@ -63,11 +74,18 @@ const PatientIDForm = ({ navigation }) => {
           localObject: values
         };
 
-        postObjectsToClass(postParams)
-          .then(() => {
-            toRoot(); // This does nothing because we're already at root
-          }, () => {
-          });
+        checkOnlineStatus().then((connected) => {
+          if (connected) {
+            postObjectsToClass(postParams)
+              .then(() => {
+                toRoot(); // This does nothing because we're already at root
+              }, () => {
+              });
+          }
+          else {
+            storeData(postParams, 'PatientIDTest')
+          }
+        })
         setTimeout(() => {
           actions.setSubmitting(false);
         }, 1000);
@@ -93,10 +111,10 @@ const PatientIDForm = ({ navigation }) => {
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
-            </Button>
-          )}
+              <Button onPress={formikProps.handleSubmit}>
+                <Text>Submit</Text>
+              </Button>
+            )}
         </>
       )}
     </Formik>

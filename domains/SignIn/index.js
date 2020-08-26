@@ -21,6 +21,7 @@ import FormInput from '../../components/FormInput';
 import LanguagePicker from '../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
 import { storeData, getData } from '../../modules/async-storage';
+import * as Network from 'expo-network';
 
 import I18n from '../../modules/i18n';
 
@@ -83,29 +84,56 @@ const SignIn = ({ navigation }) => {
     I18n.locale = lang;
   };
 
+  // checks whether user is connected to internet, return true if connected, false otherwise
+  async function checkOnlineStatus() {
+    let status = await Network.getNetworkStateAsync();
+    const { isConnected } = status;
+    return isConnected;
+  }
+
   return (
     <SafeAreaView style={{ marginTop: 20 }}>
       <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
       <Formik
         initialValues={{ username: '', password: '' }}
         onSubmit={(values, actions) => {
-          retrieveSignInFunction(values.username, values.password)
-            .then(() => {
+          checkOnlineStatus().then((connected) => {
+            if (connected) {
+              retrieveSignInFunction(values.username, values.password)
+                .then(() => {
+                  getData('credentials')
+                    .then((userCreds) => {
+                      // credentials saved do not match those entered, overwrite saved credentials
+                      if (userCreds === null || values.username !== userCreds.username
+                        || values.password !== userCreds.password) {
+                        handleSaveCredentials(values);
+                      }
+                    }, () => {
+                      // no credentials saved, give option to save
+                      handleSaveCredentials(values);
+                    });
+                  navigation.navigate('Root');
+                }, () => {
+                  // error on sign in => some sort of alert
+                });
+            }
+            else {
+              // offline
               getData('credentials')
                 .then((userCreds) => {
-                  // credentials saved do not match those entered, overwrite saved credentials
-                  if (userCreds === null || values.username !== userCreds.username
-                    || values.password !== userCreds.password) {
-                    handleSaveCredentials(values);
+                  // username and password entered (or saved in creds) match the saved cred
+                  if (values.username === userCreds.username && values.password === userCreds.password) {
+                    // need some pincode verification
+                    navigation.navigate('Root');
                   }
-                }, () => {
-                  // no credentials saved, give option to save
-                  handleSaveCredentials(values);
-                });
-              navigation.navigate('Root');
-            }, () => {
-              // error on sign in => some sort of alert
-            });
+                  else {
+                    console.log("Uh oh")
+                    // cannot log in offline without saved credentials, must connect to internet
+                  }
+                })
+
+            }
+          })
           setTimeout(() => {
             actions.setSubmitting(false);
           }, 1000);
@@ -130,13 +158,13 @@ const SignIn = ({ navigation }) => {
                 secureTextEntry
               />
             ) : (
-              <FormInput
-                label={I18n.t('signIn.password')}
-                formikProps={formikProps}
-                formikKey="password"
-                placeholder="Password here"
-              />
-            )}
+                <FormInput
+                  label={I18n.t('signIn.password')}
+                  formikProps={formikProps}
+                  formikKey="password"
+                  placeholder="Password here"
+                />
+              )}
             <View style={styles.container}>
               <View style={styles.checkbox}>
                 <Checkbox
@@ -153,8 +181,8 @@ const SignIn = ({ navigation }) => {
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
-            )}
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
+              )}
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
               {I18n.t('signIn.signUpLink')}
             </Button>
