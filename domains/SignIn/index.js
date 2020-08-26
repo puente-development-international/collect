@@ -88,7 +88,7 @@ const SignIn = ({ navigation }) => {
     <SafeAreaView style={{ marginTop: 20 }}>
       <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
       <Formik
-        initialValues={{ username: '', password: '', city: '' }}
+        initialValues={{ username: '', password: '' }}
         onSubmit={(values, actions) => {
           retrieveSignInFunction(values.username, values.password)
             .then(() => {
@@ -131,13 +131,13 @@ const SignIn = ({ navigation }) => {
                 secureTextEntry
               />
             ) : (
-              <FormInput
-                label={I18n.t('signIn.password')}
-                formikProps={formikProps}
-                formikKey="password"
-                placeholder="Password here"
-              />
-            )}
+                <FormInput
+                  label={I18n.t('signIn.password')}
+                  formikProps={formikProps}
+                  formikKey="password"
+                  placeholder="Password here"
+                />
+              )}
             <View style={styles.container}>
               <View style={styles.checkbox}>
                 <Checkbox
@@ -151,16 +151,11 @@ const SignIn = ({ navigation }) => {
               </View>
               <Text style={styles.passwordText}>{I18n.t('signIn.showPassword')}</Text>
             </View>
-            <Autofill
-              parameter="City"
-              formikProps={formikProps}
-              formikKey="city"
-            />
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
-            )}
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
+              )}
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
               {I18n.t('signIn.signUpLink')}
             </Button>
