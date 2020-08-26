@@ -9,6 +9,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 import PaperInput from '../../../../components/PaperInput';
+import AutoFill from '../../../../components/AutoFill';
 
 const formValues = {
   fname: '',
@@ -88,6 +89,17 @@ const PatientIDForm = ({ navigation }) => {
             formikKey="lname"
             placeholder="Bray"
             autoFocus
+          />
+
+          <AutoFill
+            parameter="City"
+            formikProps={formikProps}
+            formikKey="city"
+          />
+          <AutoFill
+            parameter="Communities"
+            formikProps={formikProps}
+            formikKey="communityname"
           />
 
           {formikProps.isSubmitting ? (
