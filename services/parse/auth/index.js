@@ -2,7 +2,6 @@ import { Parse } from 'parse/react-native';
 import { AsyncStorage } from 'react-native';
 import getEnvVars from '../../../environment';
 
-
 function initialize() {
   const { parseAppId, parseJavascriptKey, parseServerUrl } = getEnvVars();
 
@@ -13,28 +12,31 @@ function initialize() {
 }
 
 function retrieveSignUpFunction(params) {
-  Parse.Cloud.run('signup', params).then((result) => result);
-}
-
-function retrieveSignInFunction(username, password) {
   return new Promise((resolve, reject) => {
-    // sign in with either username or email handled with logIn
-    Parse.User.logIn(String(username), String(password)).then((user) => {
-      // console.log(`User logged in successful with username: ${user.get('username')}`);
-      // console.log(user);
-      resolve(user);
+    Parse.Cloud.run('signup', params).then((result) => {
+      resolve(result);
     }, (error) => {
-      // console.log(`Error: ${error.code} ${error.message}`);
       reject(error);
     });
   });
 }
 
+function retrieveSignInFunction(username, password) {
+  return new Promise((resolve, reject) => {
+    // sign in with either phonenumber (username) or email handled with logIn
+    Parse.User.logIn(String(username), String(password)).then((user) => {
+      console.log(`User logged in successful with username: ${user.get('username')}`); // eslint-disable-line
+      resolve(user);
+    }, (error) => {
+      console.log(`Error: ${error.code} ${error.message}`); // eslint-disable-line
+      reject(error);
+    });
+  });
+}
 
 function retrieveSignOutFunction() {
   return new Promise((resolve, reject) => {
     Parse.User.logOut().then((result) => {
-      // console.log(result);
       resolve(result);
     }, (error) => {
       reject(error);
@@ -55,10 +57,8 @@ function retrieveCurrentUserFunction() {
     user.email = u.get('email');
     user.organization = u.get('organization');
     user.role = u.get('role');
-    // console.log(user);
     return user;
   }
-  // console.log(null);
   return null;
 }
 

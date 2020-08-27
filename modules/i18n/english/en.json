@@ -1,0 +1,25 @@
+{
+  "signUp": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "password": "Password",
+    "password2": "Enter Password Again",
+    "organization": "Organization",
+    "termsOfService": {
+      "view": "View the Terms and Service",
+      "acknoledgement": "By checking this box, I acknowledge that I have read and understood the Terms and Service agreement"
+    },
+    "submit": "Submit",
+    "toEnglish": "Changle language to English",
+    "toSpanish": "Change Language to Spanish"
+  },
+  "signIn": {
+    "username": "Username",
+    "password": "Password",
+    "showPassword": "Show Password",
+    "submit": "Submit",
+    "signUpLink": "Don't have an account, sign up!"
+  }
+}
