@@ -5,7 +5,7 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button } from 'react-native-paper';
 import getTasks from '../../services/tasky';
-import { getData, deleteData } from '../../modules/async-storage';
+import { deleteData } from '../../modules/async-storage';
 import { retrieveSignOutFunction } from '../../services/parse/auth';
 
 export default class HomeScreen extends React.Component {
@@ -26,20 +26,17 @@ export default class HomeScreen extends React.Component {
 
   render() {
     const { tasks } = this.state;
-
+    const { navigation } = this.props;
     // Log out, delete credentials, delete pincode
     const logOut = () => {
       retrieveSignOutFunction().then(() => {
         deleteData('credentials');
         deleteData('pincode');
-        this.props.navigation.navigate('Sign In');
-      })
-
-
-
-    }
+        navigation.navigate('Sign In');
+      });
+    };
     return (
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer} >
+      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
         <View style={styles.row}>
           <View>
