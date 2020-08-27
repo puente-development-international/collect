@@ -11,6 +11,7 @@ export default {
         Data_Analysis: 'data_analysis',
         Sign_Up: 'sign_up',
         Sign_In: 'sign_in',
+        GetPincode: 'get_pincode'
       },
     },
   },
