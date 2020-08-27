@@ -58,7 +58,7 @@
     "redux": "4.0.5",
     "redux-actions": "2.6.5",
     "styled-components": "5.1.1",
-    "yup": "0.29.2",
+    "yup": "0.29.3",
     "expo-localization": "~8.1.0"
   },
   "devDependencies": {
