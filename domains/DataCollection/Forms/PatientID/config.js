@@ -1,15 +1,15 @@
 const configArray = [
   {
-    label: "First Name",
+    label: 'First Name',
     formikKey: 'fname',
-    value: "",
-    fieldType: "input"
+    value: '',
+    fieldType: 'input'
   },
   {
-    label: "Last Name",
+    label: 'Last Name',
     formikKey: 'lname',
-    value: "",
-    fieldType: "input"
+    value: '',
+    fieldType: 'input'
 
   },
   // {
@@ -19,44 +19,44 @@ const configArray = [
   //   fieldType: "input"
   // },
   {
-    label: "Nickname",
+    label: 'Nickname',
     formikKey: 'nickname',
-    value: "",
-    fieldType: "input"
+    value: '',
+    fieldType: 'input'
   },
   {
-    label: "Date of Birth",
+    label: 'Date of Birth',
     formikKey: 'dob',
-    value: "",
-    fieldType: "input"
+    value: '',
+    fieldType: 'input'
   },
   {
-    label: "Sex",
+    label: 'Sex',
     formikKey: 'sex',
-    value: "",
-    fieldType: "select",
+    value: '',
+    fieldType: 'select',
     options: [
-      "Male",
-      "Female",
-      "Prefer Not to Say"
+      'Male',
+      'Female',
+      'Prefer Not to Say'
     ]
   },
   {
-    label: "Telephone Number",
+    label: 'Telephone Number',
     formikKey: 'telephoneNumber',
-    value: "",
-    fieldType: "input"
+    value: '',
+    fieldType: 'input'
   },
   {
-    label: "Marriage Status",
+    label: 'Marriage Status',
     formikKey: 'marriageStatus',
-    value: "",
-    fieldType: "select",
+    value: '',
+    fieldType: 'select',
     options: [
-      "single",
-      "married",
-      "free_union",
-      "widow"
+      'single',
+      'married',
+      'free_union',
+      'widow'
     ]
   },
   // {
@@ -65,17 +65,17 @@ const configArray = [
   //   value: ""
   // },
   {
-    label: "Occupation",
+    label: 'Occupation',
     formikKey: 'occupation',
-    value: "",
-    fieldType: "input"
+    value: '',
+    fieldType: 'input'
 
   },
   {
-    label: "Education Level",
+    label: 'Education Level',
     formikKey: 'educationLevel',
-    value: "",
-    fieldType: "select",
+    value: '',
+    fieldType: 'select',
     options: [
     ]
   },
@@ -95,22 +95,22 @@ const configArray = [
   //   value: ""
   // },
   {
-    label: "Insurance Number",
+    label: 'Insurance Number',
     formikKey: 'insuranceNumber',
-    value: "",
-    fieldType: "input"
+    value: '',
+    fieldType: 'input'
   },
   {
-    label: "Insurance Provider",
+    label: 'Insurance Provider',
     formikKey: 'insuranceProvider',
-    value: "",
-    fieldType: "input"
+    value: '',
+    fieldType: 'input'
   },
   {
-    label: "Clinic Provider",
+    label: 'Clinic Provider',
     formikKey: 'clinicProvider',
-    value: "",
-    fieldType: "input"
+    value: '',
+    fieldType: 'input'
   },
   // {
   //   label: "Cedula Number",
@@ -139,4 +139,4 @@ const configArray = [
   // },
 ];
 
-export default configArray 
+export default configArray;

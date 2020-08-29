@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  StyleSheet, Text, View, ScrollView
+  StyleSheet, Text, ScrollView
 } from 'react-native';
 
 import Forms from './Forms';

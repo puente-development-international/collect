@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
-import * as yup from 'yup';
+// import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 import PaperInput from '../../../../components/PaperInput';
 import configArray from './config';
@@ -34,7 +34,6 @@ const PatientIDForm = ({ navigation }) => {
     setInputs(configArray);
   }, []);
 
-
   return (
     <Formik
       initialValues={{}}
@@ -59,7 +58,7 @@ const PatientIDForm = ({ navigation }) => {
     >
       {(formikProps) => (
         <>
-          {inputs.length && inputs.map((result) =>
+          {inputs.length && inputs.map((result) => (
             <View key={result.formikKey}>
               <PaperInput
                 data={result}
@@ -67,7 +66,7 @@ const PatientIDForm = ({ navigation }) => {
               // placeholder="Ana"
               />
             </View>
-          )}
+          ))}
 
           <AutoFill
             parameter="City"
@@ -83,10 +82,10 @@ const PatientIDForm = ({ navigation }) => {
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button onPress={formikProps.handleSubmit}>
-                <Text>Submit</Text>
-              </Button>
-            )}
+            <Button onPress={formikProps.handleSubmit}>
+              <Text>Submit</Text>
+            </Button>
+          )}
         </>
       )}
     </Formik>

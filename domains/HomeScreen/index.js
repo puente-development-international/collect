@@ -16,7 +16,7 @@ const HomeScreen = (props) => {
     await getTasks().then((result) => {
       setTasks(result);
     });
-  }
+  };
   const logOut = () => {
     retrieveSignOutFunction().then(() => {
       deleteData('credentials');

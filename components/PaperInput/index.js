@@ -4,11 +4,12 @@ import {
   Text
 } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
-import { Field } from 'formik';
 
 const PaperInput = ({ data, formikProps, ...rest }) => {
   const { label, formikKey, fieldType } = data;
-  const { handleChange, handleBlur, touched, errors, setFieldValue } = formikProps;
+  const {
+    handleChange, handleBlur, touched, errors, setFieldValue
+  } = formikProps;
 
   return (
     <>
@@ -27,11 +28,11 @@ const PaperInput = ({ data, formikProps, ...rest }) => {
       )}
       {fieldType === 'select' && (
         <View>
-          {data.options.map((result) =>
-            <Button key={result} mode="contained" onPress={() => setFieldValue(formikKey, result)} >
+          {data.options.map((result) => (
+            <Button key={result} mode="contained" onPress={() => setFieldValue(formikKey, result)}>
               <Text>{result}</Text>
             </Button>
-          )}
+          ))}
         </View>
       )}
     </>
