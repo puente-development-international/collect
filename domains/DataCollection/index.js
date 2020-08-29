@@ -7,7 +7,7 @@ import Forms from './Forms';
 
 export default function DataCollection({ navigation }) {
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} keyboardShouldPersistTaps="always">
       <Text style={styles.line}>Welcome to the data collection page.</Text>
       <Forms style={styles.line} navigation={navigation} />
     </ScrollView>

@@ -8,9 +8,8 @@ import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 // import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
-import PaperInput from '../../../../components/PaperInput';
+import PaperInputPicker from '../../../../components/PaperInputPicker';
 import configArray from './config';
-import AutoFill from '../../../../components/AutoFill';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -60,24 +59,13 @@ const PatientIDForm = ({ navigation }) => {
         <>
           {inputs.length && inputs.map((result) => (
             <View key={result.formikKey}>
-              <PaperInput
+              <PaperInputPicker
                 data={result}
                 formikProps={formikProps}
               // placeholder="Ana"
               />
             </View>
           ))}
-
-          <AutoFill
-            parameter="City"
-            formikProps={formikProps}
-            formikKey="city"
-          />
-          <AutoFill
-            parameter="Communities"
-            formikProps={formikProps}
-            formikKey="communityname"
-          />
 
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
