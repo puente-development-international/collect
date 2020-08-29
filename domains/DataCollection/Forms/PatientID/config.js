@@ -12,12 +12,12 @@ const configArray = [
     fieldType: "input"
 
   },
-  {
-    label: "Relationship",
-    formikKey: 'relationship',
-    value: "",
-    fieldType: "input"
-  },
+  // {
+  //   label: "Relationship",
+  //   formikKey: 'relationship',
+  //   value: "",
+  //   fieldType: "input"
+  // },
   {
     label: "Nickname",
     formikKey: 'nickname',
