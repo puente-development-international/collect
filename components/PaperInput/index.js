@@ -28,7 +28,7 @@ const PaperInput = ({ data, formikProps, ...rest }) => {
       {fieldType === 'select' && (
         <View>
           {data.options.map((result) =>
-            <Button mode="contained" onPress={() => setFieldValue(formikKey, result)} >
+            <Button key={result} mode="contained" onPress={() => setFieldValue(formikKey, result)} >
               <Text>{result}</Text>
             </Button>
           )}

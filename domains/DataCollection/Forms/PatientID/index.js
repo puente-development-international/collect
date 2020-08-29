@@ -60,29 +60,14 @@ const PatientIDForm = ({ navigation }) => {
       {(formikProps) => (
         <>
           {inputs.length && inputs.map((result) =>
-            <View key={result.key}>
+            <View key={result.formikKey}>
               <PaperInput
                 data={result}
                 formikProps={formikProps}
-                placeholder="Ana"
+              // placeholder="Ana"
               />
             </View>
           )}
-          {/* <PaperInput
-            label={config.fname.label}
-            formikProps={formikProps}
-            formikKey="fname"
-            placeholder="Ana"
-            fieldType="input"
-          />
-          <PaperInput
-            label={config.lname}
-            formikProps={formikProps}
-            formikKey="lname"
-            placeholder="Bray"
-            fieldType="input"
-            autoFocus
-          /> */}
 
           {formikProps.isSubmitting ? (
             <ActivityIndicator />

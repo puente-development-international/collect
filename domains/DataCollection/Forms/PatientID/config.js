@@ -47,26 +47,38 @@ const configArray = [
     value: "",
     fieldType: "input"
   },
-  // {
-  //   label: "Marriage Status",
-  //   formikKey: 'marriageStatus',
-  //   value: ""
-  // },
+  {
+    label: "Marriage Status",
+    formikKey: 'marriageStatus',
+    value: "",
+    fieldType: "select",
+    options: [
+      "single",
+      "married",
+      "free_union",
+      "widow"
+    ]
+  },
   // {
   //   label: "Family Relationships",
   //   formikKey: 'familyRelationships',
   //   value: ""
   // },
-  // {
-  //   label: "Occupation",
-  //   formikKey: 'occupation',
-  //   value: ""
-  // },
-  // {
-  //   label: "Education Level",
-  //   formikKey: 'educationLevel',
-  //   value: ""
-  // },
+  {
+    label: "Occupation",
+    formikKey: 'occupation',
+    value: "",
+    fieldType: "input"
+
+  },
+  {
+    label: "Education Level",
+    formikKey: 'educationLevel',
+    value: "",
+    fieldType: "select",
+    options: [
+    ]
+  },
   // {
   //   label: "Community Name",
   //   formikKey: 'communityname',
@@ -82,21 +94,24 @@ const configArray = [
   //   formikKey: 'province',
   //   value: ""
   // },
-  // {
-  //   label: "Insurance Number",
-  //   formikKey: 'insuranceNumber',
-  //   value: ""
-  // },
-  // {
-  //   label: "Insurance Provider",
-  //   formikKey: 'insuranceProvider',
-  //   value: ""
-  // },
-  // {
-  //   label: "Clinic Provider",
-  //   formikKey: 'clinicProvider',
-  //   value: ""
-  // },
+  {
+    label: "Insurance Number",
+    formikKey: 'insuranceNumber',
+    value: "",
+    fieldType: "input"
+  },
+  {
+    label: "Insurance Provider",
+    formikKey: 'insuranceProvider',
+    value: "",
+    fieldType: "input"
+  },
+  {
+    label: "Clinic Provider",
+    formikKey: 'clinicProvider',
+    value: "",
+    fieldType: "input"
+  },
   // {
   //   label: "Cedula Number",
   //   formikKey: 'cedulaNumber',
