@@ -9,8 +9,8 @@ import theme from '../../../modules/theme';
 
 export default function CredentialsModal(props) {
   const {
-    modalVisible, setModalVisible, user,
-    formikProps: { values, handleSubmit }
+    modalVisible, setModalVisible, user, navigation,
+    formikProps: { values }
   } = props;
   return (
     <Portal theme={theme}>
@@ -31,7 +31,7 @@ export default function CredentialsModal(props) {
                   setModalVisible(!modalVisible);
                   values.username = user.username;
                   values.password = user.password;
-                  handleSubmit();
+                  navigation.navigate('GetPincode');
                 }}
               >
                 Yes

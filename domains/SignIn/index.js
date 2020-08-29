@@ -1,6 +1,8 @@
 /* eslint no-param-reassign: ["error",
 { "props": true, "ignorePropertyModificationsFor": ["formikProps"] }] */
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState, useEffect
+} from 'react';
 import {
   SafeAreaView,
   ActivityIndicator,
@@ -16,8 +18,11 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { retrieveSignInFunction } from '../../services/parse/auth';
 import FormInput from '../../components/FormInput';
+import LanguagePicker from '../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
-import { storeData, getData } from '../../modules/async-storage';
+import { storeData, getData, deleteData } from '../../modules/async-storage';
+
+import I18n from '../../modules/i18n';
 
 // STYLING
 import theme from '../../modules/theme';
@@ -34,31 +39,13 @@ const validationSchema = yup.object().shape({
     .min(4, 'Seems a bit short...')
 });
 
-// export default () => (
-export default function SignIn({ navigation }) {
-  const handleSignUp = () => {
-    navigation.navigate('Sign Up');
-  };
-  const handleSaveCredentials = (values) => {
-    Alert.alert(
-      'Credentials',
-      'Would you like to save your login credentials for future use?',
-      [
-        {
-          text: 'Yes',
-          onPress: () => storeData(values, 'credentials')
-        },
-        { text: 'No', style: 'cancel' },
-      ],
-      { cancelable: false }
-      // clicking out side of alert will not cancel
-    );
-  };
-
+const SignIn = ({ navigation }) => {
   const [checked, setChecked] = React.useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [user, setUser] = useState(null);
-  const [load] = useState(false);
+  const [language, setLanguage] = useState('en');
+
+  const load = false;
 
   useEffect(() => {
     getData('credentials').then((values) => {
@@ -68,8 +55,44 @@ export default function SignIn({ navigation }) {
       }
     });
   }, [load]);
+
+  const handleSignUp = () => {
+    navigation.navigate('Sign Up');
+  };
+
+  const handleSaveCredentials = (values) => {
+    Alert.alert(
+      'Credentials',
+      'Would you like to save your login credentials for future use?',
+      [
+        {
+          text: 'Yes',
+          onPress: () => {
+            storeData(values, 'credentials');
+            navigation.navigate('StorePincode');
+          }
+        },
+        { text: 'No', style: 'cancel' },
+      ],
+      { cancelable: false }
+      // clicking out side of alert will not cancel
+    );
+  };
+
+  const handleLanguage = (lang) => {
+    setLanguage({
+      lang
+    });
+    I18n.locale = lang;
+  };
+
+  const deleteCreds = () => {
+    deleteData('credentials');
+  };
+
   return (
     <SafeAreaView style={{ marginTop: 20 }}>
+      <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
       <Formik
         initialValues={{ username: '', password: '' }}
         onSubmit={(values, actions) => {
@@ -99,7 +122,7 @@ export default function SignIn({ navigation }) {
         {(formikProps) => (
           <>
             <FormInput
-              label="Username"
+              label={I18n.t('signIn.username')}
               formikProps={formikProps}
               formikKey="username"
               placeholder="johndoe@example.com"
@@ -107,7 +130,7 @@ export default function SignIn({ navigation }) {
             />
             {!checked ? (
               <FormInput
-                label="Password"
+                label={I18n.t('signIn.password')}
                 formikProps={formikProps}
                 formikKey="password"
                 placeholder="Password here"
@@ -115,7 +138,7 @@ export default function SignIn({ navigation }) {
               />
             ) : (
               <FormInput
-                label="Password"
+                label={I18n.t('signIn.password')}
                 formikProps={formikProps}
                 formikKey="password"
                 placeholder="Password here"
@@ -132,28 +155,30 @@ export default function SignIn({ navigation }) {
                   }}
                 />
               </View>
-              <Text style={styles.passwordText}>Show Password</Text>
+              <Text style={styles.passwordText}>{I18n.t('signIn.showPassword')}</Text>
             </View>
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Submit</Button>
+              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
             )}
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
-              Don&apos;t have an account, Sign Up!
+              {I18n.t('signIn.signUpLink')}
             </Button>
             <CredentialsModal
               modalVisible={modalVisible}
               formikProps={formikProps}
               user={user}
               setModalVisible={setModalVisible}
+              navigation={navigation}
             />
           </>
         )}
       </Formik>
+      <Button onPress={deleteCreds}>Delete Credentials</Button>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -178,3 +203,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+export default SignIn;

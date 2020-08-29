@@ -5,16 +5,25 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import { Button } from 'react-native-paper';
 import getTasks from '../../services/tasky';
+import { deleteData } from '../../modules/async-storage';
+import { retrieveSignOutFunction } from '../../services/parse/auth';
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
   const [tasks, setTasks] = useState(null);
+  const { navigation } = props;
 
   const showTasks = async () => {
     await getTasks().then((result) => {
       setTasks(result);
     });
+  }
+  const logOut = () => {
+    retrieveSignOutFunction().then(() => {
+      deleteData('credentials');
+      deleteData('pincode');
+      navigation.navigate('Sign In');
+    });
   };
-
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <View style={styles.row}>
@@ -29,6 +38,9 @@ const HomeScreen = () => {
             </View>
           ))}
       </View>
+      <Button onPress={logOut} mode="contained">
+        <Text style={styles.text}>Log Out</Text>
+      </Button>
       <View style={styles.row}>
         <Text style={styles.text}>My Pinned Forms</Text>
       </View>

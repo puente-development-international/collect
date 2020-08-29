@@ -10,7 +10,7 @@ import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 import PaperInput from '../../../../components/PaperInput';
 import configArray from './config';
-
+import AutoFill from '../../../../components/AutoFill';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -68,6 +68,17 @@ const PatientIDForm = ({ navigation }) => {
               />
             </View>
           )}
+
+          <AutoFill
+            parameter="City"
+            formikProps={formikProps}
+            formikKey="city"
+          />
+          <AutoFill
+            parameter="Communities"
+            formikProps={formikProps}
+            formikKey="communityname"
+          />
 
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
