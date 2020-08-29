@@ -1,118 +1,125 @@
 const configArray = [
   {
     label: "First Name",
-    key: 'fname',
+    formikKey: 'fname',
     value: "",
     fieldType: "input"
   },
   {
     label: "Last Name",
-    key: 'lname',
+    formikKey: 'lname',
     value: "",
     fieldType: "input"
 
   },
   {
     label: "Relationship",
-    key: 'relationship',
+    formikKey: 'relationship',
     value: "",
     fieldType: "input"
   },
   {
     label: "Nickname",
-    key: 'nickname',
+    formikKey: 'nickname',
     value: "",
     fieldType: "input"
   },
-  // {
-  //   label: "Date of Birth",
-  //   key: 'dob',
-  //   value: ""
-  // },
-  // {
-  //   label: "Sex",
-  //   key: 'sex',
-  //   value: ""
-  // },
+  {
+    label: "Date of Birth",
+    formikKey: 'dob',
+    value: "",
+    fieldType: "input"
+  },
+  {
+    label: "Sex",
+    formikKey: 'sex',
+    value: "",
+    fieldType: "select",
+    options: [
+      "Male",
+      "Female",
+      "Prefer Not to Say"
+    ]
+  },
   {
     label: "Telephone Number",
-    key: 'telephoneNumber',
+    formikKey: 'telephoneNumber',
     value: "",
     fieldType: "input"
   },
   // {
   //   label: "Marriage Status",
-  //   key: 'marriageStatus',
+  //   formikKey: 'marriageStatus',
   //   value: ""
   // },
   // {
   //   label: "Family Relationships",
-  //   key: 'familyRelationships',
+  //   formikKey: 'familyRelationships',
   //   value: ""
   // },
   // {
   //   label: "Occupation",
-  //   key: 'occupation',
+  //   formikKey: 'occupation',
   //   value: ""
   // },
   // {
   //   label: "Education Level",
-  //   key: 'educationLevel',
+  //   formikKey: 'educationLevel',
   //   value: ""
   // },
   // {
   //   label: "Community Name",
-  //   key: 'communityname',
+  //   formikKey: 'communityname',
   //   value: ""
   // },
   // {
   //   label: "City",
-  //   key: 'city',
+  //   formikKey: 'city',
   //   value: ""
   // },
   // {
   //   label: "Province",
-  //   key: 'province',
+  //   formikKey: 'province',
   //   value: ""
   // },
   // {
   //   label: "Insurance Number",
-  //   key: 'insuranceNumber',
+  //   formikKey: 'insuranceNumber',
   //   value: ""
   // },
   // {
   //   label: "Insurance Provider",
-  //   key: 'insuranceProvider',
+  //   formikKey: 'insuranceProvider',
   //   value: ""
   // },
   // {
   //   label: "Clinic Provider",
-  //   key: 'clinicProvider',
+  //   formikKey: 'clinicProvider',
   //   value: ""
   // },
   // {
   //   label: "Cedula Number",
-  //   key: 'cedulaNumber',
+  //   formikKey: 'cedulaNumber',
   //   value: ""
   // },
   // {
   //   label: "Latitude",
-  //   key: 'latitude',
+  //   formikKey: 'latitude',
   //   value: 0
   // },
   // {
   //   label: "Longitude",
-  //   key: 'longitude',
+  //   formikKey: 'longitude',
   //   value: 0
   // },
   // {
   //   label: "Surveying User",
-  //   key: 'surveyingUser',
+  //   formikKey: 'surveyingUser',
   //   value: "Test"
   // },
   // {
   //   label: "Surveying Organization",
-  //   key: 'surveyingOrganization',
+  //   formikKey: 'surveyingOrganization',
   //   value: "Test"
   // },
 ];

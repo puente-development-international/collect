@@ -12,16 +12,16 @@ import PaperInput from '../../../../components/PaperInput';
 import configArray from './config';
 
 
-const validationSchema = yup.object().shape({
-  fname: yup
-    .string()
-    .label('First Name')
-    .required(),
-  lname: yup
-    .string()
-    .label('Last Name')
-    .required()
-});
+// const validationSchema = yup.object().shape({
+//   fname: yup
+//     .string()
+//     .label('First Name')
+//     .required(),
+//   lname: yup
+//     .string()
+//     .label('Last Name')
+//     .required()
+// });
 
 const PatientIDForm = ({ navigation }) => {
   const toRoot = () => {
@@ -55,18 +55,16 @@ const PatientIDForm = ({ navigation }) => {
           actions.setSubmitting(false);
         }, 1000);
       }}
-      validationSchema={validationSchema}
+    // validationSchema={validationSchema}
     >
       {(formikProps) => (
         <>
           {inputs.length && inputs.map((result) =>
             <View key={result.key}>
               <PaperInput
-                label={result.label}
+                data={result}
                 formikProps={formikProps}
-                formikKey={result.key}
                 placeholder="Ana"
-                fieldType={result.fieldType}
               />
             </View>
           )}
