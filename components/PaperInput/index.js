@@ -1,26 +1,41 @@
 import * as React from 'react';
 import {
   View,
+  Text
 } from 'react-native';
-import { Text, TextInput } from 'react-native-paper';
+import { TextInput, Button } from 'react-native-paper';
 
-const PaperInput = (props) => {
+const PaperInput = ({ data, formikProps, ...rest }) => {
+  const { label, formikKey, fieldType } = data;
   const {
-    label, formikProps, formikKey, ...rest
-  } = props;
+    handleChange, handleBlur, touched, errors, setFieldValue
+  } = formikProps;
 
   return (
-    <View>
-      <TextInput
-        label={label}
-        onChangeText={formikProps.handleChange(formikKey)}
-        onBlur={formikProps.handleBlur(formikKey)}
-        {...rest} //eslint-disable-line
-      />
-      <Text style={{ color: 'red' }}>
-        {formikProps.touched[formikKey] && formikProps.errors[formikKey]}
-      </Text>
-    </View>
+    <>
+      {fieldType === 'input' && (
+        <View>
+          <TextInput
+            label={label}
+            onChangeText={handleChange(formikKey)}
+            onBlur={handleBlur(formikKey)}
+            {...rest} //eslint-disable-line
+          />
+          <Text style={{ color: 'red' }}>
+            {touched[formikKey] && errors[formikKey]}
+          </Text>
+        </View>
+      )}
+      {fieldType === 'select' && (
+        <View>
+          {data.options.map((result) => (
+            <Button key={result} mode="contained" onPress={() => setFieldValue(formikKey, result)}>
+              <Text>{result}</Text>
+            </Button>
+          ))}
+        </View>
+      )}
+    </>
   );
 };
 
