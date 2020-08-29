@@ -1,7 +1,10 @@
+import getEnvVars from '../../environment';
+
 const axios = require('axios');
 
 function retrievePuenteAutofillData(parameter) {
-  return axios.get('https://98kngyxax2.execute-api.us-east-1.amazonaws.com/default/s3-json-to-client', {
+  const { AWS_LAMBDA_URL } = getEnvVars();
+  return axios.get(AWS_LAMBDA_URL, {
     params: {
       bucket_name: 'google-sheets-lambda',
       key: 'test/puente-test.json',

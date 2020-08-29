@@ -79,16 +79,20 @@ const configArray = [
     options: [
     ]
   },
-  // {
-  //   label: "Community Name",
-  //   formikKey: 'communityname',
-  //   value: ""
-  // },
-  // {
-  //   label: "City",
-  //   formikKey: 'city',
-  //   value: ""
-  // },
+  {
+    label: 'Community Name',
+    formikKey: 'communityname',
+    value: '',
+    fieldType: 'autofill',
+    parameter: 'Communities'
+  },
+  {
+    label: 'City',
+    formikKey: 'city',
+    value: '',
+    fieldType: 'autofill',
+    parameter: 'City'
+  },
   // {
   //   label: "Province",
   //   formikKey: 'province',

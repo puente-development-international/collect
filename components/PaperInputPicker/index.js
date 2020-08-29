@@ -5,7 +5,9 @@ import {
 } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 
-const PaperInput = ({ data, formikProps, ...rest }) => {
+import AutoFill from '../AutoFill';
+
+const PaperInputPicker = ({ data, formikProps, ...rest }) => {
   const { label, formikKey, fieldType } = data;
   const {
     handleChange, handleBlur, touched, errors, setFieldValue
@@ -35,8 +37,17 @@ const PaperInput = ({ data, formikProps, ...rest }) => {
           ))}
         </View>
       )}
+      {fieldType === 'autofill' && (
+        <View>
+          <AutoFill
+            parameter={data.parameter}
+            formikProps={formikProps}
+            formikKey={formikKey}
+          />
+        </View>
+      )}
     </>
   );
 };
 
-export default PaperInput;
+export default PaperInputPicker;
