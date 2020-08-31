@@ -1,16 +1,16 @@
 import * as React from 'react';
 import {
-  StyleSheet, Text, View
+  StyleSheet, Text, ScrollView
 } from 'react-native';
 
 import Forms from './Forms';
 
 export default function DataCollection({ navigation }) {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} keyboardShouldPersistTaps="always">
       <Text style={styles.line}>Welcome to the data collection page.</Text>
       <Forms style={styles.line} navigation={navigation} />
-    </View>
+    </ScrollView>
   );
 }
 
