@@ -6,19 +6,25 @@ const ENV = {
     parseAppId: 'exampleAppId',
     parseJavascriptKey: 'exampleJavascriptKey',
     parseServerUrl: 'https://parseapi.back4app.com/',
-    parseMasterKey: 'exampleMasterKey'
+    parseMasterKey: 'exampleMasterKey',
+    taskyUrlApi: '',
+    AWS_LAMBDA_URL: ''
   },
   staging: {
     parseAppId: 'exampleAppId',
     parseJavascriptKey: 'exampleJavascriptKey',
     parseServerUrl: 'https://parseapi.back4app.com/',
-    parseMasterKey: 'exampleMasterKey'
+    parseMasterKey: 'exampleMasterKey',
+    taskyUrlApi: '',
+    AWS_LAMBDA_URL: ''
   },
   prod: {
     parseAppId: 'exampleAppId',
     parseJavascriptKey: 'exampleJavascriptKey',
     parseServerUrl: 'https://parseapi.back4app.com/',
-    parseMasterKey: 'exampleMasterKey'
+    parseMasterKey: 'exampleMasterKey',
+    taskyUrlApi: '',
+    AWS_LAMBDA_URL: ''
   }
 };
 

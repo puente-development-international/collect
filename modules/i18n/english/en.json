@@ -5,6 +5,7 @@
     "email": "Email",
     "phoneNumber": "Phone Number",
     "password": "Password",
+    "password2": "Enter Password Again",
     "organization": "Organization",
     "termsOfService": {
       "view": "View the Terms and Service",

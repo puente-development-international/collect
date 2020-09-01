@@ -66,11 +66,13 @@ export default function SignUp({ navigation }) {
       <SafeAreaView style={{ marginTop: 30 }}>
         <Formik
           initialValues={{
-            firstname: '', lastname: '', email: '', phonenumber: '', password: '', organization: ''
+            firstname: '', lastname: '', email: '', phonenumber: '', password: '', password2: '', organization: ''
           }}
           onSubmit={(values, actions) => {
             if (!checked) {
               alert('Error, terms and service need to be agreed to.'); // eslint-disable-line
+            } else if (values.password !== values.password2) {
+              alert("Error, your passwords do not match.") // eslint-disable-line
             } else {
               retrieveSignUpFunction(values)
                 .then((user) => {
@@ -126,6 +128,13 @@ export default function SignUp({ navigation }) {
                 label={I18n.t('signUp.password')}
                 formikProps={formikProps}
                 formikKey="password"
+                placeholder="Password Here"
+                secureTextEntry
+              />
+              <FormInput
+                label={I18n.t('signUp.password2')}
+                formikProps={formikProps}
+                formikKey="password2"
                 placeholder="Password Here"
                 secureTextEntry
               />
