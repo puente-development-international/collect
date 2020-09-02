@@ -1,4 +1,3 @@
-// Make this render but switch between forms
 import React, { useState, useEffect } from 'react';
 import {
   ActivityIndicator,
@@ -8,7 +7,7 @@ import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 // import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
-import PaperInputPicker from '../../../../components/PaperInputPicker';
+import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import configArray from './config';
 
 // const validationSchema = yup.object().shape({
@@ -22,12 +21,13 @@ import configArray from './config';
 //     .required()
 // });
 
-const PatientIDForm = ({ navigation }) => {
+const IdentificationForm = ({ navigation }) => {
   const toRoot = () => {
     navigation.navigate('Root');
   };
 
   const [inputs, setInputs] = useState({});
+  const [photoFile, setPhotoFile] = useState('Test Photo String');
 
   useEffect(() => {
     setInputs(configArray);
@@ -40,7 +40,7 @@ const PatientIDForm = ({ navigation }) => {
         const postParams = {
           parseClass: 'SurveyData',
           signature: 'Sample Signature',
-          photoFile: 'TestPicture',
+          photoFile,
           localObject: values
         };
 
@@ -80,4 +80,4 @@ const PatientIDForm = ({ navigation }) => {
   );
 };
 
-export default PatientIDForm;
+export default IdentificationForm;
