@@ -7,11 +7,32 @@ import { TextInput, Button } from 'react-native-paper';
 
 import AutoFill from '../AutoFill';
 
+import getLocation from '../../../modules/geolocation';
+
 const PaperInputPicker = ({ data, formikProps, ...rest }) => {
   const { label, formikKey, fieldType } = data;
   const {
     handleChange, handleBlur, touched, errors, setFieldValue
   } = formikProps;
+
+  const [location, setLocation] = React.useState();
+
+  const handleLocation = async () => {
+    const currentLocation = await getLocation();
+    const { latitude, longitude } = currentLocation.coords;
+
+    if (formikKey === 'longitude') {
+      setLocation(longitude);
+      return longitude;
+    }
+
+    if (formikKey === 'latitude') {
+      setLocation(latitude);
+      return latitude;
+    }
+
+    return null;
+  };
 
   return (
     <>
@@ -44,6 +65,13 @@ const PaperInputPicker = ({ data, formikProps, ...rest }) => {
             formikProps={formikProps}
             formikKey={formikKey}
           />
+        </View>
+      )}
+      {fieldType === 'geolocation' && (
+        <View>
+          <Button mode="contained" onPress={() => setFieldValue(formikKey, handleLocation())}>
+            <Text>{location}</Text>
+          </Button>
         </View>
       )}
     </>

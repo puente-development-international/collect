@@ -3,7 +3,7 @@ import {
   StyleSheet, Text, TouchableOpacity, View
 } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
-import retrievePuenteAutofillData from '../../services/aws';
+import retrievePuenteAutofillData from '../../../services/aws';
 
 export default class AutoFill extends Component {
   constructor(props) {
