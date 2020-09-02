@@ -14,6 +14,17 @@ const deleteData = async (storageName) => {
   await AsyncStorage.removeItem(storageName);
 };
 
+const getAllData = async () => {
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    const result = await AsyncStorage.multiGet(keys);
+
+    return result;
+  } catch (error) {
+    console.log("Error loading all keys in ASync", error);
+  }
+}
+
 export {
-  storeData, getData, deleteData
+  storeData, getData, deleteData, getAllData
 };

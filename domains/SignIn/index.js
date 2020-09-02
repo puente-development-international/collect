@@ -21,6 +21,8 @@ import FormInput from '../../components/FormInput';
 import LanguagePicker from '../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
 import { storeData, getData, deleteData } from '../../modules/async-storage';
+import * as Network from 'expo-network';
+
 
 import I18n from '../../modules/i18n';
 

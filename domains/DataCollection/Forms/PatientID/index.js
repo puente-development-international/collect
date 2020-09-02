@@ -10,6 +10,8 @@ import { Formik } from 'formik';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 import PaperInputPicker from '../../../../components/PaperInputPicker';
 import configArray from './config';
+import * as Network from 'expo-network';
+import { storeData, getData, getAllData, deleteData } from '../../../../modules/async-storage';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -23,9 +25,47 @@ import configArray from './config';
 // });
 
 const PatientIDForm = ({ navigation }) => {
+  // similar to componentDidMount and componenetWillUnmount
+  // runs every 10 seconds in the background to get all Async Data
+  useEffect(() => {
+    const interval = setInterval(() => {
+      checkOnlineStatus()
+        .then((isConnected) => {
+          if (isConnected) {
+            getAllData().then((allAsyncData) => {
+              // contains all the available keys
+              let allKeys = allAsyncData.map(a => a[0])
+              allKeys.forEach(function (item, index) {
+                if (item.includes("PatientID-")) {
+                  getData(item)
+                    .then((postParams) => {
+                      postObjectsToClass(postParams)
+                        .then(() => {
+                          deleteData(item);
+                          toRoot();
+                        }, () => {
+                        })
+                    })
+                  console.log(item, index)
+                }
+              })
+            });
+          }
+        })
+    }, 10000)
+    return () => {
+      clearInterval(interval)
+    }
+  }, []);
+
   const toRoot = () => {
     navigation.navigate('Root');
   };
+
+  const generateRandomID = function () {
+    return Math.random().toString(20).substr(2, 12)
+  }
+
 
   // checks whether user is connected to internet, return true if connected, false otherwise
   // maybe on componentDidMount calling this function and then create another function to upload 
@@ -56,12 +96,14 @@ const PatientIDForm = ({ navigation }) => {
           if (connected) {
             postObjectsToClass(postParams)
               .then(() => {
+                console.log("i posted")
                 toRoot(); // This does nothing because we're already at root
               }, () => {
               });
           }
           else {
-            storeData(postParams, 'PatientIDTest')
+            let id = "PatientID-" + generateRandomID();
+            storeData(postParams, id);
           }
         })
         setTimeout(() => {
