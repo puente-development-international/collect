@@ -15,15 +15,10 @@ const deleteData = async (storageName) => {
 };
 
 const getAllData = async () => {
-  try {
-    const keys = await AsyncStorage.getAllKeys();
-    const result = await AsyncStorage.multiGet(keys);
-
-    return result;
-  } catch (error) {
-    console.log("Error loading all keys in ASync", error);
-  }
-}
+  const keys = await AsyncStorage.getAllKeys();
+  const result = await AsyncStorage.multiGet(keys);
+  return result;
+};
 
 export {
   storeData, getData, deleteData, getAllData

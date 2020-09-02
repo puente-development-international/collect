@@ -77,12 +77,12 @@ const configArray = [
     value: '',
     fieldType: 'select',
     options: [
-      "lessThanprimary",
-      "primary",
-      "someHighSchool",
-      "highschool",
-      "someCollege",
-      "college"
+      'lessThanprimary',
+      'primary',
+      'someHighSchool',
+      'highschool',
+      'someCollege',
+      'college'
     ]
   },
   {

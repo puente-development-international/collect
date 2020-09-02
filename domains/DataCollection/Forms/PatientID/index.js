@@ -7,11 +7,13 @@ import {
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 // import * as yup from 'yup';
+import * as Network from 'expo-network';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 import PaperInputPicker from '../../../../components/PaperInputPicker';
 import configArray from './config';
-import * as Network from 'expo-network';
-import { storeData, getData, getAllData, deleteData } from '../../../../modules/async-storage';
+import {
+  storeData, getData, getAllData, deleteData
+} from '../../../../modules/async-storage';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -34,9 +36,9 @@ const PatientIDForm = ({ navigation }) => {
           if (isConnected) {
             getAllData().then((allAsyncData) => {
               // contains all the available keys
-              let allKeys = allAsyncData.map(a => a[0])
-              allKeys.forEach(function (item, index) {
-                if (item.includes("PatientID-")) {
+              const allKeys = allAsyncData.map((a) => a[0]);
+              allKeys.forEach((item) => {
+                if (item.includes('PatientID-')) {
                   getData(item)
                     .then((postParams) => {
                       postObjectsToClass(postParams)
@@ -44,34 +46,30 @@ const PatientIDForm = ({ navigation }) => {
                           deleteData(item);
                           toRoot();
                         }, () => {
-                        })
-                    })
-                  console.log(item, index)
+                        });
+                    });
                 }
-              })
+              });
             });
           }
-        })
-    }, 10000)
+        });
+    }, 10000);
     return () => {
-      clearInterval(interval)
-    }
+      clearInterval(interval);
+    };
   }, []);
 
   const toRoot = () => {
     navigation.navigate('Root');
   };
 
-  const generateRandomID = function () {
-    return Math.random().toString(20).substr(2, 12)
-  }
-
+  const generateRandomID = () => Math.random().toString(20).substr(2, 12);
 
   // checks whether user is connected to internet, return true if connected, false otherwise
-  // maybe on componentDidMount calling this function and then create another function to upload 
+  // maybe on componentDidMount calling this function and then create another function to upload
   // the objects and delete them afterwards. NEEDs to BE FLESHED OUT
   async function checkOnlineStatus() {
-    let status = await Network.getNetworkStateAsync();
+    const status = await Network.getNetworkStateAsync();
     const { isConnected } = status;
     return isConnected;
   }
@@ -96,16 +94,14 @@ const PatientIDForm = ({ navigation }) => {
           if (connected) {
             postObjectsToClass(postParams)
               .then(() => {
-                console.log("i posted")
                 toRoot(); // This does nothing because we're already at root
               }, () => {
               });
-          }
-          else {
-            let id = "PatientID-" + generateRandomID();
+          } else {
+            const id = `PatientID-${generateRandomID()}`;
             storeData(postParams, id);
           }
-        })
+        });
         setTimeout(() => {
           actions.setSubmitting(false);
         }, 1000);
