@@ -127,16 +127,18 @@ const configArray = [
   //   formikKey: 'cedulaNumber',
   //   value: ""
   // },
-  // {
-  //   label: "Latitude",
-  //   formikKey: 'latitude',
-  //   value: 0
-  // },
-  // {
-  //   label: "Longitude",
-  //   formikKey: 'longitude',
-  //   value: 0
-  // },
+  {
+    label: 'Latitude',
+    formikKey: 'latitude',
+    value: 0,
+    fieldType: 'geolocation'
+  },
+  {
+    label: 'Longitude',
+    formikKey: 'longitude',
+    value: 0,
+    fieldType: 'geolocation'
+  },
   // {
   //   label: "Surveying User",
   //   formikKey: 'surveyingUser',

@@ -8,7 +8,7 @@ import { Formik } from 'formik';
 // import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
-import configArray from './config';
+import configArray from './id.config';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -27,7 +27,7 @@ const IdentificationForm = ({ navigation }) => {
   };
 
   const [inputs, setInputs] = useState({});
-  const [photoFile, setPhotoFile] = useState('Test Photo String');
+  const [photoFile, setPhotoFile] = useState('State Photo String');
 
   useEffect(() => {
     setInputs(configArray);
@@ -37,6 +37,7 @@ const IdentificationForm = ({ navigation }) => {
     <Formik
       initialValues={{}}
       onSubmit={(values, actions) => {
+        setPhotoFile('Submitted Photo String');
         const postParams = {
           parseClass: 'SurveyData',
           signature: 'Sample Signature',
