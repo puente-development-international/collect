@@ -32,9 +32,14 @@ const PatientIDForm = ({ navigation }) => {
   // similar to componentDidMount and componenetWillUnmount
   // runs every 10 seconds in the background to get all Async Data
   useEffect(() => {
-    backgroundPostPatient().then(() => {
+    const interval = setInterval(() => {
+      backgroundPostPatient();
       toRoot();
-    })
+    }, 10000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const toRoot = () => {
@@ -68,6 +73,7 @@ const PatientIDForm = ({ navigation }) => {
           } else {
             const id = `PatientID-${generateRandomID()}`;
             storeData(postParams, id);
+            console.log(id, "Stored to ASYNC")
           }
         });
         setTimeout(() => {
