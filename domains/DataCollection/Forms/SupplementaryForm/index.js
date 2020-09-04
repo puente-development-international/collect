@@ -8,8 +8,8 @@ import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 // import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
-import PaperInputPicker from '../../../../components/PaperInputPicker';
-import configArray from './config';
+import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
+import envArray from './forms-configs/envhealth.config';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -22,25 +22,27 @@ import configArray from './config';
 //     .required()
 // });
 
-const PatientIDForm = ({ navigation }) => {
+const SupplementaryForm = ({ navigation }) => {
   const toRoot = () => {
     navigation.navigate('Root');
   };
 
   const [inputs, setInputs] = useState({});
+  const [photoFile, setPhotoFile] = useState('State Photo String');
 
   useEffect(() => {
-    setInputs(configArray);
+    setInputs(envArray);
   }, []);
 
   return (
     <Formik
       initialValues={{}}
       onSubmit={(values, actions) => {
+        setPhotoFile('Submitted Photo String');
         const postParams = {
           parseClass: 'SurveyData',
           signature: 'Sample Signature',
-          photoFile: 'TestPicture',
+          photoFile,
           localObject: values
         };
 
@@ -80,4 +82,4 @@ const PatientIDForm = ({ navigation }) => {
   );
 };
 
-export default PatientIDForm;
+export default SupplementaryForm;
