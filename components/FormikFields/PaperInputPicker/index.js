@@ -8,6 +8,7 @@ import { TextInput, Button } from 'react-native-paper';
 import AutoFill from '../AutoFill';
 
 import getLocation from '../../../modules/geolocation';
+import theme from '../../../modules/theme';
 
 const PaperInputPicker = ({ data, formikProps, ...rest }) => {
   const { label, formikKey, fieldType } = data;
@@ -43,6 +44,8 @@ const PaperInputPicker = ({ data, formikProps, ...rest }) => {
             onChangeText={handleChange(formikKey)}
             onBlur={handleBlur(formikKey)}
             {...rest} //eslint-disable-line
+            mode="outlined"
+            theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
           />
           <Text style={{ color: 'red' }}>
             {touched[formikKey] && errors[formikKey]}
@@ -52,7 +55,7 @@ const PaperInputPicker = ({ data, formikProps, ...rest }) => {
       {fieldType === 'select' && (
         <View>
           {data.options.map((result) => (
-            <Button key={result} mode="contained" onPress={() => setFieldValue(formikKey, result)}>
+            <Button key={result} mode="outlined" onPress={() => setFieldValue(formikKey, result)}>
               <Text>{result}</Text>
             </Button>
           ))}

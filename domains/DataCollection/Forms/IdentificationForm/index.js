@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
+import styles from '../../../../styles/layout/form';
 // import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
@@ -57,7 +58,7 @@ const IdentificationForm = ({ navigation }) => {
     // validationSchema={validationSchema}
     >
       {(formikProps) => (
-        <>
+        <View style={styles.formContainer}>
           {inputs.length && inputs.map((result) => (
             <View key={result.formikKey}>
               <PaperInputPicker
@@ -75,7 +76,7 @@ const IdentificationForm = ({ navigation }) => {
               <Text>Submit</Text>
             </Button>
           )}
-        </>
+        </View>
       )}
     </Formik>
   );

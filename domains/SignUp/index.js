@@ -13,7 +13,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { retrieveSignUpFunction, retrieveSignInFunction } from '../../services/parse/auth';
 
-import FormInput from '../../components/FormInput';
+import FormInput from '../../components/FormikFields/FormInput';
 import TermsModal from '../../components/TermsModal';
 // STYLING
 import theme from '../../modules/theme';
