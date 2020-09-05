@@ -9,12 +9,20 @@ import Forms from './Forms';
 export default function DataCollection({ navigation }) {
   const [scrollViewScroll, setScrollViewScroll] = useState();
   return (
-    <View style={styles.container} onStartShouldSetResponderCapture={() => {
-      setScrollViewScroll(true);
-    }}>
+    <View
+      style={styles.container}
+      onStartShouldSetResponderCapture={() => {
+        setScrollViewScroll(true);
+      }}
+    >
       <ScrollView style={styles.container} keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
         <Text style={styles.line}>Welcome to the data collection page.</Text>
-        <Forms style={styles.line} navigation={navigation} scrollViewScroll={scrollViewScroll} setScrollViewScroll={setScrollViewScroll}/>
+        <Forms
+          style={styles.line}
+          navigation={navigation}
+          scrollViewScroll={scrollViewScroll}
+          setScrollViewScroll={setScrollViewScroll}
+        />
       </ScrollView>
     </View>
   );

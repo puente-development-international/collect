@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   ActivityIndicator,
-  View,
-  ScrollView
+  View
 } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
@@ -14,9 +13,9 @@ import configArray from './config';
 import {
   storeData
 } from '../../../../modules/async-storage';
-import { checkOnlineStatus } from '../../../../modules/offline'
-import { backgroundPostPatient } from './utils';
-import { generateRandomID } from '../../../../modules/utils';
+import checkOnlineStatus from '../../../../modules/offline';
+import backgroundPostPatient from './utils';
+import generateRandomID from '../../../../modules/utils';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -68,14 +67,12 @@ const PatientIDForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) =>
           if (connected) {
             postObjectsToClass(postParams)
               .then(() => {
-                console.log("Posted", postParams)
                 toRoot(); // This does nothing because we're already at root
               }, () => {
               });
           } else {
             const id = `PatientID-${generateRandomID()}`;
             storeData(postParams, id);
-            console.log(id, "Stored to ASYNC")
           }
         });
         setTimeout(() => {
@@ -101,10 +98,10 @@ const PatientIDForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) =>
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button onPress={formikProps.handleSubmit}>
-                <Text>Submit</Text>
-              </Button>
-            )}
+            <Button onPress={formikProps.handleSubmit}>
+              <Text>Submit</Text>
+            </Button>
+          )}
         </>
       )}
     </Formik>

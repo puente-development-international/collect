@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, TouchableOpacity, View, ScrollView
+  StyleSheet, Text, TouchableOpacity, View,
+  YellowBox
 } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
+
 import retrievePuenteAutofillData from '../../services/aws';
-// // RN >= 0.63
-// import { LogBox } from 'react-native';
-
-// LogBox.ignoreLogs(['Warning: ...']);
-
-// RN >= 0.52
-import { YellowBox } from 'react-native';
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
 // RN < 0.52
-console.ignoredYellowBox = ['VirtualizedLists should never be nested'];
+console.ignoredYellowBox = ['VirtualizedLists should never be nested']; // eslint-disable-line
 
 export default class AutoFill extends Component {
   constructor(props) {
@@ -50,9 +45,10 @@ export default class AutoFill extends Component {
     const { query } = this.state;
     const fields = this.findField(query);
     const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
-    const { parameter, formikProps, formikKey, scrollViewScroll, setScrollViewScroll } = this.props;
+    const {
+      parameter, formikProps, formikKey, scrollViewScroll, setScrollViewScroll
+    } = this.props;
     const placeholder = `Enter the ${parameter} here`;
-    let key = 0;
 
     return (
       <View style={styles.container}>
@@ -77,8 +73,8 @@ export default class AutoFill extends Component {
             // this allows for us to scroll within the result list when the user is toouching it
             // and on the screen when they are not
             setScrollViewScroll(false);
-            if (fields.length === 0 &&
-              scrollViewScroll === false) {
+            if (fields.length === 0
+              && scrollViewScroll === false) {
               setScrollViewScroll(true);
             }
           }}
@@ -99,8 +95,8 @@ export default class AutoFill extends Component {
           {fields.length > 0 ? (
             <Text style={styles.infoText}>{query}</Text>
           ) : (
-              <Text style={styles.infoText}>{placeholder}</Text>
-            )}
+            <Text style={styles.infoText}>{placeholder}</Text>
+          )}
         </View>
       </View>
     );
