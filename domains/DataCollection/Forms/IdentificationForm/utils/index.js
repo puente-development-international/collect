@@ -1,5 +1,5 @@
-import { checkOnlineStatus } from '../../../../../modules/offline';
-import { getAllData, getData, deleteData } from '../../../../../modules/async-storage'
+import checkOnlineStatus from '../../../../../modules/offline';
+import { getAllData, getData, deleteData } from '../../../../../modules/async-storage';
 import { postObjectsToClass } from '../../../../../services/parse/crud';
 
 // similar to componentDidMount and componenetWillUnmount
@@ -13,14 +13,14 @@ const backgroundPostPatient = () => {
           // contains all the available keys
           const allKeys = allAsyncData.map((a) => a[0]);
           allKeys.forEach((item) => {
-            console.log(item)
+            // console.log(item);
             // check for PatiendID objects stored in async
             if (item.includes('PatientID-')) {
               getData(item)
                 .then((postParams) => {
                   postObjectsToClass(postParams)
                     .then(() => {
-                      console.log(item, "POSTED")
+                      // console.log(item, 'POSTED');
                       // delete item from async after it has been posted to parse
                       deleteData(item);
                     }, () => {
@@ -31,6 +31,6 @@ const backgroundPostPatient = () => {
         });
       }
     });
-}
+};
 
-export { backgroundPostPatient }; 
+export default backgroundPostPatient;

@@ -6,6 +6,6 @@ const checkOnlineStatus = async () => {
   const status = await Network.getNetworkStateAsync();
   const { isConnected } = status;
   return isConnected;
-}
+};
 
-export { checkOnlineStatus };
+export default checkOnlineStatus;

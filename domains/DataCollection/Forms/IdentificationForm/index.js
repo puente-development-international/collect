@@ -12,11 +12,11 @@ import { postObjectsToClass } from '../../../../services/parse/crud';
 import {
   storeData
 } from '../../../../modules/async-storage';
-import { checkOnlineStatus } from '../../../../modules/offline'
-import { generateRandomID } from '../../../../modules/utils';
+import checkOnlineStatus from '../../../../modules/offline';
+import generateRandomID from '../../../../modules/utils';
 
-import { backgroundPostPatient } from './utils';
-import configArray from './id.config';
+import backgroundPostPatient from './utils';
+import configArray from './utils/config';
 
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import styles from '../../../../styles/layout/form';
@@ -33,7 +33,6 @@ import styles from '../../../../styles/layout/form';
 // });
 
 const IdentificationForm = ({ navigation }) => {
-
   useEffect(() => {
     const interval = setInterval(() => {
       backgroundPostPatient();
@@ -78,7 +77,7 @@ const IdentificationForm = ({ navigation }) => {
           } else {
             const id = `PatientID-${generateRandomID()}`;
             storeData(postParams, id);
-            console.log(id, "Stored to ASYNC")
+            // console.log(id, 'Stored to ASYNC');
           }
         });
         setTimeout(() => {
@@ -102,10 +101,10 @@ const IdentificationForm = ({ navigation }) => {
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button onPress={formikProps.handleSubmit}>
-                <Text>Submit</Text>
-              </Button>
-            )}
+            <Button onPress={formikProps.handleSubmit}>
+              <Text>Submit</Text>
+            </Button>
+          )}
         </View>
       )}
     </Formik>
