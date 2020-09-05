@@ -16,6 +16,7 @@ import {
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import * as Network from 'expo-network';
 import { retrieveSignInFunction } from '../../services/parse/auth';
 import FormInput from '../../components/FormikFields/FormInput';
 import LanguagePicker from '../../components/LanguagePicker';
@@ -86,6 +87,12 @@ const SignIn = ({ navigation }) => {
     I18n.locale = lang;
   };
 
+  // checks whether user is connected to internet, return true if connected, false otherwise
+  async function checkOnlineStatus() {
+    const status = await Network.getNetworkStateAsync();
+    const { isConnected } = status;
+    return isConnected;
+  }
   const deleteCreds = () => {
     deleteData('credentials');
   };
@@ -96,23 +103,40 @@ const SignIn = ({ navigation }) => {
       <Formik
         initialValues={{ username: '', password: '' }}
         onSubmit={(values, actions) => {
-          retrieveSignInFunction(values.username, values.password)
-            .then(() => {
+          checkOnlineStatus().then((connected) => {
+            if (connected) {
+              retrieveSignInFunction(values.username, values.password)
+                .then(() => {
+                  getData('credentials')
+                    .then((userCreds) => {
+                      // credentials saved do not match those entered, overwrite saved credentials
+                      if (userCreds === null || values.username !== userCreds.username
+                        || values.password !== userCreds.password) {
+                        handleSaveCredentials(values);
+                      }
+                    }, () => {
+                      // no credentials saved, give option to save
+                      handleSaveCredentials(values);
+                    });
+                  navigation.navigate('Root');
+                }, () => {
+                  // error on sign in => some sort of alert
+                });
+            } else {
+              // offline
               getData('credentials')
                 .then((userCreds) => {
-                  // credentials saved do not match those entered, overwrite saved credentials
-                  if (userCreds === null || values.username !== userCreds.username
-                    || values.password !== userCreds.password) {
-                    handleSaveCredentials(values);
+                  // username and password entered (or saved in creds) match the saved cred
+                  if (values.username === userCreds.username
+                    && values.password === userCreds.password) {
+                    // need some pincode verification
+                    navigation.navigate('Root');
+                  } else {
+                    // cannot log in offline without saved credentials, must connect to internet
                   }
-                }, () => {
-                  // no credentials saved, give option to save
-                  handleSaveCredentials(values);
                 });
-              navigation.navigate('Root');
-            }, () => {
-              // error on sign in => some sort of alert
-            });
+            }
+          });
           setTimeout(() => {
             actions.setSubmitting(false);
           }, 1000);
