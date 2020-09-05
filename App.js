@@ -2,6 +2,7 @@
 import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Provider as StoreProvider } from 'react-redux';
+
 import MainNavigation from './components/MainNavigation';
 
 // REDUX
@@ -21,5 +22,3 @@ export default function App() {
     </StoreProvider>
   );
 }
-
-// export default App;

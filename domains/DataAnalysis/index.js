@@ -3,6 +3,8 @@ import {
   StyleSheet, Text, View
 } from 'react-native';
 
+import theme from '../../modules/theme';
+
 export default function DataAnalysis() {
   return (
     <View style={styles.container}>
@@ -11,10 +13,12 @@ export default function DataAnalysis() {
   );
 }
 
+const { background } = theme.colors;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: background,
   },
   text: {
     flex: 1,
