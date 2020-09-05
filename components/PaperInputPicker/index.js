@@ -7,7 +7,7 @@ import { TextInput, Button } from 'react-native-paper';
 
 import AutoFill from '../AutoFill';
 
-const PaperInputPicker = ({ data, formikProps, ...rest }) => {
+const PaperInputPicker = ({ data, formikProps, scrollViewScroll, setScrollViewScroll, ...rest }) => {
   const { label, formikKey, fieldType } = data;
   const {
     handleChange, handleBlur, touched, errors, setFieldValue
@@ -43,6 +43,8 @@ const PaperInputPicker = ({ data, formikProps, ...rest }) => {
             parameter={data.parameter}
             formikProps={formikProps}
             formikKey={formikKey}
+            scrollViewScroll={scrollViewScroll}
+            setScrollViewScroll={setScrollViewScroll}
           />
         </View>
       )}

@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, TouchableOpacity, View
+  StyleSheet, Text, TouchableOpacity, View, ScrollView
 } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
 import retrievePuenteAutofillData from '../../services/aws';
+// // RN >= 0.63
+// import { LogBox } from 'react-native';
+
+// LogBox.ignoreLogs(['Warning: ...']);
+
+// RN >= 0.52
+import { YellowBox } from 'react-native';
+
+YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
+
+// RN < 0.52
+console.ignoredYellowBox = ['VirtualizedLists should never be nested'];
 
 export default class AutoFill extends Component {
   constructor(props) {
@@ -38,8 +50,9 @@ export default class AutoFill extends Component {
     const { query } = this.state;
     const fields = this.findField(query);
     const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
-    const { parameter, formikProps, formikKey } = this.props;
+    const { parameter, formikProps, formikKey, scrollViewScroll, setScrollViewScroll } = this.props;
     const placeholder = `Enter the ${parameter} here`;
+    let key = 0;
 
     return (
       <View style={styles.container}>
@@ -58,6 +71,17 @@ export default class AutoFill extends Component {
             formikProps.setFieldValue(formikKey, text);
           }}
           placeholder={placeholder}
+          listStyle={styles.listContainer}
+          keyExtractor={(item) => item.key}
+          onStartShouldSetResponderCapture={() => {
+            // this allows for us to scroll within the result list when the user is toouching it
+            // and on the screen when they are not
+            setScrollViewScroll(false);
+            if (fields.length === 0 &&
+              scrollViewScroll === false) {
+              setScrollViewScroll(true);
+            }
+          }}
           renderItem={({ item }) => (
             // you can change the view you want to show in suggestion from here
             <TouchableOpacity onPress={() => {
@@ -75,8 +99,8 @@ export default class AutoFill extends Component {
           {fields.length > 0 ? (
             <Text style={styles.infoText}>{query}</Text>
           ) : (
-            <Text style={styles.infoText}>{placeholder}</Text>
-          )}
+              <Text style={styles.infoText}>{placeholder}</Text>
+            )}
         </View>
       </View>
     );
@@ -109,4 +133,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
   },
+  listContainer: {
+    height: 80,
+  }
 });

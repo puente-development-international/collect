@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import {
   ActivityIndicator,
-  View
+  View,
+  ScrollView
 } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
@@ -28,14 +29,14 @@ import { generateRandomID } from '../../../../modules/utils';
 //     .required()
 // });
 
-const PatientIDForm = ({ navigation }) => {
+const PatientIDForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) => {
   // similar to componentDidMount and componenetWillUnmount
   // runs every 10 seconds in the background to get all Async Data
   useEffect(() => {
     const interval = setInterval(() => {
       backgroundPostPatient();
       toRoot();
-    }, 10000);
+    }, 1500);
 
     return () => {
       clearInterval(interval);
@@ -67,6 +68,7 @@ const PatientIDForm = ({ navigation }) => {
           if (connected) {
             postObjectsToClass(postParams)
               .then(() => {
+                console.log("Posted", postParams)
                 toRoot(); // This does nothing because we're already at root
               }, () => {
               });
@@ -89,6 +91,8 @@ const PatientIDForm = ({ navigation }) => {
               <PaperInputPicker
                 data={result}
                 formikProps={formikProps}
+                scrollViewScroll={scrollViewScroll}
+                setScrollViewScroll={setScrollViewScroll}
               // placeholder="Ana"
               />
             </View>

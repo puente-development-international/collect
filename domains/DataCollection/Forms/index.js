@@ -3,8 +3,8 @@ import React from 'react';
 
 import PatientIDForm from './PatientID';
 
-const Form = ({ navigation }) => (
-  <PatientIDForm navigation={navigation} />
+const Form = ({ navigation, scrollViewScroll, setScrollViewScroll }) => (
+  <PatientIDForm navigation={navigation} scrollViewScroll={scrollViewScroll} setScrollViewScroll={setScrollViewScroll} />
 );
 
 export default Form;
