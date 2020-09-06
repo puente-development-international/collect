@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v0.2.0...v0.3.0) (2020-09-05)
+
+
+### Features
+
+* add dynamic form entry ([ad5a8ca](https://github.com/hopetambala/puente-reactnative-collect/commit/ad5a8ca929be645dc516670fd9d5c69f1607bdad))
+* add geolocation :tada: ([f4cf762](https://github.com/hopetambala/puente-reactnative-collect/commit/f4cf7629f35e57285438f83eb9c25c0c64936ac9))
+* refactor design to use theme ([6c4694e](https://github.com/hopetambala/puente-reactnative-collect/commit/6c4694e86a41e09fed1eff27f849581dcc4094d6))
+
 ## [0.2.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v0.1.0...v0.2.0) (2020-08-27)
 
 

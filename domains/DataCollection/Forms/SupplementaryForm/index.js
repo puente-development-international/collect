@@ -8,14 +8,14 @@ import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 // import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
-import PaperInputPicker from '../../../../components/PaperInputPicker';
-import configArray from './config';
 import {
   storeData
 } from '../../../../modules/async-storage';
 import checkOnlineStatus from '../../../../modules/offline';
 import backgroundPostPatient from './utils';
 import generateRandomID from '../../../../modules/utils';
+import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
+import envArray from './forms-configs/envhealth.config';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -28,7 +28,7 @@ import generateRandomID from '../../../../modules/utils';
 //     .required()
 // });
 
-const PatientIDForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) => {
+const SupplementaryForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) => {
   // similar to componentDidMount and componenetWillUnmount
   // runs every 10 seconds in the background to get all Async Data
   useEffect(() => {
@@ -47,19 +47,21 @@ const PatientIDForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) =>
   };
 
   const [inputs, setInputs] = useState({});
+  const [photoFile, setPhotoFile] = useState('State Photo String');
 
   useEffect(() => {
-    setInputs(configArray);
+    setInputs(envArray);
   }, []);
 
   return (
     <Formik
       initialValues={{}}
       onSubmit={(values, actions) => {
+        setPhotoFile('Submitted Photo String');
         const postParams = {
           parseClass: 'SurveyData',
           signature: 'Sample Signature',
-          photoFile: 'TestPicture',
+          photoFile,
           localObject: values
         };
 
@@ -108,4 +110,4 @@ const PatientIDForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) =>
   );
 };
 
-export default PatientIDForm;
+export default SupplementaryForm;

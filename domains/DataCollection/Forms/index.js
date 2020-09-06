@@ -1,10 +1,10 @@
 // Make this render but switch between forms
 import React from 'react';
 
-import PatientIDForm from './PatientID';
+import IdentificationForm from './IdentificationForm';
 
 const Form = ({ navigation, scrollViewScroll, setScrollViewScroll }) => (
-  <PatientIDForm
+  <IdentificationForm
     navigation={navigation}
     scrollViewScroll={scrollViewScroll}
     setScrollViewScroll={setScrollViewScroll}

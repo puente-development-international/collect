@@ -18,7 +18,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import * as Network from 'expo-network';
 import { retrieveSignInFunction } from '../../services/parse/auth';
-import FormInput from '../../components/FormInput';
+import FormInput from '../../components/FormikFields/FormInput';
 import LanguagePicker from '../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
 import { storeData, getData, deleteData } from '../../modules/async-storage';

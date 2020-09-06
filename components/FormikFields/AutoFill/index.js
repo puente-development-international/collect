@@ -4,8 +4,7 @@ import {
   YellowBox
 } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
-
-import retrievePuenteAutofillData from '../../services/aws';
+import retrievePuenteAutofillData from '../../../services/aws';
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
@@ -68,7 +67,7 @@ export default class AutoFill extends Component {
           }}
           placeholder={placeholder}
           listStyle={styles.listContainer}
-          keyExtractor={(item) => item.key}
+          keyExtractor={(item, position) => item.key}
           onStartShouldSetResponderCapture={() => {
             // this allows for us to scroll within the result list when the user is toouching it
             // and on the screen when they are not
@@ -95,8 +94,8 @@ export default class AutoFill extends Component {
           {fields.length > 0 ? (
             <Text style={styles.infoText}>{query}</Text>
           ) : (
-            <Text style={styles.infoText}>{placeholder}</Text>
-          )}
+              <Text style={styles.infoText}>{placeholder}</Text>
+            )}
         </View>
       </View>
     );
