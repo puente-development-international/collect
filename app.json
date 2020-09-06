@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "0.2.0",
+    "version": "0.3.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -24,14 +24,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "0.2.0",
+      "buildNumber": "0.3.0",
       "bundleIdentifier": "com.puente.collect"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "android": {
-      "versionCode": 370000100,
+      "versionCode": 370000300,
       "package": "com.puente.collect"
     }
   }

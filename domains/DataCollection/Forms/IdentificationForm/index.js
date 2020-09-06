@@ -6,9 +6,20 @@ import {
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 // import * as yup from 'yup';
+
 import { postObjectsToClass } from '../../../../services/parse/crud';
+
+import {
+  storeData
+} from '../../../../modules/async-storage';
+import checkOnlineStatus from '../../../../modules/offline';
+import generateRandomID from '../../../../modules/utils';
+
+import backgroundPostPatient from './utils';
+import configArray from './utils/config';
+
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
-import configArray from './id.config';
+import styles from '../../../../styles/layout/form';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -22,6 +33,17 @@ import configArray from './id.config';
 // });
 
 const IdentificationForm = ({ navigation }) => {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      backgroundPostPatient();
+      toRoot();
+    }, 10000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   const toRoot = () => {
     navigation.navigate('Root');
   };
@@ -45,11 +67,19 @@ const IdentificationForm = ({ navigation }) => {
           localObject: values
         };
 
-        postObjectsToClass(postParams)
-          .then(() => {
-            toRoot(); // This does nothing because we're already at root
-          }, () => {
-          });
+        checkOnlineStatus().then((connected) => {
+          if (connected) {
+            postObjectsToClass(postParams)
+              .then(() => {
+                toRoot(); // This does nothing because we're already at root
+              }, () => {
+              });
+          } else {
+            const id = `PatientID-${generateRandomID()}`;
+            storeData(postParams, id);
+            // console.log(id, 'Stored to ASYNC');
+          }
+        });
         setTimeout(() => {
           actions.setSubmitting(false);
         }, 1000);
@@ -57,7 +87,7 @@ const IdentificationForm = ({ navigation }) => {
     // validationSchema={validationSchema}
     >
       {(formikProps) => (
-        <>
+        <View style={styles.formContainer}>
           {inputs.length && inputs.map((result) => (
             <View key={result.formikKey}>
               <PaperInputPicker
@@ -75,7 +105,7 @@ const IdentificationForm = ({ navigation }) => {
               <Text>Submit</Text>
             </Button>
           )}
-        </>
+        </View>
       )}
     </Formik>
   );
