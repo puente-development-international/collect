@@ -8,12 +8,6 @@ import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 // import * as yup from 'yup';
 import { postObjectsToClass } from '../../../../services/parse/crud';
-import {
-  storeData
-} from '../../../../modules/async-storage';
-import checkOnlineStatus from '../../../../modules/offline';
-import backgroundPostPatient from './utils';
-import generateRandomID from '../../../../modules/utils';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import envArray from './forms-configs/envhealth.config';
 
@@ -28,20 +22,7 @@ import envArray from './forms-configs/envhealth.config';
 //     .required()
 // });
 
-const SupplementaryForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) => {
-  // similar to componentDidMount and componenetWillUnmount
-  // runs every 10 seconds in the background to get all Async Data
-  useEffect(() => {
-    const interval = setInterval(() => {
-      backgroundPostPatient();
-      toRoot();
-    }, 1500);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
+const SupplementaryForm = ({ navigation }) => {
   const toRoot = () => {
     navigation.navigate('Root');
   };
@@ -65,18 +46,11 @@ const SupplementaryForm = ({ navigation, scrollViewScroll, setScrollViewScroll }
           localObject: values
         };
 
-        checkOnlineStatus().then((connected) => {
-          if (connected) {
-            postObjectsToClass(postParams)
-              .then(() => {
-                toRoot(); // This does nothing because we're already at root
-              }, () => {
-              });
-          } else {
-            const id = `PatientID-${generateRandomID()}`;
-            storeData(postParams, id);
-          }
-        });
+        postObjectsToClass(postParams)
+          .then(() => {
+            toRoot(); // This does nothing because we're already at root
+          }, () => {
+          });
         setTimeout(() => {
           actions.setSubmitting(false);
         }, 1000);
@@ -90,8 +64,6 @@ const SupplementaryForm = ({ navigation, scrollViewScroll, setScrollViewScroll }
               <PaperInputPicker
                 data={result}
                 formikProps={formikProps}
-                scrollViewScroll={scrollViewScroll}
-                setScrollViewScroll={setScrollViewScroll}
               // placeholder="Ana"
               />
             </View>
@@ -100,10 +72,10 @@ const SupplementaryForm = ({ navigation, scrollViewScroll, setScrollViewScroll }
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
-            </Button>
-          )}
+              <Button onPress={formikProps.handleSubmit}>
+                <Text>Submit</Text>
+              </Button>
+            )}
         </>
       )}
     </Formik>
