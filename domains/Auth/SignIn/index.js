@@ -17,16 +17,16 @@ import {
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import * as Network from 'expo-network';
-import { retrieveSignInFunction } from '../../services/parse/auth';
-import FormInput from '../../components/FormikFields/FormInput';
-import LanguagePicker from '../../components/LanguagePicker';
+import { retrieveSignInFunction } from '../../../services/parse/auth';
+import FormInput from '../../../components/FormikFields/FormInput';
+import LanguagePicker from '../../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
-import { storeData, getData, deleteData } from '../../modules/async-storage';
+import { storeData, getData, deleteData } from '../../../modules/async-storage';
 
-import I18n from '../../modules/i18n';
+import I18n from '../../../modules/i18n';
 
 // STYLING
-import theme from '../../modules/theme';
+import theme from '../../../modules/theme';
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -161,13 +161,13 @@ const SignIn = ({ navigation }) => {
                 secureTextEntry
               />
             ) : (
-              <FormInput
-                label={I18n.t('signIn.password')}
-                formikProps={formikProps}
-                formikKey="password"
-                placeholder="Password here"
-              />
-            )}
+                <FormInput
+                  label={I18n.t('signIn.password')}
+                  formikProps={formikProps}
+                  formikKey="password"
+                  placeholder="Password here"
+                />
+              )}
             <View style={styles.container}>
               <View style={styles.checkbox}>
                 <Checkbox
@@ -184,8 +184,8 @@ const SignIn = ({ navigation }) => {
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
-            )}
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
+              )}
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
               {I18n.t('signIn.signUpLink')}
             </Button>

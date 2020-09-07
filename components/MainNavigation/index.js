@@ -10,12 +10,12 @@ import BottomTabNavigator from './BottomTabNavigator.';
 import LinkingConfiguration from './LinkingConfiguration';
 import Header from '../Header';
 
-import SignIn from '../../domains/SignIn';
-import SignUp from '../../domains/SignUp';
-import GetPinCode from '../../domains/PinCode/GetPinCode';
-import StorePinCode from '../../domains/PinCode/StorePinCode';
+import SignIn from '../../domains/Auth/SignIn';
+import SignUp from '../../domains/Auth/SignUp';
+import GetPinCode from '../../domains/Auth/PinCode/GetPinCode';
+import StorePinCode from '../../domains/Auth/PinCode/StorePinCode';
 
-import { initialize } from '../../services/parse/auth/index';
+import { initialize } from '../../services/parse/auth';
 
 import theme from '../../modules/theme';
 
