@@ -16,7 +16,7 @@ import checkOnlineStatus from '../../../../modules/offline';
 import generateRandomID from '../../../../modules/utils';
 
 import backgroundPostPatient from './utils';
-import configArray from './utils/config';
+import configArray from './config/config';
 
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import styles from '../../../../styles/layout/form';
@@ -44,7 +44,7 @@ const IdentificationForm = ({
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [backgroundPostPatient, clearInterval]);
 
   const toRoot = () => {
     navigation.navigate('Root');
@@ -55,7 +55,7 @@ const IdentificationForm = ({
 
   useEffect(() => {
     setInputs(configArray);
-  }, []);
+  }, [setInputs, configArray]);
 
   return (
     <Formik

@@ -19,7 +19,7 @@ export default function DataCollection({ navigation }) {
         setScrollViewScroll(true);
       }}
     >
-      <ScrollView style={styles.container} keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
+      <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
         {!showForms
           && (
             <View>
@@ -50,6 +50,7 @@ export default function DataCollection({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
   },
   line: {
     flex: 0.5,

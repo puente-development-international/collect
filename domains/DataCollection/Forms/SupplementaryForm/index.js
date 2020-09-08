@@ -8,7 +8,9 @@ import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
-import envArray from './forms-configs/envhealth.config';
+import envArray from './configs/envhealth.config';
+
+import styles from '../../../../styles/layout/form';
 
 const SupplementaryForm = ({ navigation, selectedForm, setSelectedForm }) => {
   const toRoot = () => {
@@ -47,7 +49,7 @@ const SupplementaryForm = ({ navigation, selectedForm, setSelectedForm }) => {
     // validationSchema={validationSchema}
     >
       {(formikProps) => (
-        <>
+        <View style={styles.formContainer}>
           {inputs.length && inputs.map((result) => (
             <View key={result.formikKey}>
               <PaperInputPicker
@@ -64,7 +66,7 @@ const SupplementaryForm = ({ navigation, selectedForm, setSelectedForm }) => {
               <Text>Submit</Text>
             </Button>
           )}
-        </>
+        </View>
       )}
     </Formik>
   );

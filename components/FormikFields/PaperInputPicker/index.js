@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {
-  View,
-  Text
+  View, Text
 } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, Title } from 'react-native-paper';
 
 import AutoFill from '../AutoFill';
 
@@ -56,6 +55,7 @@ const PaperInputPicker = ({
       )}
       {fieldType === 'select' && (
         <View>
+          <Title>{label}</Title>
           {data.options.map((result) => (
             <Button key={result} mode="outlined" onPress={() => setFieldValue(formikKey, result)}>
               <Text>{result}</Text>
