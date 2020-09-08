@@ -8,7 +8,7 @@ import { TextInput, Button } from 'react-native-paper';
 import AutoFill from '../AutoFill';
 
 import getLocation from '../../../modules/geolocation';
-import theme from '../../../modules/theme'
+import theme from '../../../modules/theme';
 
 const PaperInputPicker = ({
   data, formikProps, scrollViewScroll, setScrollViewScroll, ...rest

@@ -32,7 +32,7 @@ import styles from '../../../../styles/layout/form';
 //     .required()
 // });
 
-const IdentificationForm = ({ navigation,  scrollViewScroll, setScrollViewScroll }) => {
+const IdentificationForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       backgroundPostPatient();
