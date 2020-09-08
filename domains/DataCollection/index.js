@@ -4,6 +4,10 @@ import {
   StyleSheet, Text, ScrollView, View
 } from 'react-native';
 
+import {
+  Button
+} from 'react-native-paper'
+
 import Forms from './Forms';
 
 export default function DataCollection({ navigation }) {
@@ -32,6 +36,7 @@ export default function DataCollection({ navigation }) {
         {showForms
           && (
             <View>
+              <Button onPress={() => setShowForms(false)}>Back to Data Collection Screen</Button>
               <Forms
                 style={styles.line}
                 navigation={navigation}
