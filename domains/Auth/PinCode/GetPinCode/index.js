@@ -58,10 +58,10 @@ const GetPinCode = ({ navigation }) => {
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button onPress={formikProps.handleSubmit}>
-                <Text>Submit</Text>
-              </Button>
-            )}
+            <Button onPress={formikProps.handleSubmit}>
+              <Text>Submit</Text>
+            </Button>
+          )}
         </>
       )}
     </Formik>
