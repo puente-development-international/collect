@@ -84,7 +84,7 @@ export default class AutoFill extends Component {
               formikProps.setFieldValue(formikKey, item);
             }}
             >
-              <Text style={styles.itemText}>
+              <Text style={styles.itemText} key={item}>
                 {item}
               </Text>
             </TouchableOpacity>
