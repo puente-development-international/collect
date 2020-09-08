@@ -32,7 +32,7 @@ import styles from '../../../../styles/layout/form';
 //     .required()
 // });
 
-const IdentificationForm = ({ navigation }) => {
+const IdentificationForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       backgroundPostPatient();
@@ -93,6 +93,8 @@ const IdentificationForm = ({ navigation }) => {
               <PaperInputPicker
                 data={result}
                 formikProps={formikProps}
+                scrollViewScroll={scrollViewScroll}
+                setScrollViewScroll={setScrollViewScroll}
               // placeholder="Ana"
               />
             </View>
