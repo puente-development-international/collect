@@ -1,23 +1,45 @@
-// Make this render but switch between forms
 import React from 'react';
-import {
-  View
-} from 'react-native';
+import { View } from 'react-native';
+import { Text, Card } from 'react-native-paper';
 
 import IdentificationForm from './IdentificationForm';
+import SupplementaryForm from './SupplementaryForm';
 
-const Form = (props) => {
-  const { navigation, selectedForm, scrollViewScroll, setScrollViewScroll } = props
+const Forms = (props) => {
+  const {
+    navigation, selectedForm, setSelectedForm, scrollViewScroll, setScrollViewScroll
+  } = props;
   return (
     <View>
-      {selectedForm === "id" &&
+      {selectedForm === 'id' && (
         <IdentificationForm
           navigation={navigation}
           scrollViewScroll={scrollViewScroll}
           setScrollViewScroll={setScrollViewScroll}
+          setSelectedForm={setSelectedForm}
         />
-      }
-    </View>)
+      )}
+      {selectedForm === 'env' && (
+        <SupplementaryForm
+          navigation={navigation}
+          selectedForm={selectedForm}
+          setSelectedForm={setSelectedForm}
+
+        />
+      )}
+      {selectedForm === '' && (
+        <View>
+          <Text>Suggested next Forms</Text>
+          <Card onPress={() => setSelectedForm('id')}>
+            <Card.Title title="Resident ID" subtitle="" />
+          </Card>
+          <Card onPress={() => setSelectedForm('env')}>
+            <Card.Title title="Environmental History" subtitle="" />
+          </Card>
+        </View>
+      )}
+    </View>
+  );
 };
 
-export default Form;
+export default Forms;

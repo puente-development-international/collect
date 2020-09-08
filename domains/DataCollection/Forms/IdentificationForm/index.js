@@ -32,7 +32,9 @@ import styles from '../../../../styles/layout/form';
 //     .required()
 // });
 
-const IdentificationForm = ({ navigation, scrollViewScroll, setScrollViewScroll }) => {
+const IdentificationForm = ({
+  navigation, scrollViewScroll, setScrollViewScroll, setSelectedForm
+}) => {
   useEffect(() => {
     const interval = setInterval(() => {
       backgroundPostPatient();
@@ -72,12 +74,13 @@ const IdentificationForm = ({ navigation, scrollViewScroll, setScrollViewScroll 
             postObjectsToClass(postParams)
               .then(() => {
                 toRoot(); // This does nothing because we're already at root
+                setSelectedForm('');
               }, () => {
               });
           } else {
             const id = `PatientID-${generateRandomID()}`;
             storeData(postParams, id);
-            // console.log(id, 'Stored to ASYNC');
+            setSelectedForm('');
           }
         });
         setTimeout(() => {
