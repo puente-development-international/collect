@@ -3,7 +3,7 @@ import {
   StyleSheet, Text, View
 } from 'react-native';
 
-import theme from '../../modules/theme';
+import { theme } from '../../modules/theme';
 
 export default function DataAnalysis() {
   return (

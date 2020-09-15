@@ -16,7 +16,7 @@ import { retrieveSignUpFunction, retrieveSignInFunction } from '../../../service
 import FormInput from '../../../components/FormikFields/FormInput';
 import TermsModal from '../../../components/TermsModal';
 // STYLING
-import theme from '../../../modules/theme';
+import { theme } from '../../../modules/theme';
 
 import I18n from '../../../modules/i18n';
 
