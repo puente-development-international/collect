@@ -11,7 +11,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest --watchAll",
-    "test-run": "jest --forceExit --detectOpenHandles && codecov",
+    "test-run": "jest --forceExit --detectOpenHandles && codecov -t 8e8b2609-d992-4ac6-861c-aeb96ef7ce8e",
     "testDebug": "jest -o --watch --coverage=false",
     "lint": "./node_modules/.bin/eslint '**/*.{js,jsx}' --quiet",
     "lint-fix": "./node_modules/.bin/eslint '**/*.{js,jsx}' --fix",
