@@ -1,16 +1,20 @@
 // import * as React from 'react';
 import React, { useState } from 'react';
 import {
-  StyleSheet, Text, ScrollView, View
+  Text, ScrollView, View
 } from 'react-native';
 
 import {
   Button
-} from 'react-native-paper'
+} from 'react-native-paper';
+
+import { layout } from '../../modules/theme';
+
+import Header from '../../components/Header';
 
 import Forms from './Forms';
 
-export default function DataCollection({ navigation }) {
+const DataCollection = ({ navigation }) => {
   const [scrollViewScroll, setScrollViewScroll] = useState();
 
   const [showForms, setShowForms] = React.useState(false);
@@ -18,19 +22,21 @@ export default function DataCollection({ navigation }) {
 
   return (
     <View
-      style={styles.container}
+      style={layout.screenContainer}
       onStartShouldSetResponderCapture={() => {
         setScrollViewScroll(true);
       }}
     >
+      <Header />
+
       <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
         {!showForms
           && (
             <View>
-              <Text style={styles.line} onPress={() => setShowForms(true)}>New Record</Text>
-              <Text style={styles.line}>Find Record</Text>
-              <Text style={styles.line}>New Asset</Text>
-              <Text style={styles.line}>Find Asset</Text>
+              <Text style={layout.line} onPress={() => setShowForms(true)}>New Record</Text>
+              <Text style={layout.line}>Find Record</Text>
+              <Text style={layout.line}>New Asset</Text>
+              <Text style={layout.line}>Find Asset</Text>
             </View>
           )}
         {showForms
@@ -38,7 +44,7 @@ export default function DataCollection({ navigation }) {
             <View>
               <Button onPress={() => setShowForms(false)}>Back to Data Collection Screen</Button>
               <Forms
-                style={styles.line}
+                style={layout.line}
                 navigation={navigation}
                 selectedForm={selectForm}
                 setSelectedForm={setSelectForm}
@@ -50,15 +56,6 @@ export default function DataCollection({ navigation }) {
       </ScrollView>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-  },
-  line: {
-    flex: 0.5,
-    padding: 10,
-  }
-});
+export default DataCollection;

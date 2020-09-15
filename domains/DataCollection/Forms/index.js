@@ -5,12 +5,14 @@ import { Text, Card } from 'react-native-paper';
 import IdentificationForm from './IdentificationForm';
 import SupplementaryForm from './SupplementaryForm';
 
+import { layout } from '../../../modules/theme';
+
 const Forms = (props) => {
   const {
     navigation, selectedForm, setSelectedForm, scrollViewScroll, setScrollViewScroll
   } = props;
   return (
-    <View>
+    <View style={layout.screenContainer}>
       {selectedForm === 'id' && (
         <IdentificationForm
           navigation={navigation}

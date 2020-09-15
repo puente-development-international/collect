@@ -14,12 +14,12 @@ import {
 } from '../../../../modules/async-storage';
 import checkOnlineStatus from '../../../../modules/offline';
 import generateRandomID from '../../../../modules/utils';
+import { layout } from '../../../../modules/theme';
 
 import backgroundPostPatient from './utils';
 import configArray from './config/config';
 
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
-import styles from '../../../../styles/layout/form';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -90,7 +90,7 @@ const IdentificationForm = ({
     // validationSchema={validationSchema}
     >
       {(formikProps) => (
-        <View style={styles.formContainer}>
+        <View style={layout.formContainer}>
           {inputs.length && inputs.map((result) => (
             <View key={result.formikKey}>
               <PaperInputPicker
@@ -106,10 +106,10 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button onPress={formikProps.handleSubmit}>
-                <Text>Submit</Text>
-              </Button>
-            )}
+            <Button onPress={formikProps.handleSubmit}>
+              <Text>Submit</Text>
+            </Button>
+          )}
         </View>
       )}
     </Formik>
