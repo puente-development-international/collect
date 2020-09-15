@@ -16,6 +16,7 @@ exports[`<Header /> renders correctly - Snapshot Testing 1`] = `
 >
   <Text
     style={
+      Array [
         Object {
           "color": "#000000",
           "fontFamily": "System",

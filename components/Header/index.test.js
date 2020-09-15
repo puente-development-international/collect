@@ -6,7 +6,6 @@ import Header from './index';
 describe('<Header />', () => {
   it('has 3 children - Unit Testing', () => {
     const tree = renderer.create(<Header />).toJSON();
-    console.log(tree)
     expect(tree.children.length).toBe(3);
   });
 
