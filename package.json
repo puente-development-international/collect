@@ -12,6 +12,7 @@
     "eject": "expo eject",
     "test": "jest --watchAll",
     "test-run": "jest --forceExit --detectOpenHandles && codecov",
+    "testDebug": "jest -o --watch --coverage=false",
     "lint": "./node_modules/.bin/eslint '**/*.{js,jsx}' --quiet",
     "lint-fix": "./node_modules/.bin/eslint '**/*.{js,jsx}' --fix",
     "publish-staging": "expo publish --release-channel staging && expo build:ios --release-channel staging && expo build:android --release-channel staging",
@@ -21,8 +22,14 @@
   },
   "jest": {
     "preset": "jest-expo",
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/babel.config.js",
+      "!**/jest.setup.js"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "10.0.6",
@@ -57,7 +64,6 @@
     "react-native-screens": "2.2.0",
     "react-native-web": "0.11.7",
     "react-redux": "7.2.0",
-    "react-test-renderer": "16.13.0",
     "redux": "4.0.5",
     "redux-actions": "2.6.5",
     "yup": "0.29.3"
@@ -73,6 +79,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.20.6",
     "jest-expo": "37.0.0",
+    "react-test-renderer": "16.13.0",
     "standard-version": "9.0.0",
     "standard-version-expo": "1.0.3"
   },
