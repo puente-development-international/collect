@@ -1,5 +1,6 @@
 node_modules/
 coverage/
+resources/
 .expo
 .vscode
 npm-debug.*
