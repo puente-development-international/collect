@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.5.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.4.0...v5.5.0) (2020-09-17)
+
 ## [5.4.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.3.0...v5.4.0) (2020-09-17)
 
 ## [5.3.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.2.0...v5.3.0) (2020-09-17)
