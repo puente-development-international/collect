@@ -1,9 +1,9 @@
 ## Debug
-Reproduce production environment 
+Reproduce production environment (as if you were running it on the physical phone itself)
 - `expo start --no-dev --minify`
 
-If anyone else runs into this issue after upgrading the Expo SDK
-- run `expo r -c` to clear the expo cache as well as `npm cache clean -f`
+If you're havving problems after upgrading the Expo SDK...
+- run `expo r -c` to clear the expo cache as well as `npm cache clean -f` to clear the npm cache.
 
-Invariant Violation: Tried to register two views with the same name RNCSafeAreaProvider
-- https://github.com/th3rdwave/react-native-safe-area-context/issues/110#issuecomment-668864576
+## Invariant Violation: Tried to register two views with the same name RNCSafeAreaProvider
+- [Try this](https://github.com/th3rdwave/react-native-safe-area-context/issues/110#issuecomment-668864576)
