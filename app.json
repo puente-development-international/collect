@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "0.3.0",
+    "version": "5.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -24,15 +24,15 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "0.3.0",
-      "bundleIdentifier": "com.puente.collect"
+      "buildNumber": "5.1.0",
+      "bundleIdentifier": "io.ionic.starter1270348"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "android": {
-      "versionCode": 370000300,
-      "package": "com.puente.collect"
+      "versionCode": 370050100,
+      "package": "io.ionic.starter1270348"
     }
   }
 }
