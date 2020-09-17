@@ -1,6 +1,6 @@
 {
   "name": "puente-reactnative",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -15,7 +15,7 @@
     "testDebug": "jest -o --watch --coverage=false",
     "lint": "./node_modules/.bin/eslint '**/*.{js,jsx}' --quiet",
     "lint-fix": "./node_modules/.bin/eslint '**/*.{js,jsx}' --fix",
-    "publish-staging": "expo build:ios --release-channel staging && expo build:android --release-channel staging",
+    "publish-staging": "expo build:ios --release-channel staging & expo build:android --release-channel staging",
     "publish-prod": "expo build:ios --release-channel prod && expo build:android --release-channel prod",
     "upload": "expo upload:ios --latest && expo upload:android --latest",
     "gh-prune": "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done",
@@ -40,7 +40,7 @@
     "@react-navigation/native": "5.5.0",
     "@react-navigation/stack": "5.4.1",
     "axios": "0.19.2",
-    "expo": "38.0.0",
+    "expo": "38.0.8",
     "expo-asset": "8.1.7",
     "expo-constants": "9.1.1",
     "expo-font": "8.2.1",
@@ -61,13 +61,13 @@
     "react-native-gesture-handler": "1.6.0",
     "react-native-localize": "1.3.3",
     "react-native-paper": "3.11.0",
-    "react-native-safe-area-context": "3.0.7",
     "react-native-screens": "2.9.0",
     "react-native-web": "0.11.7",
     "react-redux": "7.2.0",
     "redux": "4.0.5",
     "redux-actions": "2.6.5",
-    "yup": "0.29.3"
+    "yup": "0.29.3",
+    "react-native-safe-area-context": "~3.0.7"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
