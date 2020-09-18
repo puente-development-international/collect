@@ -11,6 +11,7 @@ exports[`<Header /> renders correctly - Snapshot Testing 1`] = `
       "flexDirection": "row",
       "height": 80,
       "justifyContent": "space-evenly",
+      "paddingTop": 20,
     }
   }
 >
@@ -44,11 +45,6 @@ exports[`<Header /> renders correctly - Snapshot Testing 1`] = `
   >
     <View
       accessibilityRole="button"
-      accessibilityState={
-        Object {
-          "disabled": undefined,
-        }
-      }
       accessible={true}
       focusable={false}
       hitSlop={
@@ -59,7 +55,6 @@ exports[`<Header /> renders correctly - Snapshot Testing 1`] = `
           "top": 6,
         }
       }
-      isTVSelectable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -90,9 +85,7 @@ exports[`<Header /> renders correctly - Snapshot Testing 1`] = `
         ]
       }
     >
-      <View
-        style={null}
-      >
+      <View>
         <Text />
       </View>
     </View>
@@ -107,11 +100,6 @@ exports[`<Header /> renders correctly - Snapshot Testing 1`] = `
   >
     <View
       accessibilityRole="button"
-      accessibilityState={
-        Object {
-          "disabled": undefined,
-        }
-      }
       accessible={true}
       focusable={false}
       hitSlop={
@@ -122,7 +110,6 @@ exports[`<Header /> renders correctly - Snapshot Testing 1`] = `
           "top": 6,
         }
       }
-      isTVSelectable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -153,9 +140,7 @@ exports[`<Header /> renders correctly - Snapshot Testing 1`] = `
         ]
       }
     >
-      <View
-        style={null}
-      >
+      <View>
         <Text />
       </View>
     </View>
