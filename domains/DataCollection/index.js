@@ -18,7 +18,8 @@ const DataCollection = ({ navigation }) => {
   const [scrollViewScroll, setScrollViewScroll] = useState();
 
   const [showForms, setShowForms] = React.useState(false);
-  const [selectForm, setSelectForm] = React.useState('id');
+  const [selectForm, setSelectForm] = React.useState('gdpr');
+  const [consentForm, setConsentForm] = React.useState('id');
 
   return (
     <View
@@ -50,6 +51,8 @@ const DataCollection = ({ navigation }) => {
                 setSelectedForm={setSelectForm}
                 scrollViewScroll={scrollViewScroll}
                 setScrollViewScroll={setScrollViewScroll}
+                consentform={consentForm}
+                setConsentForm={setConsentForm}
               />
             </View>
           )}
