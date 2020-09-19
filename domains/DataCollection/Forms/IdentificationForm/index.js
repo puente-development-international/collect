@@ -33,22 +33,17 @@ import PaperInputPicker from '../../../../components/FormikFields/PaperInputPick
 // });
 
 const IdentificationForm = ({
-  navigation, scrollViewScroll, setScrollViewScroll, setSelectedForm
+  scrollViewScroll, setScrollViewScroll, setSelectedForm
 }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       backgroundPostPatient();
-      toRoot();
     }, 10000);
 
     return () => {
       clearInterval(interval);
     };
-  }, [backgroundPostPatient, clearInterval]);
-
-  const toRoot = () => {
-    navigation.navigate('Root');
-  };
+  }, [clearInterval]);
 
   const [inputs, setInputs] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
@@ -62,6 +57,14 @@ const IdentificationForm = ({
       initialValues={{}}
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
+
+        const submitAction = () => {
+          setTimeout(() => {
+            setSelectedForm('');
+            actions.setSubmitting(false);
+          }, 1000);
+        };
+
         const postParams = {
           parseClass: 'SurveyData',
           signature: 'Sample Signature',
@@ -71,21 +74,16 @@ const IdentificationForm = ({
 
         checkOnlineStatus().then((connected) => {
           if (connected) {
-            postObjectsToClass(postParams)
-              .then(() => {
-                toRoot(); // This does nothing because we're already at root
-                setSelectedForm('');
-              }, () => {
-              });
+            console.log(postParams)
+            postObjectsToClass(postParams).then(() => {
+              submitAction();
+            });
           } else {
             const id = `PatientID-${generateRandomID()}`;
             storeData(postParams, id);
-            setSelectedForm('');
+            submitAction();
           }
         });
-        setTimeout(() => {
-          actions.setSubmitting(false);
-        }, 1000);
       }}
     // validationSchema={validationSchema}
     >
@@ -106,10 +104,10 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
-            </Button>
-          )}
+              <Button onPress={formikProps.handleSubmit}>
+                <Text>Submit</Text>
+              </Button>
+            )}
         </View>
       )}
     </Formik>
