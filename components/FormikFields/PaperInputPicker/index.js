@@ -21,7 +21,9 @@ const PaperInputPicker = ({
 
   const handleLocation = async () => {
     const currentLocation = await getLocation();
-    const { latitude, longitude } = currentLocation.coords;
+    const { latitude, longitude, altitude } = currentLocation.coords;
+
+    setFieldValue('altitude', altitude);
 
     if (formikKey === 'longitude') {
       setLocation(longitude);
