@@ -74,7 +74,6 @@ const IdentificationForm = ({
 
         checkOnlineStatus().then((connected) => {
           if (connected) {
-            console.log(postParams)
             postObjectsToClass(postParams).then(() => {
               submitAction();
             });

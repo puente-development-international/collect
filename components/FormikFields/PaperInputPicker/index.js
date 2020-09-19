@@ -25,13 +25,13 @@ const PaperInputPicker = ({
 
     if (formikKey === 'longitude') {
       setLocation(longitude);
-      setFieldValue(formikKey, longitude)
+      setFieldValue(formikKey, longitude);
       return longitude;
     }
 
     if (formikKey === 'latitude') {
       setLocation(latitude);
-      setFieldValue(formikKey, latitude)
+      setFieldValue(formikKey, latitude);
       return latitude;
     }
 
