@@ -25,11 +25,13 @@ const PaperInputPicker = ({
 
     if (formikKey === 'longitude') {
       setLocation(longitude);
+      setFieldValue(formikKey, longitude);
       return longitude;
     }
 
     if (formikKey === 'latitude') {
       setLocation(latitude);
+      setFieldValue(formikKey, latitude);
       return latitude;
     }
 
@@ -76,7 +78,7 @@ const PaperInputPicker = ({
       )}
       {fieldType === 'geolocation' && (
         <View>
-          <Button mode="contained" onPress={() => setFieldValue(formikKey, handleLocation())}>
+          <Button mode="contained" onPress={() => handleLocation()}>
             <Text>{location}</Text>
           </Button>
         </View>
