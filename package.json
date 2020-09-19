@@ -67,7 +67,7 @@
     "redux": "4.0.5",
     "redux-actions": "2.6.5",
     "yup": "0.29.3",
-    "react-native-safe-area-context": "~3.0.7"
+    "react-native-safe-area-context": "3.0.7"
   },
   "devDependencies": {
     "@babel/core": "7.10.2",
