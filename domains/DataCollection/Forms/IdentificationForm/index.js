@@ -20,6 +20,7 @@ import backgroundPostPatient from './utils';
 import configArray from './config/config';
 
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
+import HouseholdManager from '../../../../components/HouseholdManager';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -31,6 +32,13 @@ import PaperInputPicker from '../../../../components/FormikFields/PaperInputPick
 //     .label('Last Name')
 //     .required()
 // });
+
+const list = [
+  { fname: 'Mario', lname: 'Bros' },
+  { fname: 'Pippy', lname: 'The Skippy' },
+  { fname: 'Donkey', lname: 'Kong' },
+  { fname: 'Zippy', lname: 'Lippy' },
+];
 
 const IdentificationForm = ({
   scrollViewScroll, setScrollViewScroll, setSelectedForm
@@ -100,13 +108,15 @@ const IdentificationForm = ({
             </View>
           ))}
 
+          <HouseholdManager data={list} />
+
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
-            </Button>
-          )}
+              <Button onPress={formikProps.handleSubmit}>
+                <Text>Submit</Text>
+              </Button>
+            )}
         </View>
       )}
     </Formik>
