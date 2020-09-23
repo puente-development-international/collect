@@ -34,10 +34,10 @@ import HouseholdManager from '../../../../components/HouseholdManager';
 // });
 
 const list = [
-  { fname: 'Mario', lname: 'Bros' },
-  { fname: 'Pippy', lname: 'The Skippy' },
-  { fname: 'Donkey', lname: 'Kong' },
-  { fname: 'Zippy', lname: 'Lippy' },
+  { fname: 'Mario', lname: 'Bros', nickname: 'Red Guy' },
+  { fname: 'Pippy', lname: 'The Skippy', nickname: 'Froggy' },
+  { fname: 'Donkey', lname: 'Kong', nickname: 'brownie' },
+  { fname: 'Zippy', lname: 'Lippy', nickname: 'zipper' },
 ];
 
 const IdentificationForm = ({
@@ -113,10 +113,10 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button onPress={formikProps.handleSubmit}>
-                <Text>Submit</Text>
-              </Button>
-            )}
+            <Button onPress={formikProps.handleSubmit}>
+              <Text>Submit</Text>
+            </Button>
+          )}
         </View>
       )}
     </Formik>

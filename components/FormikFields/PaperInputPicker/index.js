@@ -7,7 +7,7 @@ import { TextInput, Button, Title } from 'react-native-paper';
 import AutoFill from '../AutoFill';
 
 import getLocation from '../../../modules/geolocation';
-import { theme } from '../../../modules/theme';
+import { theme, layout } from '../../../modules/theme';
 
 const PaperInputPicker = ({
   data, formikProps, scrollViewScroll, setScrollViewScroll, ...rest
@@ -60,11 +60,13 @@ const PaperInputPicker = ({
       {fieldType === 'select' && (
         <View>
           <Title>{label}</Title>
-          {data.options.map((result) => (
-            <Button key={result} mode="outlined" onPress={() => setFieldValue(formikKey, result)}>
-              <Text>{result}</Text>
-            </Button>
-          ))}
+          <View style={layout.buttonGroupContainer}>
+            {data.options.map((result) => (
+              <Button style={layout.buttonGroupButtonStyle} key={result} mode="outlined" onPress={() => setFieldValue(formikKey, result)}>
+                <Text>{result}</Text>
+              </Button>
+            ))}
+          </View>
         </View>
       )}
       {fieldType === 'autofill' && (
