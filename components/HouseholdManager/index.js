@@ -4,31 +4,29 @@ import {
   View,
 } from 'react-native';
 
-import { Text, Button, Searchbar } from 'react-native-paper'
+import {
+  Text, Button, Chip, Searchbar
+} from 'react-native-paper';
 
-
+import { layout } from '../../modules/theme';
 
 const HouseholdManager = (props) => {
-  const { data } = props
-  const [searchQuery, setSearchQuery] = React.useState(''); //set search by 
-  const onChangeSearch = query => setSearchQuery(query);
+  const { data } = props;
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [selectPerson, setSelectPerson] = React.useState();
+  const onChangeSearch = (query) => setSearchQuery(query);
 
-  const filterList = () => {
-    return data.filter(
-      (listItem) =>
-        listItem.fname
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase())
-        ||
-        listItem.lname.
-          toLowerCase().
-          includes(searchQuery.toLowerCase())
-      //   ||
-      // listItem.nickname
-      //   .toLowerCase()
-      //   .includes(searchQuery.toLowerCase())
-    );
-  }
+  const filterList = () => data.filter(
+    (listItem) => listItem.fname
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase())
+      || listItem.lname
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
+      || listItem.nickname
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
+  );
 
   return (
     <View>
@@ -39,11 +37,19 @@ const HouseholdManager = (props) => {
         value={searchQuery}
       />
 
-      {searchQuery !== '' && filterList(data).map((listItem, index) => (
-        <Button key={index} fname={listItem.fname} lname={listItem.lname}>{listItem.fname}</Button>
+      {searchQuery !== '' && filterList(data).map((listItem,) => (
+        <View style={layout.buttonGroupContainer}>
+          <Button onPress={() => setSelectPerson(listItem)} key={listItem}>{listItem.fname}</Button>
+        </View>
       ))}
+      {selectPerson && (
+        <Chip icon="information">
+          {selectPerson.fname}
+          {selectPerson.lname}
+        </Chip>
+      )}
     </View>
-  )
-}
+  );
+};
 
-export default HouseholdManager
+export default HouseholdManager;
