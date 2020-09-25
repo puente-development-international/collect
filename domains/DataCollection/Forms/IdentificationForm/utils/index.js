@@ -19,12 +19,9 @@ const backgroundPostPatient = () => {
               getData(item)
                 .then((postParams) => {
                   postObjectsToClass(postParams)
-                    .then(() => {
-                      // console.log(item, 'POSTED');
-                      // delete item from async after it has been posted to parse
-                      deleteData(item);
-                    }, () => {
-                    });
+                  // console.log(item, 'POSTED');
+                  // delete item from async after it has been posted to parse
+                  deleteData(item);
                 });
             }
           });
