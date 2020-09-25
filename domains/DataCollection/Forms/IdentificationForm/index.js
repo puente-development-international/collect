@@ -74,12 +74,10 @@ const IdentificationForm = ({
 
         checkOnlineStatus().then((connected) => {
           if (connected) {
-            console.log("POSTED")
             postObjectsToClass(postParams).then(() => {
               submitAction();
             });
           } else {
-            console.log("stored to async")
             const id = `PatientID-${generateRandomID()}`;
             storeData(postParams, id);
             submitAction();
@@ -105,10 +103,10 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button onPress={formikProps.handleSubmit}>
-                <Text>Submit</Text>
-              </Button>
-            )}
+            <Button onPress={formikProps.handleSubmit}>
+              <Text>Submit</Text>
+            </Button>
+          )}
         </View>
       )}
     </Formik>
