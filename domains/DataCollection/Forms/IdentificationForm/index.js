@@ -33,13 +33,6 @@ import HouseholdManager from '../../../../components/HouseholdManager';
 //     .required()
 // });
 
-const list = [
-  { fname: 'Mario', lname: 'Bros', nickname: 'Red Guy' },
-  { fname: 'Pippy', lname: 'The Skippy', nickname: 'Froggy' },
-  { fname: 'Donkey', lname: 'Kong', nickname: 'brownie' },
-  { fname: 'Zippy', lname: 'Lippy', nickname: 'zipper' },
-];
-
 const IdentificationForm = ({
   scrollViewScroll, setScrollViewScroll, setSelectedForm
 }) => {
@@ -108,7 +101,7 @@ const IdentificationForm = ({
             </View>
           ))}
 
-          <HouseholdManager data={list} />
+          <HouseholdManager />
 
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
