@@ -46,8 +46,6 @@ const DataCollection = ({ navigation }) => {
                 navigation={navigation}
                 scrollViewScroll={scrollViewScroll}
                 setScrollViewScroll={setScrollViewScroll}
-                consentform={consentForm}
-                setConsentForm={setConsentForm}
               />
             </View>
           )}

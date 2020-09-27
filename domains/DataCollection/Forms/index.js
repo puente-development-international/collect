@@ -13,10 +13,11 @@ const Forms = (props) => {
     navigation, scrollViewScroll, setScrollViewScroll
   } = props;
   const [selectedForm, setSelectedForm] = React.useState('id');
+  const [consent, setConsent] = React.useState(false);
 
   return (
     <View style={layout.screenContainer}>
-      {selectedForm === 'id' && (
+      {consent === true && selectedForm === 'id' && (
         <IdentificationForm
           navigation={navigation}
           scrollViewScroll={scrollViewScroll}
@@ -24,7 +25,7 @@ const Forms = (props) => {
           setSelectedForm={setSelectedForm}
         />
       )}
-      {selectedForm === 'env' && (
+      { consent === true && selectedForm === 'env' && (
         <SupplementaryForm
           navigation={navigation}
           selectedForm={selectedForm}
@@ -32,22 +33,19 @@ const Forms = (props) => {
 
         />
       )}
-      {selectedForm === 'gdpr' && (
+      {consent === false && (
         <GdprCompliance
           navigation={navigation}
-          selectedForm={selectedForm}
-          setSelectedForm={setSelectedForm}
-          consentForm={consentForm}
+          setConsent={setConsent}
         />
-      )
-      }
+      )}
       {selectedForm === '' && (
         <View>
           <Text>Suggested next Forms</Text>
-          <Card onPress={() => getConsent('id')}>
+          <Card onPress={() => setSelectedForm('id')}>
             <Card.Title title="Resident ID" subtitle="" />
           </Card>
-          <Card onPress={() => getConsent('env')}>
+          <Card onPress={() => setSelectedForm('env')}>
             <Card.Title title="Environmental History" subtitle="" />
           </Card>
         </View>
