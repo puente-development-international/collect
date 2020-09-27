@@ -10,15 +10,10 @@ import { layout } from '../../../modules/theme';
 
 const Forms = (props) => {
   const {
-    navigation, selectedForm, setSelectedForm, scrollViewScroll, setScrollViewScroll,
-    consentForm, setConsentForm
+    navigation, scrollViewScroll, setScrollViewScroll
   } = props;
+  const [selectedForm, setSelectedForm] = React.useState('id');
 
-  const getConsent = (form) => {
-    setConsentForm(form);
-    setSelectedForm('gdpr');
-
-  }
   return (
     <View style={layout.screenContainer}>
       {selectedForm === 'id' && (

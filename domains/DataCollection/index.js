@@ -16,10 +16,7 @@ import Forms from './Forms';
 
 const DataCollection = ({ navigation }) => {
   const [scrollViewScroll, setScrollViewScroll] = useState();
-
   const [showForms, setShowForms] = React.useState(false);
-  const [selectForm, setSelectForm] = React.useState('gdpr');
-  const [consentForm, setConsentForm] = React.useState('id');
 
   return (
     <View
@@ -47,8 +44,6 @@ const DataCollection = ({ navigation }) => {
               <Forms
                 style={layout.line}
                 navigation={navigation}
-                selectedForm={selectForm}
-                setSelectedForm={setSelectForm}
                 scrollViewScroll={scrollViewScroll}
                 setScrollViewScroll={setScrollViewScroll}
                 consentform={consentForm}
