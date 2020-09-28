@@ -139,6 +139,12 @@ const configArray = [
     value: 0,
     fieldType: 'geolocation'
   },
+  {
+    label: 'Household',
+    formikKey: 'householdId',
+    value: '',
+    fieldType: 'household'
+  },
   // {
   //   label: "Surveying User",
   //   formikKey: 'surveyingUser',
