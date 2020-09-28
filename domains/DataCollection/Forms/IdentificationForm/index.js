@@ -20,7 +20,6 @@ import backgroundPostPatient from './utils';
 import configArray from './config/config';
 
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
-import HouseholdManager from '../../../../components/HouseholdManager';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -100,9 +99,6 @@ const IdentificationForm = ({
               />
             </View>
           ))}
-
-          <HouseholdManager />
-
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
