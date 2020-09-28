@@ -4,7 +4,7 @@ import {
   YellowBox
 } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
-import retrievePuenteAutofillData from '../../../services/aws';
+import retrievePuenteAutofillData from '../../../../services/aws';
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
