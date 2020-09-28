@@ -9,35 +9,42 @@ import {
 import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
 
 import { theme, layout } from '../../../../modules/theme';
+import { postObjectsToClass } from '../../../../services/parse/crud';
 
 const relationships = [
   'Parent', 'Sibling', 'Grand-Parent', 'Cousin', 'Other'
 ];
 
 const HouseholdManager = (props) => {
-  const {
-    formikProps, formikKey
-  } = props;
+  const { formikProps, formikKey } = props;
   const { setFieldValue } = formikProps;
 
   const [selectPerson, setSelectPerson] = useState();
-  const [householdRelationship, setHouseholdRelationship] = useState();
+  const [, setHouseholdRelationship] = useState();
   const [modalView, setModalView] = useState('first');
 
   const onSubmit = () => {
     setModalView('third');
-    console.log(selectPerson);
+    attachToExistingHousehold();
   };
 
   const attachToExistingHousehold = () => {
-    // set householdId (from selectPerson) on the patientId
-    // setFieldValue(formikKey, result)
+    // set householdId (from selectPerson) on the residentIdForm
+    setFieldValue(formikKey, selectPerson.objectId);
   };
 
   const createNewHousehold = () => {
-    // create new householdId and attach on the patientId
-    // setFieldValue(formikKey, result)
-
+    // create new householdId and attach on the residentIdForm
+    const postParams = {
+      parseClass: 'Household',
+      localObject: {
+        latitude: 0,
+        longitude: 0
+      }
+    };
+    postObjectsToClass(postParams).then((result) => {
+      setFieldValue(formikKey, result.id);
+    });
   };
 
   return (
@@ -49,6 +56,7 @@ const HouseholdManager = (props) => {
               <RadioButton.Item label="Create a new household" value="first" />
               <RadioButton.Item label="Link this individual to an existing house" value="second" />
             </RadioButton.Group>
+            <Button style={layout.buttonGroupButtonStyle} icon="plus" mode="contained" onPress={createNewHousehold}>Household</Button>
           </View>
         )}
       {modalView === 'second'
