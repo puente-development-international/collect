@@ -14,14 +14,20 @@ const ResidentIdSearchbar = ({ selectPerson, setSelectPerson }) => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [residents, setResidents] = useState([]);
-  // const [selectPerson, setSelectPerson] = useState();
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    let records = await residentIDQuery();
+    const queryParams = {
+      skip: 0,
+      offset: 0,
+      limit: 10000,
+      parseColumn: 'surveyingOrganization',
+      parseParam: 'Test',
+    };
+    let records = await residentIDQuery(queryParams);
     records = JSON.parse(JSON.stringify(records));
 
     setData(records);
