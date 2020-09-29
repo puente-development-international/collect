@@ -32,7 +32,6 @@ const HouseholdManager = (props) => {
     // set householdId (from selectPerson) on the residentIdForm
     // setFieldValue(formikKey, selectPerson.objectId);
     setFieldValue(formikKey, selectPerson.householdId);
-
   };
 
   const createNewHousehold = () => {
