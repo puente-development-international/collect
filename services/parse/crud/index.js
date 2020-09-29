@@ -3,9 +3,9 @@ import { Parse } from 'parse/react-native';
 function retrieveHelloFunction() {
   Parse.Cloud.run('hello').then((result) => result);
 }
-function residentIDQuery() {
+function residentIDQuery(params) {
   return new Promise((resolve, reject) => {
-    Parse.Cloud.run('genericQuery').then((result) => {
+    Parse.Cloud.run('basicQuery', params).then((result) => {
       resolve(result);
     }, (error) => {
       reject(error);
