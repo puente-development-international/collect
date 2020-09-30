@@ -7,25 +7,28 @@ import {
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 
-import { postObjectsToClass } from '../../../../services/parse/crud';
+import { postObjectsToClassWithRelation } from '../../../../services/parse/crud';
 
 import { layout } from '../../../../modules/theme';
 
-import envArray from './configs/envhealth.config';
+import envConfig from './configs/envhealth.config';
 
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 
-const SupplementaryForm = ({ navigation, selectedForm, setSelectedForm }) => {
-  const toRoot = () => {
-    navigation.navigate('Root');
-  };
-
-  const [inputs, setInputs] = useState({});
+const SupplementaryForm = ({
+  navigation, selectedForm, setSelectedForm, surveyeeId
+}) => {
+  const [config, setConfig] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
 
+  const toRoot = () => {
+    navigation.navigate('Root');
+    setSelectedForm('');
+  };
+
   useEffect(() => {
-    if (selectedForm === 'env') setInputs(envArray);
-  }, [selectedForm, envArray]);
+    if (selectedForm === 'env') setConfig(envConfig);
+  }, [selectedForm, envConfig]);
 
   return (
     <Formik
@@ -33,16 +36,16 @@ const SupplementaryForm = ({ navigation, selectedForm, setSelectedForm }) => {
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
         const postParams = {
-          parseClass: 'SurveyData',
-          signature: 'Sample Signature',
+          parseParentClassID: surveyeeId,
+          parseParentClass: 'SurveyData',
+          parseClass: config.class,
           photoFile,
           localObject: values
         };
 
-        postObjectsToClass(postParams)
+        postObjectsToClassWithRelation(postParams)
           .then(() => {
-            toRoot(); // This does nothing because we're already at root
-            setSelectedForm('');
+            toRoot();
           }, () => {
           });
         setTimeout(() => {
@@ -53,7 +56,7 @@ const SupplementaryForm = ({ navigation, selectedForm, setSelectedForm }) => {
     >
       {(formikProps) => (
         <View style={layout.formContainer}>
-          {inputs.length && inputs.map((result) => (
+          {config.fields && config.fields.map((result) => (
             <View key={result.formikKey}>
               <PaperInputPicker
                 data={result}
