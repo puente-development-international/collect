@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.6.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.5.0...v5.6.0) (2020-09-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* big animation push to get SVGs in the project
+
+### Features
+
+* add ability to switch between forms and use ID of previous person ([1b37c1e](https://github.com/hopetambala/puente-reactnative-collect/commit/1b37c1e9b0fdfeb0c5d6d53c66b8a9b9a4fcf995))
+* animations ([ce86e99](https://github.com/hopetambala/puente-reactnative-collect/commit/ce86e9912e74179158d51d81034b2edf3ae6a439))
+* create residentIdSearchbar ([419963f](https://github.com/hopetambala/puente-reactnative-collect/commit/419963f51fc0c9a517c5c406dc0d679ea18bc272))
+* create searchbar for human id ([8e1217a](https://github.com/hopetambala/puente-reactnative-collect/commit/8e1217a7beb90688e2f48a8196d59989ed1d6d48))
+
+
+### Bug Fixes
+
+* attach householdId from related resident to current surveyee ([f57cd0a](https://github.com/hopetambala/puente-reactnative-collect/commit/f57cd0ac0256d13ef5c900cc214f4a64c63f2f9c))
+* geolocation ([69a960f](https://github.com/hopetambala/puente-reactnative-collect/commit/69a960f54059a62e8c746a070521a02f0a608725))
+* switch querying function ([df55b33](https://github.com/hopetambala/puente-reactnative-collect/commit/df55b33dabe392df1479fb9b5c50483dc9fe9d9f))
+* **deps:** pin dependencies ([f56a598](https://github.com/hopetambala/puente-reactnative-collect/commit/f56a598f2e83924a072cf6aa4a74622c3408b3c6))
+* **deps:** pin dependency react-native-safe-area-context to 3.0.7 ([6c5acff](https://github.com/hopetambala/puente-reactnative-collect/commit/6c5acffce4f6252201df5720c25d747f6fbb9220))
+
 ## [5.4.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.3.0...v5.4.0) (2020-09-17)
 
 
