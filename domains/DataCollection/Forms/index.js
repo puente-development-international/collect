@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Text, Card } from 'react-native-paper';
 
@@ -12,8 +12,10 @@ const Forms = (props) => {
   const {
     navigation, scrollViewScroll, setScrollViewScroll
   } = props;
-  const [selectedForm, setSelectedForm] = React.useState('id');
-  const [consent, setConsent] = React.useState(false);
+
+  const [selectedForm, setSelectedForm] = useState('id');
+  const [consent, setConsent] = useState(false);
+  const [surveyeeId, selectedSurveyeeId] = useState();
 
   return (
     <View style={layout.screenContainer}>
@@ -23,6 +25,7 @@ const Forms = (props) => {
           scrollViewScroll={scrollViewScroll}
           setScrollViewScroll={setScrollViewScroll}
           setSelectedForm={setSelectedForm}
+          selectedSurveyeeId={selectedSurveyeeId}
         />
       )}
       { consent === true && selectedForm === 'env' && (
@@ -30,6 +33,7 @@ const Forms = (props) => {
           navigation={navigation}
           selectedForm={selectedForm}
           setSelectedForm={setSelectedForm}
+          surveyeeId={surveyeeId}
 
         />
       )}
