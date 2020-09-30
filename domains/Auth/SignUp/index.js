@@ -56,10 +56,7 @@ const validationSchema = yup.object().shape({
 // export default () => (
 export default function SignUp({ navigation }) {
   const [checked, setChecked] = React.useState(false);
-
   const [visible, setVisible] = React.useState(false);
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
 
   return (
     <ScrollView>
@@ -144,7 +141,7 @@ export default function SignUp({ navigation }) {
                 formikKey="organization"
                 placeholder="Puente"
               />
-              <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={showModal}>{I18n.t('signUp.termsOfService.view')}</Button>
+              <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={() => setVisible(true)}>{I18n.t('signUp.termsOfService.view')}</Button>
               <View style={styles.container}>
                 <Text style={styles.serviceText}>
                   {I18n.t('signUp.termsOfService.acknoledgement')}
@@ -166,7 +163,7 @@ export default function SignUp({ navigation }) {
                 <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
               )}
 
-              <TermsModal visible={visible} hideModal={hideModal} />
+              <TermsModal visible={visible} setVisible={setVisible} />
             </>
           )}
         </Formik>

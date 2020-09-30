@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "5.4.0",
+    "version": "5.6.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -24,14 +24,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "5.4.0",
+      "buildNumber": "5.6.0",
       "bundleIdentifier": "io.ionic.starter1270348"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "android": {
-      "versionCode": 380050400,
+      "versionCode": 380050600,
       "package": "io.ionic.starter1270348"
     },
     "packagerOpts": {
