@@ -57,7 +57,7 @@ const IdentificationForm = ({
       initialValues={{}}
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
-
+        values.surveyingOrganization = 'Test'; //eslint-disable-line
         const submitAction = () => {
           setTimeout(() => {
             setSelectedForm('');

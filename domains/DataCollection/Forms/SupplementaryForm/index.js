@@ -52,7 +52,6 @@ const SupplementaryForm = ({
           actions.setSubmitting(false);
         }, 1000);
       }}
-    // validationSchema={validationSchema}
     >
       {(formikProps) => (
         <View style={layout.formContainer}>

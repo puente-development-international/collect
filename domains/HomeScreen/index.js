@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   Text, View
 } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Card, Button, Paragraph } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import getTasks from '../../services/tasky';
@@ -12,6 +12,7 @@ import { deleteData } from '../../modules/async-storage';
 import { layout } from '../../modules/theme';
 
 import Header from '../../components/Header';
+import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
 
 const HomeScreen = (props) => {
   const [tasks, setTasks] = useState(null);
@@ -34,23 +35,39 @@ const HomeScreen = (props) => {
       <Header />
       <ScrollView>
         <View style={layout.screenRow}>
-          <Button onPress={showTasks} mode="contained">
-            <Text>Tasks</Text>
-          </Button>
+          <Text>My Tasks</Text>
+          <Card>
+            <Card.Content>
+              <ComingSoonSVG width={200} height={200} />
+              <Paragraph>Coming Soon</Paragraph>
+              <Button onPress={showTasks} mode="contained">
+                <Text>Tasks</Text>
+              </Button>
+              {tasks != null
+                && tasks.map((task) => (
+                  <View key={task.task_id}>
+                    <Text>{task.name}</Text>
+                  </View>
+                ))}
+            </Card.Content>
+          </Card>
+        </View>
+        <View style={layout.screenRow}>
+          <Text>My Pinned Forms</Text>
+        </View>
+        <View style={layout.screenRow}>
+          <Text>My Community Board</Text>
+          <Card>
+            <Card.Content>
+              <ComingSoonSVG width={200} height={200} />
 
-          {tasks != null
-            && tasks.map((task) => (
-              <View key={task.task_id}>
-                <Text>{task.name}</Text>
-              </View>
-            ))}
+              <Paragraph>Coming Soon</Paragraph>
+            </Card.Content>
+          </Card>
         </View>
         <Button onPress={logOut} mode="contained">
           <Text>Log Out</Text>
         </Button>
-        <View style={layout.screenRow}>
-          <Text>My Pinned Forms</Text>
-        </View>
       </ScrollView>
     </View>
   );
