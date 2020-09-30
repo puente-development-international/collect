@@ -99,7 +99,6 @@ const IdentificationForm = ({
               />
             </View>
           ))}
-
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
