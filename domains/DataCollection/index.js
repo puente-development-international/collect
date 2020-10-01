@@ -14,9 +14,13 @@ import Header from '../../components/Header';
 
 import Forms from './Forms';
 
+import ResidentIdSearchbar from '../../components/ResidentIdSearchbar'
+
 const DataCollection = ({ navigation }) => {
   const [scrollViewScroll, setScrollViewScroll] = useState();
   const [showForms, setShowForms] = React.useState(false);
+  const [findForms, setFindForms] = React.useState(false);
+  const [selectPerson, setSelectPerson] = useState();
 
   return (
     <View
@@ -28,11 +32,11 @@ const DataCollection = ({ navigation }) => {
       <Header />
 
       <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
-        {!showForms
+        {!showForms && !findForms
           && (
             <View>
               <Text style={layout.line} onPress={() => setShowForms(true)}>New Record</Text>
-              <Text style={layout.line}>Find Record</Text>
+              <Text style={layout.line} onPress={() => setFindForms(true)}>Find Record</Text>
               <Text style={layout.line}>New Asset</Text>
               <Text style={layout.line}>Find Asset</Text>
             </View>
@@ -49,6 +53,16 @@ const DataCollection = ({ navigation }) => {
               />
             </View>
           )}
+        {findForms
+          && (
+            <View>
+              <ResidentIdSearchbar
+                selectPerson={selectPerson}
+                setSelectPerson={setSelectPerson}
+              />
+            </View>
+          )
+        }
       </ScrollView>
     </View>
   );

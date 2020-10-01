@@ -9,6 +9,7 @@ import {
 } from 'react-native-paper';
 
 import { residentIDQuery } from '../../services/parse/crud';
+import ResidentCard from './ResidentCard'
 
 const ResidentIdSearchbar = ({ selectPerson, setSelectPerson }) => {
   const [data, setData] = useState([]);
@@ -70,7 +71,15 @@ const ResidentIdSearchbar = ({ selectPerson, setSelectPerson }) => {
 
       {query !== '' && filterList(residents).map((listItem,) => (
         <View key={listItem.objectId}>
-          <Button onPress={() => onSelectPerson(listItem)}>{listItem.fname}</Button>
+          {/* <Button onPress={() => onSelectPerson(listItem)}>{listItem.fname}</Button> */}
+          <ResidentCard
+            fname={listItem.fname}
+            lname={listItem.lname}
+            nickname={listItem.nickname}
+            city={listItem.city}
+            license={listItem.license}
+            picture={listItem.picture}
+          />
         </View>
       ))}
 
