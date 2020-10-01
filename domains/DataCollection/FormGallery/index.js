@@ -59,7 +59,7 @@ const screenLayout = StyleSheet.create({
     width: 90,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 5,
+    marginHorizontal: 5
   }
 
 })
