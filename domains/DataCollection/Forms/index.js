@@ -52,6 +52,7 @@ const Forms = (props) => {
           <Card onPress={() => setSelectedForm('env')}>
             <Card.Title title="Environmental History" subtitle="" />
           </Card>
+          <View>View All Forms</View>
         </View>
       )}
     </View>
