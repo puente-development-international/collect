@@ -14,6 +14,9 @@ import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg'
 const FormGallery = ({ setDataCollectionView }) => {
   return (
     <View>
+      <Button onPress={() => { setDataCollectionView('Root') }}>
+        <Text>Back to Home</Text>
+      </Button>
       <View style={layout.screenRow}>
         <Text>Puente Forms</Text>
         <View style={layout.screenFlexRow}>
