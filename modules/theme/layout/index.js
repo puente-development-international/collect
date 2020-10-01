@@ -15,6 +15,16 @@ const layout = StyleSheet.create({
     padding: 10,
   },
   /**
+   * Styling for rows in a screenContainer where you want elements aligned in a row
+   */
+  screenFlexRow: {
+    // flex: 1,
+    marginHorizontal: 20,
+    marginBottom: 20,
+    alignItems: 'flex-start',
+    flexDirection: "row",
+  },
+  /**
    * Styling for rows in a screenContainer
    */
   screenRow: {
