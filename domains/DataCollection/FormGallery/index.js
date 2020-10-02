@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-  View,
-  StyleSheet
+  View, StyleSheet, ScrollView
 } from 'react-native';
 import {
   Text, Button, Title, Paragraph, Card
@@ -14,12 +13,12 @@ import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg'
 const FormGallery = ({ setDataCollectionView }) => {
   return (
     <View>
-      <Button onPress={() => { setDataCollectionView('Root') }}>
-        <Text>Back to Home</Text>
+      <Button icon="arrow-left" width={100} onPress={() => { setDataCollectionView('Root') }}>
+        <Text>Back</Text>
       </Button>
       <View style={layout.screenRow}>
         <Text>Puente Forms</Text>
-        <View style={layout.screenFlexRow}>
+        <ScrollView horizontal>
           <Card style={screenLayout.card}>
             <Text>Env Health</Text>
           </Card>
@@ -29,7 +28,13 @@ const FormGallery = ({ setDataCollectionView }) => {
           <Card style={screenLayout.card}>
             <Text>Vitals</Text>
           </Card>
-        </View>
+          <Card style={screenLayout.card}>
+            <Text>Vitals</Text>
+          </Card>
+          <Card style={screenLayout.card}>
+            <Text>Vitals</Text>
+          </Card>
+        </ScrollView>
       </View>
       <View style={layout.screenRow}>
         <Text>Custom Forms</Text>
@@ -59,7 +64,8 @@ const screenLayout = StyleSheet.create({
     width: 90,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 5
+    marginHorizontal: 5,
+    marginVertical: 5
   }
 
 })
