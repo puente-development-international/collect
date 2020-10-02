@@ -12,20 +12,22 @@ import { residentIDQuery } from '../../services/parse/crud';
 import { getData } from '../../modules/async-storage';
 import ResidentCard from './ResidentCard'
 
-const FindResidents = ({ selectPerson, setSelectPerson }) => {
+const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [residents, setResidents] = useState([]);
-  const [organization, setOrganization] = useState('');
+  // const [organization, setOrganization] = useState('');
 
   useEffect(() => {
-    fetchOrg();
+    // fetchOrg();
     fetchData();
+
   }, []);
 
-  const fetchOrg = () => {
-    getData('organization').then((organization) => {
+  const fetchOrg = async () => {
+    await getData('organization').then((organization) => {
       setOrganization(organization);
+      console.log(organization);
       // console.log(org)
     })
   }
@@ -38,7 +40,7 @@ const FindResidents = ({ selectPerson, setSelectPerson }) => {
       offset: 0,
       limit: 10000,
       parseColumn: 'surveyingOrganization',
-      parseParam: String(organization),
+      parseParam: organization,
     };
     let records = await residentIDQuery(queryParams);
     records = JSON.parse(JSON.stringify(records));
