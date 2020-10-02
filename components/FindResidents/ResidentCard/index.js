@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View, StyleSheet, Image
 } from 'react-native';
@@ -12,15 +12,28 @@ import { theme } from '../../../modules/theme';
 const ResidentCard = ({
   fname, lname, nickname, city, license, picture
 }) => {
-
+  const [pictureUrl, setPictureUrl] = useState();
+  useEffect(() => {
+    // console.log(picture)
+    const test = picture;
+    // console.log(test)
+    if (test) {
+      setPictureUrl({ uri: test.url })
+      console.log("picture", pictureUrl)
+    }
+  }, [])
 
   return (
     <View>
       <TouchableOpacity style={styles.container}>
         <View style={styles.nameConatiner}>
-          <Text style={styles.name}>{fname + " " + lname}</Text>
+          <Title style={styles.name}>{fname + " " + lname}</Title>
         </View>
         <Text style={styles.nickname}>{'"' + nickname + '"'}</Text>
+        <Image
+          style={styles.profPic}
+          source={pictureUrl}
+        />
         <View style={styles.cityLicenseContainer}>
           <View style={styles.cityContainer}>
             <Text style={styles.font}>City</Text>
@@ -62,6 +75,13 @@ const styles = StyleSheet.create({
     color: '#606060',
     fontSize: 15
   },
+  profPic: {
+    height: 70,
+    width: 70,
+    position: 'absolute',
+    right: 15,
+    top: 20
+  },
   cityLicenseContainer: {
     flexDirection: 'row',
     marginTop: 40,
@@ -69,9 +89,8 @@ const styles = StyleSheet.create({
   },
   cityContainer: {
     flexDirection: 'column',
+    marginRight: 'auto',
     marginLeft: 15,
-    marginRight: 'auto'
-
   },
   licenseContainer: {
     flexDirection: 'column',
@@ -86,7 +105,7 @@ const styles = StyleSheet.create({
   font: {
     color: '#606060',
     fontSize: 15
-  }
+  },
 
 })
 

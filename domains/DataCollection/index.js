@@ -15,6 +15,7 @@ import Header from '../../components/Header';
 import Forms from './Forms';
 
 import ResidentIdSearchbar from '../../components/ResidentIdSearchbar'
+import FindResidents from '../../components/FindResidents';
 
 const DataCollection = ({ navigation }) => {
   const [scrollViewScroll, setScrollViewScroll] = useState();
@@ -56,7 +57,7 @@ const DataCollection = ({ navigation }) => {
         {findForms
           && (
             <View>
-              <ResidentIdSearchbar
+              <FindResidents
                 selectPerson={selectPerson}
                 setSelectPerson={setSelectPerson}
               />
