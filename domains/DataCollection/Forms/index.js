@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { Text, Card } from 'react-native-paper';
 
 import IdentificationForm from './IdentificationForm';
@@ -7,6 +7,14 @@ import SupplementaryForm from './SupplementaryForm';
 
 import GdprCompliance from '../GdprCompliance';
 import { layout } from '../../../modules/theme';
+
+const puenteForms = [
+  {
+    tag: 'id',
+    name: 'Resident ID'
+  },
+  { tag: 'env', name: 'Environmental Health' }, { tag: 'med-eval', name: 'Medical Evaluation' }
+];
 
 const Forms = (props) => {
   const {
@@ -28,7 +36,7 @@ const Forms = (props) => {
           selectedSurveyeeId={selectedSurveyeeId}
         />
       )}
-      { consent === true && selectedForm === 'env' && (
+      { consent === true && selectedForm !== 'id' && (
         <SupplementaryForm
           navigation={navigation}
           selectedForm={selectedForm}
@@ -46,17 +54,30 @@ const Forms = (props) => {
       {selectedForm === '' && (
         <View>
           <Text>Suggested next Forms</Text>
-          <Card onPress={() => setSelectedForm('id')}>
-            <Card.Title title="Resident ID" subtitle="" />
-          </Card>
-          <Card onPress={() => setSelectedForm('env')}>
-            <Card.Title title="Environmental History" subtitle="" />
-          </Card>
-          <View>View All Forms</View>
+          <ScrollView horizontal>
+            {puenteForms.map((form) => (
+              <Card key={form.tag} style={screenLayout.card} onPress={() => setSelectedForm(form.tag)}>
+                <Text>{form.name}</Text>
+              </Card>
+            ))}
+          </ScrollView>
+          {/* <View> <Text>View All Forms</Text></View> */}
         </View>
       )}
     </View>
   );
 };
+
+const screenLayout = StyleSheet.create({
+  card: {
+    height: 90,
+    width: 90,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 5,
+    marginVertical: 5
+  }
+
+});
 
 export default Forms;

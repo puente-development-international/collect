@@ -21,9 +21,8 @@ const DataCollection = ({ navigation }) => {
   // const [showGallery, setShowGallery] = React.useState(false);
 
   const switchToFormGallery = () => {
-    setShowForms("Gallery");
-  }
-
+    setShowForms('Gallery');
+  };
 
   return (
     <View
@@ -38,17 +37,17 @@ const DataCollection = ({ navigation }) => {
         {view === 'Root'
           && (
             <View>
-              <Text style={layout.line} onPress={() => setView("Forms")}>New Record</Text>
+              <Text style={layout.line} onPress={() => setView('Forms')}>New Record</Text>
               <Text style={layout.line}>Find Record</Text>
               {/* <Text style={layout.line}>New Asset</Text>
               <Text style={layout.line}>Find Asset</Text> */}
-              <Text style={layout.line} onPress={() => setView("Gallery")}>View All Forms</Text>
+              <Text style={layout.line} onPress={() => setView('Gallery')}>View All Forms</Text>
             </View>
           )}
         {view === 'Forms'
           && (
             <View>
-              <Button onPress={() => setView("Root")}>Back to Data Collection Screen</Button>
+              <Button onPress={() => setView('Root')}>Back to Data Collection Screen</Button>
               <Forms
                 style={layout.line}
                 navigation={navigation}
@@ -57,7 +56,7 @@ const DataCollection = ({ navigation }) => {
               />
             </View>
           )}
-        {view === "Gallery" && (
+        {view === 'Gallery' && (
           <FormGallery
             navigation={navigation}
             setDataCollectionView={setView}

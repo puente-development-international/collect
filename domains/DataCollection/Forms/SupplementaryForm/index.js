@@ -12,6 +12,7 @@ import { postObjectsToClassWithRelation } from '../../../../services/parse/crud'
 import { layout } from '../../../../modules/theme';
 
 import envConfig from './configs/envhealth.config';
+import medConfig from './configs/medical-evaluation.config';
 
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 
@@ -28,7 +29,8 @@ const SupplementaryForm = ({
 
   useEffect(() => {
     if (selectedForm === 'env') setConfig(envConfig);
-  }, [selectedForm, envConfig]);
+    if (selectedForm === 'med-eval') setConfig(medConfig);
+  }, [selectedForm]);
 
   return (
     <Formik

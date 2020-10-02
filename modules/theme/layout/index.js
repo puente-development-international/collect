@@ -22,7 +22,7 @@ const layout = StyleSheet.create({
     marginHorizontal: 20,
     marginBottom: 20,
     alignItems: 'flex-start',
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   /**
    * Styling for rows in a screenContainer
