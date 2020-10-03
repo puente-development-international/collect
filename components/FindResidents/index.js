@@ -10,7 +10,8 @@ import {
 
 import { residentIDQuery } from '../../services/parse/crud';
 import { getData } from '../../modules/async-storage';
-import ResidentCard from './ResidentCard'
+import ResidentCard from './Resident/ResidentCard';
+import ResidentPage from './Resident/ResidentPage';
 
 const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
   const [data, setData] = useState([]);
@@ -69,10 +70,10 @@ const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
     setQuery(input);
   };
 
-  // const onSelectPerson = (listItem) => {
-  //   setSelectPerson(listItem);
-  //   setQuery('');
-  // };
+  const onSelectPerson = (listItem) => {
+    setSelectPerson(listItem);
+    setQuery('');
+  };
 
   return (
     <View>
@@ -92,15 +93,17 @@ const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
             city={listItem.city}
             license={listItem.license}
             picture={listItem.picture}
+            onSelectPerson={onSelectPerson}
+            listItem={listItem}
           />
         </View>
       ))}
 
       {selectPerson && (
-        <Chip icon="information">
-          {selectPerson.fname}
-          {selectPerson.lname}
-        </Chip>
+        <ResidentPage
+          selectPerson={selectPerson}
+          
+        />
       )}
     </View>
   );

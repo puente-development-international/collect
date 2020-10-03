@@ -7,28 +7,31 @@ import {
   Text, TextInput, Button, Title
 } from 'react-native-paper';
 
-import { theme } from '../../../modules/theme';
+import { theme } from '../../../../modules/theme';
 
 const ResidentCard = ({
-  fname, lname, nickname, city, license, picture
+  fname, lname, nickname, city, license, picture, onSelectPerson, listItem
 }) => {
   const [pictureUrl, setPictureUrl] = useState();
   useEffect(() => {
-    // console.log(picture)
-    const test = picture;
-    // console.log(test)
-    if (test) {
-      setPictureUrl({ uri: test.url })
+    const pic = picture;
+    if (pic) {
+      setPictureUrl({ uri: pic.url })
       console.log("picture", pictureUrl)
     }
   }, [])
 
   return (
     <View>
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => {
+          onSelectPerson(listItem);
+        }}>
         <View style={styles.nameConatiner}>
           <Title style={styles.name}>{fname + " " + lname}</Title>
         </View>
+        {/* style={styles.nickname} */}
         <Text style={styles.nickname}>{'"' + nickname + '"'}</Text>
         <Image
           style={styles.profPic}
@@ -45,7 +48,7 @@ const ResidentCard = ({
           </View>
         </View>
       </TouchableOpacity>
-    </View >
+    </View>
   )
 };
 
