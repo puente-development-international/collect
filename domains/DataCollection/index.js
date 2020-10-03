@@ -15,14 +15,22 @@ import Header from '../../components/Header';
 import Forms from './Forms';
 import FormGallery from './FormGallery';
 
+import { getData } from '../../modules/async-storage';
+import FindResidents from '../../components/FindResidents';
+
 const DataCollection = ({ navigation }) => {
   const [scrollViewScroll, setScrollViewScroll] = useState();
   const [view, setView] = React.useState('Root');
-  // const [showGallery, setShowGallery] = React.useState(false);
+  const [findFormsView, setFindFormsView] = React.useState(false);
+  const [organization, setOrganization] = useState('');
+  const [selectPerson, setSelectPerson] = useState();
 
-  const switchToFormGallery = () => {
-    setShowForms('Gallery');
-  };
+  const navigateToFindRecords = async () => {
+    await getData('organization').then((org) => {
+      setOrganization(org);
+      setFindFormsView(true);
+    });
+  }
 
   return (
     <View
@@ -34,13 +42,11 @@ const DataCollection = ({ navigation }) => {
       <Header />
 
       <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
-        {view === 'Root'
+        {view === 'Root' && !findFormsView
           && (
             <View>
               <Text style={layout.line} onPress={() => setView('Forms')}>New Record</Text>
-              <Text style={layout.line}>Find Record</Text>
-              {/* <Text style={layout.line}>New Asset</Text>
-              <Text style={layout.line}>Find Asset</Text> */}
+              <Text style={layout.line} onPress={navigateToFindRecords}>Find Record</Text>
               <Text style={layout.line} onPress={() => setView('Gallery')}>View All Forms</Text>
             </View>
           )}
@@ -62,6 +68,16 @@ const DataCollection = ({ navigation }) => {
             setDataCollectionView={setView}
           />
         )}
+        {findFormsView
+          && (
+            <View>
+              <FindResidents
+                selectPerson={selectPerson}
+                setSelectPerson={setSelectPerson}
+                organization={organization}
+              />
+            </View>
+          )}
       </ScrollView>
     </View>
   );

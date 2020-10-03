@@ -17,7 +17,7 @@ import {
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import * as Network from 'expo-network';
-import { retrieveSignInFunction } from '../../../services/parse/auth';
+import { retrieveSignInFunction, retrieveCurrentUserFunction } from '../../../services/parse/auth';
 import FormInput from '../../../components/FormikFields/FormInput';
 import LanguagePicker from '../../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
@@ -112,9 +112,30 @@ const SignIn = ({ navigation }) => {
                       // credentials saved do not match those entered, overwrite saved credentials
                       if (userCreds === null || values.username !== userCreds.username
                         || values.password !== userCreds.password) {
-                        handleSaveCredentials(values);
+                        // Store user organization
+                        const currentUser = retrieveCurrentUserFunction();
+                        getData('organization').then((organization) => {
+                          if (organization !== currentUser.organization) {
+                            storeData(currentUser.organization, 'organization');
+                          }
+                          handleSaveCredentials(values);
+                        });
+                      } else {
+                        const currentUser = retrieveCurrentUserFunction();
+                        getData('organization').then((organization) => {
+                          if (organization !== currentUser.organization) {
+                            storeData(currentUser.organization, 'organization');
+                          }
+                        });
                       }
                     }, () => {
+                      // Store user organization
+                      const currentUser = retrieveCurrentUserFunction();
+                      getData('organization').then((organization) => {
+                        if (organization !== currentUser.organization) {
+                          storeData(currentUser.organization, 'organization');
+                        }
+                      });
                       // no credentials saved, give option to save
                       handleSaveCredentials(values);
                     });
