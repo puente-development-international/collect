@@ -14,9 +14,22 @@ import Header from '../../components/Header';
 
 import Forms from './Forms';
 
+import { getData } from '../../modules/async-storage';
+import FindResidents from '../../components/FindResidents';
+
 const DataCollection = ({ navigation }) => {
   const [scrollViewScroll, setScrollViewScroll] = useState();
   const [showForms, setShowForms] = React.useState(false);
+  const [findForms, setFindForms] = React.useState(false);
+  const [organization, setOrganization] = useState('');
+  const [selectPerson, setSelectPerson] = useState();
+
+  const fetchOrg = async () => {
+    await getData('organization').then((org) => {
+      setOrganization(org);
+      setFindForms(true);
+    });
+  };
 
   return (
     <View
@@ -28,11 +41,11 @@ const DataCollection = ({ navigation }) => {
       <Header />
 
       <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
-        {!showForms
+        {!showForms && !findForms
           && (
             <View>
               <Text style={layout.line} onPress={() => setShowForms(true)}>New Record</Text>
-              <Text style={layout.line}>Find Record</Text>
+              <Text style={layout.line} onPress={() => fetchOrg()}>Find Record</Text>
               <Text style={layout.line}>New Asset</Text>
               <Text style={layout.line}>Find Asset</Text>
             </View>
@@ -46,6 +59,16 @@ const DataCollection = ({ navigation }) => {
                 navigation={navigation}
                 scrollViewScroll={scrollViewScroll}
                 setScrollViewScroll={setScrollViewScroll}
+              />
+            </View>
+          )}
+        {findForms
+          && (
+            <View>
+              <FindResidents
+                selectPerson={selectPerson}
+                setSelectPerson={setSelectPerson}
+                organization={organization}
               />
             </View>
           )}

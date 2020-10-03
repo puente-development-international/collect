@@ -3,8 +3,8 @@ import { ActivityIndicator } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 import FormInput from '../../../../components/FormikFields/FormInput';
-import { getData, deleteData } from '../../../../modules/async-storage';
-import { retrieveSignInFunction } from '../../../../services/parse/auth';
+import { storeData, getData, deleteData } from '../../../../modules/async-storage';
+import { retrieveSignInFunction, retrieveCurrentUserFunction } from '../../../../services/parse/auth';
 
 const GetPinCode = ({ navigation }) => {
   const [failedAttempts, setFailedAttempts] = useState(1);
@@ -18,7 +18,15 @@ const GetPinCode = ({ navigation }) => {
             // IF ONLINE, otherwise just log in
             getData('credentials')
               .then((userCreds) => {
-                retrieveSignInFunction(userCreds.username, userCreds.password);
+                retrieveSignInFunction(userCreds.username, userCreds.password)
+                  .then(() => {
+                    const currentUser = retrieveCurrentUserFunction();
+                    getData('organization').then((organization) => {
+                      if (organization !== currentUser.organization) {
+                        storeData(currentUser.organization, 'organization');
+                      }
+                    });
+                  });
                 navigation.navigate('Root');
               }, () => {
                 // error with stored credentials
@@ -29,6 +37,7 @@ const GetPinCode = ({ navigation }) => {
             if (failedAttempts >= 3) {
               deleteData('credentials');
               deleteData('pincode');
+              deleteData('organization');
               navigation.navigate('Sign In');
             } else if (failedAttempts === 2) {
               alert('Incorrect pincode, please try again. ' // eslint-disable-line
