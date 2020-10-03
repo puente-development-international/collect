@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, StyleSheet, ScrollView
+  View, ScrollView
 } from 'react-native';
 import {
   Text, Button, Title, Paragraph, Card
@@ -15,19 +15,19 @@ const FormGallery = () => (
     <View style={layout.screenRow}>
       <Text>Puente Forms</Text>
       <ScrollView horizontal>
-        <Card style={screenLayout.card}>
+        <Card style={layout.cardSmallStyle}>
           <Text>Env Health</Text>
         </Card>
-        <Card style={screenLayout.card}>
+        <Card style={layout.cardSmallStyle}>
           <Text>Medical Assessment</Text>
         </Card>
-        <Card style={screenLayout.card}>
+        <Card style={layout.cardSmallStyle}>
           <Text>Vitals</Text>
         </Card>
-        <Card style={screenLayout.card}>
+        <Card style={layout.cardSmallStyle}>
           <Text>Vitals</Text>
         </Card>
-        <Card style={screenLayout.card}>
+        <Card style={layout.cardSmallStyle}>
           <Text>Vitals</Text>
         </Card>
       </ScrollView>
@@ -52,17 +52,5 @@ const FormGallery = () => (
     </View>
   </View>
 );
-
-const screenLayout = StyleSheet.create({
-  card: {
-    height: 90,
-    width: 90,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 5,
-    marginVertical: 5
-  }
-
-});
 
 export default FormGallery;
