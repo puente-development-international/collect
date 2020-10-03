@@ -3,7 +3,7 @@ import { theme } from '../../modules/theme';
 
 const borderRadius = 20;
 
-const { primary, black } = theme.colors;
+const { accent, black } = theme.colors;
 
 const styles = StyleSheet.create({
   header: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     borderBottomRightRadius: borderRadius,
     borderBottomLeftRadius: borderRadius,
-    backgroundColor: primary
+    backgroundColor: accent
   },
   headerIcon: {
     borderRadius: 30,

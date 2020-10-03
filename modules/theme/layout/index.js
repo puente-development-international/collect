@@ -54,6 +54,17 @@ const layout = StyleSheet.create({
   buttonGroupButtonStyle: {
     marginHorizontal: 5,
     marginVertical: 5
+  },
+  /**
+   * Style for a Small Cards
+   */
+  cardSmallStyle: {
+    height: 90,
+    width: 90,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 5,
+    marginVertical: 5
   }
 });
 

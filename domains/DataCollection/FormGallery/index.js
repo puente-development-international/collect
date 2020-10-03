@@ -6,15 +6,12 @@ import {
   Text, Button, Title, Paragraph, Card
 } from 'react-native-paper';
 
-import { layout, theme } from '../../../modules/theme';
+import { layout } from '../../../modules/theme';
 
 import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg';
 
-const FormGallery = ({ setDataCollectionView }) => (
+const FormGallery = () => (
   <View>
-    <Button icon="arrow-left" width={100} onPress={() => { setDataCollectionView('Root'); }}>
-      <Text>Back</Text>
-    </Button>
     <View style={layout.screenRow}>
       <Text>Puente Forms</Text>
       <ScrollView horizontal>
