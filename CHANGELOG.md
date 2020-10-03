@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.6.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.6.0...v5.6.1) (2020-10-03)
+
+
+### Features
+
+* add medical evaluation form ([fec481a](https://github.com/hopetambala/puente-reactnative-collect/commit/fec481a6e90646094ac474a11f5d64fb31a39280))
+
 ## [5.6.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.5.0...v5.6.0) (2020-09-30)
 
 
