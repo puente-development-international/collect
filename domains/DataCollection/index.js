@@ -14,8 +14,7 @@ import Header from '../../components/Header';
 
 import Forms from './Forms';
 
-import ResidentIdSearchbar from '../../components/ResidentIdSearchbar'
-import { storeData, getData, deleteData } from '../../modules/async-storage';
+import { getData } from '../../modules/async-storage';
 import FindResidents from '../../components/FindResidents';
 
 const DataCollection = ({ navigation }) => {
@@ -26,14 +25,12 @@ const DataCollection = ({ navigation }) => {
   const [selectPerson, setSelectPerson] = useState();
 
   const fetchOrg = async () => {
-    await getData('organization').then((organization) => {
-      console.log("ORG IN DC", organization);
-      setOrganization(organization)
-      setFindForms(true)
-    })
+    await getData('organization').then((org) => {
+      setOrganization(org);
+      setFindForms(true);
+    });
+  };
 
-    // console.log(org)
-  }
   return (
     <View
       style={layout.screenContainer}
@@ -74,8 +71,7 @@ const DataCollection = ({ navigation }) => {
                 organization={organization}
               />
             </View>
-          )
-        }
+          )}
       </ScrollView>
     </View>
   );

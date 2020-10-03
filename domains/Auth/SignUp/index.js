@@ -17,8 +17,7 @@ import FormInput from '../../../components/FormikFields/FormInput';
 import TermsModal from '../../../components/TermsModal';
 // STYLING
 import { theme } from '../../../modules/theme';
-import { storeData, getData, deleteData } from '../../../modules/async-storage';
-import { storeOrganization } from '../StoreOrganization'
+import { storeData, getData } from '../../../modules/async-storage';
 
 import I18n from '../../../modules/i18n';
 
@@ -87,9 +86,8 @@ export default function SignUp({ navigation }) {
                       getData('organization').then((organization) => {
                         if (organization !== currentUser.organization) {
                           storeData(currentUser.organization, 'organization');
-                          console.log("Stored Creds", currentUser.organization);
                         }
-                      })
+                      });
                       navigation.navigate('Root');
                     }, () => {
                       // sign in failed, alert user
@@ -170,8 +168,8 @@ export default function SignUp({ navigation }) {
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                  <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
-                )}
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
+              )}
 
               <TermsModal visible={visible} setVisible={setVisible} />
             </>

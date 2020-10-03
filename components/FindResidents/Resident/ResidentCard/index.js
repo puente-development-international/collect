@@ -4,22 +4,21 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {
-  Text, TextInput, Button, Title
+  Text, Title
 } from 'react-native-paper';
 
 import { theme } from '../../../../modules/theme';
 
 const ResidentCard = ({
-  fname, lname, nickname, city, license, picture, onSelectPerson, listItem
+  fname, lname, nickname, city, picture, onSelectPerson, listItem
 }) => {
   const [pictureUrl, setPictureUrl] = useState();
   useEffect(() => {
     const pic = picture;
     if (pic) {
-      setPictureUrl({ uri: pic.url })
-      console.log("picture", pictureUrl)
+      setPictureUrl({ uri: pic.url });
     }
-  }, [])
+  }, []);
 
   return (
     <View>
@@ -27,12 +26,12 @@ const ResidentCard = ({
         style={styles.container}
         onPress={() => {
           onSelectPerson(listItem);
-        }}>
+        }}
+      >
         <View style={styles.nameConatiner}>
-          <Title style={styles.name}>{fname + " " + lname}</Title>
+          <Title style={styles.name}>{`${fname} ${lname}`}</Title>
         </View>
-        {/* style={styles.nickname} */}
-        <Text style={styles.nickname}>{'"' + nickname + '"'}</Text>
+        <Text style={styles.nickname}>{`"${nickname}"`}</Text>
         <Image
           style={styles.profPic}
           source={pictureUrl}
@@ -49,7 +48,7 @@ const ResidentCard = ({
         </View>
       </TouchableOpacity>
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -110,6 +109,6 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
 
-})
+});
 
 export default ResidentCard;

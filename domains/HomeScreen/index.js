@@ -27,7 +27,7 @@ const HomeScreen = (props) => {
     retrieveSignOutFunction().then(() => {
       deleteData('credentials');
       deleteData('pincode');
-      deleteData('organization')
+      deleteData('organization');
       navigation.navigate('Sign In');
     });
   };

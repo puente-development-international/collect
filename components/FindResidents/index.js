@@ -5,11 +5,10 @@ import {
 } from 'react-native';
 
 import {
-  Text, Button, Chip, Searchbar
+  Text, Searchbar
 } from 'react-native-paper';
 
 import { residentIDQuery } from '../../services/parse/crud';
-import { getData } from '../../modules/async-storage';
 import ResidentCard from './Resident/ResidentCard';
 import ResidentPage from './Resident/ResidentPage';
 
@@ -17,25 +16,12 @@ const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [residents, setResidents] = useState([]);
-  // const [organization, setOrganization] = useState('');
 
   useEffect(() => {
-    // fetchOrg();
     fetchData();
-
   }, []);
 
-  const fetchOrg = async () => {
-    await getData('organization').then((organization) => {
-      setOrganization(organization);
-      console.log(organization);
-      // console.log(org)
-    })
-  }
-
   const fetchData = async () => {
-    console.log("Org", organization)
-    console.log("Hey")
     const queryParams = {
       skip: 0,
       offset: 0,
@@ -45,7 +31,6 @@ const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
     };
     let records = await residentIDQuery(queryParams);
     records = JSON.parse(JSON.stringify(records));
-    console.log(records)
     setData(records);
     setResidents(records.slice());
   };
@@ -102,7 +87,7 @@ const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
       {selectPerson && (
         <ResidentPage
           selectPerson={selectPerson}
-          
+
         />
       )}
     </View>

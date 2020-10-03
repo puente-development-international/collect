@@ -22,7 +22,6 @@ import FormInput from '../../../components/FormikFields/FormInput';
 import LanguagePicker from '../../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
 import { storeData, getData, deleteData } from '../../../modules/async-storage';
-import { storeOrganization } from '../StoreOrganization';
 
 import I18n from '../../../modules/i18n';
 
@@ -115,23 +114,19 @@ const SignIn = ({ navigation }) => {
                         || values.password !== userCreds.password) {
                         // Store user organization
                         const currentUser = retrieveCurrentUserFunction();
-                        console.log(currentUser);
                         getData('organization').then((organization) => {
                           if (organization !== currentUser.organization) {
                             storeData(currentUser.organization, 'organization');
-                            console.log("Stored Creds", currentUser.organization);
                           }
                           handleSaveCredentials(values);
-                        })
-                      }
-                      else {
+                        });
+                      } else {
                         const currentUser = retrieveCurrentUserFunction();
                         getData('organization').then((organization) => {
                           if (organization !== currentUser.organization) {
                             storeData(currentUser.organization, 'organization');
-                            console.log("Stored Creds", currentUser.organization);
                           }
-                        })
+                        });
                       }
                     }, () => {
                       // Store user organization
@@ -139,9 +134,8 @@ const SignIn = ({ navigation }) => {
                       getData('organization').then((organization) => {
                         if (organization !== currentUser.organization) {
                           storeData(currentUser.organization, 'organization');
-                          console.log("Stored Creds", currentUser.organization);
                         }
-                      })
+                      });
                       // no credentials saved, give option to save
                       handleSaveCredentials(values);
                     });
@@ -189,13 +183,13 @@ const SignIn = ({ navigation }) => {
                 secureTextEntry
               />
             ) : (
-                <FormInput
-                  label={I18n.t('signIn.password')}
-                  formikProps={formikProps}
-                  formikKey="password"
-                  placeholder="Password here"
-                />
-              )}
+              <FormInput
+                label={I18n.t('signIn.password')}
+                formikProps={formikProps}
+                formikKey="password"
+                placeholder="Password here"
+              />
+            )}
             <View style={styles.container}>
               <View style={styles.checkbox}>
                 <Checkbox
@@ -212,8 +206,8 @@ const SignIn = ({ navigation }) => {
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
-              )}
+              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
+            )}
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
               {I18n.t('signIn.signUpLink')}
             </Button>
