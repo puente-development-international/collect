@@ -8,7 +8,7 @@ import {
 import { theme } from '../../modules/theme';
 
 export default function TermsModal(props) {
-  const { visible, hideModal } = props;
+  const { visible, setVisible } = props;
   return (
     <Portal theme={theme}>
       <Modal
@@ -29,7 +29,7 @@ export default function TermsModal(props) {
           Excepteur sint occaecat cupidatat non proident,
           sunt in culpa qui officia deserunt mollit anim id est laborum.
         </Text>
-        <Button mode="contained" theme={theme} color="#3E81FD" style={styles.button} onPress={hideModal}>Ok</Button>
+        <Button mode="contained" theme={theme} color="#3E81FD" style={styles.button} onPress={() => setVisible(false)}>Ok</Button>
       </Modal>
     </Portal>
   );

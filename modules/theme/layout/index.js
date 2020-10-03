@@ -19,7 +19,8 @@ const layout = StyleSheet.create({
    */
   screenRow: {
     flex: 1,
-    flexDirection: 'row',
+    marginHorizontal: 20,
+    marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'stretch'
   },
