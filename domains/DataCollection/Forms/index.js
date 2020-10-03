@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
-import { Text, Card } from 'react-native-paper';
+import { View, ScrollView } from 'react-native';
+import { Text, Card, Button } from 'react-native-paper';
 
 import IdentificationForm from './IdentificationForm';
 import SupplementaryForm from './SupplementaryForm';
@@ -16,7 +16,7 @@ const puenteForms = [
 
 const Forms = (props) => {
   const {
-    navigation, scrollViewScroll, setScrollViewScroll
+    navigation, scrollViewScroll, setScrollViewScroll, navigateToGallery
   } = props;
 
   const [selectedForm, setSelectedForm] = useState('id');
@@ -34,13 +34,12 @@ const Forms = (props) => {
           selectedSurveyeeId={selectedSurveyeeId}
         />
       )}
-      { consent === true && selectedForm !== 'id' && (
+      {consent === true && selectedForm !== 'id' && selectedForm !== '' && (
         <SupplementaryForm
           navigation={navigation}
           selectedForm={selectedForm}
           setSelectedForm={setSelectedForm}
           surveyeeId={surveyeeId}
-
         />
       )}
       {consent === false && (
@@ -54,28 +53,22 @@ const Forms = (props) => {
           <Text>Suggested next Forms</Text>
           <ScrollView horizontal>
             {puenteForms.map((form) => (
-              <Card key={form.tag} style={screenLayout.card} onPress={() => setSelectedForm(form.tag)}>
+              <Card
+                key={form.tag}
+                style={layout.cardSmallStyle}
+                onPress={() => setSelectedForm(form.tag)}
+              >
                 <Text>{form.name}</Text>
               </Card>
             ))}
           </ScrollView>
-          {/* <View> <Text>View All Forms</Text></View> */}
+          <Button onPress={navigateToGallery}>
+            <Text>View Forms Gallery</Text>
+          </Button>
         </View>
       )}
     </View>
   );
 };
-
-const screenLayout = StyleSheet.create({
-  card: {
-    height: 90,
-    width: 90,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 5,
-    marginVertical: 5
-  }
-
-});
 
 export default Forms;
