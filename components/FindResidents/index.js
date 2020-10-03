@@ -87,7 +87,6 @@ const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
       {selectPerson && (
         <ResidentPage
           selectPerson={selectPerson}
-
         />
       )}
     </View>
