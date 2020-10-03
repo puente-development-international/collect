@@ -23,8 +23,19 @@ function postObjectsToClass(params) {
   });
 }
 
+function postObjectsToClassWithRelation(params) {
+  return new Promise((resolve, reject) => {
+    Parse.Cloud.run('postObjectsToClassWithRelation', params).then((result) => {
+      resolve(result);
+    }, (error) => {
+      reject(error);
+    });
+  });
+}
+
 export {
   retrieveHelloFunction,
   residentIDQuery,
-  postObjectsToClass
+  postObjectsToClass,
+  postObjectsToClassWithRelation
 };
