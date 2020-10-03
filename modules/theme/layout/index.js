@@ -15,6 +15,16 @@ const layout = StyleSheet.create({
     padding: 10,
   },
   /**
+   * Styling for rows in a screenContainer where you want elements aligned in a row
+   */
+  screenFlexRow: {
+    // flex: 1,
+    marginHorizontal: 20,
+    marginBottom: 20,
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+  },
+  /**
    * Styling for rows in a screenContainer
    */
   screenRow: {
@@ -42,6 +52,17 @@ const layout = StyleSheet.create({
     flexWrap: 'wrap',
   },
   buttonGroupButtonStyle: {
+    marginHorizontal: 5,
+    marginVertical: 5
+  },
+  /**
+   * Style for a Small Cards
+   */
+  cardSmallStyle: {
+    height: 90,
+    width: 90,
+    justifyContent: 'center',
+    alignItems: 'center',
     marginHorizontal: 5,
     marginVertical: 5
   }

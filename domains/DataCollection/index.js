@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import {
-  Button
+  Button, Card
 } from 'react-native-paper';
 
 import { layout } from '../../modules/theme';
@@ -13,21 +13,33 @@ import { layout } from '../../modules/theme';
 import Header from '../../components/Header';
 
 import Forms from './Forms';
+import FormGallery from './FormGallery';
 
 import { getData } from '../../modules/async-storage';
 import FindResidents from '../../components/FindResidents';
 
 const DataCollection = ({ navigation }) => {
   const [scrollViewScroll, setScrollViewScroll] = useState();
-  const [showForms, setShowForms] = React.useState(false);
-  const [findForms, setFindForms] = React.useState(false);
+  const [view, setView] = useState('Root');
   const [organization, setOrganization] = useState('');
   const [selectPerson, setSelectPerson] = useState();
 
-  const fetchOrg = async () => {
+  const navigateToRoot = async () => {
+    setView('Root');
+  };
+
+  const navigateToNewRecord = async () => {
+    setView('Forms');
+  };
+
+  const navigateToGallery = async () => {
+    setView('Gallery');
+  };
+
+  const navigateToFindRecords = async () => {
     await getData('organization').then((org) => {
       setOrganization(org);
-      setFindForms(true);
+      setView('Find Records');
     });
   };
 
@@ -39,32 +51,53 @@ const DataCollection = ({ navigation }) => {
       }}
     >
       <Header />
-
       <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
-        {!showForms && !findForms
+        {view === 'Root'
           && (
             <View>
-              <Text style={layout.line} onPress={() => setShowForms(true)}>New Record</Text>
-              <Text style={layout.line} onPress={() => fetchOrg()}>Find Record</Text>
-              <Text style={layout.line}>New Asset</Text>
-              <Text style={layout.line}>Find Asset</Text>
+              <Card style={layout.cardSmallStyle} onPress={navigateToNewRecord}>
+                <Text>New Record</Text>
+              </Card>
+              <Card style={layout.cardSmallStyle} onPress={navigateToFindRecords}>
+                <Text>Find Record</Text>
+              </Card>
+              <Card style={layout.cardSmallStyle} onPress={navigateToGallery}>
+                <Text>View All Forms</Text>
+              </Card>
             </View>
           )}
-        {showForms
+        {view === 'Forms'
           && (
             <View>
-              <Button onPress={() => setShowForms(false)}>Back to Data Collection Screen</Button>
+              <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
+                <Text>Back</Text>
+              </Button>
               <Forms
                 style={layout.line}
                 navigation={navigation}
                 scrollViewScroll={scrollViewScroll}
                 setScrollViewScroll={setScrollViewScroll}
+                navigateToGallery={navigateToGallery}
               />
             </View>
           )}
-        {findForms
+        {view === 'Gallery' && (
+          <View>
+            <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
+              <Text>Back</Text>
+            </Button>
+            <FormGallery
+              navigation={navigation}
+              navigateToRoot={navigateToRoot}
+            />
+          </View>
+        )}
+        {view === 'Find Records'
           && (
             <View>
+              <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
+                <Text>Back</Text>
+              </Button>
               <FindResidents
                 selectPerson={selectPerson}
                 setSelectPerson={setSelectPerson}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
-import { Text, Card } from 'react-native-paper';
+import { View, ScrollView } from 'react-native';
+import { Text, Card, Button } from 'react-native-paper';
 
 import IdentificationForm from './IdentificationForm';
 import SupplementaryForm from './SupplementaryForm';
@@ -8,9 +8,15 @@ import SupplementaryForm from './SupplementaryForm';
 import GdprCompliance from '../GdprCompliance';
 import { layout } from '../../../modules/theme';
 
+const puenteForms = [
+  { tag: 'id', name: 'Resident ID' },
+  { tag: 'env', name: 'Environmental Health' },
+  { tag: 'med-eval', name: 'Medical Evaluation' }
+];
+
 const Forms = (props) => {
   const {
-    navigation, scrollViewScroll, setScrollViewScroll
+    navigation, scrollViewScroll, setScrollViewScroll, navigateToGallery
   } = props;
 
   const [selectedForm, setSelectedForm] = useState('id');
@@ -28,13 +34,12 @@ const Forms = (props) => {
           selectedSurveyeeId={selectedSurveyeeId}
         />
       )}
-      { consent === true && selectedForm === 'env' && (
+      {consent === true && selectedForm !== 'id' && selectedForm !== '' && (
         <SupplementaryForm
           navigation={navigation}
           selectedForm={selectedForm}
           setSelectedForm={setSelectedForm}
           surveyeeId={surveyeeId}
-
         />
       )}
       {consent === false && (
@@ -46,12 +51,20 @@ const Forms = (props) => {
       {selectedForm === '' && (
         <View>
           <Text>Suggested next Forms</Text>
-          <Card onPress={() => setSelectedForm('id')}>
-            <Card.Title title="Resident ID" subtitle="" />
-          </Card>
-          <Card onPress={() => setSelectedForm('env')}>
-            <Card.Title title="Environmental History" subtitle="" />
-          </Card>
+          <ScrollView horizontal>
+            {puenteForms.map((form) => (
+              <Card
+                key={form.tag}
+                style={layout.cardSmallStyle}
+                onPress={() => setSelectedForm(form.tag)}
+              >
+                <Text>{form.name}</Text>
+              </Card>
+            ))}
+          </ScrollView>
+          <Button onPress={navigateToGallery}>
+            <Text>View Forms Gallery</Text>
+          </Button>
         </View>
       )}
     </View>

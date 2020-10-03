@@ -53,7 +53,7 @@ const PaperInputPicker = ({
             onBlur={handleBlur(formikKey)}
             {...rest} //eslint-disable-line
             mode="outlined"
-            theme={{ colors: { placeholder: theme.colors.accent }, text: 'black' }}
+            theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
           />
           <Text style={{ color: 'red' }}>
             {touched[formikKey] && errors[formikKey]}
@@ -71,7 +71,7 @@ const PaperInputPicker = ({
                 mode="outlined"
                 onPress={() => setFieldValue(formikKey, result)}
               >
-                <Text style={{ color: theme.colors.accent }}>{result}</Text>
+                <Text style={{ color: theme.colors.primary }}>{result}</Text>
               </Button>
             ))}
           </View>
