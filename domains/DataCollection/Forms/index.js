@@ -9,11 +9,9 @@ import GdprCompliance from '../GdprCompliance';
 import { layout } from '../../../modules/theme';
 
 const puenteForms = [
-  {
-    tag: 'id',
-    name: 'Resident ID'
-  },
-  { tag: 'env', name: 'Environmental Health' }, { tag: 'med-eval', name: 'Medical Evaluation' }
+  { tag: 'id', name: 'Resident ID' },
+  { tag: 'env', name: 'Environmental Health' },
+  { tag: 'med-eval', name: 'Medical Evaluation' }
 ];
 
 const Forms = (props) => {
