@@ -44,6 +44,17 @@ const layout = StyleSheet.create({
     alignItems: 'stretch'
   },
   /**
+  * Container for a Formik Form
+  */
+  container: {
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    // alignItems: 'stretch',
+    // justifyContent: 'center',
+    marginHorizontal: 10,
+    marginVertical: 10
+  },
+  /**
    * Container for a Formik Form
    */
   formContainer: {
@@ -51,6 +62,7 @@ const layout = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     alignItems: 'stretch',
     justifyContent: 'center',
+    marginHorizontal: 10
   },
   /**
    * Container for a Button Group
