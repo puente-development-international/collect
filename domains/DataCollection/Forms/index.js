@@ -8,14 +8,16 @@ import GdprCompliance from '../GdprCompliance';
 
 import { layout } from '../../../modules/theme';
 
+import ResidentIdSearchbar from '../../../components/ResidentIdSearchbar';
+
 import PostSubmissionSVG from '../../../assets/graphics/static/Submission-Page-Icon.svg';
 
 const Forms = (props) => {
   const {
     navigation, navigateToGallery,
-    selectedForm, setSelectedForm,
+    selectedForm, setSelectedForm, navigateToNewRecord,
     scrollViewScroll, setScrollViewScroll,
-    puenteForms,
+    puenteForms, userOrganization
   } = props;
   const [consent, setConsent] = useState(false);
   const [surveyee, setSurveyee] = useState();
@@ -29,14 +31,17 @@ const Forms = (props) => {
           setScrollViewScroll={setScrollViewScroll}
           setSelectedForm={setSelectedForm}
           setSurveyee={setSurveyee}
+          userOrganization={userOrganization}
         />
       )}
       {consent === true && selectedForm !== 'id' && selectedForm !== '' && (
         <View>
-          {/* <ResidentIdSearchbar
-            selectPerson={selectPerson}
-            setSelectPerson={setSelectPerson}
-          /> */}
+          <View style={layout.container}>
+            <ResidentIdSearchbar
+              selectPerson={surveyee}
+              setSelectPerson={setSurveyee}
+            />
+          </View>
           <SupplementaryForm
             navigation={navigation}
             selectedForm={selectedForm}
@@ -69,7 +74,7 @@ const Forms = (props) => {
                 <Card
                   key={form.tag}
                   style={layout.cardSmallStyle}
-                  onPress={() => setSelectedForm(form.tag)}
+                  onPress={() => navigateToNewRecord(form.tag)}
                 >
                   <Text>{form.name}</Text>
                 </Card>

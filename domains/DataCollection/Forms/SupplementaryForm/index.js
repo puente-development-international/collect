@@ -37,11 +37,8 @@ const SupplementaryForm = ({
       initialValues={{}}
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
-        console.log(surveyee);
-        console.log(surveyee.id);
-
         const postParams = {
-          parseParentClassID: surveyee.id,
+          parseParentClassID: surveyee.objectId,
           parseParentClass: 'SurveyData',
           parseClass: config.class,
           photoFile,
