@@ -36,9 +36,12 @@ const DataCollection = ({ navigation }) => {
     setView('Root');
   };
 
-  const navigateToNewRecord = (formTag) => {
-    setView('Forms');
-    setSelectedForm(formTag || 'id');
+  const navigateToNewRecord = async (formTag) => {
+    await getData('organization').then((org) => {
+      setUserOrganization(org);
+      setView('Forms');
+      setSelectedForm(formTag || 'id');
+    });
   };
 
   const navigateToGallery = async () => {
@@ -87,9 +90,11 @@ const DataCollection = ({ navigation }) => {
                 scrollViewScroll={scrollViewScroll}
                 setScrollViewScroll={setScrollViewScroll}
                 navigateToGallery={navigateToGallery}
+                navigateToNewRecord={navigateToNewRecord}
                 selectedForm={selectedForm}
                 setSelectedForm={setSelectedForm}
                 puenteForms={puenteForms}
+                userOrganization={userOrganization}
               />
             </View>
           )}

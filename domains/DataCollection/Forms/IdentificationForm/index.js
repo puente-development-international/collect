@@ -33,7 +33,7 @@ import PaperInputPicker from '../../../../components/FormikFields/PaperInputPick
 // });
 
 const IdentificationForm = ({
-  scrollViewScroll, setScrollViewScroll, setSelectedForm, selectedSurveyeeId
+  scrollViewScroll, setScrollViewScroll, setSelectedForm, setSurveyee, userOrganization
 }) => {
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,7 +57,7 @@ const IdentificationForm = ({
       initialValues={{}}
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
-        values.surveyingOrganization = 'Test'; //eslint-disable-line
+        values.surveyingOrganization = userOrganization; //eslint-disable-line
         const submitAction = () => {
           setTimeout(() => {
             setSelectedForm('');
@@ -75,7 +75,7 @@ const IdentificationForm = ({
         checkOnlineStatus().then((connected) => {
           if (connected) {
             postObjectsToClass(postParams).then((surveyee) => {
-              selectedSurveyeeId(surveyee.id);
+              setSurveyee(surveyee);
               submitAction();
             });
           } else {
