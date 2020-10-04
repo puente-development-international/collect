@@ -18,18 +18,27 @@ import FormGallery from './FormGallery';
 import { getData } from '../../modules/async-storage';
 import FindResidents from '../../components/FindResidents';
 
+const puenteForms = [
+  { tag: 'id', name: 'Resident ID' },
+  { tag: 'env', name: 'Environmental Health' },
+  { tag: 'med-eval', name: 'Medical Evaluation' }
+];
+
 const DataCollection = ({ navigation }) => {
   const [scrollViewScroll, setScrollViewScroll] = useState();
   const [view, setView] = useState('Root');
-  const [organization, setOrganization] = useState('');
+
+  const [userOrganization, setUserOrganization] = useState('');
   const [selectPerson, setSelectPerson] = useState();
+  const [selectedForm, setSelectedForm] = useState('id');
 
   const navigateToRoot = async () => {
     setView('Root');
   };
 
-  const navigateToNewRecord = async () => {
+  const navigateToNewRecord = (formTag) => {
     setView('Forms');
+    setSelectedForm(formTag || 'id');
   };
 
   const navigateToGallery = async () => {
@@ -38,7 +47,7 @@ const DataCollection = ({ navigation }) => {
 
   const navigateToFindRecords = async () => {
     await getData('organization').then((org) => {
-      setOrganization(org);
+      setUserOrganization(org);
       setView('Find Records');
     });
   };
@@ -54,8 +63,8 @@ const DataCollection = ({ navigation }) => {
       <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
         {view === 'Root'
           && (
-            <View>
-              <Card style={layout.cardSmallStyle} onPress={navigateToNewRecord}>
+            <View style={layout.screenFlexRowWrap}>
+              <Card style={layout.cardSmallStyle} onPress={() => navigateToNewRecord()}>
                 <Text>New Record</Text>
               </Card>
               <Card style={layout.cardSmallStyle} onPress={navigateToFindRecords}>
@@ -78,6 +87,9 @@ const DataCollection = ({ navigation }) => {
                 scrollViewScroll={scrollViewScroll}
                 setScrollViewScroll={setScrollViewScroll}
                 navigateToGallery={navigateToGallery}
+                selectedForm={selectedForm}
+                setSelectedForm={setSelectedForm}
+                puenteForms={puenteForms}
               />
             </View>
           )}
@@ -88,7 +100,8 @@ const DataCollection = ({ navigation }) => {
             </Button>
             <FormGallery
               navigation={navigation}
-              navigateToRoot={navigateToRoot}
+              navigateToNewRecord={navigateToNewRecord}
+              puenteForms={puenteForms}
             />
           </View>
         )}
@@ -101,7 +114,7 @@ const DataCollection = ({ navigation }) => {
               <FindResidents
                 selectPerson={selectPerson}
                 setSelectPerson={setSelectPerson}
-                organization={organization}
+                organization={userOrganization}
               />
             </View>
           )}
