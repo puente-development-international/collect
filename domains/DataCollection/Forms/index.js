@@ -8,18 +8,13 @@ import SupplementaryForm from './SupplementaryForm';
 import GdprCompliance from '../GdprCompliance';
 import { layout } from '../../../modules/theme';
 
-const puenteForms = [
-  { tag: 'id', name: 'Resident ID' },
-  { tag: 'env', name: 'Environmental Health' },
-  { tag: 'med-eval', name: 'Medical Evaluation' }
-];
-
 const Forms = (props) => {
   const {
-    navigation, scrollViewScroll, setScrollViewScroll, navigateToGallery
+    navigation, navigateToGallery,
+    selectedForm, setSelectedForm,
+    scrollViewScroll, setScrollViewScroll,
+    puenteForms,
   } = props;
-
-  const [selectedForm, setSelectedForm] = useState('id');
   const [consent, setConsent] = useState(false);
   const [surveyeeId, selectedSurveyeeId] = useState();
 
