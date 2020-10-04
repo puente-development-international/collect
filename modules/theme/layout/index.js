@@ -15,6 +15,25 @@ const layout = StyleSheet.create({
     padding: 10,
   },
   /**
+   * Styling for rows in a screenContainer where you want elements aligned in a row
+   */
+  screenFlexRow: {
+    marginHorizontal: 20,
+    marginBottom: 20,
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+  },
+  /**
+   * Styling for rows in a screenContainer where you want elements aligned in a row with wrap
+   */
+  screenFlexRowWrap: {
+    marginHorizontal: 20,
+    marginBottom: 20,
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  /**
    * Styling for rows in a screenContainer
    */
   screenRow: {
@@ -25,6 +44,17 @@ const layout = StyleSheet.create({
     alignItems: 'stretch'
   },
   /**
+  * Container for a Formik Form
+  */
+  container: {
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    // alignItems: 'stretch',
+    // justifyContent: 'center',
+    marginHorizontal: 10,
+    marginVertical: 10
+  },
+  /**
    * Container for a Formik Form
    */
   formContainer: {
@@ -32,6 +62,7 @@ const layout = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     alignItems: 'stretch',
     justifyContent: 'center',
+    marginHorizontal: 10
   },
   /**
    * Container for a Button Group
@@ -42,6 +73,17 @@ const layout = StyleSheet.create({
     flexWrap: 'wrap',
   },
   buttonGroupButtonStyle: {
+    marginHorizontal: 5,
+    marginVertical: 5
+  },
+  /**
+   * Style for a Small Cards
+   */
+  cardSmallStyle: {
+    height: 90,
+    width: 90,
+    justifyContent: 'center',
+    alignItems: 'center',
     marginHorizontal: 5,
     marginVertical: 5
   }

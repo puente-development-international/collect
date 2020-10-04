@@ -1,6 +1,6 @@
 {
   "name": "puente-reactnative",
-  "version": "5.6.0",
+  "version": "5.6.1",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -15,11 +15,13 @@
     "testDebug": "jest -o --watch --coverage=false",
     "lint": "./node_modules/.bin/eslint '**/*.{js,jsx}' --quiet",
     "lint-fix": "./node_modules/.bin/eslint '**/*.{js,jsx}' --fix",
-    "publish-staging": "expo build:ios --release-channel staging & expo build:android --release-channel staging",
+    "publish-staging": "expo build:ios --release-channel staging && expo build:android --release-channel staging",
     "publish-prod": "expo build:ios --release-channel prod && expo build:android --release-channel prod",
     "upload": "expo upload:ios --latest && expo upload:android --latest",
     "gh-prune": "git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done",
-    "release": "npx standard-version --release-as minor"
+    "release-patch": "npx standard-version --release-as patch",
+    "release-minor": "npx standard-version --release-as minor",
+    "release-major": "npx standard-version --release-as major"
   },
   "jest": {
     "preset": "jest-expo",

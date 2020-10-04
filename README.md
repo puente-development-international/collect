@@ -14,6 +14,7 @@ Here are some quick npm commands to get started:
 ## Resources
 
 - [React Native Paper](https://callstack.github.io/react-native-paper/index.html)
+- [Material Icons](https://materialdesignicons.com/)
 - [Native Base](https://docs.nativebase.io/)
 - [Expo](https://docs.expo.io/versions/latest/)
 - [Understanding Flexbox](https://yogalayout.com/playground)

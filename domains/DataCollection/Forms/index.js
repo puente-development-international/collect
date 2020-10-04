@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
-import { Text, Card } from 'react-native-paper';
+import { View, ScrollView } from 'react-native';
+import { Text, Card, Button } from 'react-native-paper';
 
 import IdentificationForm from './IdentificationForm';
 import SupplementaryForm from './SupplementaryForm';
-
 import GdprCompliance from '../GdprCompliance';
+
 import { layout } from '../../../modules/theme';
+
+import ResidentIdSearchbar from '../../../components/ResidentIdSearchbar';
+
+import PostSubmissionSVG from '../../../assets/graphics/static/Submission-Page-Icon.svg';
 
 const Forms = (props) => {
   const {
-    navigation, scrollViewScroll, setScrollViewScroll
+    navigation, navigateToGallery,
+    selectedForm, setSelectedForm, navigateToNewRecord,
+    scrollViewScroll, setScrollViewScroll,
+    puenteForms, userOrganization
   } = props;
-
-  const [selectedForm, setSelectedForm] = useState('id');
   const [consent, setConsent] = useState(false);
-  const [surveyeeId, selectedSurveyeeId] = useState();
+  const [surveyee, setSurveyee] = useState();
 
   return (
     <View style={layout.screenContainer}>
@@ -25,17 +30,25 @@ const Forms = (props) => {
           scrollViewScroll={scrollViewScroll}
           setScrollViewScroll={setScrollViewScroll}
           setSelectedForm={setSelectedForm}
-          selectedSurveyeeId={selectedSurveyeeId}
+          setSurveyee={setSurveyee}
+          userOrganization={userOrganization}
         />
       )}
-      { consent === true && selectedForm === 'env' && (
-        <SupplementaryForm
-          navigation={navigation}
-          selectedForm={selectedForm}
-          setSelectedForm={setSelectedForm}
-          surveyeeId={surveyeeId}
-
-        />
+      {consent === true && selectedForm !== 'id' && selectedForm !== '' && (
+        <View>
+          <View style={layout.container}>
+            <ResidentIdSearchbar
+              selectPerson={surveyee}
+              setSelectPerson={setSurveyee}
+            />
+          </View>
+          <SupplementaryForm
+            navigation={navigation}
+            selectedForm={selectedForm}
+            setSelectedForm={setSelectedForm}
+            surveyee={surveyee}
+          />
+        </View>
       )}
       {consent === false && (
         <GdprCompliance
@@ -45,13 +58,32 @@ const Forms = (props) => {
       )}
       {selectedForm === '' && (
         <View>
-          <Text>Suggested next Forms</Text>
-          <Card onPress={() => setSelectedForm('id')}>
-            <Card.Title title="Resident ID" subtitle="" />
-          </Card>
-          <Card onPress={() => setSelectedForm('env')}>
-            <Card.Title title="Environmental History" subtitle="" />
-          </Card>
+          <View style={{
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
+          >
+            <PostSubmissionSVG width={350} height={350} />
+            <Text>Form successfully submitted</Text>
+            <Text>Grab yourself a coffee</Text>
+          </View>
+          <View style={layout.container}>
+            <Text>Suggested next Forms</Text>
+            <ScrollView horizontal>
+              {puenteForms.map((form) => (
+                <Card
+                  key={form.tag}
+                  style={layout.cardSmallStyle}
+                  onPress={() => navigateToNewRecord(form.tag)}
+                >
+                  <Text>{form.name}</Text>
+                </Card>
+              ))}
+            </ScrollView>
+            <Button mode="contained" onPress={navigateToGallery}>
+              <Text style={{ color: 'white' }}>View Forms Gallery</Text>
+            </Button>
+          </View>
         </View>
       )}
     </View>

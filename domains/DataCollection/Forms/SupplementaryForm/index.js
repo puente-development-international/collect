@@ -12,11 +12,12 @@ import { postObjectsToClassWithRelation } from '../../../../services/parse/crud'
 import { layout } from '../../../../modules/theme';
 
 import envConfig from './configs/envhealth.config';
+import medConfig from './configs/medical-evaluation.config';
 
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 
 const SupplementaryForm = ({
-  navigation, selectedForm, setSelectedForm, surveyeeId
+  navigation, selectedForm, setSelectedForm, surveyee
 }) => {
   const [config, setConfig] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
@@ -28,7 +29,8 @@ const SupplementaryForm = ({
 
   useEffect(() => {
     if (selectedForm === 'env') setConfig(envConfig);
-  }, [selectedForm, envConfig]);
+    if (selectedForm === 'med-eval') setConfig(medConfig);
+  }, [selectedForm]);
 
   return (
     <Formik
@@ -36,7 +38,7 @@ const SupplementaryForm = ({
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
         const postParams = {
-          parseParentClassID: surveyeeId,
+          parseParentClassID: surveyee.objectId,
           parseParentClass: 'SurveyData',
           parseClass: config.class,
           photoFile,

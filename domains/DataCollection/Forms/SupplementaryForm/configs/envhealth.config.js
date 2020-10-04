@@ -1,5 +1,6 @@
 const configArray = {
   class: 'HistoryEnvironmentalHealth',
+  name: 'Environmental Health Form',
   fields: [{
     label: 'Years Lived in the Community',
     formikKey: 'yearsLivedinthecommunity',
