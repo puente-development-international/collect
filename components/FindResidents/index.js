@@ -12,7 +12,7 @@ import { residentIDQuery } from '../../services/parse/crud';
 import ResidentCard from './Resident/ResidentCard';
 import ResidentPage from './Resident/ResidentPage';
 
-const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
+const FindResidents = ({ selectPerson, setSelectPerson, organization, puenteForms , navigateToNewRecord}) => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [residents, setResidents] = useState([]);
@@ -62,12 +62,16 @@ const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
 
   return (
     <View>
-      <Text>Search Individual</Text>
-      <Searchbar
-        placeholder="Type Here..."
-        onChangeText={onChangeSearch}
-        value={query}
-      />
+      {!selectPerson && (
+        <>
+          <Text>Search Individual</Text>
+          <Searchbar
+            placeholder="Type Here..."
+            onChangeText={onChangeSearch}
+            value={query}
+          />
+        </>
+      )}
 
       {query !== '' && filterList(residents).map((listItem,) => (
         <View key={listItem.objectId}>
@@ -86,7 +90,17 @@ const FindResidents = ({ selectPerson, setSelectPerson, organization }) => {
 
       {selectPerson && (
         <ResidentPage
+          fname={selectPerson.fname}
+          lname={selectPerson.lname}
+          nickname={selectPerson.nickname}
+          city={selectPerson.city}
+          license={selectPerson.license}
+          picture={selectPerson.picture}
           selectPerson={selectPerson}
+          setSelectPerson={setSelectPerson}
+          picture={selectPerson.picture}
+          puenteForms={puenteForms}
+          navigateToNewRecord={navigateToNewRecord}
         />
       )}
     </View>

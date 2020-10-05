@@ -120,6 +120,8 @@ const DataCollection = ({ navigation }) => {
                 selectPerson={selectPerson}
                 setSelectPerson={setSelectPerson}
                 organization={userOrganization}
+                puenteForms={puenteForms}
+                navigateToNewRecord={navigateToNewRecord}
               />
             </View>
           )}

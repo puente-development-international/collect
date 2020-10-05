@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
     margin: 15,
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: theme.colors.accent
+    borderColor: theme.colors.primary
   },
   nameConatiner: {
-    backgroundColor: theme.colors.accent,
+    backgroundColor: theme.colors.primary,
     marginTop: 15,
     height: 30
   },
