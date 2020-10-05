@@ -88,7 +88,7 @@ const layout = StyleSheet.create({
     marginHorizontal: 5,
     marginVertical: 5
   },
-  selectLabel:{
+  selectLabel: {
     marginTop: 5,
     marginBottom: 10
   }
