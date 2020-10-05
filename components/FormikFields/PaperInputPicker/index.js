@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  View, Text
+  View, Text, StyleSheet
 } from 'react-native';
 import {
   TextInput, Button, Title
@@ -46,7 +46,7 @@ const PaperInputPicker = ({
   return (
     <>
       {fieldType === 'input' && (
-        <View>
+        <View style={styles}>
           <TextInput
             label={label}
             onChangeText={handleChange(formikKey)}
@@ -62,7 +62,7 @@ const PaperInputPicker = ({
       )}
       {fieldType === 'select' && (
         <View>
-          <Title>{label}</Title>
+          <Text style={layout.selectLabel}>{label}</Text>
           <View style={layout.buttonGroupContainer}>
             {data.options.map((result) => (
               <Button
@@ -103,8 +103,68 @@ const PaperInputPicker = ({
           />
         </View>
       )}
+      {fieldType === 'topLabel' && (
+        <View>
+          <Title>{label}</Title>
+          <View
+            style={styles.horizontalLine}
+          />
+        </View>
+      )}
+      {fieldType === 'label' && (
+        <View>
+          <View
+            style={styles.horizontalLine}
+          />
+          <Title>{label}</Title>
+          <View
+            style={styles.horizontalLine}
+          />
+        </View>
+      )}
+      {fieldType === 'multiInputRow' && (
+        <View style={styles.container}>
+          <Text>{label}</Text>
+          <View style={styles.multiInputContainer}>
+            {data.options.map((result) => (
+              <View style={styles.inputItem}>
+                <TextInput
+                  label={result}
+                  onChangeText={handleChange(result)}
+                  onBlur={handleBlur(result)}
+                  {...rest} //eslint-disable-line
+                  mode="outlined"
+                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                />
+                <Text style={{ color: 'red' }}>
+                  {touched[result] && errors[result]}
+                </Text>
+              </View>
+            ))}
+          </View>
+        </View>
+      )}
     </>
   );
 };
 
+const styles = StyleSheet.create({
+  horizontalLine: {
+    borderBottomColor: '#D0D0D0',
+    borderBottomWidth: 1,
+    marginTop: 10,
+    marginBottom: 10,
+
+  },
+  inputItem: {
+    flex: 1,
+    marginHorizontal: 5
+  },
+  multiInputContainer: {
+    flexDirection: 'row'
+  },
+  container: {
+    flexDirection: 'column'
+  }
+})
 export default PaperInputPicker;

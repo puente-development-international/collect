@@ -1,5 +1,9 @@
 const configArray = [
   {
+    label: 'Basic Information',
+    fieldType: 'label'
+  },
+  {
     label: 'First Name',
     formikKey: 'fname',
     value: '',
@@ -28,7 +32,12 @@ const configArray = [
     label: 'Date of Birth',
     formikKey: 'dob',
     value: '',
-    fieldType: 'input'
+    fieldType: 'multiInputRow',
+    options: [
+      'Month',
+      'Day',
+      'Year'
+    ]
   },
   {
     label: 'Sex',
@@ -46,6 +55,10 @@ const configArray = [
     formikKey: 'telephoneNumber',
     value: '',
     fieldType: 'input'
+  },
+  {
+    label: 'Basic Information',
+    fieldType: 'label'
   },
   {
     label: 'Marriage Status',
@@ -86,6 +99,10 @@ const configArray = [
     ]
   },
   {
+    label: 'Location',
+    fieldType: 'label'
+  },
+  {
     label: 'Community Name',
     formikKey: 'communityname',
     value: '',
@@ -104,6 +121,10 @@ const configArray = [
   //   formikKey: 'province',
   //   value: ""
   // },
+  {
+    label: 'Insurance',
+    fieldType: 'label'
+  },
   {
     label: 'Insurance Number',
     formikKey: 'insuranceNumber',
@@ -138,6 +159,10 @@ const configArray = [
     formikKey: 'longitude',
     value: 0,
     fieldType: 'geolocation'
+  },
+  {
+    label: 'Household',
+    fieldType: 'label'
   },
   {
     label: 'Household',

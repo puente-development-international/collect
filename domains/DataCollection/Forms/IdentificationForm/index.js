@@ -58,6 +58,7 @@ const IdentificationForm = ({
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
         values.surveyingOrganization = userOrganization; //eslint-disable-line
+        values.dob = values.Month + '/' + values.Day + '/' + values.Year;
         const submitAction = () => {
           setTimeout(() => {
             setSelectedForm('');
@@ -71,6 +72,7 @@ const IdentificationForm = ({
           photoFile,
           localObject: values
         };
+        console.log(postParams);
 
         checkOnlineStatus().then((connected) => {
           if (connected) {
@@ -103,10 +105,10 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
-            </Button>
-          )}
+              <Button onPress={formikProps.handleSubmit}>
+                <Text>Submit</Text>
+              </Button>
+            )}
         </View>
       )}
     </Formik>
