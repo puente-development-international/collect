@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.7.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.6.1...v5.7.0) (2020-10-05)
+
+
+### Features
+
+* add organization to all identification records ([55b76bd](https://github.com/hopetambala/puente-reactnative-collect/commit/55b76bd0d508b406680e82b028e7e92d9411d346))
+* refactor navigation by bringing it to the highest level of the data collection domain ([af7d2a3](https://github.com/hopetambala/puente-reactnative-collect/commit/af7d2a3a193caf0001dd2fd6c32d122a126cd2dc))
+
 ### [5.6.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.6.0...v5.6.1) (2020-10-03)
 
 
