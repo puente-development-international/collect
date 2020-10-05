@@ -1,7 +1,7 @@
 const configArray = [
   {
     label: 'Basic Information',
-    fieldType: 'label'
+    fieldType: 'header'
   },
   {
     label: 'First Name',
@@ -58,7 +58,7 @@ const configArray = [
   },
   {
     label: 'Basic Information',
-    fieldType: 'label'
+    fieldType: 'header'
   },
   {
     label: 'Marriage Status',
@@ -100,7 +100,7 @@ const configArray = [
   },
   {
     label: 'Location',
-    fieldType: 'label'
+    fieldType: 'header'
   },
   {
     label: 'Community Name',
@@ -123,7 +123,7 @@ const configArray = [
   // },
   {
     label: 'Insurance',
-    fieldType: 'label'
+    fieldType: 'header'
   },
   {
     label: 'Insurance Number',
@@ -162,7 +162,7 @@ const configArray = [
   },
   {
     label: 'Household',
-    fieldType: 'label'
+    fieldType: 'header'
   },
   {
     label: 'Household',

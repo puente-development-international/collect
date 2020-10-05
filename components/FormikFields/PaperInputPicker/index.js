@@ -111,7 +111,7 @@ const PaperInputPicker = ({
           />
         </View>
       )}
-      {fieldType === 'label' && (
+      {fieldType === 'header' && (
         <View>
           <View
             style={styles.horizontalLine}
