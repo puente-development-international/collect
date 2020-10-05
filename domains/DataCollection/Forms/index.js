@@ -17,10 +17,9 @@ const Forms = (props) => {
     navigation, navigateToGallery,
     selectedForm, setSelectedForm, navigateToNewRecord,
     scrollViewScroll, setScrollViewScroll,
-    puenteForms, userOrganization
+    puenteForms, userOrganization, surveyee, setSurveyee
   } = props;
   const [consent, setConsent] = useState(false);
-  const [surveyee, setSurveyee] = useState();
 
   return (
     <View style={layout.screenContainer}>
