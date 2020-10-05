@@ -31,15 +31,16 @@ const DataCollection = ({ navigation }) => {
   const [userOrganization, setUserOrganization] = useState('');
   const [selectPerson, setSelectPerson] = useState();
   const [selectedForm, setSelectedForm] = useState('id');
-
+  const [surveyee, setSurveyee] = useState();
   const navigateToRoot = async () => {
     setView('Root');
   };
 
-  const navigateToNewRecord = async (formTag) => {
+  const navigateToNewRecord = async (formTag, surveyeePerson) => {
     await getData('organization').then((org) => {
       setUserOrganization(org);
       setView('Forms');
+      setSurveyee(surveyeePerson);
       setSelectedForm(formTag || 'id');
     });
   };
@@ -95,6 +96,8 @@ const DataCollection = ({ navigation }) => {
                 setSelectedForm={setSelectedForm}
                 puenteForms={puenteForms}
                 userOrganization={userOrganization}
+                surveyee={surveyee}
+                setSurveyee={setSurveyee}
               />
             </View>
           )}
@@ -122,6 +125,9 @@ const DataCollection = ({ navigation }) => {
                 organization={userOrganization}
                 puenteForms={puenteForms}
                 navigateToNewRecord={navigateToNewRecord}
+                surveyee={surveyee}
+                setSurveyee={setSurveyee}
+                setView={setView}
               />
             </View>
           )}

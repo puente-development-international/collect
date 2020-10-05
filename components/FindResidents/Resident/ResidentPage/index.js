@@ -1,23 +1,19 @@
-import { Form } from 'formik';
 import React, { useEffect, useState } from 'react';
 import {
   View, StyleSheet, Image
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import {
-  Text, TextInput, Button, Title
+  Text, Button, Title
 } from 'react-native-paper';
 
-import { theme } from '../../../../modules/theme';
 import Demographics from './Demographics';
 import Forms from './Forms';
 import Household from './Housheold';
 
-
 const ResidentPage = ({
-  fname, lname, nickname, city, picture, license, selectPerson, setSelectPerson, puenteForms, navigateToNewRecord
+  fname, lname, nickname, city, picture, selectPerson, setSelectPerson,
+  puenteForms, navigateToNewRecord, setSurveyee, setView
 }) => {
-
   const [pictureUrl, setPictureUrl] = useState();
   const [demographics, setDemographics] = useState(true);
   const [forms, setForms] = useState(false);
@@ -25,10 +21,8 @@ const ResidentPage = ({
 
   useEffect(() => {
     const pic = picture;
-    console.log(picture)
     if (pic) {
       setPictureUrl({ uri: pic.url });
-      console.log('picture', pictureUrl);
     }
   }, []);
 
@@ -36,19 +30,19 @@ const ResidentPage = ({
     setForms(false);
     setHousehold(false);
     setDemographics(true);
-  }
+  };
 
   const showForms = () => {
     setHousehold(false);
     setDemographics(false);
     setForms(true);
-  }
+  };
 
   const showHousehold = () => {
     setForms(false);
     setDemographics(false);
     setHousehold(true);
-  }
+  };
   return (
     <View>
       <View style={styles.picNameContainer}>
@@ -57,9 +51,14 @@ const ResidentPage = ({
           source={pictureUrl}
         />
         <View style={styles.nameContainer}>
-          <Title>{fname + ' ' + lname}</Title>
-          <Text style={styles.name}>{'"' + nickname + '"'}</Text>
-          <Button compact={true} style={styles.button} contentStyle={styles.buttonContent} onPress={() => console.log('')}>Edit Profile</Button>
+          <Title>{`${fname} ${lname}`}</Title>
+          <Text style={styles.name}>{`"${nickname}"`}</Text>
+          <Button
+            style={styles.button}
+            contentStyle={styles.buttonContent}
+          >
+            Edit Profile
+          </Button>
         </View>
       </View>
       <View
@@ -87,6 +86,9 @@ const ResidentPage = ({
         <Forms
           puenteForms={puenteForms}
           navigateToNewRecord={navigateToNewRecord}
+          surveyee={selectPerson}
+          setSurveyee={setSurveyee}
+          setView={setView}
         />
       )}
       {household && (

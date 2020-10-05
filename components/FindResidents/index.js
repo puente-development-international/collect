@@ -12,7 +12,10 @@ import { residentIDQuery } from '../../services/parse/crud';
 import ResidentCard from './Resident/ResidentCard';
 import ResidentPage from './Resident/ResidentPage';
 
-const FindResidents = ({ selectPerson, setSelectPerson, organization, puenteForms , navigateToNewRecord}) => {
+const FindResidents = ({
+  selectPerson, setSelectPerson, organization, puenteForms, navigateToNewRecord,
+  surveyee, setSurveyee, setView
+}) => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [residents, setResidents] = useState([]);
@@ -98,9 +101,11 @@ const FindResidents = ({ selectPerson, setSelectPerson, organization, puenteForm
           picture={selectPerson.picture}
           selectPerson={selectPerson}
           setSelectPerson={setSelectPerson}
-          picture={selectPerson.picture}
           puenteForms={puenteForms}
           navigateToNewRecord={navigateToNewRecord}
+          surveyee={surveyee}
+          setSurveyee={setSurveyee}
+          setView={setView}
         />
       )}
     </View>
