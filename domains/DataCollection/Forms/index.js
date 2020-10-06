@@ -37,8 +37,9 @@ const Forms = (props) => {
         <View>
           <View style={layout.container}>
             <ResidentIdSearchbar
-              selectPerson={surveyee}
-              setSelectPerson={setSurveyee}
+              surveyee={surveyee}
+              setSurveyee={setSurveyee}
+              surveyingOrganization={userOrganization}
             />
           </View>
           <SupplementaryForm

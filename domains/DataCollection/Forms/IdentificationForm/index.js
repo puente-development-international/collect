@@ -33,7 +33,8 @@ import PaperInputPicker from '../../../../components/FormikFields/PaperInputPick
 // });
 
 const IdentificationForm = ({
-  scrollViewScroll, setScrollViewScroll, setSelectedForm, setSurveyee, userOrganization
+  scrollViewScroll, setScrollViewScroll,
+  setSelectedForm, setSurveyee, userOrganization
 }) => {
   useEffect(() => {
     const interval = setInterval(() => {
@@ -76,7 +77,8 @@ const IdentificationForm = ({
         checkOnlineStatus().then((connected) => {
           if (connected) {
             postObjectsToClass(postParams).then((surveyee) => {
-              setSurveyee(surveyee);
+              const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
+              setSurveyee(surveyeeSanitized);
               submitAction();
             });
           } else {

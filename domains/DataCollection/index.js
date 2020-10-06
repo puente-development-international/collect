@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import {
-  Button, Card, Title
+  Button, Card
 } from 'react-native-paper';
 
 import { layout, theme } from '../../modules/theme';
@@ -36,7 +36,7 @@ const DataCollection = ({ navigation }) => {
   const [selectPerson, setSelectPerson] = useState();
   const [selectedForm, setSelectedForm] = useState('id');
   const [surveyee, setSurveyee] = useState();
-  const [surveyor, setSurveyor] = useState();
+  const [, setSurveyor] = useState();
   const navigateToRoot = async () => {
     setView('Root');
   };
@@ -48,9 +48,9 @@ const DataCollection = ({ navigation }) => {
 
   const navigateToNewRecord = async (formTag, surveyeePerson) => {
     await getData('organization').then((org) => {
-      setUserOrganization(org);
+      setUserOrganization(org || userOrganization);
       setView('Forms');
-      setSurveyee(surveyeePerson);
+      setSurveyee(surveyeePerson || surveyee);
       setSelectedForm(formTag || 'id');
     });
   };
