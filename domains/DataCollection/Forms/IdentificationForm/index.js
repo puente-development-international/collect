@@ -58,6 +58,7 @@ const IdentificationForm = ({
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
         values.surveyingOrganization = userOrganization; //eslint-disable-line
+        values.dob = `${values.Month}/${values.Day}/${values.Year}`; //eslint-disable-line
         const submitAction = () => {
           setTimeout(() => {
             setSelectedForm('');
