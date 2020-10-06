@@ -9,6 +9,7 @@ import {
 import Demographics from './Demographics';
 import Forms from './Forms';
 import Household from './Housheold';
+import { theme } from '../../../../modules/theme';
 
 const ResidentPage = ({
   fname, lname, nickname, city, picture, selectPerson, setSelectPerson,
@@ -126,10 +127,8 @@ const styles = StyleSheet.create({
     marginLeft: 0
   },
   horizontalLine: {
-    borderBottomColor: '#D0D0D0',
+    borderBottomColor: theme.colors.primary,
     borderBottomWidth: 1,
-    marginLeft: 5,
-    marginRight: 5
   },
   navigationButtons: {
     flexDirection: 'row',
