@@ -1,7 +1,9 @@
 const configArray = [
   {
-    label: 'Basic Information',
-    fieldType: 'header'
+    label: 'Demographics',
+    fieldType: 'header',
+    formikKey: 'none_bi',
+
   },
   {
     label: 'First Name',
@@ -16,12 +18,6 @@ const configArray = [
     fieldType: 'input'
 
   },
-  // {
-  //   label: "Relationship",
-  //   formikKey: 'relationship',
-  //   value: "",
-  //   fieldType: "input"
-  // },
   {
     label: 'Nickname',
     formikKey: 'nickname',
@@ -56,10 +52,12 @@ const configArray = [
     value: '',
     fieldType: 'input'
   },
-  {
-    label: 'Basic Information',
-    fieldType: 'header'
-  },
+  // {
+  //   label: 'Demographic Information',
+  //   fieldType: 'header',
+  //   formikKey: 'none_bi2',
+
+  // },
   {
     label: 'Marriage Status',
     formikKey: 'marriageStatus',
@@ -72,11 +70,6 @@ const configArray = [
       'widow'
     ]
   },
-  // {
-  //   label: "Family Relationships",
-  //   formikKey: 'familyRelationships',
-  //   value: ""
-  // },
   {
     label: 'Occupation',
     formikKey: 'occupation',
@@ -100,7 +93,8 @@ const configArray = [
   },
   {
     label: 'Location',
-    fieldType: 'header'
+    fieldType: 'header',
+    formikKey: 'none_location',
   },
   {
     label: 'Community Name',
@@ -123,7 +117,9 @@ const configArray = [
   // },
   {
     label: 'Insurance',
-    fieldType: 'header'
+    fieldType: 'header',
+    formikKey: 'none_insurance',
+
   },
   {
     label: 'Insurance Number',
@@ -162,7 +158,9 @@ const configArray = [
   },
   {
     label: 'Household',
-    fieldType: 'header'
+    fieldType: 'header',
+    formikKey: 'none_household',
+
   },
   {
     label: 'Household',

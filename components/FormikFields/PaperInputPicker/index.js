@@ -1,16 +1,18 @@
 import * as React from 'react';
 import {
-  View, Text, StyleSheet
+  View, Text
 } from 'react-native';
 import {
-  TextInput, Button, Title
+  TextInput, Button, Headline
 } from 'react-native-paper';
 
 import AutoFill from './AutoFill';
 import HouseholdManager from './HouseholdManager';
 
 import getLocation from '../../../modules/geolocation';
+
 import { theme, layout } from '../../../modules/theme';
+import styles from './index.style';
 
 const PaperInputPicker = ({
   data, formikProps, scrollViewScroll, setScrollViewScroll, ...rest
@@ -103,20 +105,9 @@ const PaperInputPicker = ({
           />
         </View>
       )}
-      {fieldType === 'topLabel' && (
-        <View>
-          <Title>{label}</Title>
-          <View
-            style={styles.horizontalLine}
-          />
-        </View>
-      )}
       {fieldType === 'header' && (
         <View>
-          <View
-            style={styles.horizontalLine}
-          />
-          <Title>{label}</Title>
+          <Headline style={styles.header}>{label}</Headline>
           <View
             style={styles.horizontalLine}
           />
@@ -127,7 +118,7 @@ const PaperInputPicker = ({
           <Text>{label}</Text>
           <View style={styles.multiInputContainer}>
             {data.options.map((result) => (
-              <View style={styles.inputItem}>
+              <View key={result} style={styles.inputItem}>
                 <TextInput
                   label={result}
                   onChangeText={handleChange(result)}
@@ -148,23 +139,4 @@ const PaperInputPicker = ({
   );
 };
 
-const styles = StyleSheet.create({
-  horizontalLine: {
-    borderBottomColor: '#D0D0D0',
-    borderBottomWidth: 1,
-    marginTop: 10,
-    marginBottom: 10,
-
-  },
-  inputItem: {
-    flex: 1,
-    marginHorizontal: 5
-  },
-  multiInputContainer: {
-    flexDirection: 'row'
-  },
-  container: {
-    flexDirection: 'column'
-  }
-});
 export default PaperInputPicker;
