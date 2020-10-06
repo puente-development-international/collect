@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.7.0...v5.7.1) (2020-10-06)
+
+
+### Features
+
+* change styling of forms view ([c3bed9b](https://github.com/hopetambala/puente-reactnative-collect/commit/c3bed9ba177af1ecd4b14b9739d85c9e8331d7db))
+
 ## [5.7.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.6.1...v5.7.0) (2020-10-05)
 
 
