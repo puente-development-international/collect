@@ -77,7 +77,7 @@ const DataCollection = ({ navigation }) => {
       <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
         {view === 'Root'
           && (
-            <View style={styles.rootContainer}>
+            <View>
               <View style={styles.horizontalLine} />
               <Title>{surveyor}</Title>
               <View style={styles.map}>
@@ -169,13 +169,9 @@ const DataCollection = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  rootContainer: {
-    // marginHorizontal: 10
-  },
   map: {
     marginVertical: 10,
     marginHorizontal: 10
-    // borderWidth: 1
   },
   screenFlexRowWrap: {
     marginHorizontal: 10,
@@ -190,7 +186,6 @@ const styles = StyleSheet.create({
   },
   cardSmallStyle: {
     height: 150,
-    // width: 170,
     marginHorizontal: 7,
     marginVertical: 7,
     flex: 1
