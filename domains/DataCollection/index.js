@@ -78,7 +78,7 @@ const DataCollection = ({ navigation }) => {
         {view === 'Root'
           && (
             <View>
-              <View style={styles.horizontalLine} />
+              {/* <View style={styles.horizontalLine} />
               <Title>{surveyor}</Title>
               <View style={styles.map}>
                 <ComingSoonSVG height={250} marginLeft="auto" marginRight="auto" />
@@ -92,7 +92,7 @@ const DataCollection = ({ navigation }) => {
                   <Text>collected: 21</Text>
                 </View>
               </View>
-              <View style={styles.horizontalLine} />
+              <View style={styles.horizontalLine} /> */}
               <View style={styles.screenFlexRowWrap}>
                 <View style={styles.cardContainer}>
                   <Card style={styles.cardSmallStyle} onPress={() => navigateToNewRecord()}>
