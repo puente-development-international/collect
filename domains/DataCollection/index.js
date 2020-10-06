@@ -18,11 +18,9 @@ import FormGallery from './FormGallery';
 import { getData } from '../../modules/async-storage';
 import FindResidents from '../../components/FindResidents';
 import { retrieveCurrentUserFunction } from '../../services/parse/auth';
-import styles from '../../components/Header/index.styles';
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
 import FindRecordSVG from '../../assets/graphics/static/Find-Record-Icon.svg';
 import NewRecordSVG from '../../assets/icons/New-Record-icon.svg';
-import ChartIconCVG from '../../assets/icons/Chart-Icon.svg'
 
 const puenteForms = [
   { tag: 'id', name: 'Resident ID' },
@@ -45,8 +43,8 @@ const DataCollection = ({ navigation }) => {
 
   useEffect(() => {
     const currentUser = retrieveCurrentUserFunction();
-    setSurveyor(currentUser.get('firstname') + " " + currentUser.get('lastname'))
-  }, [])
+    setSurveyor(`${currentUser.get('firstname')} ${currentUser.get('lastname')}`);
+  }, []);
 
   const navigateToNewRecord = async (formTag, surveyeePerson) => {
     await getData('organization').then((org) => {
@@ -79,36 +77,36 @@ const DataCollection = ({ navigation }) => {
       <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
         {view === 'Root'
           && (
-            <View style={stylesX.rootContainer}>
-              <View style={stylesX.horizontalLine} />
+            <View style={styles.rootContainer}>
+              <View style={styles.horizontalLine} />
               <Title>{surveyor}</Title>
-              <View style={stylesX.map}>
-                <ComingSoonSVG height={250} marginLeft={'auto'} marginRight={'auto'} />
+              <View style={styles.map}>
+                <ComingSoonSVG height={250} marginLeft="auto" marginRight="auto" />
               </View>
-              <View style={stylesX.userInfoContainer}>
-                <View style={stylesX.mySurveysContainer}>
+              <View style={styles.userInfoContainer}>
+                <View style={styles.mySurveysContainer}>
                   <Text>My surveys collected: 21</Text>
                 </View>
-                <View style={stylesX.totalSurveysContainer}>
+                <View style={styles.totalSurveysContainer}>
                   <Text>Total surveys</Text>
                   <Text>collected: 21</Text>
                 </View>
               </View>
-              <View style={stylesX.horizontalLine} />
-              <View style={stylesX.screenFlexRowWrap}>
-                <View style={stylesX.cardContainer}>
-                  <Card style={stylesX.cardSmallStyle} onPress={() => navigateToNewRecord()}>
-                    <NewRecordSVG height={70} style={stylesX.svg} />
-                    <Button marginTop={'auto'}>New Record</Button>
+              <View style={styles.horizontalLine} />
+              <View style={styles.screenFlexRowWrap}>
+                <View style={styles.cardContainer}>
+                  <Card style={styles.cardSmallStyle} onPress={() => navigateToNewRecord()}>
+                    <NewRecordSVG height={70} style={styles.svg} />
+                    <Button marginTop="auto">New Record</Button>
                   </Card>
-                  <Card style={stylesX.cardSmallStyle} onPress={navigateToFindRecords}>
-                    <FindRecordSVG height={65} style={stylesX.svg} />
-                    <Button marginTop={'auto'}>Find Record</Button>
+                  <Card style={styles.cardSmallStyle} onPress={navigateToFindRecords}>
+                    <FindRecordSVG height={65} style={styles.svg} />
+                    <Button marginTop="auto">Find Record</Button>
                   </Card>
                 </View>
-                <Card style={stylesX.cardSmallStyle} onPress={navigateToGallery}>
-                  <ComingSoonSVG height={65} style={stylesX.svg} />
-                  <Button marginTop={'auto'}>View All Forms</Button>
+                <Card style={styles.cardSmallStyle} onPress={navigateToGallery}>
+                  <ComingSoonSVG height={65} style={styles.svg} />
+                  <Button marginTop="auto">View All Forms</Button>
                 </Card>
               </View>
             </View>
@@ -170,7 +168,7 @@ const DataCollection = ({ navigation }) => {
   );
 };
 
-const stylesX = StyleSheet.create({
+const styles = StyleSheet.create({
   rootContainer: {
     // marginHorizontal: 10
   },
@@ -224,5 +222,5 @@ const stylesX = StyleSheet.create({
     marginRight: 'auto',
     marginTop: 'auto'
   }
-})
+});
 export default DataCollection;

@@ -9,7 +9,7 @@ import {
 import Demographics from './Demographics';
 import Forms from './Forms';
 import Household from './Housheold';
-import { theme } from '../../../../modules/theme'
+import { theme } from '../../../../modules/theme';
 
 const ResidentPage = ({
   fname, lname, nickname, city, picture, selectPerson, setSelectPerson,
