@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.7.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.7.1...v5.7.2) (2020-10-07)
+
+
+### Bug Fixes
+
+* objectId wasn't being carried to new forms being created ([438749d](https://github.com/hopetambala/puente-reactnative-collect/commit/438749da9e6a860fec5d9de08b100ad889f897b5))
+
 ### [5.7.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.7.0...v5.7.1) (2020-10-06)
 
 
