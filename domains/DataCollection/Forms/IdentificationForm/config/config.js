@@ -167,17 +167,7 @@ const configArray = [
     formikKey: 'householdId',
     value: '',
     fieldType: 'household'
-  },
-  // {
-  //   label: "Surveying User",
-  //   formikKey: 'surveyingUser',
-  //   value: "Test"
-  // },
-  // {
-  //   label: "Surveying Organization",
-  //   formikKey: 'surveyingOrganization',
-  //   value: "Test"
-  // },
+  }
 ];
 
 export default configArray;
