@@ -19,7 +19,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [surveyingOrganization]);
 
   const fetchData = async () => {
     const queryParams = {

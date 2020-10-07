@@ -17,7 +17,7 @@ const Forms = (props) => {
     navigation, navigateToGallery,
     selectedForm, setSelectedForm, navigateToNewRecord,
     scrollViewScroll, setScrollViewScroll,
-    puenteForms, userOrganization, surveyee, setSurveyee
+    puenteForms, surveyingUser, surveyingOrganization, surveyee, setSurveyee
   } = props;
   const [consent, setConsent] = useState(false);
 
@@ -30,7 +30,8 @@ const Forms = (props) => {
           setScrollViewScroll={setScrollViewScroll}
           setSelectedForm={setSelectedForm}
           setSurveyee={setSurveyee}
-          userOrganization={userOrganization}
+          surveyingOrganization={surveyingOrganization}
+          surveyingUser={surveyingUser}
         />
       )}
       {consent === true && selectedForm !== 'id' && selectedForm !== '' && (
@@ -39,7 +40,7 @@ const Forms = (props) => {
             <ResidentIdSearchbar
               surveyee={surveyee}
               setSurveyee={setSurveyee}
-              surveyingOrganization={userOrganization}
+              surveyingOrganization={surveyingOrganization}
             />
           </View>
           <SupplementaryForm
@@ -47,6 +48,7 @@ const Forms = (props) => {
             selectedForm={selectedForm}
             setSelectedForm={setSelectedForm}
             surveyee={surveyee}
+            surveyingUser={surveyingUser}
           />
         </View>
       )}

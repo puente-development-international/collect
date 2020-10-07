@@ -15,7 +15,7 @@ import { theme, layout } from '../../../modules/theme';
 import styles from './index.style';
 
 const PaperInputPicker = ({
-  data, formikProps, scrollViewScroll, setScrollViewScroll, ...rest
+  data, formikProps, scrollViewScroll, setScrollViewScroll, surveyingOrganization, ...rest
 }) => {
   const { label, formikKey, fieldType } = data;
   const {
@@ -102,6 +102,7 @@ const PaperInputPicker = ({
           <HouseholdManager
             formikProps={formikProps}
             formikKey={formikKey}
+            surveyingOrganization={surveyingOrganization}
           />
         </View>
       )}

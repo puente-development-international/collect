@@ -17,7 +17,7 @@ import medConfig from './configs/medical-evaluation.config';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 
 const SupplementaryForm = ({
-  navigation, selectedForm, setSelectedForm, surveyee
+  navigation, selectedForm, setSelectedForm, surveyee, surveyingUser
 }) => {
   const [config, setConfig] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
@@ -37,12 +37,14 @@ const SupplementaryForm = ({
       initialValues={{}}
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
+        const formObject = values;
+        formObject.surveyingUser = surveyingUser;
         const postParams = {
           parseParentClassID: surveyee.objectId,
           parseParentClass: 'SurveyData',
           parseClass: config.class,
           photoFile,
-          localObject: values
+          localObject: formObject
         };
 
         postObjectsToClassWithRelation(postParams)

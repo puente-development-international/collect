@@ -31,24 +31,25 @@ const puenteForms = [
 const DataCollection = ({ navigation }) => {
   const [scrollViewScroll, setScrollViewScroll] = useState();
   const [view, setView] = useState('Root');
-
-  const [userOrganization, setUserOrganization] = useState('');
-  const [selectPerson, setSelectPerson] = useState();
   const [selectedForm, setSelectedForm] = useState('id');
+
+  const [selectPerson, setSelectPerson] = useState();
   const [surveyee, setSurveyee] = useState();
-  const [, setSurveyor] = useState();
+
+  const [surveyingOrganization, setSurveyingOrganization] = useState('');
+  const [surveyingUser, setSurveyingUser] = useState();
   const navigateToRoot = async () => {
     setView('Root');
   };
 
   useEffect(() => {
     const currentUser = retrieveCurrentUserFunction();
-    setSurveyor(`${currentUser.get('firstname')} ${currentUser.get('lastname')}`);
+    setSurveyingUser(`${currentUser.get('firstname')} ${currentUser.get('lastname')}`);
   }, []);
 
   const navigateToNewRecord = async (formTag, surveyeePerson) => {
     await getData('organization').then((org) => {
-      setUserOrganization(org || userOrganization);
+      setSurveyingOrganization(org || surveyingOrganization);
       setView('Forms');
       setSurveyee(surveyeePerson || surveyee);
       setSelectedForm(formTag || 'id');
@@ -61,7 +62,7 @@ const DataCollection = ({ navigation }) => {
 
   const navigateToFindRecords = async () => {
     await getData('organization').then((org) => {
-      setUserOrganization(org);
+      setSurveyingOrganization(org || surveyingOrganization);
       setView('Find Records');
     });
   };
@@ -79,7 +80,7 @@ const DataCollection = ({ navigation }) => {
           && (
             <View>
               {/* <View style={styles.horizontalLine} />
-              <Title>{surveyor}</Title>
+              <Title>{surveyingUser}</Title>
               <View style={styles.map}>
                 <ComingSoonSVG height={250} marginLeft="auto" marginRight="auto" />
               </View>
@@ -127,7 +128,8 @@ const DataCollection = ({ navigation }) => {
                 selectedForm={selectedForm}
                 setSelectedForm={setSelectedForm}
                 puenteForms={puenteForms}
-                userOrganization={userOrganization}
+                surveyingUser={surveyingUser}
+                surveyingOrganization={surveyingOrganization}
                 surveyee={surveyee}
                 setSurveyee={setSurveyee}
               />
@@ -154,7 +156,7 @@ const DataCollection = ({ navigation }) => {
               <FindResidents
                 selectPerson={selectPerson}
                 setSelectPerson={setSelectPerson}
-                organization={userOrganization}
+                organization={surveyingOrganization}
                 puenteForms={puenteForms}
                 navigateToNewRecord={navigateToNewRecord}
                 surveyee={surveyee}
