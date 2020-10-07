@@ -5,10 +5,12 @@ import {
 } from 'react-native';
 
 import {
-  Text, Button, Chip, Searchbar
+  Text, Button, Searchbar
 } from 'react-native-paper';
 
 import { residentIDQuery } from '../../services/parse/crud';
+
+import ResidentCard from '../FindResidents/Resident/ResidentCard';
 
 const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) => {
   const [data, setData] = useState([]);
@@ -75,10 +77,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
       ))}
 
       {surveyee && (
-        <Chip icon="information">
-          {surveyee.fname}
-          {surveyee.lname}
-        </Chip>
+        <ResidentCard resident={surveyee} />
       )}
     </View>
   );
