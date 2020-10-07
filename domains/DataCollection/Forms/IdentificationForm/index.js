@@ -33,7 +33,8 @@ import PaperInputPicker from '../../../../components/FormikFields/PaperInputPick
 // });
 
 const IdentificationForm = ({
-  scrollViewScroll, setScrollViewScroll, setSelectedForm, setSurveyee, userOrganization
+  scrollViewScroll, setScrollViewScroll,
+  setSelectedForm, setSurveyee, surveyingOrganization, surveyingUser
 }) => {
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,8 +58,11 @@ const IdentificationForm = ({
       initialValues={{}}
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
-        values.surveyingOrganization = userOrganization; //eslint-disable-line
-        values.dob = `${values.Month}/${values.Day}/${values.Year}`; //eslint-disable-line
+        const formObject = values;
+        formObject.surveyingOrganization = surveyingOrganization;
+        formObject.surveyingUser = surveyingUser;
+        formObject.dob = `${values.Month}/${values.Day}/${values.Year}`;
+
         const submitAction = () => {
           setTimeout(() => {
             setSelectedForm('');
@@ -70,13 +74,14 @@ const IdentificationForm = ({
           parseClass: 'SurveyData',
           signature: 'Sample Signature',
           photoFile,
-          localObject: values
+          localObject: formObject
         };
 
         checkOnlineStatus().then((connected) => {
           if (connected) {
             postObjectsToClass(postParams).then((surveyee) => {
-              setSurveyee(surveyee);
+              const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
+              setSurveyee(surveyeeSanitized);
               submitAction();
             });
           } else {
@@ -95,6 +100,7 @@ const IdentificationForm = ({
               <PaperInputPicker
                 data={result}
                 formikProps={formikProps}
+                surveyingOrganization={surveyingOrganization}
                 scrollViewScroll={scrollViewScroll}
                 setScrollViewScroll={setScrollViewScroll}
               // placeholder="Ana"

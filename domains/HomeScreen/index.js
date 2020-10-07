@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import {
   Text, View
 } from 'react-native';
-import { Card, Button, Paragraph, Title } from 'react-native-paper';
+import {
+  Card, Button, Paragraph, Title
+} from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import getTasks from '../../services/tasky';

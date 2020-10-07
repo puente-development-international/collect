@@ -10,8 +10,11 @@ import {
 import { theme } from '../../../../modules/theme';
 
 const ResidentCard = ({
-  fname, lname, nickname, city, picture, onSelectPerson, listItem
+  resident, onSelectPerson
 }) => {
+  const {
+    fname, lname, nickname, city, picture
+  } = resident;
   const [pictureUrl, setPictureUrl] = useState();
   useEffect(() => {
     const pic = picture;
@@ -25,7 +28,7 @@ const ResidentCard = ({
       <TouchableOpacity
         style={styles.container}
         onPress={() => {
-          onSelectPerson(listItem);
+          if (onSelectPerson) onSelectPerson(resident);
         }}
       >
         <View style={styles.nameConatiner}>

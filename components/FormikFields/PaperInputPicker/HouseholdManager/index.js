@@ -16,7 +16,7 @@ const relationships = [
 ];
 
 const HouseholdManager = (props) => {
-  const { formikProps, formikKey } = props;
+  const { formikProps, formikKey, surveyingOrganization } = props;
   const { setFieldValue } = formikProps;
 
   const [selectPerson, setSelectPerson] = useState();
@@ -31,7 +31,7 @@ const HouseholdManager = (props) => {
   const attachToExistingHousehold = () => {
     // set householdId (from selectPerson) on the residentIdForm
     // setFieldValue(formikKey, selectPerson.objectId);
-    setFieldValue(formikKey, selectPerson.householdId);
+    setFieldValue(formikKey, selectPerson.householdId || 'No Household Id Found');
   };
 
   const createNewHousehold = () => {
@@ -71,8 +71,9 @@ const HouseholdManager = (props) => {
               <Appbar.Content title="Household Manager" subtitle="" />
             </Appbar.Header>
             <ResidentIdSearchbar
-              selectPerson={selectPerson}
-              setSelectPerson={setSelectPerson}
+              surveyee={selectPerson}
+              setSurveyee={setSelectPerson}
+              surveyingOrganization={surveyingOrganization}
             />
             <Text>What is their role/relationship in the household?</Text>
             <View style={layout.buttonGroupContainer}>

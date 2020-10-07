@@ -5,19 +5,21 @@ import {
 } from 'react-native';
 
 import {
-  Text, Button, Chip, Searchbar
+  Text, Button, Searchbar
 } from 'react-native-paper';
 
 import { residentIDQuery } from '../../services/parse/crud';
 
-const ResidentIdSearchbar = ({ selectPerson, setSelectPerson }) => {
+import ResidentCard from '../FindResidents/Resident/ResidentCard';
+
+const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [residents, setResidents] = useState([]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [surveyingOrganization]);
 
   const fetchData = async () => {
     const queryParams = {
@@ -25,7 +27,7 @@ const ResidentIdSearchbar = ({ selectPerson, setSelectPerson }) => {
       offset: 0,
       limit: 10000,
       parseColumn: 'surveyingOrganization',
-      parseParam: 'Test',
+      parseParam: surveyingOrganization,
     };
     let records = await residentIDQuery(queryParams);
     records = JSON.parse(JSON.stringify(records));
@@ -54,8 +56,8 @@ const ResidentIdSearchbar = ({ selectPerson, setSelectPerson }) => {
     setQuery(input);
   };
 
-  const onSelectPerson = (listItem) => {
-    setSelectPerson(listItem);
+  const onSelectSurveyee = (listItem) => {
+    setSurveyee(listItem);
     setQuery('');
   };
 
@@ -70,15 +72,12 @@ const ResidentIdSearchbar = ({ selectPerson, setSelectPerson }) => {
 
       {query !== '' && filterList(residents).map((listItem,) => (
         <View key={listItem.objectId}>
-          <Button onPress={() => onSelectPerson(listItem)}>{listItem.fname}</Button>
+          <Button onPress={() => onSelectSurveyee(listItem)}>{listItem.fname}</Button>
         </View>
       ))}
 
-      {selectPerson && (
-        <Chip icon="information">
-          {selectPerson.fname}
-          {selectPerson.lname}
-        </Chip>
+      {surveyee && (
+        <ResidentCard resident={surveyee} />
       )}
     </View>
   );
