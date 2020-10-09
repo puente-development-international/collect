@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import {
   Text, View
 } from 'react-native';
-import { Card, Button, Paragraph } from 'react-native-paper';
+import {
+  Card, Button, Paragraph, Title
+} from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import getTasks from '../../services/tasky';
@@ -36,7 +38,7 @@ const HomeScreen = (props) => {
       <Header />
       <ScrollView>
         <View style={layout.screenRow}>
-          <Text>My Tasks</Text>
+          <Title>My Tasks</Title>
           <Card>
             <Card.Content>
               <ComingSoonSVG width={200} height={200} />
@@ -53,11 +55,11 @@ const HomeScreen = (props) => {
             </Card.Content>
           </Card>
         </View>
-        <View style={layout.screenRow}>
+        {/* <View style={layout.screenRow}>
           <Text>My Pinned Forms</Text>
-        </View>
+        </View> */}
         <View style={layout.screenRow}>
-          <Text>My Community Board</Text>
+          <Title>My Community Board</Title>
           <Card>
             <Card.Content>
               <ComingSoonSVG width={200} height={200} />

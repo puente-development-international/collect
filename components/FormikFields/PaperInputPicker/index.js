@@ -3,17 +3,19 @@ import {
   View, Text
 } from 'react-native';
 import {
-  TextInput, Button, Title
+  TextInput, Button, Headline
 } from 'react-native-paper';
 
 import AutoFill from './AutoFill';
 import HouseholdManager from './HouseholdManager';
 
 import getLocation from '../../../modules/geolocation';
+
 import { theme, layout } from '../../../modules/theme';
+import styles from './index.style';
 
 const PaperInputPicker = ({
-  data, formikProps, scrollViewScroll, setScrollViewScroll, ...rest
+  data, formikProps, scrollViewScroll, setScrollViewScroll, surveyingOrganization, ...rest
 }) => {
   const { label, formikKey, fieldType } = data;
   const {
@@ -46,7 +48,7 @@ const PaperInputPicker = ({
   return (
     <>
       {fieldType === 'input' && (
-        <View>
+        <View style={styles}>
           <TextInput
             label={label}
             onChangeText={handleChange(formikKey)}
@@ -62,7 +64,7 @@ const PaperInputPicker = ({
       )}
       {fieldType === 'select' && (
         <View>
-          <Title>{label}</Title>
+          <Text style={layout.selectLabel}>{label}</Text>
           <View style={layout.buttonGroupContainer}>
             {data.options.map((result) => (
               <Button
@@ -100,7 +102,38 @@ const PaperInputPicker = ({
           <HouseholdManager
             formikProps={formikProps}
             formikKey={formikKey}
+            surveyingOrganization={surveyingOrganization}
           />
+        </View>
+      )}
+      {fieldType === 'header' && (
+        <View>
+          <Headline style={styles.header}>{label}</Headline>
+          <View
+            style={styles.horizontalLine}
+          />
+        </View>
+      )}
+      {fieldType === 'multiInputRow' && (
+        <View style={styles.container}>
+          <Text>{label}</Text>
+          <View style={styles.multiInputContainer}>
+            {data.options.map((result) => (
+              <View key={result} style={styles.inputItem}>
+                <TextInput
+                  label={result}
+                  onChangeText={handleChange(result)}
+                  onBlur={handleBlur(result)}
+                  {...rest} //eslint-disable-line
+                  mode="outlined"
+                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                />
+                <Text style={{ color: 'red' }}>
+                  {touched[result] && errors[result]}
+                </Text>
+              </View>
+            ))}
+          </View>
         </View>
       )}
     </>

@@ -1,5 +1,11 @@
 const configArray = [
   {
+    label: 'Demographics',
+    fieldType: 'header',
+    formikKey: 'none_bi',
+
+  },
+  {
     label: 'First Name',
     formikKey: 'fname',
     value: '',
@@ -12,12 +18,6 @@ const configArray = [
     fieldType: 'input'
 
   },
-  // {
-  //   label: "Relationship",
-  //   formikKey: 'relationship',
-  //   value: "",
-  //   fieldType: "input"
-  // },
   {
     label: 'Nickname',
     formikKey: 'nickname',
@@ -28,7 +28,12 @@ const configArray = [
     label: 'Date of Birth',
     formikKey: 'dob',
     value: '',
-    fieldType: 'input'
+    fieldType: 'multiInputRow',
+    options: [
+      'Month',
+      'Day',
+      'Year'
+    ]
   },
   {
     label: 'Sex',
@@ -47,6 +52,12 @@ const configArray = [
     value: '',
     fieldType: 'input'
   },
+  // {
+  //   label: 'Demographic Information',
+  //   fieldType: 'header',
+  //   formikKey: 'none_bi2',
+
+  // },
   {
     label: 'Marriage Status',
     formikKey: 'marriageStatus',
@@ -59,11 +70,6 @@ const configArray = [
       'widow'
     ]
   },
-  // {
-  //   label: "Family Relationships",
-  //   formikKey: 'familyRelationships',
-  //   value: ""
-  // },
   {
     label: 'Occupation',
     formikKey: 'occupation',
@@ -86,6 +92,11 @@ const configArray = [
     ]
   },
   {
+    label: 'Location',
+    fieldType: 'header',
+    formikKey: 'none_location',
+  },
+  {
     label: 'Community Name',
     formikKey: 'communityname',
     value: '',
@@ -104,6 +115,12 @@ const configArray = [
   //   formikKey: 'province',
   //   value: ""
   // },
+  {
+    label: 'Insurance',
+    fieldType: 'header',
+    formikKey: 'none_insurance',
+
+  },
   {
     label: 'Insurance Number',
     formikKey: 'insuranceNumber',
@@ -141,20 +158,16 @@ const configArray = [
   },
   {
     label: 'Household',
+    fieldType: 'header',
+    formikKey: 'none_household',
+
+  },
+  {
+    label: 'Household',
     formikKey: 'householdId',
     value: '',
     fieldType: 'household'
-  },
-  // {
-  //   label: "Surveying User",
-  //   formikKey: 'surveyingUser',
-  //   value: "Test"
-  // },
-  // {
-  //   label: "Surveying Organization",
-  //   formikKey: 'surveyingOrganization',
-  //   value: "Test"
-  // },
+  }
 ];
 
 export default configArray;

@@ -6,7 +6,7 @@ import {
   Text, Title, Card
 } from 'react-native-paper';
 
-import { layout, } from '../../../../../modules/theme';
+import { layout, theme } from '../../../../../modules/theme';
 import ComingSoonSVG from '../../../../../assets/graphics/static/Adventurer.svg';
 
 const Forms = ({
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   horizontalLine: {
-    borderBottomColor: '#D0D0D0',
+    borderBottomColor: theme.colors.primary,
     borderBottomWidth: 1,
   },
 });

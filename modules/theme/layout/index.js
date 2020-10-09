@@ -71,10 +71,11 @@ const layout = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    marginBottom: 5,
   },
   buttonGroupButtonStyle: {
     marginHorizontal: 5,
-    marginVertical: 5
+    marginVertical: 5,
   },
   /**
    * Style for a Small Cards
@@ -86,6 +87,10 @@ const layout = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 5,
     marginVertical: 5
+  },
+  selectLabel: {
+    marginTop: 5,
+    marginBottom: 10
   }
 });
 
