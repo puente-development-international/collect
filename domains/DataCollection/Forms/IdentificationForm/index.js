@@ -58,6 +58,7 @@ const IdentificationForm = ({
       initialValues={{}}
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
+        console.log(values);
         const formObject = values;
         formObject.surveyingOrganization = surveyingOrganization;
         formObject.surveyingUser = surveyingUser;
@@ -110,10 +111,10 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
-            </Button>
-          )}
+              <Button onPress={formikProps.handleSubmit}>
+                <Text>Submit</Text>
+              </Button>
+            )}
         </View>
       )}
     </Formik>

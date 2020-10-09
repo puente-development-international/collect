@@ -41,9 +41,18 @@ const configArray = [
     value: '',
     fieldType: 'select',
     options: [
-      'Male',
-      'Female',
-      'Prefer Not to Say'
+      {
+        label: 'Male',
+        value: 'male'
+      },
+      {
+        label: 'Female',
+        value: 'female'
+      },
+      {
+        label: 'Prefer Not to Say',
+        value: 'prefer_not_to_say'
+      }
     ]
   },
   {
@@ -64,10 +73,22 @@ const configArray = [
     value: '',
     fieldType: 'select',
     options: [
-      'single',
-      'married',
-      'free_union',
-      'widow'
+      {
+        label: 'Single',
+        value: 'single'
+      },
+      {
+        label: 'Married',
+        value: 'married'
+      },
+      {
+        label: 'Cohabitation',
+        value: 'free_union'
+      },
+      {
+        label: 'Widow',
+        value: 'widow'
+      }
     ]
   },
   {
@@ -83,12 +104,30 @@ const configArray = [
     value: '',
     fieldType: 'select',
     options: [
-      'lessThanprimary',
-      'primary',
-      'someHighSchool',
-      'highschool',
-      'someCollege',
-      'college'
+      {
+        label: 'Less than Primary',
+        value: 'lessThanprimary'
+      },
+      {
+        label: 'Primary',
+        value: 'primary'
+      },
+      {
+        label: 'Some high school',
+        value: 'someHighSchool'
+      },
+      {
+        label: 'Highschool',
+        value: 'highschool'
+      },
+      {
+        label: 'Some college',
+        value: 'someCollege'
+      },
+      {
+        label: 'College',
+        value: 'college'
+      },
     ]
   },
   {
