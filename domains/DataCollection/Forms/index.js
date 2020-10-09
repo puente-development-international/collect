@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { Text, Card, Button } from 'react-native-paper';
 
 import IdentificationForm from './IdentificationForm';
@@ -11,6 +11,9 @@ import { layout } from '../../../modules/theme';
 import ResidentIdSearchbar from '../../../components/ResidentIdSearchbar';
 
 import PostSubmissionSVG from '../../../assets/graphics/static/Submission-Page-Icon.svg';
+import NewRecordSVG from '../../../assets/icons/New-Record-icon.svg';
+import EnvSVG from '../../../assets/icons/Home-icon.svg';
+import MedEvalSVG from '../../../assets/icons/Heart-Icon.svg';
 
 const Forms = (props) => {
   const {
@@ -75,10 +78,35 @@ const Forms = (props) => {
               {puenteForms.map((form) => (
                 <Card
                   key={form.tag}
-                  style={layout.cardSmallStyle}
+                  style={styles.cardSmallStyle}
                   onPress={() => navigateToNewRecord(form.tag)}
                 >
-                  <Text>{form.name}</Text>
+                  {form.tag === 'id' && (
+                    <View marginTop="auto" marginBottom="auto">
+                      <NewRecordSVG height={40} style={styles.svg} />
+                      <Button labelStyle={styles.topButton} compact>Resident ID</Button>
+                      <Button labelStyle={styles.bottomButton} compact />
+                    </View>
+                  )}
+
+                  {form.tag === 'env' && (
+                    <View marginTop="auto" marginBottom="auto">
+                      <EnvSVG height={40} style={styles.svg} />
+                      <View>
+                        <Button labelStyle={styles.topButton} compact>Environmental</Button>
+                        <Button labelStyle={styles.bottomButton} compact>History</Button>
+                      </View>
+                    </View>
+                  )}
+                  {form.tag === 'med-eval' && (
+                    <View marginTop="auto" marginBottom="auto">
+                      <MedEvalSVG height={40} style={styles.svg} />
+                      <View marginTop="auto">
+                        <Button labelStyle={styles.topButton} compact>Medical</Button>
+                        <Button labelStyle={styles.bottomButton} compact>Evaluation</Button>
+                      </View>
+                    </View>
+                  )}
                 </Card>
               ))}
             </ScrollView>
@@ -92,4 +120,26 @@ const Forms = (props) => {
   );
 };
 
+const styles = StyleSheet.create({
+  cardSmallStyle: {
+    height: 110,
+    width: 150,
+    marginHorizontal: 7,
+    marginVertical: 7,
+  },
+  svg: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  topButton: {
+    marginTop: 10,
+    marginBottom: 0,
+    padding: 0
+  },
+  bottomButton: {
+    marginTop: 0,
+    marginBottom: 0,
+    padding: 0
+  }
+});
 export default Forms;
