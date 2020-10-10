@@ -14,6 +14,7 @@ import PostSubmissionSVG from '../../../assets/graphics/static/Submission-Page-I
 import NewRecordSVG from '../../../assets/icons/New-Record-icon.svg';
 import EnvSVG from '../../../assets/icons/Home-icon.svg';
 import MedEvalSVG from '../../../assets/icons/Heart-Icon.svg';
+import SmallCards from '../../../components/Cards/SmallCards'
 
 const Forms = (props) => {
   const {
@@ -74,42 +75,11 @@ const Forms = (props) => {
           </View>
           <View style={layout.container}>
             <Text>Suggested next Forms</Text>
-            <ScrollView horizontal>
-              {puenteForms.map((form) => (
-                <Card
-                  key={form.tag}
-                  style={styles.cardSmallStyle}
-                  onPress={() => navigateToNewRecord(form.tag)}
-                >
-                  {form.tag === 'id' && (
-                    <View marginTop="auto" marginBottom="auto">
-                      <NewRecordSVG height={40} style={styles.svg} />
-                      <Button labelStyle={styles.topButton} compact>Resident ID</Button>
-                      <Button labelStyle={styles.bottomButton} compact />
-                    </View>
-                  )}
-
-                  {form.tag === 'env' && (
-                    <View marginTop="auto" marginBottom="auto">
-                      <EnvSVG height={40} style={styles.svg} />
-                      <View>
-                        <Button labelStyle={styles.topButton} compact>Environmental</Button>
-                        <Button labelStyle={styles.bottomButton} compact>History</Button>
-                      </View>
-                    </View>
-                  )}
-                  {form.tag === 'med-eval' && (
-                    <View marginTop="auto" marginBottom="auto">
-                      <MedEvalSVG height={40} style={styles.svg} />
-                      <View marginTop="auto">
-                        <Button labelStyle={styles.topButton} compact>Medical</Button>
-                        <Button labelStyle={styles.bottomButton} compact>Evaluation</Button>
-                      </View>
-                    </View>
-                  )}
-                </Card>
-              ))}
-            </ScrollView>
+            <SmallCards
+              puenteForms={puenteForms}
+              navigateToNewRecord={navigateToNewRecord}
+              setUser={false}
+            />
             <Button mode="contained" onPress={navigateToGallery}>
               <Text style={{ color: 'white' }}>View Forms Gallery</Text>
             </Button>
