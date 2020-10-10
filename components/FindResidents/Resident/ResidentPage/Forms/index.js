@@ -13,24 +13,24 @@ import SmallCards from '../../../../Cards/SmallCards';
 const Forms = ({
   puenteForms, navigateToNewRecord, surveyee, setView
 }) => (
-    <View style={styles.container}>
-      <Title style={styles.title}>Completed Forms</Title>
-      <Text style={styles.category}>Form Category</Text>
-      <View
-        style={styles.horizontalLine}
-      />
-      <ComingSoonSVG width={200} height={200} />
-      <Text>Coming Soon</Text>
-      <Title style={styles.title}>Suggested Forms</Title>
-      <SmallCards
-        puenteForms={puenteForms}
-        navigateToNewRecord={navigateToNewRecord}
-        surveyee={surveyee}
-        setView={setView}
-        setUser={true}
-      />
-    </View>
-  );
+  <View style={styles.container}>
+    <Title style={styles.title}>Completed Forms</Title>
+    <Text style={styles.category}>Form Category</Text>
+    <View
+      style={styles.horizontalLine}
+    />
+    <ComingSoonSVG width={200} height={200} />
+    <Text>Coming Soon</Text>
+    <Title style={styles.title}>Suggested Forms</Title>
+    <SmallCards
+      puenteForms={puenteForms}
+      navigateToNewRecord={navigateToNewRecord}
+      surveyee={surveyee}
+      setView={setView}
+      setUser
+    />
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
-import { Text, Card, Button } from 'react-native-paper';
+import { View } from 'react-native';
+import { Text, Button } from 'react-native-paper';
 
 import IdentificationForm from './IdentificationForm';
 import SupplementaryForm from './SupplementaryForm';
@@ -11,10 +11,7 @@ import { layout } from '../../../modules/theme';
 import ResidentIdSearchbar from '../../../components/ResidentIdSearchbar';
 
 import PostSubmissionSVG from '../../../assets/graphics/static/Submission-Page-Icon.svg';
-import NewRecordSVG from '../../../assets/icons/New-Record-icon.svg';
-import EnvSVG from '../../../assets/icons/Home-icon.svg';
-import MedEvalSVG from '../../../assets/icons/Heart-Icon.svg';
-import SmallCards from '../../../components/Cards/SmallCards'
+import SmallCards from '../../../components/Cards/SmallCards';
 
 const Forms = (props) => {
   const {
@@ -90,26 +87,4 @@ const Forms = (props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  cardSmallStyle: {
-    height: 110,
-    width: 150,
-    marginHorizontal: 7,
-    marginVertical: 7,
-  },
-  svg: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-  topButton: {
-    marginTop: 10,
-    marginBottom: 0,
-    padding: 0
-  },
-  bottomButton: {
-    marginTop: 0,
-    marginBottom: 0,
-    padding: 0
-  }
-});
 export default Forms;
