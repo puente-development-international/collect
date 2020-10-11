@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, ScrollView
+  View
 } from 'react-native';
 import {
   Text, Button, Title, Paragraph, Card
@@ -9,6 +9,7 @@ import {
 import { layout } from '../../../modules/theme';
 
 import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg';
+import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
 
 const FormGallery = (props) => {
   const { navigateToNewRecord, puenteForms } = props;
@@ -16,17 +17,11 @@ const FormGallery = (props) => {
     <View>
       <View style={layout.screenRow}>
         <Text>Puente Forms</Text>
-        <ScrollView horizontal>
-          {puenteForms.map((form) => (
-            <Card
-              key={form.tag}
-              style={layout.cardSmallStyle}
-              onPress={() => navigateToNewRecord(form.tag)}
-            >
-              <Text>{form.name}</Text>
-            </Card>
-          ))}
-        </ScrollView>
+        <SmallCardsCarousel
+          puenteForms={puenteForms}
+          navigateToNewRecord={navigateToNewRecord}
+          setUser={false}
+        />
       </View>
       <View style={layout.screenRow}>
         <Text>Custom Forms</Text>
