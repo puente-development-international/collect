@@ -9,7 +9,7 @@ import {
 import { layout } from '../../../modules/theme';
 
 import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg';
-import SmallCards from '../../../components/Cards/SmallCards';
+import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
 
 const FormGallery = (props) => {
   const { navigateToNewRecord, puenteForms } = props;
@@ -17,7 +17,7 @@ const FormGallery = (props) => {
     <View>
       <View style={layout.screenRow}>
         <Text>Puente Forms</Text>
-        <SmallCards
+        <SmallCardsCarousel
           puenteForms={puenteForms}
           navigateToNewRecord={navigateToNewRecord}
           setUser={false}

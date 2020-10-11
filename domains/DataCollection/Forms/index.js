@@ -11,7 +11,7 @@ import { layout } from '../../../modules/theme';
 import ResidentIdSearchbar from '../../../components/ResidentIdSearchbar';
 
 import PostSubmissionSVG from '../../../assets/graphics/static/Submission-Page-Icon.svg';
-import SmallCards from '../../../components/Cards/SmallCards';
+import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
 
 const Forms = (props) => {
   const {
@@ -72,7 +72,7 @@ const Forms = (props) => {
           </View>
           <View style={layout.container}>
             <Text>Suggested next Forms</Text>
-            <SmallCards
+            <SmallCardsCarousel
               puenteForms={puenteForms}
               navigateToNewRecord={navigateToNewRecord}
               setUser={false}
