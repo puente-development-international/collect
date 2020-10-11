@@ -1,4 +1,5 @@
 import { Parse } from 'parse/react-native';
+import { customQueryService } from './custom-queries'
 
 function retrieveHelloFunction() {
   Parse.Cloud.run('hello').then((result) => result);
@@ -36,6 +37,7 @@ function postObjectsToClassWithRelation(params) {
 export {
   retrieveHelloFunction,
   residentIDQuery,
+  customQueryService,
   postObjectsToClass,
   postObjectsToClassWithRelation
 };

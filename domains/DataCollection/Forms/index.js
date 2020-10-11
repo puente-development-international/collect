@@ -20,6 +20,7 @@ const Forms = (props) => {
     scrollViewScroll, setScrollViewScroll,
     puenteForms, surveyingUser, surveyingOrganization, surveyee, setSurveyee
   } = props;
+
   const [consent, setConsent] = useState(false);
 
   return (
