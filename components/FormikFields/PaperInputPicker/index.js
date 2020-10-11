@@ -69,11 +69,11 @@ const PaperInputPicker = ({
             {data.options.map((result) => (
               <Button
                 style={layout.buttonGroupButtonStyle}
-                key={result}
+                key={result.value}
                 mode="outlined"
-                onPress={() => setFieldValue(formikKey, result)}
+                onPress={() => setFieldValue(formikKey, result.value)}
               >
-                <Text style={{ color: theme.colors.primary }}>{result}</Text>
+                <Text style={{ color: theme.colors.primary }}>{result.label}</Text>
               </Button>
             ))}
           </View>
