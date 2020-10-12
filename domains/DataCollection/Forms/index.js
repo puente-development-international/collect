@@ -54,6 +54,7 @@ const Forms = (props) => {
             setSelectedForm={setSelectedForm}
             surveyee={surveyee}
             surveyingUser={surveyingUser}
+            surveyingOrganization={surveyingOrganization}
             customForm={customForm}
           />
         </View>

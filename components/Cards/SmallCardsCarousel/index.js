@@ -21,9 +21,9 @@ import MedEvalSVG from '../../../assets/icons/Heart-Icon.svg';
  *
  * @param {Array} puenteForms Array of Forms to navigate through
  * @param {Function} navigateToNewRecord Function to navigate to a new form
- * @param {Function} setView Function to set view of the Data Collection Screen  (FindRecords, FormGallery, etc)
- * @param {Object} surveyee Object for current surveyee (i.e. community resident) that's being surveyed
- * @param {Boolean} setUser Boolean that if true, saves the surveyees object in the higher-order state
+ * @param {Function} setView Function to set view of the Data Collection Screen
+ * @param {Object} surveyee Object for current surveyee (i.e. community resident)
+ * @param {Boolean} setUser Boolean that if true, saves the surveyees object in the higher state
  *
  * @returns
  */
