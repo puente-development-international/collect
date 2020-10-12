@@ -276,26 +276,6 @@ const configArray = {
     value: '',
     fieldType: 'input'
   },
-    // {
-    //   label: "Latitude",
-    //   formikKey: 'latitude',
-    //   value: 0
-    // },
-    // {
-    //   label: "Longitude",
-    //   formikKey: 'longitude',
-    //   value: 0
-    // },
-    // {
-    //   label: "Surveying User",
-    //   formikKey: 'surveyingUser',
-    //   value: "Test"
-    // },
-    // {
-    //   label: "Surveying Organization",
-    //   formikKey: 'surveyingOrganization',
-    //   value: "Test"
-    // },
   ]
 };
 

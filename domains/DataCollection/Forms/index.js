@@ -18,8 +18,12 @@ const Forms = (props) => {
     navigation, navigateToGallery,
     selectedForm, setSelectedForm, navigateToNewRecord,
     scrollViewScroll, setScrollViewScroll,
-    puenteForms, surveyingUser, surveyingOrganization, surveyee, setSurveyee
+    puenteForms,
+    surveyingUser, surveyingOrganization,
+    surveyee, setSurveyee,
+    customForm
   } = props;
+
   const [consent, setConsent] = useState(false);
 
   return (
@@ -50,6 +54,8 @@ const Forms = (props) => {
             setSelectedForm={setSelectedForm}
             surveyee={surveyee}
             surveyingUser={surveyingUser}
+            surveyingOrganization={surveyingOrganization}
+            customForm={customForm}
           />
         </View>
       )}
