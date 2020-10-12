@@ -50,10 +50,14 @@ const DataCollection = ({ navigation }) => {
     const currentUser = retrieveCurrentUserFunction();
     setSurveyingUser(`${currentUser.get('firstname')} ${currentUser.get('lastname')}`);
 
-    customQueryService(0, 5000, 'FormSpecificationsV2', 'organizations', 'Test').then((forms) => {
+    getData('organization').then((org) => {
+      setSurveyingOrganization(org || surveyingOrganization);
+    });
+
+    customQueryService(0, 5000, 'FormSpecificationsV2', 'organizations', surveyingOrganization).then((forms) => {
       setCustomForms(JSON.parse(JSON.stringify(forms)));
     });
-  }, [surveyingUser, customForms]);
+  }, [surveyingUser, surveyingOrganization, customForms]);
 
   const navigateToRoot = async () => {
     setView('Root');
