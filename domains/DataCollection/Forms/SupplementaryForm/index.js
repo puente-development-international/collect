@@ -60,7 +60,7 @@ const SupplementaryForm = ({
           }));
 
           postParams.localObject = {
-            title: customForm.title || '',
+            title: customForm.name || '',
             description: customForm.description || '',
             formSpecificationsId: customForm.objectId,
             fields: fieldsArray,
