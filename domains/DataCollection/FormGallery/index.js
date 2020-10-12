@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View
+  View, ScrollView
 } from 'react-native';
 import {
   Text, Button, Title, Paragraph, Card
@@ -12,7 +12,9 @@ import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg';
 import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
 
 const FormGallery = (props) => {
-  const { navigateToNewRecord, puenteForms } = props;
+  const {
+    navigateToNewRecord, navigateToCustomForm, puenteForms, customForms
+  } = props;
   return (
     <View>
       <View style={layout.screenRow}>
@@ -25,6 +27,22 @@ const FormGallery = (props) => {
       </View>
       <View style={layout.screenRow}>
         <Text>Custom Forms</Text>
+        <ScrollView horizontal>
+          {customForms && customForms.map((form) => (
+            <Card
+              key={form.objectId}
+              style={layout.cardSmallStyle}
+              onPress={() => {
+                navigateToCustomForm(form);
+              }}
+            >
+              <View marginTop="auto" marginBottom="auto">
+                <Button compact>{form.name}</Button>
+              </View>
+
+            </Card>
+          ))}
+        </ScrollView>
       </View>
       <View style={layout.screenRow}>
         <Text>Manage My Pinned Forms</Text>

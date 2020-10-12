@@ -2,15 +2,15 @@ import { Parse } from 'parse/react-native';
 
 /**
   * Performs a query based on the parameter defined in a column
-  * 
+  *
   * @example
   * basicQuery(0,1000,SurveyData,organization,Puente)
-  * 
+  *
   * @param {number} offset First number
   * @param {number} limit Max limit of results
   * @param {string} parseObject Name of Backend Model
   * @param {string} parseColumn Name of Column in Backend Model
-  * @param {string} parseParam Name of Parameter in Column 
+  * @param {string} parseParam Name of Parameter in Column
   * @returns Results of Query
   */
 function customQueryService(offset, limit, parseModel, parseColumn, parseParam) {
@@ -18,13 +18,13 @@ function customQueryService(offset, limit, parseModel, parseColumn, parseParam) 
     setTimeout(() => {
       const Model = Parse.Object.extend(parseModel);
 
-      let query = new Parse.Query(Model);
+      const query = new Parse.Query(Model);
 
       query.skip(offset);
 
       query.limit(limit || 5000);
 
-      query.descending("createdAt");
+      query.descending('createdAt');
 
       query.equalTo(parseColumn, parseParam);
 
@@ -37,4 +37,4 @@ function customQueryService(offset, limit, parseModel, parseColumn, parseParam) 
   });
 }
 
-export { customQueryService }
+export { customQueryService };

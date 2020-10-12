@@ -80,13 +80,19 @@ const layout = StyleSheet.create({
   /**
    * Style for a Small Cards
    */
+  // cardSmallStyle: {
+  //   height: 90,
+  //   width: 90,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   marginHorizontal: 5,
+  //   marginVertical: 5
+  // },
   cardSmallStyle: {
-    height: 90,
-    width: 90,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 5,
-    marginVertical: 5
+    height: 110,
+    width: 150,
+    marginHorizontal: 7,
+    marginVertical: 7,
   },
   selectLabel: {
     marginTop: 5,

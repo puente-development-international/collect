@@ -17,7 +17,8 @@ import medConfig from './configs/medical-evaluation.config';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 
 const SupplementaryForm = ({
-  navigation, selectedForm, setSelectedForm, surveyee, surveyingUser
+  navigation, selectedForm, setSelectedForm, surveyee, surveyingUser,
+  customForm
 }) => {
   const [config, setConfig] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
@@ -30,7 +31,8 @@ const SupplementaryForm = ({
   useEffect(() => {
     if (selectedForm === 'env') setConfig(envConfig);
     if (selectedForm === 'med-eval') setConfig(medConfig);
-  }, [selectedForm]);
+    if (selectedForm === 'custom') setConfig(customForm);
+  }, [selectedForm, config]);
 
   return (
     <Formik

@@ -1,5 +1,5 @@
 import { Parse } from 'parse/react-native';
-import { customQueryService } from './custom-queries'
+import { customQueryService } from './custom-queries';
 
 function retrieveHelloFunction() {
   Parse.Cloud.run('hello').then((result) => result);
