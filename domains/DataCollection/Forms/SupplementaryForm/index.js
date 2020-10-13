@@ -67,14 +67,12 @@ const SupplementaryForm = ({
           };
         }
 
-        postObjectsToClassWithRelation(postParams)
-          .then(() => {
+        postObjectsToClassWithRelation(postParams).then(() => {
+          setTimeout(() => {
+            actions.setSubmitting(false);
             toRoot();
-          }, () => {
-          });
-        setTimeout(() => {
-          actions.setSubmitting(false);
-        }, 1000);
+          }, 1000);
+        })
       }}
     >
       {(formikProps) => (
