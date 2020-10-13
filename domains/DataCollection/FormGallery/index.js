@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, ScrollView
+  View, ScrollView, StyleSheet
 } from 'react-native';
 import {
   Text, Button, Title, Paragraph, Card
@@ -37,9 +37,16 @@ const FormGallery = (props) => {
               }}
             >
               <View marginTop="auto" marginBottom="auto">
-                <Button compact>{form.name}</Button>
+                {form.name.length > 16 && (
+                  <Button labelStyle={styles.buttonTextSmall} compact>{form.name}</Button>
+                )}
+                {form.name.length > 10 && form.name.length <= 16 && (
+                  <Button labelStyle={styles.buttonTextMed} compact>{form.name}</Button>
+                )}
+                {form.name.length <= 10 && (
+                  <Button labelStyle={styles.buttonTextBig} compact>{form.name}</Button>
+                )}
               </View>
-
             </Card>
           ))}
         </ScrollView>
@@ -63,4 +70,15 @@ const FormGallery = (props) => {
   );
 };
 
+const styles = StyleSheet.create({
+  buttonTextSmall: {
+    fontSize: 7
+  },
+  buttonTextMed: {
+    fontSize: 10
+  },
+  buttonTextBig: {
+    fontSize: 16
+  }
+})
 export default FormGallery;

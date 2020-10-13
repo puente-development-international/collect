@@ -22,6 +22,7 @@ import FormInput from '../../../components/FormikFields/FormInput';
 import LanguagePicker from '../../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
 import { storeData, getData, deleteData } from '../../../modules/async-storage';
+import SignInFailedModal from './SignInFailedModal';
 
 import I18n from '../../../modules/i18n';
 
@@ -45,8 +46,29 @@ const SignIn = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [user, setUser] = useState(null);
   const [language, setLanguage] = useState('en');
+  const [visible, setVisible] = useState(false);
+
 
   const load = false;
+
+  // const handleFailedAttempt = (val) => {
+  //   console.log(val);
+
+  //   console.log(visible)
+  // }
+
+  const showDialog = () => {
+    console.log(visible);
+    if (visible === false) {
+      setVisible(true);
+      console.log(visible);
+    }
+    console.log(visible);
+    // <SignInFailedModal
+    //   visible={visible}
+    //   setVisible={setVisible}
+    // />
+  };
 
   useEffect(() => {
     getData('credentials').then((values) => {
@@ -142,7 +164,9 @@ const SignIn = ({ navigation }) => {
                   navigation.navigate('Root');
                 }, (error) => {
                   // eslint-disable-next-line
-                  console.log(error)
+                  console.log(error);
+                  showDialog();
+                  // console.log(visible)
                 });
             } else {
               // offline
@@ -183,13 +207,13 @@ const SignIn = ({ navigation }) => {
                 secureTextEntry
               />
             ) : (
-              <FormInput
-                label={I18n.t('signIn.password')}
-                formikProps={formikProps}
-                formikKey="password"
-                placeholder="Password here"
-              />
-            )}
+                <FormInput
+                  label={I18n.t('signIn.password')}
+                  formikProps={formikProps}
+                  formikKey="password"
+                  placeholder="Password here"
+                />
+              )}
             <View style={styles.container}>
               <View style={styles.checkbox}>
                 <Checkbox
@@ -206,8 +230,8 @@ const SignIn = ({ navigation }) => {
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
-            )}
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
+              )}
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
               {I18n.t('signIn.signUpLink')}
             </Button>
@@ -218,6 +242,10 @@ const SignIn = ({ navigation }) => {
               setModalVisible={setModalVisible}
               navigation={navigation}
             />
+            {/* <SignInFailedModal
+              visible={visible}
+              setVisible={setVisible}
+            /> */}
           </>
         )}
       </Formik>
