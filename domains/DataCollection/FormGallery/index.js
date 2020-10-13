@@ -9,27 +9,40 @@ import {
 import { layout } from '../../../modules/theme';
 
 import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg';
+import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
 
 const FormGallery = (props) => {
-  const { navigateToNewRecord, puenteForms } = props;
+  const {
+    navigateToNewRecord, navigateToCustomForm, puenteForms, customForms
+  } = props;
   return (
     <View>
       <View style={layout.screenRow}>
         <Text>Puente Forms</Text>
-        <ScrollView horizontal>
-          {puenteForms.map((form) => (
-            <Card
-              key={form.tag}
-              style={layout.cardSmallStyle}
-              onPress={() => navigateToNewRecord(form.tag)}
-            >
-              <Text>{form.name}</Text>
-            </Card>
-          ))}
-        </ScrollView>
+        <SmallCardsCarousel
+          puenteForms={puenteForms}
+          navigateToNewRecord={navigateToNewRecord}
+          setUser={false}
+        />
       </View>
       <View style={layout.screenRow}>
         <Text>Custom Forms</Text>
+        <ScrollView horizontal>
+          {customForms && customForms.map((form) => (
+            <Card
+              key={form.objectId}
+              style={layout.cardSmallStyle}
+              onPress={() => {
+                navigateToCustomForm(form);
+              }}
+            >
+              <View marginTop="auto" marginBottom="auto">
+                <Button compact>{form.name}</Button>
+              </View>
+
+            </Card>
+          ))}
+        </ScrollView>
       </View>
       <View style={layout.screenRow}>
         <Text>Manage My Pinned Forms</Text>

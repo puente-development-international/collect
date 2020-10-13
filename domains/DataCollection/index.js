@@ -16,8 +16,12 @@ import Forms from './Forms';
 import FormGallery from './FormGallery';
 
 import { getData } from '../../modules/async-storage';
+
 import FindResidents from '../../components/FindResidents';
+
 import { retrieveCurrentUserFunction } from '../../services/parse/auth';
+import { customQueryService } from '../../services/parse/crud';
+
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
 import FindRecordSVG from '../../assets/graphics/static/Find-Record-Icon.svg';
 import NewRecordSVG from '../../assets/icons/New-Record-icon.svg';
@@ -33,19 +37,31 @@ const DataCollection = ({ navigation }) => {
   const [view, setView] = useState('Root');
   const [selectedForm, setSelectedForm] = useState('id');
 
+  const [customForms, setCustomForms] = useState([]);
+  const [customForm, setCustomForm] = useState();
+
   const [selectPerson, setSelectPerson] = useState();
   const [surveyee, setSurveyee] = useState();
 
   const [surveyingOrganization, setSurveyingOrganization] = useState('');
   const [surveyingUser, setSurveyingUser] = useState();
-  const navigateToRoot = async () => {
-    setView('Root');
-  };
 
   useEffect(() => {
     const currentUser = retrieveCurrentUserFunction();
     setSurveyingUser(`${currentUser.get('firstname')} ${currentUser.get('lastname')}`);
-  }, []);
+
+    getData('organization').then((org) => {
+      setSurveyingOrganization(org || surveyingOrganization);
+    });
+
+    customQueryService(0, 5000, 'FormSpecificationsV2', 'organizations', surveyingOrganization).then((forms) => {
+      setCustomForms(JSON.parse(JSON.stringify(forms)));
+    });
+  }, [surveyingUser, surveyingOrganization, customForms]);
+
+  const navigateToRoot = async () => {
+    setView('Root');
+  };
 
   const navigateToNewRecord = async (formTag, surveyeePerson) => {
     await getData('organization').then((org) => {
@@ -53,6 +69,16 @@ const DataCollection = ({ navigation }) => {
       setView('Forms');
       setSurveyee(surveyeePerson || surveyee);
       setSelectedForm(formTag || 'id');
+    });
+  };
+
+  const navigateToCustomForm = async (form, surveyeePerson) => {
+    await getData('organization').then((org) => {
+      setSurveyingOrganization(org || surveyingOrganization);
+      setView('Forms');
+      setSurveyee(surveyeePerson || surveyee);
+      setSelectedForm('custom');
+      setCustomForm(form || '');
     });
   };
 
@@ -132,6 +158,7 @@ const DataCollection = ({ navigation }) => {
                 surveyingOrganization={surveyingOrganization}
                 surveyee={surveyee}
                 setSurveyee={setSurveyee}
+                customForm={customForm}
               />
             </View>
           )}
@@ -143,7 +170,9 @@ const DataCollection = ({ navigation }) => {
             <FormGallery
               navigation={navigation}
               navigateToNewRecord={navigateToNewRecord}
+              navigateToCustomForm={navigateToCustomForm}
               puenteForms={puenteForms}
+              customForms={customForms}
             />
           </View>
         )}

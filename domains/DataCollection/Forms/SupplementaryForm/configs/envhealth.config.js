@@ -7,11 +7,26 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'lessThan1',
-      '1_2',
-      '3_4',
-      '5_10',
-      'moreThan10'
+      {
+        label: 'Less than 1 Year',
+        value: 'lessThan1'
+      },
+      {
+        label: '1-2 years',
+        value: '1_2'
+      },
+      {
+        label: '3-4 years',
+        value: '3_4'
+      },
+      {
+        label: '5-10 years',
+        value: '5_10'
+      },
+      {
+        label: '10+ years',
+        value: 'moreThan10'
+      }
     ]
   },
   {
@@ -20,11 +35,26 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'lessThan1',
-      '1_2',
-      '3_4',
-      '5_10',
-      'moreThan10'
+      {
+        label: 'Less than 1 Year',
+        value: 'lessThan1'
+      },
+      {
+        label: '1-2 years',
+        value: '1_2'
+      },
+      {
+        label: '3-4 years',
+        value: '3_4'
+      },
+      {
+        label: '5-10 years',
+        value: '5_10'
+      },
+      {
+        label: '10+ years',
+        value: 'moreThan10'
+      }
     ]
 
   },
@@ -40,12 +70,30 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'everyday',
-      '4-6AWeek',
-      '2-3AWeek',
-      '1AWeek',
-      '1AMonth',
-      'Never'
+      {
+        label: 'Everyday',
+        value: 'everyday'
+      },
+      {
+        label: '4-6 days a week',
+        value: '4-6AWeek'
+      },
+      {
+        label: '2-3 days per week',
+        value: '2-3AWeek'
+      },
+      {
+        label: 'Less than Or Equal to 1 Day per week',
+        value: '1AWeek'
+      },
+      {
+        label: '1 Day per month',
+        value: '1AMonth'
+      },
+      {
+        label: 'Never',
+        value: 'Never'
+      }
     ]
   },
   {
@@ -54,9 +102,18 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'bottled',
-      'tap',
-      'filtered',
+      {
+        label: 'Bottled',
+        value: 'bottled'
+      },
+      {
+        label: 'Tap',
+        value: 'tap'
+      },
+      {
+        label: 'Filtered',
+        value: 'filtered'
+      }
     ]
   },
   {
@@ -65,8 +122,14 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'Y',
-      'N',
+      {
+        label: 'Yes',
+        value: 'Yes'
+      },
+      {
+        label: 'No',
+        value: 'No'
+      }
     ]
   },
   {
@@ -75,8 +138,14 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'Y',
-      'N',
+      {
+        label: 'Yes',
+        value: 'Yes'
+      },
+      {
+        label: 'No',
+        value: 'No'
+      }
     ]
   },
   {
@@ -85,8 +154,14 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'Y',
-      'N',
+      {
+        label: 'Yes',
+        value: 'Yes'
+      },
+      {
+        label: 'No',
+        value: 'No'
+      }
     ]
   },
   {
@@ -119,8 +194,14 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'Y',
-      'N',
+      {
+        label: 'Yes',
+        value: 'Yes'
+      },
+      {
+        label: 'No',
+        value: 'No'
+      }
     ]
   },
   {
@@ -129,10 +210,22 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'dirtPoor',
-      'dirtWorking',
-      'cementPoor',
-      'cementWorking'
+      {
+        label: 'Dirt Floor Poor Condition',
+        value: 'dirtPoor'
+      },
+      {
+        label: 'Dirt Floor Working Condition',
+        value: 'dirtWorking'
+      },
+      {
+        label: 'Cement Floor Poor Condition',
+        value: 'cementPoor'
+      },
+      {
+        label: 'Cement Floor Working Condition',
+        value: 'cementWorking'
+      }
     ]
   },
   {
@@ -141,8 +234,14 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'poor',
-      'working',
+      {
+        label: 'Poor Condition',
+        value: 'poor'
+      },
+      {
+        label: 'Working Condition',
+        value: 'working'
+      }
     ]
   },
   {
@@ -151,9 +250,18 @@ const configArray = {
     value: '',
     fieldType: 'select',
     options: [
-      'cementStove-Ventilation',
-      'stoveTop',
-      'openfire-noVentilation',
+      {
+        label: 'Constructed stove with ventilation',
+        value: 'cementStove-Ventilation'
+      },
+      {
+        label: 'Stovetop with tank or electricity',
+        value: 'stoveTop'
+      },
+      {
+        label: 'Open Fire',
+        value: 'openfire-noVentilation'
+      }
     ]
   },
   {
@@ -168,26 +276,6 @@ const configArray = {
     value: '',
     fieldType: 'input'
   },
-    // {
-    //   label: "Latitude",
-    //   formikKey: 'latitude',
-    //   value: 0
-    // },
-    // {
-    //   label: "Longitude",
-    //   formikKey: 'longitude',
-    //   value: 0
-    // },
-    // {
-    //   label: "Surveying User",
-    //   formikKey: 'surveyingUser',
-    //   value: "Test"
-    // },
-    // {
-    //   label: "Surveying Organization",
-    //   formikKey: 'surveyingOrganization',
-    //   value: "Test"
-    // },
   ]
 };
 

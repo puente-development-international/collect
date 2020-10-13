@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.0.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.7.2...v6.0.0) (2020-10-12)
+
+
+### Features
+
+* add custom forms :tada: ([8915a89](https://github.com/hopetambala/puente-reactnative-collect/commit/8915a89018e9efb44b728d8562bc8fd5e5c9dcc7))
+* add custom query service ([e0bd19e](https://github.com/hopetambala/puente-reactnative-collect/commit/e0bd19e78eaf6694597b69776a6918a2d5e3039e))
+
+
+### Bug Fixes
+
+* refactors for naming of states and props ([532c984](https://github.com/hopetambala/puente-reactnative-collect/commit/532c984cd1845eb5e4845d43f3e5464258cf308e))
+* title of custom form ([1df21fe](https://github.com/hopetambala/puente-reactnative-collect/commit/1df21fe2d6801d25029a8807f35ca385201a4576))
+* use stored local organization for customQueryService ([bb551ac](https://github.com/hopetambala/puente-reactnative-collect/commit/bb551acc34dfd0d27106e315b5fdf4bf1da82b62))
+
 ### [5.7.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.7.1...v5.7.2) (2020-10-07)
 
 

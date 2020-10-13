@@ -1,13 +1,14 @@
 import React from 'react';
 import {
-  View, StyleSheet, ScrollView
+  View, StyleSheet
 } from 'react-native';
 import {
-  Text, Title, Card
+  Text, Title
 } from 'react-native-paper';
 
-import { layout, theme } from '../../../../../modules/theme';
+import { theme } from '../../../../../modules/theme';
 import ComingSoonSVG from '../../../../../assets/graphics/static/Adventurer.svg';
+import SmallCardsCarousel from '../../../../Cards/SmallCardsCarousel';
 
 const Forms = ({
   puenteForms, navigateToNewRecord, surveyee, setView
@@ -21,20 +22,13 @@ const Forms = ({
     <ComingSoonSVG width={200} height={200} />
     <Text>Coming Soon</Text>
     <Title style={styles.title}>Suggested Forms</Title>
-    <ScrollView horizontal>
-      {puenteForms.map((form) => (
-        <Card
-          key={form.tag}
-          style={layout.cardSmallStyle}
-          onPress={() => {
-            setView('Forms');
-            navigateToNewRecord(form.tag, surveyee);
-          }}
-        >
-          <Text>{form.name}</Text>
-        </Card>
-      ))}
-    </ScrollView>
+    <SmallCardsCarousel
+      puenteForms={puenteForms}
+      navigateToNewRecord={navigateToNewRecord}
+      surveyee={surveyee}
+      setView={setView}
+      setUser
+    />
   </View>
 );
 
@@ -55,7 +49,7 @@ const styles = StyleSheet.create({
   horizontalLine: {
     borderBottomColor: theme.colors.primary,
     borderBottomWidth: 1,
-  },
+  }
 });
 
 export default Forms;

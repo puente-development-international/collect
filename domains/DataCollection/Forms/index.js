@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
-import { Text, Card, Button } from 'react-native-paper';
+import { View } from 'react-native';
+import { Text, Button } from 'react-native-paper';
 
 import IdentificationForm from './IdentificationForm';
 import SupplementaryForm from './SupplementaryForm';
@@ -11,14 +11,19 @@ import { layout } from '../../../modules/theme';
 import ResidentIdSearchbar from '../../../components/ResidentIdSearchbar';
 
 import PostSubmissionSVG from '../../../assets/graphics/static/Submission-Page-Icon.svg';
+import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
 
 const Forms = (props) => {
   const {
     navigation, navigateToGallery,
     selectedForm, setSelectedForm, navigateToNewRecord,
     scrollViewScroll, setScrollViewScroll,
-    puenteForms, surveyingUser, surveyingOrganization, surveyee, setSurveyee
+    puenteForms,
+    surveyingUser, surveyingOrganization,
+    surveyee, setSurveyee,
+    customForm
   } = props;
+
   const [consent, setConsent] = useState(false);
 
   return (
@@ -49,6 +54,8 @@ const Forms = (props) => {
             setSelectedForm={setSelectedForm}
             surveyee={surveyee}
             surveyingUser={surveyingUser}
+            surveyingOrganization={surveyingOrganization}
+            customForm={customForm}
           />
         </View>
       )}
@@ -71,17 +78,11 @@ const Forms = (props) => {
           </View>
           <View style={layout.container}>
             <Text>Suggested next Forms</Text>
-            <ScrollView horizontal>
-              {puenteForms.map((form) => (
-                <Card
-                  key={form.tag}
-                  style={layout.cardSmallStyle}
-                  onPress={() => navigateToNewRecord(form.tag)}
-                >
-                  <Text>{form.name}</Text>
-                </Card>
-              ))}
-            </ScrollView>
+            <SmallCardsCarousel
+              puenteForms={puenteForms}
+              navigateToNewRecord={navigateToNewRecord}
+              setUser={false}
+            />
             <Button mode="contained" onPress={navigateToGallery}>
               <Text style={{ color: 'white' }}>View Forms Gallery</Text>
             </Button>

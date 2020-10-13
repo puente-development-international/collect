@@ -17,7 +17,8 @@ import medConfig from './configs/medical-evaluation.config';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 
 const SupplementaryForm = ({
-  navigation, selectedForm, setSelectedForm, surveyee, surveyingUser
+  navigation, selectedForm, setSelectedForm, surveyee, surveyingUser, surveyingOrganization,
+  customForm
 }) => {
   const [config, setConfig] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
@@ -30,7 +31,8 @@ const SupplementaryForm = ({
   useEffect(() => {
     if (selectedForm === 'env') setConfig(envConfig);
     if (selectedForm === 'med-eval') setConfig(medConfig);
-  }, [selectedForm]);
+    if (selectedForm === 'custom') setConfig(customForm);
+  }, [selectedForm, config]);
 
   return (
     <Formik
@@ -39,6 +41,8 @@ const SupplementaryForm = ({
         setPhotoFile('Submitted Photo String');
         const formObject = values;
         formObject.surveyingUser = surveyingUser;
+        formObject.surveyingOrganization = surveyingOrganization;
+
         const postParams = {
           parseParentClassID: surveyee.objectId,
           parseParentClass: 'SurveyData',
@@ -46,6 +50,22 @@ const SupplementaryForm = ({
           photoFile,
           localObject: formObject
         };
+
+        if (selectedForm === 'custom') {
+          postParams.parseClass = 'FormResults';
+
+          const fieldsArray = Object.entries(formObject).map((obj) => ({
+            title: obj[0],
+            answer: obj[1]
+          }));
+
+          postParams.localObject = {
+            title: customForm.name || '',
+            description: customForm.description || '',
+            formSpecificationsId: customForm.objectId,
+            fields: fieldsArray,
+          };
+        }
 
         postObjectsToClassWithRelation(postParams)
           .then(() => {
