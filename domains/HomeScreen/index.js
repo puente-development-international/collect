@@ -58,7 +58,7 @@ const HomeScreen = (props) => {
         {/* <View style={layout.screenRow}>
           <Text>My Pinned Forms</Text>
         </View> */}
-        <View style={layout.screenRow}>
+        {/* <View style={layout.screenRow}>
           <Title>My Community Board</Title>
           <Card>
             <Card.Content>
@@ -67,7 +67,7 @@ const HomeScreen = (props) => {
               <Paragraph>Coming Soon</Paragraph>
             </Card.Content>
           </Card>
-        </View>
+        </View> */}
         <Button onPress={logOut} mode="contained">
           <Text>Log Out</Text>
         </Button>

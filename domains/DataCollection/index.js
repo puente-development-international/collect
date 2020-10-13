@@ -1,7 +1,7 @@
 // import * as React from 'react';
 import React, { useState, useEffect } from 'react';
 import {
-  Text, ScrollView, View, StyleSheet
+  Text, ScrollView, View, StyleSheet, KeyboardAvoidingView, Platform
 } from 'react-native';
 
 import {
@@ -41,7 +41,7 @@ const DataCollection = ({ navigation }) => {
   const [customForm, setCustomForm] = useState();
 
   const [selectPerson, setSelectPerson] = useState();
-  const [surveyee, setSurveyee] = useState();
+  const [surveyee, setSurveyee] = useState({});
 
   const [surveyingOrganization, setSurveyingOrganization] = useState('');
   const [surveyingUser, setSurveyingUser] = useState();
@@ -101,11 +101,16 @@ const DataCollection = ({ navigation }) => {
       }}
     >
       <Header />
-      <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
-        {view === 'Root'
-          && (
-            <View>
-              {/* <View style={styles.horizontalLine} />
+      <KeyboardAvoidingView
+        enabled
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+      >
+        <ScrollView keyboardShouldPersistTaps="always" scrollEnabled={scrollViewScroll}>
+          {view === 'Root'
+            && (
+              <View>
+                {/* <View style={styles.horizontalLine} />
               <Title>{surveyingUser}</Title>
               <View style={styles.map}>
                 <ComingSoonSVG height={250} marginLeft="auto" marginRight="auto" />
@@ -120,81 +125,82 @@ const DataCollection = ({ navigation }) => {
                 </View>
               </View>
               <View style={styles.horizontalLine} /> */}
-              <View style={styles.screenFlexRowWrap}>
-                <View style={styles.cardContainer}>
-                  <Card style={styles.cardSmallStyle} onPress={() => navigateToNewRecord()}>
-                    <NewRecordSVG height={70} style={styles.svg} />
-                    <Button marginTop="auto">New Record</Button>
-                  </Card>
-                  <Card style={styles.cardSmallStyle} onPress={navigateToFindRecords}>
-                    <FindRecordSVG height={65} style={styles.svg} />
-                    <Button marginTop="auto">Find Record</Button>
+                <View style={styles.screenFlexRowWrap}>
+                  <View style={styles.cardContainer}>
+                    <Card style={styles.cardSmallStyle} onPress={() => navigateToNewRecord()}>
+                      <NewRecordSVG height={70} style={styles.svg} />
+                      <Button marginTop="auto">New Record</Button>
+                    </Card>
+                    <Card style={styles.cardSmallStyle} onPress={navigateToFindRecords}>
+                      <FindRecordSVG height={65} style={styles.svg} />
+                      <Button marginTop="auto">Find Record</Button>
+                    </Card>
+                  </View>
+                  <Card style={styles.cardSmallStyle} onPress={navigateToGallery}>
+                    <ComingSoonSVG height={65} style={styles.svg} />
+                    <Button marginTop="auto">View All Forms</Button>
                   </Card>
                 </View>
-                <Card style={styles.cardSmallStyle} onPress={navigateToGallery}>
-                  <ComingSoonSVG height={65} style={styles.svg} />
-                  <Button marginTop="auto">View All Forms</Button>
-                </Card>
               </View>
-            </View>
-          )}
-        {view === 'Forms'
-          && (
+            )}
+          {view === 'Forms'
+            && (
+              <View>
+                <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
+                  <Text>Back</Text>
+                </Button>
+                <Forms
+                  style={layout.line}
+                  navigation={navigation}
+                  scrollViewScroll={scrollViewScroll}
+                  setScrollViewScroll={setScrollViewScroll}
+                  navigateToGallery={navigateToGallery}
+                  navigateToNewRecord={navigateToNewRecord}
+                  selectedForm={selectedForm}
+                  setSelectedForm={setSelectedForm}
+                  puenteForms={puenteForms}
+                  surveyingUser={surveyingUser}
+                  surveyingOrganization={surveyingOrganization}
+                  surveyee={surveyee}
+                  setSurveyee={setSurveyee}
+                  customForm={customForm}
+                />
+              </View>
+            )}
+          {view === 'Gallery' && (
             <View>
               <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
                 <Text>Back</Text>
               </Button>
-              <Forms
-                style={layout.line}
+              <FormGallery
                 navigation={navigation}
-                scrollViewScroll={scrollViewScroll}
-                setScrollViewScroll={setScrollViewScroll}
-                navigateToGallery={navigateToGallery}
                 navigateToNewRecord={navigateToNewRecord}
-                selectedForm={selectedForm}
-                setSelectedForm={setSelectedForm}
+                navigateToCustomForm={navigateToCustomForm}
                 puenteForms={puenteForms}
-                surveyingUser={surveyingUser}
-                surveyingOrganization={surveyingOrganization}
-                surveyee={surveyee}
-                setSurveyee={setSurveyee}
-                customForm={customForm}
+                customForms={customForms}
               />
             </View>
           )}
-        {view === 'Gallery' && (
-          <View>
-            <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
-              <Text>Back</Text>
-            </Button>
-            <FormGallery
-              navigation={navigation}
-              navigateToNewRecord={navigateToNewRecord}
-              navigateToCustomForm={navigateToCustomForm}
-              puenteForms={puenteForms}
-              customForms={customForms}
-            />
-          </View>
-        )}
-        {view === 'Find Records'
-          && (
-            <View>
-              <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
-                <Text>Back</Text>
-              </Button>
-              <FindResidents
-                selectPerson={selectPerson}
-                setSelectPerson={setSelectPerson}
-                organization={surveyingOrganization}
-                puenteForms={puenteForms}
-                navigateToNewRecord={navigateToNewRecord}
-                surveyee={surveyee}
-                setSurveyee={setSurveyee}
-                setView={setView}
-              />
-            </View>
-          )}
-      </ScrollView>
+          {view === 'Find Records'
+            && (
+              <View>
+                <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
+                  <Text>Back</Text>
+                </Button>
+                <FindResidents
+                  selectPerson={selectPerson}
+                  setSelectPerson={setSelectPerson}
+                  organization={surveyingOrganization}
+                  puenteForms={puenteForms}
+                  navigateToNewRecord={navigateToNewRecord}
+                  surveyee={surveyee}
+                  setSurveyee={setSurveyee}
+                  setView={setView}
+                />
+              </View>
+            )}
+        </ScrollView>
+      </KeyboardAvoidingView>
     </View>
   );
 };
