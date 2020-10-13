@@ -41,7 +41,7 @@ const DataCollection = ({ navigation }) => {
   const [customForm, setCustomForm] = useState();
 
   const [selectPerson, setSelectPerson] = useState();
-  const [surveyee, setSurveyee] = useState();
+  const [surveyee, setSurveyee] = useState({});
 
   const [surveyingOrganization, setSurveyingOrganization] = useState('');
   const [surveyingUser, setSurveyingUser] = useState();

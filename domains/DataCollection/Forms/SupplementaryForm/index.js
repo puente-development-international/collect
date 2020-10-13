@@ -91,10 +91,12 @@ const SupplementaryForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
-            </Button>
-          )}
+              <Button disabled={surveyee.objectId ? false : true}
+                onPress={formikProps.handleSubmit}>
+                {surveyee.objectId && <Text>Submit</Text>}
+                {!surveyee.objectId && <Text>Attach a Community Resident</Text>}
+              </Button>
+            )}
         </View>
       )}
     </Formik>

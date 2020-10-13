@@ -44,9 +44,9 @@ const FormGallery = (props) => {
           ))}
         </ScrollView>
       </View>
-      <View style={layout.screenRow}>
+      {/* <View style={layout.screenRow}>
         <Text>Manage My Pinned Forms</Text>
-      </View>
+      </View> */}
       <View style={layout.screenRow}>
         <Card>
           <Card.Content>

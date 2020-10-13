@@ -76,7 +76,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
         </View>
       ))}
 
-      {surveyee && (
+      {surveyee.objectId && (
         <ResidentCard resident={surveyee} />
       )}
     </View>
