@@ -51,6 +51,10 @@ const SignIn = ({ navigation }) => {
 
   const load = false;
 
+  /* 
+  THIS FUNCTION WILL CHANGE failedModalVisible to true to display the modal. 
+  IT IS BEING CALLED ON LINE 161 of this file
+  */
   const handleFailedAttempt = () => {
     if (failedModalVisible === false) {
       console.log("SETTING")
