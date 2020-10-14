@@ -46,29 +46,17 @@ const SignIn = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [user, setUser] = useState(null);
   const [language, setLanguage] = useState('en');
-  const [visible, setVisible] = useState(false);
+  const [failedModalVisible, setFailedModalVisible] = useState(false);
 
 
   const load = false;
 
-  // const handleFailedAttempt = (val) => {
-  //   console.log(val);
-
-  //   console.log(visible)
-  // }
-
-  const showDialog = () => {
-    console.log(visible);
-    if (visible === false) {
-      setVisible(true);
-      console.log(visible);
+  const handleFailedAttempt = () => {
+    if (failedModalVisible === false) {
+      console.log("SETTING")
+      setFailedModalVisible(true);
     }
-    console.log(visible);
-    // <SignInFailedModal
-    //   visible={visible}
-    //   setVisible={setVisible}
-    // />
-  };
+  }
 
   useEffect(() => {
     getData('credentials').then((values) => {
@@ -165,7 +153,10 @@ const SignIn = ({ navigation }) => {
                 }, (error) => {
                   // eslint-disable-next-line
                   console.log(error);
-                  showDialog();
+                  // handleFailedAttempt(setTest, test)
+                  handleFailedAttempt();
+                  console.log(failedModalVisible)
+
                   // console.log(visible)
                 });
             } else {
@@ -242,10 +233,10 @@ const SignIn = ({ navigation }) => {
               setModalVisible={setModalVisible}
               navigation={navigation}
             />
-            {/* <SignInFailedModal
-              visible={visible}
-              setVisible={setVisible}
-            /> */}
+            <SignInFailedModal
+              visible={failedModalVisible}
+              setVisible={setFailedModalVisible}
+            />
           </>
         )}
       </Formik>
