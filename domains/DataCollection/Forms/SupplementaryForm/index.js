@@ -67,14 +67,12 @@ const SupplementaryForm = ({
           };
         }
 
-        postObjectsToClassWithRelation(postParams)
-          .then(() => {
+        postObjectsToClassWithRelation(postParams).then(() => {
+          setTimeout(() => {
+            actions.setSubmitting(false);
             toRoot();
-          }, () => {
-          });
-        setTimeout(() => {
-          actions.setSubmitting(false);
-        }, 1000);
+          }, 1000);
+        });
       }}
     >
       {(formikProps) => (
@@ -91,8 +89,12 @@ const SupplementaryForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
+            <Button
+              disabled={!surveyee.objectId}
+              onPress={formikProps.handleSubmit}
+            >
+              {surveyee.objectId && <Text>Submit</Text>}
+              {!surveyee.objectId && <Text>Attach a Community Resident</Text>}
             </Button>
           )}
         </View>

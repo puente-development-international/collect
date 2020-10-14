@@ -110,7 +110,7 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
+            <Button icon="human" onPress={formikProps.handleSubmit}>
               <Text>Submit</Text>
             </Button>
           )}
