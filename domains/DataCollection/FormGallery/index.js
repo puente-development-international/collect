@@ -80,5 +80,5 @@ const styles = StyleSheet.create({
   buttonTextBig: {
     fontSize: 16
   }
-})
+});
 export default FormGallery;

@@ -20,7 +20,7 @@ import { getData } from '../../modules/async-storage';
 import FindResidents from '../../components/FindResidents';
 
 import { retrieveCurrentUserFunction } from '../../services/parse/auth';
-import { customQueryService } from '../../services/parse/crud';
+import customQueryService from '../../services/parse/crud';
 
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
 import FindRecordSVG from '../../assets/graphics/static/Find-Record-Icon.svg';
