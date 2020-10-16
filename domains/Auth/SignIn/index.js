@@ -9,10 +9,9 @@ import {
   View,
   StyleSheet,
   Alert,
-  Text,
 } from 'react-native';
 import {
-  Checkbox, Button,
+  Checkbox, Button, Text
 } from 'react-native-paper';
 
 import * as Network from 'expo-network';
@@ -26,10 +25,12 @@ import { storeData, getData, deleteData } from '../../../modules/async-storage';
 import I18n from '../../../modules/i18n';
 import { theme } from '../../../modules/theme';
 
+
 import FormInput from '../../../components/FormikFields/FormInput';
 import LanguagePicker from '../../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
-
+import TermsModal from '../../../components/TermsModal';
+// components/FormikFields/PaperInputPicker';
 const validationSchema = yup.object().shape({
   username: yup
     .string()
@@ -47,6 +48,7 @@ const SignIn = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [user, setUser] = useState(null);
   const [language, setLanguage] = useState('en');
+  const [visible, setVisible] = useState(false);
 
   const load = false;
 
@@ -97,6 +99,10 @@ const SignIn = ({ navigation }) => {
     I18n.locale = lang;
   };
 
+  const handleTermsModal = () => {
+    setVisible(true);
+  }
+
   async function checkOnlineStatus() {
     const status = await Network.getNetworkStateAsync();
     const { isConnected } = status;
@@ -107,7 +113,7 @@ const SignIn = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ marginTop: 20 }}>
+    <SafeAreaView style={{ backgroundColor: theme.colors.accent, flex: 1 }}>
       <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
       <Formik
         initialValues={{ username: '', password: '' }}
@@ -182,22 +188,24 @@ const SignIn = ({ navigation }) => {
               placeholder="johndoe@example.com"
               autoFocus
             />
+            <Button style={{ marginRight: 'auto'}}>Forgot username?</Button>
             {!checked ? (
               <FormInput
                 label={I18n.t('signIn.password')}
                 formikProps={formikProps}
                 formikKey="password"
-                placeholder="Password here"
+                placeholder="Password"
                 secureTextEntry
               />
             ) : (
-              <FormInput
-                label={I18n.t('signIn.password')}
-                formikProps={formikProps}
-                formikKey="password"
-                placeholder="Password here"
-              />
-            )}
+                <FormInput
+                  label={I18n.t('signIn.password')}
+                  formikProps={formikProps}
+                  formikKey="password"
+                  placeholder="Password"
+                />
+              )}
+            <Button style={{ marginRight: 'auto' }}>Forgot password?</Button>
             <View style={styles.container}>
               <View style={styles.checkbox}>
                 <Checkbox
@@ -214,11 +222,8 @@ const SignIn = ({ navigation }) => {
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.submit')}</Button>
-            )}
-            <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
-              {I18n.t('signIn.signUpLink')}
-            </Button>
+                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
+              )}
             <CredentialsModal
               modalVisible={modalVisible}
               formikProps={formikProps}
@@ -231,6 +236,18 @@ const SignIn = ({ navigation }) => {
         )}
       </Formik>
       <Button onPress={deleteCreds}>Delete Credentials</Button>
+      <View style={styles.footer}>
+        <View style={styles.termsContainer}>
+          <Text style={styles.accountText}>Don't have an account?</Text>
+          <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
+            Sign up!</Button>
+        </View>
+        <View style={styles.termsContainer}>
+          <Text style={styles.puenteText}>Puente 2020   |</Text>
+          <Button mode="text" theme={theme} onPress={handleTermsModal}>Terms & Conditions</Button>
+        </View>
+      </View>
+      <TermsModal visible={visible} setVisible={setVisible} />
     </SafeAreaView>
   );
 };
@@ -248,7 +265,7 @@ const styles = StyleSheet.create({
   checkbox: {
     flex: 1,
     borderRadius: 5,
-    marginLeft: 20,
+    marginLeft: 0,
     backgroundColor: 'white'
   },
   submitButton: {
@@ -257,6 +274,26 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 10,
   },
+  footer: {
+    marginTop: 200,
+  },
+  termsContainer: {
+    flexDirection: 'row',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  puenteText: {
+    fontSize: 15,
+    marginTop: 'auto',
+    marginBottom: 'auto'
+
+  },
+  accountText: {
+    fontSize: 18,
+    marginTop: 'auto',
+    marginBottom: 'auto'
+  }
+
 });
 
 export default SignIn;

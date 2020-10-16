@@ -3,10 +3,10 @@ import { Picker } from 'native-base';
 
 const languages = [
   {
-    key: 'en', label: '🇺🇸'
+    key: 'en', label: 'English'
   },
   {
-    key: 'es', label: '🇩🇴'
+    key: 'es', label: 'Spanish'
   }
 ];
 
