@@ -202,22 +202,13 @@ const SignIn = ({ navigation }) => {
                   placeholder="johndoe@example.com"
                   autoFocus
                 />
-                {!checked ? (
-                  <FormInput
-                    label={I18n.t('signIn.password')}
-                    formikProps={formikProps}
-                    formikKey="password"
-                    placeholder="Password"
-                    secureTextEntry
-                  />
-                ) : (
-                  <FormInput
-                    label={I18n.t('signIn.password')}
-                    formikProps={formikProps}
-                    formikKey="password"
-                    placeholder="Password"
-                  />
-                )}
+                <FormInput
+                  label={I18n.t('signIn.password')}
+                  formikProps={formikProps}
+                  formikKey="password"
+                  placeholder="Password"
+                  secureTextEntry={!checked}
+                />
                 <Button style={{ marginRight: 'auto' }} onPress={handleForgotPassword}>Forgot password?</Button>
                 <View style={styles.container}>
                   <View style={styles.checkbox}>
