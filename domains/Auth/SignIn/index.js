@@ -109,7 +109,7 @@ const SignIn = ({ navigation }) => {
 
   const handleForgotPassword = () => {
     setForgotPassword(true);
-  }
+  };
 
   async function checkOnlineStatus() {
     const status = await Network.getNetworkStateAsync();
@@ -134,7 +134,8 @@ const SignIn = ({ navigation }) => {
                     .then(() => {
                       getData('credentials')
                         .then((userCreds) => {
-                          // credentials saved do not match those entered, overwrite saved credentials
+                          // credentials saved do not match those entered, overwrite saved
+                          // credentials
                           if (userCreds === null || values.username !== userCreds.username
                             || values.password !== userCreds.password) {
                             // Store user organization
@@ -210,13 +211,13 @@ const SignIn = ({ navigation }) => {
                     secureTextEntry
                   />
                 ) : (
-                    <FormInput
-                      label={I18n.t('signIn.password')}
-                      formikProps={formikProps}
-                      formikKey="password"
-                      placeholder="Password"
-                    />
-                  )}
+                  <FormInput
+                    label={I18n.t('signIn.password')}
+                    formikProps={formikProps}
+                    formikKey="password"
+                    placeholder="Password"
+                  />
+                )}
                 <Button style={{ marginRight: 'auto' }} onPress={handleForgotPassword}>Forgot password?</Button>
                 <View style={styles.container}>
                   <View style={styles.checkbox}>
@@ -234,8 +235,8 @@ const SignIn = ({ navigation }) => {
                 {formikProps.isSubmitting ? (
                   <ActivityIndicator />
                 ) : (
-                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
-                  )}
+                  <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
+                )}
                 <CredentialsModal
                   modalVisible={modalVisible}
                   formikProps={formikProps}
@@ -264,7 +265,7 @@ const SignIn = ({ navigation }) => {
             <Text style={styles.accountText}>Don&apos;t have an account?</Text>
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp} labelStyle={{ marginLeft: 5 }}>
               Sign up!
-          </Button>
+            </Button>
           </View>
           <View style={styles.termsContainer}>
             <Text style={styles.puenteText}>Puente 2020 |</Text>

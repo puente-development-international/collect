@@ -1,23 +1,21 @@
 import React from 'react';
-import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import {
-  Modal, Portal, Text, Button
+  Text, Button
 } from 'react-native-paper';
 import { Formik } from 'formik';
 import { theme } from '../../../../modules/theme';
 import { retrieveForgotPasswordFunction } from '../../../../services/parse/auth';
 import FormInput from '../../../../components/FormikFields/FormInput';
-// import styles from '../../../../components/Header/index.styles';
 
 export default function ForgotPassword({ navigation, setForgotPassword }) {
-
   const handleSignUp = () => {
-    navigation.navigate('Sign Up')
-  }
+    navigation.navigate('Sign Up');
+  };
 
   const handleSignIn = () => {
     setForgotPassword(false);
-  }
+  };
 
   return (
     <View style={{ flex: 1, marginHorizontal: 15, marginTop: 15 }}>
@@ -25,12 +23,11 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
         <Formik
           initialValues={{ email: '' }}
           onSubmit={(values, actions) => {
-            console.log(values);
             retrieveForgotPasswordFunction(values).then((res) => {
-              console.log(res)
+              console.log(res); //eslint-disable-line
             }, (error) => {
-              console.log(error)
-            })
+              console.log(error); //eslint-disable-line
+            });
             setTimeout(() => {
               actions.setSubmitting(false);
             }, 1000);
@@ -41,7 +38,7 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
               <View>
                 <Text style={{ marginHorizontal: 15, fontSize: 20, fontWeight: 'bold' }}>Please enter your email to reset your password</Text>
                 <FormInput
-                  label={'Email'}
+                  label="Email"
                   formikProps={formikProps}
                   formikKey="email"
                   placeholder="Email"
@@ -66,7 +63,7 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
         </View>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
