@@ -21,6 +21,12 @@ const GetPinCode = ({ navigation }) => {
                 retrieveSignInFunction(userCreds.username, userCreds.password)
                   .then(() => {
                     const currentUser = retrieveCurrentUserFunction();
+                    getData('currentUser').then((user) => {
+                      if (user !== currentUser) {
+                        console.log("SET CURRRENT USER:", currentUser)
+                        storeData(currentUser, 'currentUser');
+                      }
+                    });
                     getData('organization').then((organization) => {
                       if (organization !== currentUser.organization) {
                         storeData(currentUser.organization, 'organization');

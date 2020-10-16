@@ -75,8 +75,7 @@ const FindResidents = ({
           />
         </>
       )}
-
-      {filterList(residents).map((listItem,) => (
+      {query !== '' && filterList(residents).map((listItem,) => (
         <View key={listItem.objectId}>
           <ResidentCard
             resident={listItem}

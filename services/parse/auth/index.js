@@ -49,6 +49,24 @@ function retrieveForgotPasswordFunction(params) {
 }
 
 function retrieveCurrentUserFunction() {
+//   ASYNC VERSION -- needed this to switch to data collection as home screen
+//   return new Promise((resolve, reject) => {
+//     Parse.User.currentAsync().then((u) => {
+//       // console.log(u);
+//       const user = new Parse.User();
+//       user.id = u.id;
+//       user.name = u.get('username');
+//       user.email = u.get('email');
+//       user.organization = u.get('organization');
+//       user.role = u.get('role');
+//       resolve(user.save());
+//     }, (error) => {
+//       console.log(error);
+//       reject(error);
+//     })
+//   })
+// }
+
   const u = Parse.User.current();
   if (u) {
     const user = new Parse.User();

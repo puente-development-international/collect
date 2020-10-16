@@ -47,8 +47,17 @@ const DataCollection = ({ navigation }) => {
   const [surveyingUser, setSurveyingUser] = useState();
 
   useEffect(() => {
-    const currentUser = retrieveCurrentUserFunction();
-    setSurveyingUser(`${currentUser.get('firstname')} ${currentUser.get('lastname')}`);
+    getData('currentUser').then((user) => {
+      setSurveyingUser(user.firstname + user.lastname)
+      console.log("SURVEYING USER: ", surveyingUser)
+    })
+    // const currentUser = retrieveCurrentUserFunction();
+    // setSurveyingUser(`${currentUser.get('firstname')} ${currentUser.get('lastname')}`);
+    // needed to switch to ASY?NC current user
+    // retrieveCurrentUserFunction().then((currentUser) => {
+    //   // console.log("CURRENT USER: ", currentUser)
+    //   setSurveyingUser(currentUser.get('firstname') + currentUser.get('lastname'));
+    // })
 
     getData('organization').then((org) => {
       setSurveyingOrganization(org || surveyingOrganization);
