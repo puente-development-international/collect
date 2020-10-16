@@ -64,6 +64,9 @@ export default function SignUp({ navigation }) {
   };
   return (
     <View style={{ backgroundColor: theme.colors.accent, flex: 1 }}>
+      <Button icon="arrow-left" width={100} style={{ paddingTop: 20 }} onPress={handleLogIn}>
+        Back
+      </Button>
       <ScrollView style={{ backgroundColor: theme.colors.accent }}>
         <SafeAreaView style={{ marginTop: 30 }}>
           <Formik
@@ -181,10 +184,6 @@ export default function SignUp({ navigation }) {
           </Formik>
         </SafeAreaView>
       </ScrollView>
-      <View style={styles.footerContainer}>
-        <Text style={styles.loginText}>Already have an account?</Text>
-        <Button onPress={handleLogIn}>Log-in here!</Button>
-      </View>
     </View>
   );
 }
