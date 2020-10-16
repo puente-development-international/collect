@@ -7,7 +7,7 @@ import DataCollection from '../../../domains/DataCollection';
 import DataAnalysis from '../../../domains/DataAnalysis';
 
 const BottomTab = createBottomTabNavigator();
-const INITIAL_ROUTE_NAME = 'Home';
+const INITIAL_ROUTE_NAME = 'Data_Collection';
 
 export default function BottomTabNavigator({ navigation, route }) {
   navigation.setOptions({
