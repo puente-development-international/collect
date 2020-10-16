@@ -83,6 +83,11 @@ export default function SignUp({ navigation }) {
                       // user signed in and signed up
                       // store organization for future use
                       const currentUser = retrieveCurrentUserFunction();
+                      getData('currentUser').then((userCur) => {
+                        if (userCur !== currentUser) {
+                          storeData(currentUser, 'currentUser');
+                        }
+                      });
                       getData('organization').then((organization) => {
                         if (organization !== currentUser.organization) {
                           storeData(currentUser.organization, 'organization');

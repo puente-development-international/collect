@@ -123,6 +123,11 @@ const SignIn = ({ navigation }) => {
                         || values.password !== userCreds.password) {
                         // Store user organization
                         const currentUser = retrieveCurrentUserFunction();
+                        getData('currentUser').then((userCur) => {
+                          if (userCur !== currentUser) {
+                            storeData(currentUser, 'currentUser');
+                          }
+                        });
                         getData('organization').then((organization) => {
                           if (organization !== currentUser.organization) {
                             storeData(currentUser.organization, 'organization');
@@ -131,6 +136,11 @@ const SignIn = ({ navigation }) => {
                         });
                       } else {
                         const currentUser = retrieveCurrentUserFunction();
+                        getData('currentUser').then((userCur) => {
+                          if (userCur !== currentUser) {
+                            storeData(currentUser, 'currentUser');
+                          }
+                        });
                         getData('organization').then((organization) => {
                           if (organization !== currentUser.organization) {
                             storeData(currentUser.organization, 'organization');
@@ -140,6 +150,11 @@ const SignIn = ({ navigation }) => {
                     }, () => {
                       // Store user organization
                       const currentUser = retrieveCurrentUserFunction();
+                      getData('currentUser').then((userCur) => {
+                        if (userCur !== currentUser) {
+                          storeData(currentUser, 'currentUser');
+                        }
+                      });
                       getData('organization').then((organization) => {
                         if (organization !== currentUser.organization) {
                           storeData(currentUser.organization, 'organization');
