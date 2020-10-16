@@ -14,19 +14,21 @@ import {
 import {
   Checkbox, Button,
 } from 'react-native-paper';
+
+import * as Network from 'expo-network';
+
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import * as Network from 'expo-network';
+
 import { retrieveSignInFunction, retrieveCurrentUserFunction } from '../../../services/parse/auth';
+
+import { storeData, getData, deleteData } from '../../../modules/async-storage';
+import I18n from '../../../modules/i18n';
+import { theme } from '../../../modules/theme';
+
 import FormInput from '../../../components/FormikFields/FormInput';
 import LanguagePicker from '../../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
-import { storeData, getData, deleteData } from '../../../modules/async-storage';
-
-import I18n from '../../../modules/i18n';
-
-// STYLING
-import { theme } from '../../../modules/theme';
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -41,7 +43,7 @@ const validationSchema = yup.object().shape({
 });
 
 const SignIn = ({ navigation }) => {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [user, setUser] = useState(null);
   const [language, setLanguage] = useState('en');
@@ -57,6 +59,14 @@ const SignIn = ({ navigation }) => {
     });
   }, [load]);
 
+  const handleFailedAttempt = (err) => {
+    const errorMsg = err.toString().slice(-26) || '';
+    Alert.alert(
+      `${errorMsg}`,
+      'Your username or password may be incorrect, please try again.',
+      { cancelable: true }
+    );
+  };
   const handleSignUp = () => {
     navigation.navigate('Sign Up');
   };
@@ -87,7 +97,6 @@ const SignIn = ({ navigation }) => {
     I18n.locale = lang;
   };
 
-  // checks whether user is connected to internet, return true if connected, false otherwise
   async function checkOnlineStatus() {
     const status = await Network.getNetworkStateAsync();
     const { isConnected } = status;
@@ -155,9 +164,8 @@ const SignIn = ({ navigation }) => {
                       handleSaveCredentials(values);
                     });
                   navigation.navigate('Root');
-                }, (error) => {
-                  // eslint-disable-next-line
-                  console.log(error)
+                }, (err) => {
+                  handleFailedAttempt(err);
                 });
             } else {
               // offline
@@ -233,6 +241,7 @@ const SignIn = ({ navigation }) => {
               setModalVisible={setModalVisible}
               navigation={navigation}
             />
+
           </>
         )}
       </Formik>

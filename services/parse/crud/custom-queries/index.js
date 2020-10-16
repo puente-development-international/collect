@@ -37,4 +37,4 @@ function customQueryService(offset, limit, parseModel, parseColumn, parseParam) 
   });
 }
 
-export { customQueryService };
+export default customQueryService;

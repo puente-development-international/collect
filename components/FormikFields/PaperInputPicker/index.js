@@ -62,6 +62,22 @@ const PaperInputPicker = ({
           </Text>
         </View>
       )}
+      {fieldType === 'numberInput' && (
+        <View style={styles}>
+          <TextInput
+            label={label}
+            onChangeText={handleChange(formikKey)}
+            onBlur={handleBlur(formikKey)}
+            {...rest} //eslint-disable-line
+            mode="outlined"
+            keyboardType="numeric"
+            theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+          />
+          <Text style={{ color: 'red' }}>
+            {touched[formikKey] && errors[formikKey]}
+          </Text>
+        </View>
+      )}
       {fieldType === 'select' && (
         <View>
           <Text style={layout.selectLabel}>{label}</Text>
