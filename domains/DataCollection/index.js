@@ -47,7 +47,7 @@ const DataCollection = ({ navigation }) => {
 
   useEffect(() => {
     getData('currentUser').then((user) => {
-      setSurveyingUser(`${user.firstname || ""} ${user.lastname || ""}`);
+      setSurveyingUser(`${user.firstname || ''} ${user.lastname || ''}`);
     });
 
     getData('organization').then((org) => {

@@ -59,129 +59,132 @@ export default function SignUp({ navigation }) {
   const [checked, setChecked] = React.useState(false);
   const [visible, setVisible] = React.useState(false);
 
+  const handleLogIn = () => {
+    navigation.navigate('Sign In');
+  };
   return (
-    <ScrollView>
-      <SafeAreaView style={{ marginTop: 30 }}>
-        <Formik
-          initialValues={{
-            firstname: '', lastname: '', email: '', phonenumber: '', password: '', password2: '', organization: ''
-          }}
-          onSubmit={(values, actions) => {
-            if (!checked) {
-              alert('Error, terms and service need to be agreed to.'); // eslint-disable-line
-            } else if (values.password !== values.password2) {
-              alert("Error, your passwords do not match.") // eslint-disable-line
-            } else {
-              retrieveSignUpFunction(values)
-                .then((user) => {
-                  const userString = JSON.stringify(user);
-                  const userValues = JSON.parse(userString);
-                  const { username } = userValues;
-                  // sign user in after successful sign up
-                  retrieveSignInFunction(username, values.password)
-                    .then(() => {
-                      // user signed in and signed up
-                      // store organization for future use
-                      const currentUser = retrieveCurrentUserFunction();
-                      getData('currentUser').then((userCur) => {
-                        if (userCur !== currentUser) {
-                          storeData(currentUser, 'currentUser');
-                        }
+    <View style={{ backgroundColor: theme.colors.accent, flex: 1 }}>
+      <Button icon="arrow-left" width={100} style={{ paddingTop: 20 }} onPress={handleLogIn}>
+        Back
+      </Button>
+      <ScrollView style={{ backgroundColor: theme.colors.accent }}>
+        <SafeAreaView style={{ marginTop: 30 }}>
+          <Formik
+            initialValues={{
+              firstname: '', lastname: '', email: '', phonenumber: '', password: '', password2: '', organization: ''
+            }}
+            onSubmit={(values, actions) => {
+              if (!checked) {
+                alert('Error, terms and service need to be agreed to.'); // eslint-disable-line
+              } else if (values.password !== values.password2) {
+                alert("Error, your passwords do not match.") // eslint-disable-line
+              } else {
+                retrieveSignUpFunction(values)
+                  .then((user) => {
+                    const userString = JSON.stringify(user);
+                    const userValues = JSON.parse(userString);
+                    const { username } = userValues;
+                    // sign user in after successful sign up
+                    retrieveSignInFunction(username, values.password)
+                      .then(() => {
+                        // user signed in and signed up
+                        // store organization for future use
+                        const currentUser = retrieveCurrentUserFunction();
+                        getData('organization').then((organization) => {
+                          if (organization !== currentUser.organization) {
+                            storeData(currentUser.organization, 'organization');
+                          }
+                        });
+                        navigation.navigate('Root');
+                      }, () => {
+                        // sign in failed, alert user
                       });
-                      getData('organization').then((organization) => {
-                        if (organization !== currentUser.organization) {
-                          storeData(currentUser.organization, 'organization');
-                        }
-                      });
-                      navigation.navigate('Root');
-                    }, () => {
-                      // sign in failed, alert user
-                    });
-                }, () => {
-                  // sign up failed alert user
-                });
-            }
-            setTimeout(() => {
-              actions.setSubmitting(false);
-            }, 1000);
-          }}
-          validationSchema={validationSchema}
-        >
-          {(formikProps) => (
-            <>
-              <FormInput
-                label={I18n.t('signUp.firstName')}
-                formikProps={formikProps}
-                formikKey="firstname"
-                placeholder="John"
-                autoFocus
-              />
-              <FormInput
-                label={I18n.t('signUp.lastName')}
-                formikProps={formikProps}
-                formikKey="lastname"
-                placeholder="Doe"
-              />
-              <FormInput
-                label={I18n.t('signUp.email')}
-                formikProps={formikProps}
-                formikKey="email"
-                placeholder="johndoe@example.com"
-              />
-              <FormInput
-                label={I18n.t('signUp.phoneNumber')}
-                formikProps={formikProps}
-                formikKey="phonenumber"
-                placeholder="123-456-7890"
-              />
-              <FormInput
-                label={I18n.t('signUp.password')}
-                formikProps={formikProps}
-                formikKey="password"
-                placeholder="Password Here"
-                secureTextEntry
-              />
-              <FormInput
-                label={I18n.t('signUp.password2')}
-                formikProps={formikProps}
-                formikKey="password2"
-                placeholder="Password Here"
-                secureTextEntry
-              />
-              <FormInput
-                label={I18n.t('signUp.organization')}
-                formikProps={formikProps}
-                formikKey="organization"
-                placeholder="Puente"
-              />
-              <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={() => setVisible(true)}>{I18n.t('signUp.termsOfService.view')}</Button>
-              <View style={styles.container}>
-                <Text style={styles.serviceText}>
-                  {I18n.t('signUp.termsOfService.acknoledgement')}
-                </Text>
-                <View style={styles.checkbox}>
-                  <Checkbox
-                    disabled={false}
-                    theme={theme}
-                    status={checked ? 'checked' : 'unchecked'}
-                    onPress={() => {
-                      setChecked(!checked);
-                    }}
-                  />
+                  }, () => {
+                    // sign up failed alert user
+                  });
+              }
+              setTimeout(() => {
+                actions.setSubmitting(false);
+              }, 1000);
+            }}
+            validationSchema={validationSchema}
+          >
+            {(formikProps) => (
+              <>
+                <FormInput
+                  label={I18n.t('signUp.firstName')}
+                  formikProps={formikProps}
+                  formikKey="firstname"
+                  placeholder="John"
+                  autoFocus
+                />
+                <FormInput
+                  label={I18n.t('signUp.lastName')}
+                  formikProps={formikProps}
+                  formikKey="lastname"
+                  placeholder="Doe"
+                />
+                <FormInput
+                  label={I18n.t('signUp.email')}
+                  formikProps={formikProps}
+                  formikKey="email"
+                  placeholder="johndoe@example.com"
+                />
+                <FormInput
+                  label={I18n.t('signUp.phoneNumber')}
+                  formikProps={formikProps}
+                  formikKey="phonenumber"
+                  placeholder="123-456-7890"
+                />
+                <FormInput
+                  label={I18n.t('signUp.password')}
+                  formikProps={formikProps}
+                  formikKey="password"
+                  placeholder="Password Here"
+                  secureTextEntry
+                />
+                <FormInput
+                  label={I18n.t('signUp.password2')}
+                  formikProps={formikProps}
+                  formikKey="password2"
+                  placeholder="Password Here"
+                  secureTextEntry
+                />
+                <FormInput
+                  label={I18n.t('signUp.organization')}
+                  formikProps={formikProps}
+                  formikKey="organization"
+                  placeholder="Puente"
+                />
+                <Button mode="text" theme={theme} color="#3E81FD" style={styles.serviceButton} onPress={() => setVisible(true)}>{I18n.t('signUp.termsOfService.view')}</Button>
+                <View style={styles.container}>
+                  <Text style={styles.serviceText}>
+                    {I18n.t('signUp.termsOfService.acknoledgement')}
+                  </Text>
+                  <View style={styles.checkbox}>
+                    <Checkbox
+                      disabled={false}
+                      theme={theme}
+                      status={checked ? 'checked' : 'unchecked'}
+                      onPress={() => {
+                        setChecked(!checked);
+                      }}
+                    />
+                  </View>
                 </View>
-              </View>
-              {formikProps.isSubmitting ? (
-                <ActivityIndicator />
-              ) : (
-                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
-              )}
+                {formikProps.isSubmitting ? (
+                  <ActivityIndicator />
+                ) : (
+                  <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
+                )}
 
-              <TermsModal visible={visible} setVisible={setVisible} />
-            </>
-          )}
-        </Formik>
-      </SafeAreaView>
-    </ScrollView>
+                <TermsModal visible={visible} setVisible={setVisible} />
+              </>
+            )}
+          </Formik>
+        </SafeAreaView>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -191,6 +194,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     marginLeft: 20,
+    backgroundColor: 'white'
   },
   container: {
     flexDirection: 'row',
@@ -212,5 +216,18 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     marginTop: 10,
-  }
+  },
+  footerContainer: {
+    flexDirection: 'row',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    backgroundColor: theme.colors.accent,
+    marginBottom: 35
+  },
+  loginText: {
+    fontSize: 15,
+    marginTop: 'auto',
+    marginBottom: 'auto'
+
+  },
 });
