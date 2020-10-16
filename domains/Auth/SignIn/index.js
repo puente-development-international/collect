@@ -320,9 +320,9 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     marginTop: 20,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginBottom: 40
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 40,
   }
 
 });
