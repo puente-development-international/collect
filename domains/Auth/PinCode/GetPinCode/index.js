@@ -23,7 +23,6 @@ const GetPinCode = ({ navigation }) => {
                     const currentUser = retrieveCurrentUserFunction();
                     getData('currentUser').then((user) => {
                       if (user !== currentUser) {
-                        console.log("SET CURRRENT USER:", currentUser)
                         storeData(currentUser, 'currentUser');
                       }
                     });

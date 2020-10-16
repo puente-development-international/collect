@@ -19,7 +19,6 @@ import { getData } from '../../modules/async-storage';
 
 import FindResidents from '../../components/FindResidents';
 
-import { retrieveCurrentUserFunction } from '../../services/parse/auth';
 import { customQueryService } from '../../services/parse/crud';
 
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
@@ -48,16 +47,8 @@ const DataCollection = ({ navigation }) => {
 
   useEffect(() => {
     getData('currentUser').then((user) => {
-      setSurveyingUser(user.firstname + user.lastname)
-      console.log("SURVEYING USER: ", surveyingUser)
-    })
-    // const currentUser = retrieveCurrentUserFunction();
-    // setSurveyingUser(`${currentUser.get('firstname')} ${currentUser.get('lastname')}`);
-    // needed to switch to ASY?NC current user
-    // retrieveCurrentUserFunction().then((currentUser) => {
-    //   // console.log("CURRENT USER: ", currentUser)
-    //   setSurveyingUser(currentUser.get('firstname') + currentUser.get('lastname'));
-    // })
+      setSurveyingUser(`${user.firstname} ${user.lastname}`);
+    });
 
     getData('organization').then((org) => {
       setSurveyingOrganization(org || surveyingOrganization);
