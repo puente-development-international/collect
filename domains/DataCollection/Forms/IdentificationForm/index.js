@@ -58,10 +58,16 @@ const IdentificationForm = ({
       initialValues={{}}
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
+
         const formObject = values;
         formObject.surveyingOrganization = surveyingOrganization;
         formObject.surveyingUser = surveyingUser;
-        formObject.dob = `${values.Month}/${values.Day}/${values.Year}`;
+        formObject.dob = `${values.Month || '00'}/${values.Day || '00'}/${values.Year || '0000'}`;
+
+        const valuesToPrune = ['Month', 'Day', 'Year'];
+        valuesToPrune.forEach((value) => {
+          delete formObject[value];
+        });
 
         const submitAction = () => {
           setTimeout(() => {
