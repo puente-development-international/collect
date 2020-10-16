@@ -30,6 +30,7 @@ const HomeScreen = (props) => {
       deleteData('credentials');
       deleteData('pincode');
       deleteData('organization');
+      deleteData('currentUser');
       navigation.navigate('Sign In');
     });
   };
