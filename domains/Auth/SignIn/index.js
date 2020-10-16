@@ -25,7 +25,6 @@ import { storeData, getData, deleteData } from '../../../modules/async-storage';
 import I18n from '../../../modules/i18n';
 import { theme } from '../../../modules/theme';
 
-
 import FormInput from '../../../components/FormikFields/FormInput';
 import LanguagePicker from '../../../components/LanguagePicker';
 import CredentialsModal from './CredentialsModal';
@@ -101,7 +100,7 @@ const SignIn = ({ navigation }) => {
 
   const handleTermsModal = () => {
     setVisible(true);
-  }
+  };
 
   async function checkOnlineStatus() {
     const status = await Network.getNetworkStateAsync();
@@ -188,7 +187,7 @@ const SignIn = ({ navigation }) => {
               placeholder="johndoe@example.com"
               autoFocus
             />
-            <Button style={{ marginRight: 'auto'}}>Forgot username?</Button>
+            <Button style={{ marginRight: 'auto' }}>Forgot username?</Button>
             {!checked ? (
               <FormInput
                 label={I18n.t('signIn.password')}
@@ -198,13 +197,13 @@ const SignIn = ({ navigation }) => {
                 secureTextEntry
               />
             ) : (
-                <FormInput
-                  label={I18n.t('signIn.password')}
-                  formikProps={formikProps}
-                  formikKey="password"
-                  placeholder="Password"
-                />
-              )}
+              <FormInput
+                label={I18n.t('signIn.password')}
+                formikProps={formikProps}
+                formikKey="password"
+                placeholder="Password"
+              />
+            )}
             <Button style={{ marginRight: 'auto' }}>Forgot password?</Button>
             <View style={styles.container}>
               <View style={styles.checkbox}>
@@ -222,8 +221,8 @@ const SignIn = ({ navigation }) => {
             {formikProps.isSubmitting ? (
               <ActivityIndicator />
             ) : (
-                <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
-              )}
+              <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
+            )}
             <CredentialsModal
               modalVisible={modalVisible}
               formikProps={formikProps}
@@ -238,9 +237,10 @@ const SignIn = ({ navigation }) => {
       <Button onPress={deleteCreds}>Delete Credentials</Button>
       <View style={styles.footer}>
         <View style={styles.termsContainer}>
-          <Text style={styles.accountText}>Don't have an account?</Text>
+          <Text style={styles.accountText}>Don&apos;t have an account?</Text>
           <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp}>
-            Sign up!</Button>
+            Sign up!
+          </Button>
         </View>
         <View style={styles.termsContainer}>
           <Text style={styles.puenteText}>Puente 2020   |</Text>

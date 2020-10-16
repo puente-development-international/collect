@@ -60,8 +60,8 @@ export default function SignUp({ navigation }) {
   const [visible, setVisible] = React.useState(false);
 
   const handleLogIn = () => {
-    navigation.navigate('Sign In')
-  }
+    navigation.navigate('Sign In');
+  };
   return (
     <View style={{ backgroundColor: theme.colors.accent, flex: 1 }}>
       <ScrollView style={{ backgroundColor: theme.colors.accent }}>
@@ -172,8 +172,8 @@ export default function SignUp({ navigation }) {
                 {formikProps.isSubmitting ? (
                   <ActivityIndicator />
                 ) : (
-                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
-                  )}
+                  <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
+                )}
 
                 <TermsModal visible={visible} setVisible={setVisible} />
               </>
