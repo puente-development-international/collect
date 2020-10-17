@@ -47,39 +47,40 @@ const DataCollection = ({ navigation }) => {
 
   useEffect(() => {
     getData('currentUser').then((user) => {
+      console.log(user)
       setSurveyingUser(`${user.firstname || ''} ${user.lastname || ''}`);
+    }, () => {
+      setSurveyingUser(`${''} ${''}`);
     });
 
     getData('organization').then((org) => {
-      setSurveyingOrganization(org || surveyingOrganization);
+      setSurveyingOrganization(org);
+    }, () => {
+      setSurveyingUser(surveyingOrganization || "");
     });
 
     customQueryService(0, 5000, 'FormSpecificationsV2', 'organizations', surveyingOrganization).then((forms) => {
       setCustomForms(JSON.parse(JSON.stringify(forms)));
     });
-  }, [surveyingUser, surveyingOrganization, customForms]);
+  }, [surveyingUser, surveyingOrganization]);
 
   const navigateToRoot = async () => {
     setView('Root');
   };
 
   const navigateToNewRecord = async (formTag, surveyeePerson) => {
-    await getData('organization').then((org) => {
-      setSurveyingOrganization(org || surveyingOrganization);
-      setView('Forms');
-      setSurveyee(surveyeePerson || surveyee);
-      setSelectedForm(formTag || 'id');
-    });
+    setSurveyingOrganization(org || surveyingOrganization);
+    setView('Forms');
+    setSurveyee(surveyeePerson || surveyee);
+    setSelectedForm(formTag || 'id');
   };
 
   const navigateToCustomForm = async (form, surveyeePerson) => {
-    await getData('organization').then((org) => {
-      setSurveyingOrganization(org || surveyingOrganization);
-      setView('Forms');
-      setSurveyee(surveyeePerson || surveyee);
-      setSelectedForm('custom');
-      setCustomForm(form || '');
-    });
+    setSurveyingOrganization(org || surveyingOrganization);
+    setView('Forms');
+    setSurveyee(surveyeePerson || surveyee);
+    setSelectedForm('custom');
+    setCustomForm(form || '');
   };
 
   const navigateToGallery = async () => {
@@ -87,10 +88,8 @@ const DataCollection = ({ navigation }) => {
   };
 
   const navigateToFindRecords = async () => {
-    await getData('organization').then((org) => {
-      setSurveyingOrganization(org || surveyingOrganization);
-      setView('Find Records');
-    });
+    setSurveyingOrganization(org || surveyingOrganization);
+    setView('Find Records');
   };
 
   return (

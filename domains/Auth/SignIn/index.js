@@ -9,6 +9,9 @@ import {
   View,
   StyleSheet,
   Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView
 } from 'react-native';
 import {
   Checkbox, Button, Text
@@ -121,135 +124,145 @@ const SignIn = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ backgroundColor: theme.colors.accent, flex: 1 }}>
-      {!forgotPassword && (
-        <View style={{ flex: 9 }}>
-          <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
-          <Formik
-            initialValues={{ username: '', password: '' }}
-            onSubmit={(values, actions) => {
-              checkOnlineStatus().then((connected) => {
-                if (connected) {
-                  retrieveSignInFunction(values.username, values.password)
-                    .then(() => {
-                      getData('credentials')
-                        .then((userCreds) => {
-                          // credentials saved do not match those entered, overwrite saved
-                          // credentials
-                          if (userCreds === null || values.username !== userCreds.username
-                            || values.password !== userCreds.password) {
-                            // Store user organization
-                            const currentUser = retrieveCurrentUserFunction();
-                            getData('organization').then((organization) => {
-                              if (organization !== currentUser.organization) {
-                                storeData(currentUser.organization, 'organization');
+    <KeyboardAvoidingView
+      enabled
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={{ backgroundColor: theme.colors.accent, flex: 1 }}
+    >
+      <SafeAreaView>
+
+        {!forgotPassword && (
+          <ScrollView keyboardShouldPersistTaps="always">
+            <View style={{ flex: 9 }}>
+              <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
+              <Formik
+                initialValues={{ username: '', password: '' }}
+                onSubmit={(values, actions) => {
+                  checkOnlineStatus().then((connected) => {
+                    if (connected) {
+                      retrieveSignInFunction(values.username, values.password)
+                        .then(() => {
+                          getData('credentials')
+                            .then((userCreds) => {
+                              // credentials saved do not match those entered, overwrite saved
+                              // credentials
+                              if (userCreds === null || values.username !== userCreds.username
+                                || values.password !== userCreds.password) {
+                                // Store user organization
+                                const currentUser = retrieveCurrentUserFunction();
+                                getData('organization').then((organization) => {
+                                  if (organization !== currentUser.organization) {
+                                    storeData(currentUser.organization, 'organization');
+                                  }
+                                  handleSaveCredentials(values);
+                                });
+                              } else {
+                                const currentUser = retrieveCurrentUserFunction();
+                                getData('organization').then((organization) => {
+                                  if (organization !== currentUser.organization) {
+                                    storeData(currentUser.organization, 'organization');
+                                  }
+                                });
                               }
+                            }, () => {
+                              // Store user organization
+                              const currentUser = retrieveCurrentUserFunction();
+                              getData('organization').then((organization) => {
+                                if (organization !== currentUser.organization) {
+                                  storeData(currentUser.organization, 'organization');
+                                }
+                              });
+                              // no credentials saved, give option to save
                               handleSaveCredentials(values);
                             });
-                          } else {
-                            const currentUser = retrieveCurrentUserFunction();
-                            getData('organization').then((organization) => {
-                              if (organization !== currentUser.organization) {
-                                storeData(currentUser.organization, 'organization');
-                              }
-                            });
-                          }
-                        }, () => {
-                          // Store user organization
-                          const currentUser = retrieveCurrentUserFunction();
-                          getData('organization').then((organization) => {
-                            if (organization !== currentUser.organization) {
-                              storeData(currentUser.organization, 'organization');
-                            }
-                          });
-                          // no credentials saved, give option to save
-                          handleSaveCredentials(values);
+                          navigation.navigate('Root');
+                        }, (err) => {
+                          handleFailedAttempt(err);
                         });
-                      navigation.navigate('Root');
-                    }, (err) => {
-                      handleFailedAttempt(err);
-                    });
-                } else {
-                  // offline
-                  getData('credentials')
-                    .then((userCreds) => {
-                      // username and password entered (or saved in creds) match the saved cred
-                      if (values.username === userCreds.username
-                        && values.password === userCreds.password) {
-                        // need some pincode verification
-                        navigation.navigate('Root');
-                      } else {
-                        // cannot log in offline without saved credentials, must connect to internet
-                      }
-                    });
-                }
-              });
-              setTimeout(() => {
-                actions.setSubmitting(false);
-              }, 1000);
-            }}
-            validationSchema={validationSchema}
-          >
-            {(formikProps) => (
-              <View>
-                <View style={styles.logoContainer}>
-                  <BlackLogo height={130} />
-                </View>
-                <FormInput
-                  label={I18n.t('signIn.username')}
-                  formikProps={formikProps}
-                  formikKey="username"
-                  placeholder="johndoe@example.com"
-                  autoFocus
-                />
-                <FormInput
-                  label={I18n.t('signIn.password')}
-                  formikProps={formikProps}
-                  formikKey="password"
-                  placeholder="Password"
-                  secureTextEntry={!checked}
-                />
-                <Button style={{ marginRight: 'auto' }} onPress={handleForgotPassword}>Forgot password?</Button>
-                <View style={styles.container}>
-                  <View style={styles.checkbox}>
-                    <Checkbox
-                      disabled={false}
-                      theme={theme}
-                      status={checked ? 'checked' : 'unchecked'}
-                      onPress={() => {
-                        setChecked(!checked);
-                      }}
+                    } else {
+                      // offline
+                      getData('credentials')
+                        .then((userCreds) => {
+                          // username and password entered (or saved in creds) match the saved cred
+                          if (values.username === userCreds.username
+                            && values.password === userCreds.password) {
+                            // need some pincode verification
+                            navigation.navigate('Root');
+                          } else {
+                            // cannot log in offline without saved credentials, must connect to internet
+                          }
+                        });
+                    }
+                  });
+                  setTimeout(() => {
+                    actions.setSubmitting(false);
+                  }, 1000);
+                }}
+                validationSchema={validationSchema}
+              >
+                {(formikProps) => (
+                  <View>
+                    <View style={styles.logoContainer}>
+                      <BlackLogo height={130} />
+                    </View>
+                    <FormInput
+                      label={I18n.t('signIn.username')}
+                      formikProps={formikProps}
+                      formikKey="username"
+                      placeholder="johndoe@example.com"
+                      autoFocus
                     />
-                  </View>
-                  <Text style={styles.passwordText}>{I18n.t('signIn.showPassword')}</Text>
-                </View>
-                {formikProps.isSubmitting ? (
-                  <ActivityIndicator />
-                ) : (
-                  <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
-                )}
-                <CredentialsModal
-                  modalVisible={modalVisible}
-                  formikProps={formikProps}
-                  user={user}
-                  setModalVisible={setModalVisible}
-                  navigation={navigation}
-                />
+                    <FormInput
+                      label={I18n.t('signIn.password')}
+                      formikProps={formikProps}
+                      formikKey="password"
+                      placeholder="Password"
+                      secureTextEntry={!checked}
+                    />
+                    <Button style={{ marginRight: 'auto' }} onPress={handleForgotPassword}>Forgot password?</Button>
+                    <View style={styles.container}>
+                      <View style={styles.checkbox}>
+                        <Checkbox
+                          disabled={false}
+                          theme={theme}
+                          status={checked ? 'checked' : 'unchecked'}
+                          onPress={() => {
+                            setChecked(!checked);
+                          }}
+                        />
+                      </View>
+                      <Text style={styles.passwordText}>{I18n.t('signIn.showPassword')}</Text>
+                    </View>
+                    {formikProps.isSubmitting ? (
+                      <ActivityIndicator />
+                    ) : (
+                        <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
+                      )}
+                    <CredentialsModal
+                      modalVisible={modalVisible}
+                      formikProps={formikProps}
+                      user={user}
+                      setModalVisible={setModalVisible}
+                      navigation={navigation}
+                    />
 
-              </View>
-            )}
-          </Formik>
-          <Button onPress={deleteCreds}>Delete Credentials</Button>
-        </View>
-      )}
-      <TermsModal visible={visible} setVisible={setVisible} />
-      {forgotPassword && (
-        <ForgotPassword
-          navigation={navigation}
-          forgotPassword={forgotPassword}
-          setForgotPassword={setForgotPassword}
-        />
-      )}
+                  </View>
+                )}
+              </Formik>
+              <Button onPress={deleteCreds}>Delete Credentials</Button>
+            </View>
+          </ScrollView>
+        )}
+        <TermsModal visible={visible} setVisible={setVisible} />
+        {forgotPassword && (
+          <ForgotPassword
+            navigation={navigation}
+            forgotPassword={forgotPassword}
+            setForgotPassword={setForgotPassword}
+          />
+        )}
+      </SafeAreaView>
+
       {!forgotPassword && (
         <View style={styles.footer}>
           <View style={styles.termsContainer}>
@@ -264,7 +277,8 @@ const SignIn = ({ navigation }) => {
           </View>
         </View>
       )}
-    </SafeAreaView>
+
+    </KeyboardAvoidingView>
   );
 };
 
