@@ -189,7 +189,7 @@ const SignIn = ({ navigation }) => {
                             // need some pincode verification
                             navigation.navigate('Root');
                           } else {
-                            // cannot log in offline without saved credentials, must connect to internet
+                            // cannot log in offline without saved credentials, connect to internet
                           }
                         });
                     }
@@ -236,8 +236,8 @@ const SignIn = ({ navigation }) => {
                     {formikProps.isSubmitting ? (
                       <ActivityIndicator />
                     ) : (
-                        <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
-                      )}
+                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
+                    )}
                     <CredentialsModal
                       modalVisible={modalVisible}
                       formikProps={formikProps}

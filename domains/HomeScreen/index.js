@@ -25,6 +25,7 @@ const HomeScreen = (props) => {
       setTasks(result);
     });
   };
+
   const logOut = () => {
     retrieveSignOutFunction().then(() => {
       deleteData('credentials');
@@ -34,9 +35,10 @@ const HomeScreen = (props) => {
       navigation.navigate('Sign In');
     });
   };
+
   return (
     <View style={layout.screenContainer}>
-      <Header />
+      <Header logOut={logOut} />
       <ScrollView>
         <View style={layout.screenRow}>
           <Title>My Tasks</Title>

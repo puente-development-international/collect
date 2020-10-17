@@ -15,11 +15,12 @@ import Header from '../../components/Header';
 import Forms from './Forms';
 import FormGallery from './FormGallery';
 
-import { getData } from '../../modules/async-storage';
-
 import FindResidents from '../../components/FindResidents';
 
+import { deleteData, getData } from '../../modules/async-storage';
+
 import { customQueryService } from '../../services/parse/crud';
+import { retrieveSignOutFunction } from '../../services/parse/auth';
 
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
 import FindRecordSVG from '../../assets/graphics/static/Find-Record-Icon.svg';
@@ -47,16 +48,15 @@ const DataCollection = ({ navigation }) => {
 
   useEffect(() => {
     getData('currentUser').then((user) => {
-      console.log(user)
       setSurveyingUser(`${user.firstname || ''} ${user.lastname || ''}`);
-    }, () => {
+    }).catch(() => {
       setSurveyingUser(`${''} ${''}`);
     });
 
     getData('organization').then((org) => {
-      setSurveyingOrganization(org);
-    }, () => {
-      setSurveyingUser(surveyingOrganization || "");
+      setSurveyingOrganization(org || surveyingOrganization);
+    }).catch(() => {
+      setSurveyingOrganization(surveyingOrganization || '');
     });
 
     customQueryService(0, 5000, 'FormSpecificationsV2', 'organizations', surveyingOrganization).then((forms) => {
@@ -69,27 +69,46 @@ const DataCollection = ({ navigation }) => {
   };
 
   const navigateToNewRecord = async (formTag, surveyeePerson) => {
-    setSurveyingOrganization(org || surveyingOrganization);
-    setView('Forms');
-    setSurveyee(surveyeePerson || surveyee);
-    setSelectedForm(formTag || 'id');
+    await getData('organization').then((org) => {
+      setSurveyingOrganization(org || surveyingOrganization || '');
+      setView('Forms');
+      setSurveyee(surveyeePerson || surveyee);
+      setSelectedForm(formTag || 'id');
+    });
   };
 
   const navigateToCustomForm = async (form, surveyeePerson) => {
-    setSurveyingOrganization(org || surveyingOrganization);
-    setView('Forms');
-    setSurveyee(surveyeePerson || surveyee);
-    setSelectedForm('custom');
-    setCustomForm(form || '');
+    await getData('organization').then((org) => {
+      setSurveyingOrganization(org || surveyingOrganization || '');
+      setView('Forms');
+      setSurveyee(surveyeePerson || surveyee);
+      setSelectedForm('custom');
+      setCustomForm(form || '');
+    });
   };
 
   const navigateToGallery = async () => {
-    setView('Gallery');
+    await getData('organization').then((org) => {
+      setSurveyingOrganization(org || surveyingOrganization || '');
+      setView('Gallery');
+    });
   };
 
   const navigateToFindRecords = async () => {
-    setSurveyingOrganization(org || surveyingOrganization);
-    setView('Find Records');
+    await getData('organization').then((org) => {
+      setSurveyingOrganization(org || surveyingOrganization || '');
+      setView('Find Records');
+    });
+  };
+
+  const logOut = () => {
+    retrieveSignOutFunction().then(() => {
+      deleteData('credentials');
+      deleteData('pincode');
+      deleteData('organization');
+      deleteData('currentUser');
+      navigation.navigate('Sign In');
+    });
   };
 
   return (
@@ -99,7 +118,7 @@ const DataCollection = ({ navigation }) => {
         setScrollViewScroll(true);
       }}
     >
-      <Header />
+      <Header logOut={logOut} />
       <KeyboardAvoidingView
         enabled
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

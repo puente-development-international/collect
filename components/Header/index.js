@@ -4,7 +4,7 @@ import { Text, IconButton } from 'react-native-paper';
 
 import styles from './index.styles';
 
-const Header = () => {
+const Header = ({ logOut }) => {
   const { header, headerText, headerIcon } = styles;
   return (
     <View style={header}>
@@ -16,12 +16,16 @@ const Header = () => {
           size={30}
         />
       </View>
+
       <View style={headerIcon}>
+        {logOut && (
         <IconButton
-          icon="settings"
+          icon="logout"
           color={headerIcon.color}
           size={30}
+          onPress={logOut}
         />
+        )}
       </View>
     </View>
   );
