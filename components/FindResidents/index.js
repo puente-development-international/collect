@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import {
-  View
+  View, FlatList
 } from 'react-native';
 
 import {
@@ -63,6 +63,15 @@ const FindResidents = ({
     setQuery('');
   };
 
+  const renderItem = ({ item }) => (
+    <View key={item.objectId}>
+      <ResidentCard
+        resident={item}
+        onSelectPerson={onSelectPerson}
+      />
+    </View>
+  );
+
   return (
     <View>
       {!selectPerson && (
@@ -75,15 +84,24 @@ const FindResidents = ({
           />
         </>
       )}
-
-      {!selectPerson && filterList(residents).map((listItem,) => (
+      {/* Non-virtualized list */}
+      {/* {!selectPerson && filterList(residents).map((listItem,) => (
         <View key={listItem.objectId}>
           <ResidentCard
             resident={listItem}
             onSelectPerson={onSelectPerson}
           />
         </View>
-      ))}
+      ))} */}
+
+      {!selectPerson
+        && (
+        <FlatList
+          data={filterList(residents)}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.objectId}
+        />
+        )}
 
       {selectPerson && (
         <ResidentPage
