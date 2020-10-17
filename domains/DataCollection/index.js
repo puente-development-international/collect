@@ -11,6 +11,7 @@ import {
 import { layout, theme } from '../../modules/theme';
 
 import Header from '../../components/Header';
+import MapView from '../../components/MapView'
 
 import Forms from './Forms';
 import FormGallery from './FormGallery';
@@ -143,6 +144,8 @@ const DataCollection = ({ navigation }) => {
                 </View>
               </View>
               <View style={styles.horizontalLine} /> */}
+                <MapView />
+
                 <View style={styles.screenFlexRowWrap}>
                   <View style={styles.cardContainer}>
                     <Card style={styles.cardSmallStyle} onPress={() => navigateToNewRecord()}>
