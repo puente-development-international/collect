@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
   },
   calculationText: {
     fontWeight: 'bold',
-    alignSelf: 'flex-end',
     textAlign: 'center',
     padding: 20
   }

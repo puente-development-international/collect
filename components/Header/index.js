@@ -13,10 +13,18 @@ const Header = ({ logOut }) => {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [surveyCount, setSurveyCount] = useState(0);
+  const [volunteerDate, setVolunteerDate] = useState('');
+
+  const volunteerLength = (object) => {
+    const date = new Date(object.createdAt);
+    const convertedDate = date.toDateString();
+    return convertedDate;
+  };
 
   const count = async () => {
     getData('currentUser').then((user) => {
       const userName = `${user.firstname || ''} ${user.lastname || ''}`;
+      setVolunteerDate(volunteerLength(user));
       countService('SurveyData', 'surveyingUser', userName).then((counts) => {
         setSurveyCount(counts);
       });
@@ -49,7 +57,8 @@ const Header = ({ logOut }) => {
       </View>
       {drawerOpen === true
         && (
-          <View>
+          <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+            <Text style={styles.calculationText}>{`Volunteer Since\n${volunteerDate}`}</Text>
             <Text style={styles.calculationText}>{`Surveys Collected\n${surveyCount}`}</Text>
           </View>
         )}
