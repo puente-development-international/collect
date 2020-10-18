@@ -6,6 +6,9 @@ const borderRadius = 20;
 const { accent, black } = theme.colors;
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: accent
+  },
   header: {
     height: 80, // equivalent to flex: 0.2,
     paddingTop: 20, // for ios
@@ -26,6 +29,12 @@ const styles = StyleSheet.create({
     color: black,
     flex: 0.7
   },
+  calculationText: {
+    fontWeight: 'bold',
+    alignSelf: 'flex-end',
+    textAlign: 'center',
+    padding: 20
+  }
 
 });
 
