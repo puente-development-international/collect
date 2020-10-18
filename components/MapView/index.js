@@ -6,7 +6,7 @@ import { IconButton } from 'react-native-paper';
 
 import getLocation from '../../modules/geolocation';
 import { theme } from '../../modules/theme';
-import { getObjectsByGeolocation, residentIDQuery } from '../../services/parse/crud';
+import { residentIDQuery } from '../../services/parse/crud';
 
 const Maps = ({ organization }) => {
   const [region, setRegion] = useState({
@@ -18,29 +18,23 @@ const Maps = ({ organization }) => {
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
-    retrieveMarkers()
-  }, [])
+    retrieveMarkers();
+    return function cleanup() {
+      // we need to cleanup something here
+    };
+  }, []);
 
   const handleLocation = async () => {
     const currentLocation = await getLocation();
     const { latitude, longitude } = currentLocation.coords;
     setRegion({
       ...region,
-      latitude: latitude,
-      longitude: longitude,
+      latitude,
+      longitude,
     });
   };
 
   const retrieveMarkers = async () => {
-    // const queryParams = {
-    //   limit: 10000,
-    //   parseColumn: 'surveyingOrganization',
-    //   parseParam: organization,
-    //   lat: region.latitude,
-    //   long: region.longitude,
-    // };
-    // let records = await getObjectsByGeolocation(queryParams);
-    // records = JSON.parse(JSON.stringify(records));
     const queryParams = {
       skip: 0,
       offset: 0,
@@ -48,9 +42,11 @@ const Maps = ({ organization }) => {
       parseColumn: 'surveyingOrganization',
       parseParam: organization,
     };
-    let records = await residentIDQuery(queryParams);
-    records = JSON.parse(JSON.stringify(records));
-    setMarkers(records);
+
+    await residentIDQuery(queryParams).then((records) => {
+      const residentRecords = JSON.parse(JSON.stringify(records));
+      setMarkers(residentRecords);
+    });
   };
 
   return (
@@ -59,14 +55,15 @@ const Maps = ({ organization }) => {
         style={styles.mapStyle}
         region={region}
       >
-        {markers.length > 1 && markers.map((marker, index) => (
+        {markers.map((marker) => (
           marker.location && (
             <Marker
               key={marker.objectId}
               coordinate={marker.location}
-              title={`${marker.fname || ""} ${marker.lname || ""}`}
-            // description={marker.description}
-            />)
+              title={`${marker.fname || ''} ${marker.lname || ''}`}
+              description={`Collector: ${marker.surveyingUser}`}
+            />
+          )
         ))}
       </MapView>
       <View style={styles.buttonStyle}>
