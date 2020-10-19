@@ -119,7 +119,9 @@ const DataCollection = ({ navigation }) => {
         setScrollViewScroll(true);
       }}
     >
-      <Header logOut={logOut} />
+      <Header
+        logOut={logOut}
+      />
       <KeyboardAvoidingView
         enabled
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

@@ -153,6 +153,7 @@ const SignIn = ({ navigation }) => {
                                 getData('organization').then((organization) => {
                                   if (organization !== currentUser.organization) {
                                     storeData(currentUser.organization, 'organization');
+                                    storeData(currentUser, 'currentUser');
                                   }
                                   handleSaveCredentials(values);
                                 });
@@ -161,6 +162,7 @@ const SignIn = ({ navigation }) => {
                                 getData('organization').then((organization) => {
                                   if (organization !== currentUser.organization) {
                                     storeData(currentUser.organization, 'organization');
+                                    storeData(currentUser, 'currentUser');
                                   }
                                 });
                               }
@@ -170,6 +172,7 @@ const SignIn = ({ navigation }) => {
                               getData('organization').then((organization) => {
                                 if (organization !== currentUser.organization) {
                                   storeData(currentUser.organization, 'organization');
+                                  storeData(currentUser, 'currentUser');
                                 }
                               });
                               // no credentials saved, give option to save
