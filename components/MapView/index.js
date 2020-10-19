@@ -18,9 +18,14 @@ const Maps = ({ organization }) => {
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
-    retrieveMarkers();
+    let isSubscribed = true;
+    retrieveMarkers().then((records) => {
+      if (isSubscribed) {
+        setMarkers(records); // sets records if promise is reached during mounting
+      }
+    });
     return function cleanup() {
-      // we need to cleanup something here
+      isSubscribed = false; // cancels promise when component unmounts
     };
   }, []);
 
@@ -43,10 +48,7 @@ const Maps = ({ organization }) => {
       parseParam: organization,
     };
 
-    await residentIDQuery(queryParams).then((records) => {
-      const residentRecords = JSON.parse(JSON.stringify(records));
-      setMarkers(residentRecords);
-    });
+    return residentIDQuery(queryParams).then((recs) => JSON.parse(JSON.stringify(recs)));
   };
 
   return (
