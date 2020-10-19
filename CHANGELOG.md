@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v7.0.2...v7.1.0) (2020-10-19)
+
+
+### Features
+
+* allow ability to count since being a volunteer ([1d75dd6](https://github.com/hopetambala/puente-reactnative-collect/commit/1d75dd6280b9354c7bfe873409b392c880b8621a))
+* have survey count for user ([6b15b0e](https://github.com/hopetambala/puente-reactnative-collect/commit/6b15b0e19d93c90057f79308c7ef4657cf7941b8))
+
+
+### Bug Fixes
+
+* add subscription handling to header ([e48e54e](https://github.com/hopetambala/puente-reactnative-collect/commit/e48e54e10a4d8b534a4e7c10ef5dc5d66e7fb067))
+* subscription to map ([71ee915](https://github.com/hopetambala/puente-reactnative-collect/commit/71ee91517c2f3b42c26a6ed63c8562a0f4f9899c))
+
 ### [7.0.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v7.0.1...v7.0.2) (2020-10-18)
 
 
