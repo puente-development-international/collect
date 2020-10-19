@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v7.0.1...v7.0.2) (2020-10-18)
+
+
+### Features
+
+* create mapview for data colleciton screen ([a3f1180](https://github.com/hopetambala/puente-reactnative-collect/commit/a3f1180580fabea9c0cb4b6c968d43bcd003d92f))
+* initial create of mapview ([11fb7da](https://github.com/hopetambala/puente-reactnative-collect/commit/11fb7daf4518c6605bf8f6a9034b644e968e594c))
+
 ### [7.0.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v7.0.0...v7.0.1) (2020-10-17)
 
 ## [7.0.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v6.0.0...v7.0.0) (2020-10-16)

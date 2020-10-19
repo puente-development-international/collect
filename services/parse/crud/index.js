@@ -34,10 +34,21 @@ function postObjectsToClassWithRelation(params) {
   });
 }
 
+function getObjectsByGeolocation(params) {
+  return new Promise((resolve, reject) => {
+    Parse.Cloud.run('geoQuery', params).then((result) => {
+      resolve(result);
+    }, (error) => {
+      reject(error);
+    });
+  });
+}
+
 export {
   retrieveHelloFunction,
   residentIDQuery,
   customQueryService,
   postObjectsToClass,
-  postObjectsToClassWithRelation
+  postObjectsToClassWithRelation,
+  getObjectsByGeolocation
 };

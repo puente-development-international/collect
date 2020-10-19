@@ -96,11 +96,11 @@ const FindResidents = ({
 
       {!selectPerson
         && (
-        <FlatList
-          data={filterList(residents)}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.objectId}
-        />
+          <FlatList
+            data={filterList(residents)}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.objectId}
+          />
         )}
 
       {selectPerson && (

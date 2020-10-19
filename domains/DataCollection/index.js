@@ -1,23 +1,22 @@
 // import * as React from 'react';
 import React, { useState, useEffect } from 'react';
 import {
-  Text, ScrollView, View, StyleSheet, KeyboardAvoidingView, Platform
+  Text, ScrollView, View, KeyboardAvoidingView, Platform
 } from 'react-native';
 
 import {
   Button, Card
 } from 'react-native-paper';
 
-import { layout, theme } from '../../modules/theme';
-
-import Header from '../../components/Header';
-
 import Forms from './Forms';
 import FormGallery from './FormGallery';
 
+import Header from '../../components/Header';
+import MapView from '../../components/MapView';
 import FindResidents from '../../components/FindResidents';
 
 import { deleteData, getData } from '../../modules/async-storage';
+import { layout } from '../../modules/theme';
 
 import { customQueryService } from '../../services/parse/crud';
 import { retrieveSignOutFunction } from '../../services/parse/auth';
@@ -25,6 +24,8 @@ import { retrieveSignOutFunction } from '../../services/parse/auth';
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
 import FindRecordSVG from '../../assets/graphics/static/Find-Record-Icon.svg';
 import NewRecordSVG from '../../assets/icons/New-Record-icon.svg';
+
+import styles from './index.styles';
 
 const puenteForms = [
   { tag: 'id', name: 'Resident ID' },
@@ -128,21 +129,7 @@ const DataCollection = ({ navigation }) => {
           {view === 'Root'
             && (
               <View>
-                {/* <View style={styles.horizontalLine} />
-              <Title>{surveyingUser}</Title>
-              <View style={styles.map}>
-                <ComingSoonSVG height={250} marginLeft="auto" marginRight="auto" />
-              </View>
-              <View style={styles.userInfoContainer}>
-                <View style={styles.mySurveysContainer}>
-                  <Text>My surveys collected: 21</Text>
-                </View>
-                <View style={styles.totalSurveysContainer}>
-                  <Text>Total surveys</Text>
-                  <Text>collected: 21</Text>
-                </View>
-              </View>
-              <View style={styles.horizontalLine} /> */}
+                <MapView organization={surveyingOrganization} />
                 <View style={styles.screenFlexRowWrap}>
                   <View style={styles.cardContainer}>
                     <Card style={styles.cardSmallStyle} onPress={() => navigateToNewRecord()}>
@@ -223,54 +210,4 @@ const DataCollection = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  map: {
-    marginVertical: 10,
-    marginHorizontal: 10
-  },
-  screenFlexRowWrap: {
-    marginHorizontal: 10,
-    marginBottom: 20,
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  cardInfoContainer: {
-    flexDirection: 'column',
-    flex: 1
-  },
-  cardSmallStyle: {
-    height: 150,
-    marginHorizontal: 7,
-    marginVertical: 7,
-    flex: 1
-  },
-  horizontalLine: {
-    borderBottomColor: theme.colors.primary,
-    borderBottomWidth: 1,
-    marginVertical: 10
-  },
-  userInfoContainer: {
-    flexDirection: 'row'
-  },
-  mySurveysContainer: {
-    width: '20%',
-    marginRight: 'auto',
-    marginLeft: 20
-  },
-  totalSurveysContainer: {
-    width: '22%',
-    marginLeft: 'auto',
-    marginRight: 20
-  },
-
-  cardContainer: {
-    flexDirection: 'row',
-  },
-  svg: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: 'auto'
-  }
-});
 export default DataCollection;
