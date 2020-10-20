@@ -1,30 +1,31 @@
 // import * as React from 'react';
 import React, { useState, useEffect } from 'react';
 import {
-  Text, ScrollView, View, StyleSheet, KeyboardAvoidingView, Platform
+  Text, ScrollView, View, KeyboardAvoidingView, Platform
 } from 'react-native';
 
 import {
   Button, Card
 } from 'react-native-paper';
 
-import { layout, theme } from '../../modules/theme';
-
-import Header from '../../components/Header';
-
 import Forms from './Forms';
 import FormGallery from './FormGallery';
 
-import { getData } from '../../modules/async-storage';
-
+import Header from '../../components/Header';
+import MapView from '../../components/MapView';
 import FindResidents from '../../components/FindResidents';
 
-import { retrieveCurrentUserFunction } from '../../services/parse/auth';
+import { deleteData, getData } from '../../modules/async-storage';
+import { layout } from '../../modules/theme';
+
 import { customQueryService } from '../../services/parse/crud';
+import { retrieveSignOutFunction } from '../../services/parse/auth';
 
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
 import FindRecordSVG from '../../assets/graphics/static/Find-Record-Icon.svg';
 import NewRecordSVG from '../../assets/icons/New-Record-icon.svg';
+
+import styles from './index.styles';
 
 const puenteForms = [
   { tag: 'id', name: 'Resident ID' },
@@ -47,17 +48,22 @@ const DataCollection = ({ navigation }) => {
   const [surveyingUser, setSurveyingUser] = useState();
 
   useEffect(() => {
-    const currentUser = retrieveCurrentUserFunction();
-    setSurveyingUser(`${currentUser.get('firstname')} ${currentUser.get('lastname')}`);
+    getData('currentUser').then((user) => {
+      setSurveyingUser(`${user.firstname || ''} ${user.lastname || ''}`);
+    }).catch(() => {
+      setSurveyingUser(`${''} ${''}`);
+    });
 
     getData('organization').then((org) => {
       setSurveyingOrganization(org || surveyingOrganization);
+    }).catch(() => {
+      setSurveyingOrganization(surveyingOrganization || '');
     });
 
     customQueryService(0, 5000, 'FormSpecificationsV2', 'organizations', surveyingOrganization).then((forms) => {
       setCustomForms(JSON.parse(JSON.stringify(forms)));
     });
-  }, [surveyingUser, surveyingOrganization, customForms]);
+  }, [surveyingUser, surveyingOrganization]);
 
   const navigateToRoot = async () => {
     setView('Root');
@@ -65,7 +71,7 @@ const DataCollection = ({ navigation }) => {
 
   const navigateToNewRecord = async (formTag, surveyeePerson) => {
     await getData('organization').then((org) => {
-      setSurveyingOrganization(org || surveyingOrganization);
+      setSurveyingOrganization(org || surveyingOrganization || '');
       setView('Forms');
       setSurveyee(surveyeePerson || surveyee);
       setSelectedForm(formTag || 'id');
@@ -74,7 +80,7 @@ const DataCollection = ({ navigation }) => {
 
   const navigateToCustomForm = async (form, surveyeePerson) => {
     await getData('organization').then((org) => {
-      setSurveyingOrganization(org || surveyingOrganization);
+      setSurveyingOrganization(org || surveyingOrganization || '');
       setView('Forms');
       setSurveyee(surveyeePerson || surveyee);
       setSelectedForm('custom');
@@ -83,13 +89,26 @@ const DataCollection = ({ navigation }) => {
   };
 
   const navigateToGallery = async () => {
-    setView('Gallery');
+    await getData('organization').then((org) => {
+      setSurveyingOrganization(org || surveyingOrganization || '');
+      setView('Gallery');
+    });
   };
 
   const navigateToFindRecords = async () => {
     await getData('organization').then((org) => {
-      setSurveyingOrganization(org || surveyingOrganization);
+      setSurveyingOrganization(org || surveyingOrganization || '');
       setView('Find Records');
+    });
+  };
+
+  const logOut = () => {
+    retrieveSignOutFunction().then(() => {
+      deleteData('credentials');
+      deleteData('pincode');
+      deleteData('organization');
+      deleteData('currentUser');
+      navigation.navigate('Sign In');
     });
   };
 
@@ -100,7 +119,9 @@ const DataCollection = ({ navigation }) => {
         setScrollViewScroll(true);
       }}
     >
-      <Header />
+      <Header
+        logOut={logOut}
+      />
       <KeyboardAvoidingView
         enabled
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -110,21 +131,7 @@ const DataCollection = ({ navigation }) => {
           {view === 'Root'
             && (
               <View>
-                {/* <View style={styles.horizontalLine} />
-              <Title>{surveyingUser}</Title>
-              <View style={styles.map}>
-                <ComingSoonSVG height={250} marginLeft="auto" marginRight="auto" />
-              </View>
-              <View style={styles.userInfoContainer}>
-                <View style={styles.mySurveysContainer}>
-                  <Text>My surveys collected: 21</Text>
-                </View>
-                <View style={styles.totalSurveysContainer}>
-                  <Text>Total surveys</Text>
-                  <Text>collected: 21</Text>
-                </View>
-              </View>
-              <View style={styles.horizontalLine} /> */}
+                <MapView organization={surveyingOrganization} />
                 <View style={styles.screenFlexRowWrap}>
                   <View style={styles.cardContainer}>
                     <Card style={styles.cardSmallStyle} onPress={() => navigateToNewRecord()}>
@@ -205,54 +212,4 @@ const DataCollection = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  map: {
-    marginVertical: 10,
-    marginHorizontal: 10
-  },
-  screenFlexRowWrap: {
-    marginHorizontal: 10,
-    marginBottom: 20,
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  cardInfoContainer: {
-    flexDirection: 'column',
-    flex: 1
-  },
-  cardSmallStyle: {
-    height: 150,
-    marginHorizontal: 7,
-    marginVertical: 7,
-    flex: 1
-  },
-  horizontalLine: {
-    borderBottomColor: theme.colors.primary,
-    borderBottomWidth: 1,
-    marginVertical: 10
-  },
-  userInfoContainer: {
-    flexDirection: 'row'
-  },
-  mySurveysContainer: {
-    width: '20%',
-    marginRight: 'auto',
-    marginLeft: 20
-  },
-  totalSurveysContainer: {
-    width: '22%',
-    marginLeft: 'auto',
-    marginRight: 20
-  },
-
-  cardContainer: {
-    flexDirection: 'row',
-  },
-  svg: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: 'auto'
-  }
-});
 export default DataCollection;

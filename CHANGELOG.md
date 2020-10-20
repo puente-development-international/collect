@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v7.0.2...v7.1.0) (2020-10-19)
+
+
+### Features
+
+* allow ability to count since being a volunteer ([1d75dd6](https://github.com/hopetambala/puente-reactnative-collect/commit/1d75dd6280b9354c7bfe873409b392c880b8621a))
+* have survey count for user ([6b15b0e](https://github.com/hopetambala/puente-reactnative-collect/commit/6b15b0e19d93c90057f79308c7ef4657cf7941b8))
+
+
+### Bug Fixes
+
+* add subscription handling to header ([e48e54e](https://github.com/hopetambala/puente-reactnative-collect/commit/e48e54e10a4d8b534a4e7c10ef5dc5d66e7fb067))
+* subscription to map ([71ee915](https://github.com/hopetambala/puente-reactnative-collect/commit/71ee91517c2f3b42c26a6ed63c8562a0f4f9899c))
+
+### [7.0.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v7.0.1...v7.0.2) (2020-10-18)
+
+
+### Features
+
+* create mapview for data colleciton screen ([a3f1180](https://github.com/hopetambala/puente-reactnative-collect/commit/a3f1180580fabea9c0cb4b6c968d43bcd003d92f))
+* initial create of mapview ([11fb7da](https://github.com/hopetambala/puente-reactnative-collect/commit/11fb7daf4518c6605bf8f6a9034b644e968e594c))
+
+### [7.0.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v7.0.0...v7.0.1) (2020-10-17)
+
+## [7.0.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v6.0.0...v7.0.0) (2020-10-16)
+
+
+### Features
+
+* add modal for "incorrect password" ([792251b](https://github.com/hopetambala/puente-reactnative-collect/commit/792251b3b70d4ecd3cfef2f571c0e3cdf5b52bbd))
+
+
+### Bug Fixes
+
+* add keyboard avoiding view so that keyboard isn't in the way of scroll view ([375091e](https://github.com/hopetambala/puente-reactnative-collect/commit/375091e1d179e0babb18860f0c65f415a7a7c7bf))
+* created an array of values that formik returns that we don't want ([58a45be](https://github.com/hopetambala/puente-reactnative-collect/commit/58a45be12c052e71a3b0970db04d446c927d0d97))
+* leaving the form view before parse function completed its action ([53cf067](https://github.com/hopetambala/puente-reactnative-collect/commit/53cf067188134092a01f0931aac6604d52207e84))
+* misspelling of currentUser in async storage ([278869a](https://github.com/hopetambala/puente-reactnative-collect/commit/278869ab0f2e261c96fba95bd1b6f6b74616dce7))
+* objectId not available for form forcing problems with hanging parse functions ([919707f](https://github.com/hopetambala/puente-reactnative-collect/commit/919707fee2512e6f492c78a951521efc7cc4998e))
+* remove view for find records list when person is selected ([3b00d12](https://github.com/hopetambala/puente-reactnative-collect/commit/3b00d12aaf53463ff7c0b1f9f65a4fdeaee844b8))
+* showpassword working consistently ([afcfe15](https://github.com/hopetambala/puente-reactnative-collect/commit/afcfe1513e50e13999e3cc8bb7d2229af46dc557))
+* styling of puente logo ([3a1835c](https://github.com/hopetambala/puente-reactnative-collect/commit/3a1835cf15fe6fc1d2617462f6fb831efdd171c4))
+
 ## [6.0.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v5.7.2...v6.0.0) (2020-10-12)
 
 
