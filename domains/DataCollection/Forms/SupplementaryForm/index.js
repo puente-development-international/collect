@@ -15,6 +15,7 @@ import envConfig from './configs/envhealth.config';
 import medConfig from './configs/medical-evaluation.config';
 
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
+import PaperButton from '../../../../components/Button';
 
 const SupplementaryForm = ({
   navigation, selectedForm, setSelectedForm, surveyee, surveyingUser, surveyingOrganization,
@@ -89,14 +90,14 @@ const SupplementaryForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button
-              disabled={!surveyee.objectId}
-              onPress={formikProps.handleSubmit}
-            >
-              {surveyee.objectId && <Text>Submit</Text>}
-              {!surveyee.objectId && <Text>Attach a Community Resident</Text>}
-            </Button>
-          )}
+              <Button
+                disabled={!surveyee.objectId}
+                onPress={formikProps.handleSubmit}
+              >
+                {surveyee.objectId && <Text>Submit</Text>}
+                {!surveyee.objectId && <Text>Attach a Community Resident</Text>}
+              </Button>
+            )}
         </View>
       )}
     </Formik>

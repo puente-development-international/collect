@@ -15,6 +15,7 @@ import {
 import checkOnlineStatus from '../../../../modules/offline';
 import generateRandomID from '../../../../modules/utils';
 import { layout } from '../../../../modules/theme';
+import PaperButton from '../../../../components/Button';
 
 import backgroundPostPatient from './utils';
 import configArray from './config/config';
@@ -116,10 +117,14 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button icon="human" onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
-            </Button>
-          )}
+              <PaperButton
+                onPressEvent={formikProps.handleSubmit}
+                buttonText={'Submit'}
+              />
+              // <Button icon="human" onPress={formikProps.handleSubmit}>
+              //   <Text>Submit</Text>
+              // </Button>
+            )}
         </View>
       )}
     </Formik>

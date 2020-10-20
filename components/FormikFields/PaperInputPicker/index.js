@@ -19,7 +19,7 @@ const PaperInputPicker = ({
 }) => {
   const { label, formikKey, fieldType } = data;
   const {
-    handleChange, handleBlur, touched, errors, setFieldValue
+    handleChange, handleBlur, touched, errors, setFieldValue, values
   } = formikProps;
 
   const [location, setLocation] = React.useState();
@@ -83,75 +83,127 @@ const PaperInputPicker = ({
           <Text style={layout.selectLabel}>{label}</Text>
           <View style={layout.buttonGroupContainer}>
             {data.options.map((result) => (
-              <Button
-                style={layout.buttonGroupButtonStyle}
-                key={result.value}
-                mode="outlined"
-                onPress={() => setFieldValue(formikKey, result.value)}
-              >
-                <Text style={{ color: theme.colors.primary }}>{result.label}</Text>
-              </Button>
-            ))}
-          </View>
-        </View>
-      )}
-      {fieldType === 'autofill' && (
-        <View>
-          <AutoFill
-            parameter={data.parameter}
-            formikProps={formikProps}
-            formikKey={formikKey}
-            scrollViewScroll={scrollViewScroll}
-            setScrollViewScroll={setScrollViewScroll}
-          />
-        </View>
-      )}
-      {fieldType === 'geolocation' && (
-        <View>
-          <Button mode="contained" onPress={() => handleLocation()}>
-            <Text>{location}</Text>
-          </Button>
-        </View>
-      )}
-      {fieldType === 'household' && (
-        <View>
-          <HouseholdManager
-            formikProps={formikProps}
-            formikKey={formikKey}
-            surveyingOrganization={surveyingOrganization}
-          />
-        </View>
-      )}
-      {fieldType === 'header' && (
-        <View>
-          <Headline style={styles.header}>{label}</Headline>
-          <View
-            style={styles.horizontalLine}
-          />
-        </View>
-      )}
-      {fieldType === 'multiInputRow' && (
-        <View style={styles.container}>
-          <Text>{label}</Text>
-          <View style={styles.multiInputContainer}>
-            {data.options.map((result) => (
-              <View key={result} style={styles.inputItem}>
-                <TextInput
-                  label={result}
-                  onChangeText={handleChange(result)}
-                  onBlur={handleBlur(result)}
-                  {...rest} //eslint-disable-line
-                  mode="outlined"
-                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                />
-                <Text style={{ color: 'red' }}>
-                  {touched[result] && errors[result]}
-                </Text>
+              <View>
+                {/* selected value */}
+                {result.value === values[formikKey] && (
+                  <Button
+                    style={layout.buttonGroupButtonStyle}
+                    key={result.value}
+                    mode="contained"
+                    onPress={() => setFieldValue(formikKey, result.value)}
+                  >
+                    <Text style={{ color: 'white' }}>{result.label}</Text>
+                  </Button>
+                )}
+                {/* non-selected value */}
+                {result.value !== values[formikKey] && (
+                  <Button
+                    style={layout.buttonGroupButtonStyle}
+                    key={result.value}
+                    mode="outlined"
+                    onPress={() => setFieldValue(formikKey, result.value)}
+                  >
+                    <Text style={{ color: theme.colors.primary }}>{result.label}</Text>
+                  </Button>
+                )}
               </View>
             ))}
           </View>
         </View>
-      )}
+      )
+      }
+      {
+        fieldType === 'autofill' && (
+          <View>
+            <AutoFill
+              parameter={data.parameter}
+              formikProps={formikProps}
+              formikKey={formikKey}
+              scrollViewScroll={scrollViewScroll}
+              setScrollViewScroll={setScrollViewScroll}
+            />
+          </View>
+        )
+      }
+      {
+        fieldType === 'geolocation' && (
+          <View>
+            <Button mode="contained" onPress={() => handleLocation()}>
+              <Text>{location}</Text>
+            </Button>
+          </View>
+        )
+      }
+      {
+        fieldType === 'household' && (
+          <View>
+            <HouseholdManager
+              formikProps={formikProps}
+              formikKey={formikKey}
+              surveyingOrganization={surveyingOrganization}
+            />
+          </View>
+        )
+      }
+      {
+        fieldType === 'header' && (
+          <View>
+            <Headline style={styles.header}>{label}</Headline>
+            <View
+              style={styles.horizontalLine}
+            />
+          </View>
+        )
+      }
+      {
+        fieldType === 'multiInputRow' && (
+          <View style={styles.container}>
+            <Text>{label}</Text>
+            <View style={styles.multiInputContainer}>
+              {data.options.map((result) => (
+                <View key={result} style={styles.inputItem}>
+                  <TextInput
+                    label={result}
+                    onChangeText={handleChange(result)}
+                    onBlur={handleBlur(result)}
+                    {...rest} //eslint-disable-line
+                    mode="outlined"
+                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                  />
+                  <Text style={{ color: 'red' }}>
+                    {touched[result] && errors[result]}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        )
+      }
+      {
+        fieldType === 'multiInputRowNum' && (
+          <View style={styles.container}>
+            <Text>{label}</Text>
+            <View style={styles.multiInputContainer}>
+              {data.options.map((result) => (
+                <View key={result} style={styles.inputItem}>
+                  <TextInput
+                    label={result}
+                    onChangeText={handleChange(result)}
+                    onBlur={handleBlur(result)}
+                    {...rest} //eslint-disable-line
+                    mode="outlined"
+                    keyboardType="numeric"
+                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                  />
+                  <Text style={{ color: 'red' }}>
+                    {touched[result] && errors[result]}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        )
+      }
     </>
   );
 };

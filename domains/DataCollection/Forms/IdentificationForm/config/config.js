@@ -28,7 +28,7 @@ const configArray = [
     label: 'Date of Birth',
     formikKey: 'dob',
     value: '',
-    fieldType: 'multiInputRow',
+    fieldType: 'multiInputRowNum',
     options: [
       'Month',
       'Day',
@@ -59,7 +59,7 @@ const configArray = [
     label: 'Telephone Number',
     formikKey: 'telephoneNumber',
     value: '',
-    fieldType: 'input'
+    fieldType: 'numberInput'
   },
   // {
   //   label: 'Demographic Information',
