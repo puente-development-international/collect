@@ -3,7 +3,6 @@ import {
   ActivityIndicator,
   View
 } from 'react-native';
-import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 // import * as yup from 'yup';
 
@@ -117,14 +116,14 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <PaperButton
-                onPressEvent={formikProps.handleSubmit}
-                buttonText={'Submit'}
-              />
-              // <Button icon="human" onPress={formikProps.handleSubmit}>
-              //   <Text>Submit</Text>
-              // </Button>
-            )}
+            <PaperButton
+              onPressEvent={formikProps.handleSubmit}
+              buttonText="Submit"
+            />
+          // <Button icon="human" onPress={formikProps.handleSubmit}>
+          //   <Text>Submit</Text>
+          // </Button>
+          )}
         </View>
       )}
     </Formik>

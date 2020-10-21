@@ -3,7 +3,6 @@ import { Button } from 'react-native-paper';
 import { theme, layout } from '../../modules/theme';
 
 export default function PaperButton({ onPressEvent, buttonText }) {
-
   return (
     <Button
       mode="contained"
@@ -13,5 +12,5 @@ export default function PaperButton({ onPressEvent, buttonText }) {
     >
       {buttonText}
     </Button>
-  )
+  );
 }

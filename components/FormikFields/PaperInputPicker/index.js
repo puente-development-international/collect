@@ -23,14 +23,14 @@ const PaperInputPicker = ({
     handleChange, handleBlur, touched, errors, setFieldValue, values
   } = formikProps;
 
-  const [location, setLocation] = React.useState({ 'latitude': 5, 'longitude': 10, 'altitude': 0 });
+  const [location, setLocation] = React.useState({ latitude: 5, longitude: 10, altitude: 0 });
 
   const handleLocation = async () => {
     const currentLocation = await getLocation();
     const { latitude, longitude, altitude } = currentLocation.coords;
 
-    setFieldValue('location', { 'latitude': latitude, 'longitude': longitude, 'altitude': altitude })
-    setLocation({ 'latitude': latitude, 'longitude': longitude, 'altitude': altitude });
+    setFieldValue('location', { latitude, longitude, altitude });
+    setLocation({ latitude, longitude, altitude });
     return null;
   };
 
@@ -99,8 +99,7 @@ const PaperInputPicker = ({
             ))}
           </View>
         </View>
-      )
-      }
+      )}
       {
         fieldType === 'autofill' && (
           <View>
@@ -120,18 +119,24 @@ const PaperInputPicker = ({
             {location === null && (
               <PaperButton
                 onPressEvent={handleLocation}
-                buttonText={'Get Location'}
+                buttonText="Get Location"
               />
             )}
             {location !== null && (
               <View>
                 <PaperButton
                   onPressEvent={handleLocation}
-                  buttonText={'Get Location Again'}
+                  buttonText="Get Location Again"
                 />
                 <View style={{ marginLeft: 'auto', marginRight: 'auto', flexDirection: 'row' }}>
-                  <Text style={{ paddingRight: 5, fontWeight: 'bold' }}>Latitude: {location['latitude']}</Text>
-                  <Text style={{ paddingLeft: 5, fontWeight: 'bold' }}>Longitude: {location['longitude']}</Text>
+                  <Text style={{ paddingRight: 5, fontWeight: 'bold' }}>
+                    Latitude:
+                    {location.latitude}
+                  </Text>
+                  <Text style={{ paddingLeft: 5, fontWeight: 'bold' }}>
+                    Longitude:
+                    {location.longitude}
+                  </Text>
                 </View>
               </View>
             )}
