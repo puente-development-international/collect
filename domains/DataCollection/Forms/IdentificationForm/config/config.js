@@ -184,17 +184,22 @@ const configArray = [
   //   value: ""
   // },
   {
-    label: 'Latitude',
-    formikKey: 'latitude',
-    value: 0,
+    formikKey: 'location',
+    value: {},
     fieldType: 'geolocation'
   },
-  {
-    label: 'Longitude',
-    formikKey: 'longitude',
-    value: 0,
-    fieldType: 'geolocation'
-  },
+  // {
+  //   label: 'Latitude',
+  //   formikKey: 'latitude',
+  //   value: 0,
+  //   fieldType: 'geolocation'
+  // },
+  // {
+  //   label: 'Longitude',
+  //   formikKey: 'longitude',
+  //   value: 0,
+  //   fieldType: 'geolocation'
+  // },
   {
     label: 'Household',
     fieldType: 'header',

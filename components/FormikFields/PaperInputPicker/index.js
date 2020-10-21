@@ -23,29 +23,14 @@ const PaperInputPicker = ({
     handleChange, handleBlur, touched, errors, setFieldValue, values
   } = formikProps;
 
-  const [location, setLocation] = React.useState();
+  const [location, setLocation] = React.useState({ 'latitude': 5, 'longitude': 10, 'altitude': 0 });
 
   const handleLocation = async () => {
     const currentLocation = await getLocation();
     const { latitude, longitude, altitude } = currentLocation.coords;
 
-    setFieldValue('altitude', altitude);
-    // setFieldValue('longitude', longitude);
-    // setFieldValue('latitude', latitude);
-    // setLocation({ 'latitude': latitude, 'longitude': longitude })
-
-    if (formikKey === 'longitude') {
-      setLocation(longitude);
-      setFieldValue(formikKey, longitude);
-      return longitude;
-    }
-
-    if (formikKey === 'latitude') {
-      setLocation(latitude);
-      setFieldValue(formikKey, latitude);
-      return latitude;
-    }
-
+    setFieldValue('location', { 'latitude': latitude, 'longitude': longitude, 'altitude': altitude })
+    setLocation({ 'latitude': latitude, 'longitude': longitude, 'altitude': altitude });
     return null;
   };
 
@@ -132,10 +117,7 @@ const PaperInputPicker = ({
       {
         fieldType === 'geolocation' && (
           <View>
-            <Button mode="contained" onPress={() => handleLocation()}>
-              <Text>{location}</Text>
-            </Button>
-            {/* {location === null && (
+            {location === null && (
               <PaperButton
                 onPressEvent={handleLocation}
                 buttonText={'Get Location'}
@@ -147,10 +129,12 @@ const PaperInputPicker = ({
                   onPressEvent={handleLocation}
                   buttonText={'Get Location Again'}
                 />
-                <Text>Latitude: {location['latitude']}</Text>
-                <Text>Longitude: {location['longitude']}</Text>
+                <View style={{ marginLeft: 'auto', marginRight: 'auto', flexDirection: 'row' }}>
+                  <Text style={{ paddingRight: 5, fontWeight: 'bold' }}>Latitude: {location['latitude']}</Text>
+                  <Text style={{ paddingLeft: 5, fontWeight: 'bold' }}>Longitude: {location['longitude']}</Text>
+                </View>
               </View>
-            )} */}
+            )}
           </View>
         )
       }
