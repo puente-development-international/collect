@@ -10,6 +10,7 @@ import AutoFill from './AutoFill';
 import HouseholdManager from './HouseholdManager';
 
 import getLocation from '../../../modules/geolocation';
+import PaperButton from '../../Button';
 
 import { theme, layout } from '../../../modules/theme';
 import styles from './index.style';
@@ -29,6 +30,9 @@ const PaperInputPicker = ({
     const { latitude, longitude, altitude } = currentLocation.coords;
 
     setFieldValue('altitude', altitude);
+    // setFieldValue('longitude', longitude);
+    // setFieldValue('latitude', latitude);
+    // setLocation({ 'latitude': latitude, 'longitude': longitude })
 
     if (formikKey === 'longitude') {
       setLocation(longitude);
@@ -131,6 +135,22 @@ const PaperInputPicker = ({
             <Button mode="contained" onPress={() => handleLocation()}>
               <Text>{location}</Text>
             </Button>
+            {/* {location === null && (
+              <PaperButton
+                onPressEvent={handleLocation}
+                buttonText={'Get Location'}
+              />
+            )}
+            {location !== null && (
+              <View>
+                <PaperButton
+                  onPressEvent={handleLocation}
+                  buttonText={'Get Location Again'}
+                />
+                <Text>Latitude: {location['latitude']}</Text>
+                <Text>Longitude: {location['longitude']}</Text>
+              </View>
+            )} */}
           </View>
         )
       }
