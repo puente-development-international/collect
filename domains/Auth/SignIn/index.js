@@ -129,44 +129,23 @@ const SignIn = ({ navigation }) => {
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{ backgroundColor: theme.colors.accent, flex: 1 }}
     >
-      <SafeAreaView>
-
-        {!forgotPassword && (
+      {!forgotPassword && (
+        <SafeAreaView style={{ flex: 9 }}>
           <ScrollView keyboardShouldPersistTaps="always">
-            <View style={{ flex: 9 }}>
-              <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
-              <Formik
-                initialValues={{ username: '', password: '' }}
-                onSubmit={(values, actions) => {
-                  checkOnlineStatus().then((connected) => {
-                    if (connected) {
-                      retrieveSignInFunction(values.username, values.password)
-                        .then(() => {
-                          getData('credentials')
-                            .then((userCreds) => {
-                              // credentials saved do not match those entered, overwrite saved
-                              // credentials
-                              if (userCreds === null || values.username !== userCreds.username
-                                || values.password !== userCreds.password) {
-                                // Store user organization
-                                const currentUser = retrieveCurrentUserFunction();
-                                getData('organization').then((organization) => {
-                                  if (organization !== currentUser.organization) {
-                                    storeData(currentUser.organization, 'organization');
-                                    storeData(currentUser, 'currentUser');
-                                  }
-                                  handleSaveCredentials(values);
-                                });
-                              } else {
-                                const currentUser = retrieveCurrentUserFunction();
-                                getData('organization').then((organization) => {
-                                  if (organization !== currentUser.organization) {
-                                    storeData(currentUser.organization, 'organization');
-                                    storeData(currentUser, 'currentUser');
-                                  }
-                                });
-                              }
-                            }, () => {
+            <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
+            <Formik
+              initialValues={{ username: '', password: '' }}
+              onSubmit={(values, actions) => {
+                checkOnlineStatus().then((connected) => {
+                  if (connected) {
+                    retrieveSignInFunction(values.username, values.password)
+                      .then(() => {
+                        getData('credentials')
+                          .then((userCreds) => {
+                            // credentials saved do not match those entered, overwrite saved
+                            // credentials
+                            if (userCreds === null || values.username !== userCreds.username
+                              || values.password !== userCreds.password) {
                               // Store user organization
                               const currentUser = retrieveCurrentUserFunction();
                               getData('organization').then((organization) => {
@@ -174,60 +153,79 @@ const SignIn = ({ navigation }) => {
                                   storeData(currentUser.organization, 'organization');
                                   storeData(currentUser, 'currentUser');
                                 }
+                                handleSaveCredentials(values);
                               });
-                              // no credentials saved, give option to save
-                              handleSaveCredentials(values);
+                            } else {
+                              const currentUser = retrieveCurrentUserFunction();
+                              getData('organization').then((organization) => {
+                                if (organization !== currentUser.organization) {
+                                  storeData(currentUser.organization, 'organization');
+                                  storeData(currentUser, 'currentUser');
+                                }
+                              });
+                            }
+                          }, () => {
+                            // Store user organization
+                            const currentUser = retrieveCurrentUserFunction();
+                            getData('organization').then((organization) => {
+                              if (organization !== currentUser.organization) {
+                                storeData(currentUser.organization, 'organization');
+                                storeData(currentUser, 'currentUser');
+                              }
                             });
+                            // no credentials saved, give option to save
+                            handleSaveCredentials(values);
+                          });
+                        navigation.navigate('Root');
+                      }, (err) => {
+                        handleFailedAttempt(err);
+                      });
+                  } else {
+                    // offline
+                    getData('credentials')
+                      .then((userCreds) => {
+                        // username and password entered (or saved in creds) match the saved cred
+                        if (values.username === userCreds.username
+                          && values.password === userCreds.password) {
+                          // need some pincode verification
                           navigation.navigate('Root');
-                        }, (err) => {
-                          handleFailedAttempt(err);
-                        });
-                    } else {
-                      // offline
-                      getData('credentials')
-                        .then((userCreds) => {
-                          // username and password entered (or saved in creds) match the saved cred
-                          if (values.username === userCreds.username
-                            && values.password === userCreds.password) {
-                            // need some pincode verification
-                            navigation.navigate('Root');
-                          } else {
-                            // cannot log in offline without saved credentials, connect to internet
-                          }
-                        });
-                    }
-                  });
-                  setTimeout(() => {
-                    actions.setSubmitting(false);
-                  }, 1000);
-                }}
-                validationSchema={validationSchema}
-              >
-                {(formikProps) => (
-                  <View>
-                    <View style={styles.logoContainer}>
-                      <BlackLogo height={130} />
-                    </View>
-                    <FormInput
-                      label={I18n.t('signIn.username')}
-                      formikProps={formikProps}
-                      formikKey="username"
-                      placeholder="johndoe@example.com"
-                      autoFocus
-                    />
-                    <FormInput
-                      label={I18n.t('signIn.password')}
-                      formikProps={formikProps}
-                      formikKey="password"
-                      placeholder="Password"
-                      secureTextEntry={!checked}
-                    />
-                    <Button style={{ marginRight: 'auto' }} onPress={handleForgotPassword}>Forgot password?</Button>
+                        } else {
+                          // cannot log in offline without saved credentials, connect to internet
+                        }
+                      });
+                  }
+                });
+                setTimeout(() => {
+                  actions.setSubmitting(false);
+                }, 1000);
+              }}
+              validationSchema={validationSchema}
+            >
+              {(formikProps) => (
+                <View>
+                  <View style={styles.logoContainer}>
+                    <BlackLogo height={130} />
+                  </View>
+                  <FormInput
+                    label={I18n.t('signIn.username')}
+                    formikProps={formikProps}
+                    formikKey="username"
+                    placeholder="johndoe@example.com"
+                  />
+                  <FormInput
+                    label={I18n.t('signIn.password')}
+                    formikProps={formikProps}
+                    formikKey="password"
+                    placeholder="Password"
+                    secureTextEntry={!checked}
+                  />
+                  <View style={{ flexDirection: 'row' }}>
                     <View style={styles.container}>
                       <View style={styles.checkbox}>
                         <Checkbox
                           disabled={false}
-                          theme={theme}
+                          // theme={theme}
+                          color={theme.colors.primary}
                           status={checked ? 'checked' : 'unchecked'}
                           onPress={() => {
                             setChecked(!checked);
@@ -236,35 +234,39 @@ const SignIn = ({ navigation }) => {
                       </View>
                       <Text style={styles.passwordText}>{I18n.t('signIn.showPassword')}</Text>
                     </View>
-                    {formikProps.isSubmitting ? (
-                      <ActivityIndicator />
-                    ) : (
+                    <Button style={{ flex: 1 }} onPress={handleForgotPassword}>Forgot password?</Button>
+                  </View>
+                  {formikProps.isSubmitting ? (
+                    <ActivityIndicator />
+                  ) : (
                       <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
                     )}
-                    <CredentialsModal
-                      modalVisible={modalVisible}
-                      formikProps={formikProps}
-                      user={user}
-                      setModalVisible={setModalVisible}
-                      navigation={navigation}
-                    />
+                  <CredentialsModal
+                    modalVisible={modalVisible}
+                    formikProps={formikProps}
+                    user={user}
+                    setModalVisible={setModalVisible}
+                    navigation={navigation}
+                  />
 
-                  </View>
-                )}
-              </Formik>
-              <Button onPress={deleteCreds}>Delete Credentials</Button>
-            </View>
+                </View>
+              )}
+            </Formik>
+            <Button onPress={deleteCreds}>Delete Credentials</Button>
           </ScrollView>
-        )}
-        <TermsModal visible={visible} setVisible={setVisible} />
-        {forgotPassword && (
-          <ForgotPassword
-            navigation={navigation}
-            forgotPassword={forgotPassword}
-            setForgotPassword={setForgotPassword}
-          />
-        )}
-      </SafeAreaView>
+
+
+          <TermsModal visible={visible} setVisible={setVisible} />
+        </SafeAreaView>
+      )}
+      {forgotPassword && (
+        <ForgotPassword
+          navigation={navigation}
+          forgotPassword={forgotPassword}
+          setForgotPassword={setForgotPassword}
+        />
+      )
+      }
 
       {!forgotPassword && (
         <View style={styles.footer}>
@@ -281,24 +283,27 @@ const SignIn = ({ navigation }) => {
         </View>
       )}
 
-    </KeyboardAvoidingView>
+    </KeyboardAvoidingView >
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: 20,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flex: 1,
+    marginLeft: 15
   },
   passwordText: {
-    flex: 10,
+    flex: 7,
     fontSize: 15,
-    marginLeft: 10
+    marginLeft: 10,
+    marginTop: 'auto',
+    marginBottom: 'auto'
   },
   checkbox: {
-    flex: 1,
+    flex: 2,
     borderRadius: 5,
-    marginLeft: 0,
+    // marginLeft: 0,
     backgroundColor: 'white'
   },
   submitButton: {
