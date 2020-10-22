@@ -53,7 +53,8 @@ const GdprCompliance = ({
         <View style={styles.checkbox}>
           <Checkbox
             disabled={false}
-            theme={theme}
+            // theme={theme}
+            color={theme.colors.primary}
             status={checked ? 'checked' : 'unchecked'}
             onPress={() => {
               setChecked(!checked);

@@ -13,7 +13,7 @@ const ResidentCard = ({
   resident, onSelectPerson
 }) => {
   const {
-    fname, lname, nickname, city, picture
+    fname, lname, nickname, city, picture, communityname
   } = resident;
   const [pictureUrl, setPictureUrl] = useState();
   useEffect(() => {
@@ -45,8 +45,8 @@ const ResidentCard = ({
             <Text style={styles.font}>{city}</Text>
           </View>
           <View style={styles.licenseContainer}>
-            <Text style={styles.font}>License Number</Text>
-            <Text style={styles.license}>License #</Text>
+            <Text style={styles.font}>Community</Text>
+            <Text style={styles.license}>{communityname}</Text>
           </View>
         </View>
       </TouchableOpacity>

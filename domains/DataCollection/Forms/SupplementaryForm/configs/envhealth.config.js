@@ -180,7 +180,7 @@ const configArray = {
     label: 'Times per Week Trash is Collected',
     formikKey: 'timesperweektrashcollected',
     value: '',
-    fieldType: 'input'
+    fieldType: 'numberInput'
   },
   {
     label: 'Where is trash left between pickups?',
@@ -265,16 +265,100 @@ const configArray = {
     ]
   },
   {
+    label: 'What material is your house made from?  ',
+    formikKey: 'houseMaterial',
+    value: '',
+    fieldType: 'select',
+    options: [
+      {
+        label: 'Zinc',
+        value: 'zinc'
+      },
+      {
+        label: 'Wood',
+        value: 'wood'
+      },
+      {
+        label: 'Part block, part wood',
+        value: 'partBlock_partWood'
+      },
+      {
+        label: 'Block',
+        value: 'block'
+      }
+    ]
+  },
+  {
+    label: 'How often do you have access to electricity?',
+    formikKey: 'electricityAccess',
+    value: '',
+    fieldType: 'select',
+    options: [
+      {
+        label: 'Never',
+        value: 'never'
+      },
+      {
+        label: 'Sometimes',
+        value: 'sometimes'
+      },
+      {
+        label: 'Always',
+        value: 'always'
+      }
+    ]
+  },
+  {
+    label: 'In the past month, have you ever worried that you or your family did not have enough food to eat?',
+    formikKey: 'foodSecurity',
+    value: '',
+    fieldType: 'select',
+    options: [
+      {
+        label: 'Yes',
+        value: 'yes'
+      },
+      {
+        label: 'No',
+        value: 'no'
+      },
+      {
+        label: 'Not Sure',
+        value: 'not_sure'
+      }
+    ]
+  },
+  {
+    label: 'Do you have access to government assistance?',
+    formikKey: 'govAssistance',
+    value: '',
+    fieldType: 'select',
+    options: [
+      {
+        label: 'Solidaridad',
+        value: 'solidaridad'
+      },
+      {
+        label: 'Aprendiendo a leer',
+        value: 'aprendiendo'
+      },
+      {
+        label: 'Other',
+        value: 'other'
+      }
+    ]
+  },
+  {
     label: 'Number of Individuals Living in the House',
     formikKey: 'numberofIndividualsLivingintheHouse',
     value: '',
-    fieldType: 'input'
+    fieldType: 'numberInput'
   },
   {
     label: 'Number of children Living in this House under age of 5',
     formikKey: 'numberofChildrenLivinginHouseUndertheAgeof5',
     value: '',
-    fieldType: 'input'
+    fieldType: 'numberInput'
   },
   ]
 };
