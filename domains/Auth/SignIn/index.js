@@ -234,13 +234,15 @@ const SignIn = ({ navigation }) => {
                       </View>
                       <Text style={styles.passwordText}>{I18n.t('signIn.showPassword')}</Text>
                     </View>
-                    <Button style={{ flex: 1 }} onPress={handleForgotPassword}>Forgot password?</Button>
+                    <Button style={{ flex: 1 }} onPress={handleForgotPassword}>
+                      Forgot password?
+                    </Button>
                   </View>
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
-                    )}
+                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
+                  )}
                   <CredentialsModal
                     modalVisible={modalVisible}
                     formikProps={formikProps}
@@ -255,7 +257,6 @@ const SignIn = ({ navigation }) => {
             <Button onPress={deleteCreds}>Delete Credentials</Button>
           </ScrollView>
 
-
           <TermsModal visible={visible} setVisible={setVisible} />
         </SafeAreaView>
       )}
@@ -265,8 +266,7 @@ const SignIn = ({ navigation }) => {
           forgotPassword={forgotPassword}
           setForgotPassword={setForgotPassword}
         />
-      )
-      }
+      )}
 
       {!forgotPassword && (
         <View style={styles.footer}>
@@ -283,7 +283,7 @@ const SignIn = ({ navigation }) => {
         </View>
       )}
 
-    </KeyboardAvoidingView >
+    </KeyboardAvoidingView>
   );
 };
 

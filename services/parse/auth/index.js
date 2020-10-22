@@ -51,7 +51,7 @@ function retrieveForgotPasswordFunction(params) {
     }, (error) => {
       reject(error);
     });
-  })
+  });
 }
 
 function retrieveCurrentUserFunction() {

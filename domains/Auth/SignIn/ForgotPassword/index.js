@@ -20,8 +20,6 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
   const [emailSuccess, setEmailSuccess] = useState(false);
   const [emailError, setEmailError] = useState(false);
 
-
-
   return (
     <View style={{ flex: 1, marginHorizontal: 15, marginTop: 60 }}>
       <View style={{ flex: 9 }}>
@@ -30,7 +28,6 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
             <Formik
               initialValues={{ email: '' }}
               onSubmit={(values, actions) => {
-
                 retrieveForgotPasswordFunction(values).then((res) => {
                   setEmailSuccess(true);
                   console.log(res); //eslint-disable-line
@@ -63,19 +60,21 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
         )}
         {emailSuccess && (
           <View>
-            <Text style={{ marginHorizontal: 15, fontSize: 18, fontWeight: 'bold' }}>Your password reset link has been sent to your email. Please
-            Check your email to change your password.
+            <Text style={{ marginHorizontal: 15, fontSize: 18, fontWeight: 'bold' }}>
+              Your password reset link has been sent to your email. Please
+              Check your email to change your password.
             </Text>
             <Button mode="text" theme={theme} onPress={handleSignIn}>Back to Sign in</Button>
           </View>
         )}
         {emailError && (
           <View>
-            <Text style={{ marginHorizontal: 15, fontSize: 18, fontWeight: 'bold' }}>There was an error sending the password reset link. Please
-            ensure that you entered your email correctly. You can try again by clicking
-            the button below. If you believe the email is correct, please contact your manager.
+            <Text style={{ marginHorizontal: 15, fontSize: 18, fontWeight: 'bold' }}>
+              There was an error sending the password reset link. Please
+              ensure that you entered your email correctly. You can try again by clicking
+              the button below. If you believe the email is correct, please contact your manager.
             </Text>
-            <Button style={{ marginTop: 10}}mode='contained' onPress={() => setEmailError(false)}>Try Again</Button>
+            <Button style={{ marginTop: 10 }} mode="contained" onPress={() => setEmailError(false)}>Try Again</Button>
           </View>
         )}
       </View>
