@@ -78,6 +78,15 @@ const layout = StyleSheet.create({
     marginVertical: 5,
   },
   /**
+   * Style for buttons
+   */
+  button: {
+    // marginLeft: 0,
+    // marginRight: 0,
+    marginTop: 15,
+    marginBottom: 10,
+  },
+  /**
    * Style for a Small Cards
    */
   // cardSmallStyle: {
