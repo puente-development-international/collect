@@ -31,7 +31,6 @@ const PaperInputPicker = ({
 
     setFieldValue('location', { latitude, longitude, altitude });
     setLocation({ latitude, longitude, altitude });
-    return null;
   };
 
   return (
@@ -72,7 +71,7 @@ const PaperInputPicker = ({
           <Text style={layout.selectLabel}>{label}</Text>
           <View style={layout.buttonGroupContainer}>
             {data.options.map((result) => (
-              <View>
+              <View key={result.value}>
                 {/* selected value */}
                 {result.value === values[formikKey] && (
                   <Button

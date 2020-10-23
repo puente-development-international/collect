@@ -62,9 +62,13 @@ const IdentificationForm = ({
         const formObject = values;
         formObject.surveyingOrganization = surveyingOrganization;
         formObject.surveyingUser = surveyingUser;
+        formObject.latitude = values.location.latitude;
+        formObject.longitude = values.location.longitude;
+        formObject.altitude = values.location.altitude;
+
         formObject.dob = `${values.Month || '00'}/${values.Day || '00'}/${values.Year || '0000'}`;
 
-        const valuesToPrune = ['Month', 'Day', 'Year'];
+        const valuesToPrune = ['Month', 'Day', 'Year', 'location'];
         valuesToPrune.forEach((value) => {
           delete formObject[value];
         });
