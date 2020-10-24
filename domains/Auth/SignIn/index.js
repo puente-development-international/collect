@@ -68,14 +68,16 @@ const SignIn = ({ navigation }) => {
     });
   }, [load]);
 
-  const handleFailedAttempt = (err) => {
-    const errorMsg = err.toString().slice(-26) || '';
+  const handleFailedAttempt = () => {
     Alert.alert(
-      `${errorMsg}`,
-      'Your username or password may be incorrect, please try again.',
+      'Unable to login',
+      'Your username or password may be incorrect, please try again.', [
+        { text: 'OK' }
+      ],
       { cancelable: true }
     );
   };
+
   const handleSignUp = () => {
     navigation.navigate('Sign Up');
   };
@@ -179,8 +181,8 @@ const SignIn = ({ navigation }) => {
                               handleSaveCredentials(values);
                             });
                           navigation.navigate('Root');
-                        }, (err) => {
-                          handleFailedAttempt(err);
+                        }, () => {
+                          handleFailedAttempt();
                         });
                     } else {
                       // offline

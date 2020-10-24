@@ -3,7 +3,6 @@ import {
   ActivityIndicator,
   View
 } from 'react-native';
-import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 // import * as yup from 'yup';
 
@@ -15,6 +14,7 @@ import {
 import checkOnlineStatus from '../../../../modules/offline';
 import generateRandomID from '../../../../modules/utils';
 import { layout } from '../../../../modules/theme';
+import PaperButton from '../../../../components/Button';
 
 import backgroundPostPatient from './utils';
 import configArray from './config/config';
@@ -63,9 +63,13 @@ const IdentificationForm = ({
         const formObject = values;
         formObject.surveyingOrganization = surveyingOrganization;
         formObject.surveyingUser = surveyingUser;
+        formObject.latitude = values.location.latitude;
+        formObject.longitude = values.location.longitude;
+        formObject.altitude = values.location.altitude;
+
         formObject.dob = `${values.Month || '00'}/${values.Day || '00'}/${values.Year || '0000'}`;
 
-        const valuesToPrune = ['Month', 'Day', 'Year'];
+        const valuesToPrune = ['Month', 'Day', 'Year', 'location'];
         valuesToPrune.forEach((value) => {
           delete formObject[value];
         });
@@ -117,9 +121,13 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button icon="human" onPress={formikProps.handleSubmit}>
-              <Text>{I18n.t('global.submit')}</Text>
-            </Button>
+            <PaperButton
+              onPressEvent={formikProps.handleSubmit}
+              buttonText={I18n.t('global.submit')}
+            />
+          // <Button icon="human" onPress={formikProps.handleSubmit}>
+          //   <Text>Submit</Text>
+          // </Button>
           )}
         </View>
       )}

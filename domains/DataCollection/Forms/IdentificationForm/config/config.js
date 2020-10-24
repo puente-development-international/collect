@@ -30,7 +30,7 @@ const configArray = [
     label: I18n.t('identificationForm.dob.label'),
     formikKey: 'dob',
     value: '',
-    fieldType: 'multiInputRow',
+    fieldType: 'multiInputRowNum',
     options: [
       I18n.t('identificationForm.dob.month'),
       I18n.t('identificationForm.dob.day'),
@@ -61,7 +61,7 @@ const configArray = [
     label: I18n.t('identificationForm.telephone'),
     formikKey: 'telephoneNumber',
     value: '',
-    fieldType: 'input'
+    fieldType: 'numberInput'
   },
   // {
   //   label: 'Demographic Information',
@@ -186,17 +186,22 @@ const configArray = [
   //   value: ""
   // },
   {
-    label: I18n.t('identificationForm.latitude'),
-    formikKey: 'latitude',
-    value: 0,
+    formikKey: 'location',
+    value: {},
     fieldType: 'geolocation'
   },
-  {
-    label: I18n.t('identificationForm.longitude'),
-    formikKey: 'longitude',
-    value: 0,
-    fieldType: 'geolocation'
-  },
+  // {
+  //   label: 'Latitude',
+  //   formikKey: 'latitude',
+  //   value: 0,
+  //   fieldType: 'geolocation'
+  // },
+  // {
+  //   label: 'Longitude',
+  //   formikKey: 'longitude',
+  //   value: 0,
+  //   fieldType: 'geolocation'
+  // },
   {
     label: I18n.t('identificationForm.household'),
     fieldType: 'header',
