@@ -28,7 +28,7 @@ const configArray = [
     label: 'Date of Birth',
     formikKey: 'dob',
     value: '',
-    fieldType: 'multiInputRow',
+    fieldType: 'multiInputRowNum',
     options: [
       'Month',
       'Day',
@@ -59,7 +59,7 @@ const configArray = [
     label: 'Telephone Number',
     formikKey: 'telephoneNumber',
     value: '',
-    fieldType: 'input'
+    fieldType: 'numberInput'
   },
   // {
   //   label: 'Demographic Information',
@@ -184,17 +184,22 @@ const configArray = [
   //   value: ""
   // },
   {
-    label: 'Latitude',
-    formikKey: 'latitude',
-    value: 0,
+    formikKey: 'location',
+    value: {},
     fieldType: 'geolocation'
   },
-  {
-    label: 'Longitude',
-    formikKey: 'longitude',
-    value: 0,
-    fieldType: 'geolocation'
-  },
+  // {
+  //   label: 'Latitude',
+  //   formikKey: 'latitude',
+  //   value: 0,
+  //   fieldType: 'geolocation'
+  // },
+  // {
+  //   label: 'Longitude',
+  //   formikKey: 'longitude',
+  //   value: 0,
+  //   fieldType: 'geolocation'
+  // },
   {
     label: 'Household',
     fieldType: 'header',
