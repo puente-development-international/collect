@@ -90,7 +90,6 @@ const DataCollection = ({ navigation }) => {
 
   const navigateToGallery = async () => {
     await getData('organization').then((org) => {
-      console.log(customForms);
       setSurveyingOrganization(org || surveyingOrganization || '');
       setView('Gallery');
     });
