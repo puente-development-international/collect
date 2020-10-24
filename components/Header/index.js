@@ -30,7 +30,7 @@ const Header = ({ logOut }) => {
     const curHr = today.getHours();
 
     if (curHr < 12) {
-      setVolunteerGreeting( `${I18n.t('header.goodMorning')} ${name}!` || I18n.t('header.goodMorning!'));
+      setVolunteerGreeting(`${I18n.t('header.goodMorning')} ${name}!` || I18n.t('header.goodMorning!'));
     } else if (curHr < 18) {
       setVolunteerGreeting(`${I18n.t('header.goodAfternoon')} ${name}!` || I18n.t('header.goodAfternoon!'));
     } else {

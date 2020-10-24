@@ -11,6 +11,7 @@ import { layout } from '../../../modules/theme';
 import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg';
 import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
 import I18n from '../../../modules/i18n';
+
 const FormGallery = (props) => {
   const {
     navigateToNewRecord, navigateToCustomForm, puenteForms, customForms

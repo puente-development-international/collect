@@ -70,10 +70,10 @@ const GetPinCode = ({ navigation }) => {
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button onPress={formikProps.handleSubmit}>
-                <Text>{I18n.t('global.submit')}</Text>
-              </Button>
-            )}
+            <Button onPress={formikProps.handleSubmit}>
+              <Text>{I18n.t('global.submit')}</Text>
+            </Button>
+          )}
         </>
       )}
     </Formik>

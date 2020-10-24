@@ -61,7 +61,7 @@ const configArray = {
 
   },
   {
-    label:  I18n.t('environmentalHealth.biggestProblemComm'),
+    label: I18n.t('environmentalHealth.biggestProblemComm'),
     formikKey: 'biggestproblemofcommunity',
     value: '',
     fieldType: 'input'
@@ -351,13 +351,13 @@ const configArray = {
     ]
   },
   {
-    label:  I18n.t('environmentalHealth.numberIndividualsHouse'),
+    label: I18n.t('environmentalHealth.numberIndividualsHouse'),
     formikKey: 'numberofIndividualsLivingintheHouse',
     value: '',
     fieldType: 'numberInput'
   },
   {
-    label:  I18n.t('environmentalHealth.numberChildrenUnder5'),
+    label: I18n.t('environmentalHealth.numberChildrenUnder5'),
     formikKey: 'numberofChildrenLivinginHouseUndertheAgeof5',
     value: '',
     fieldType: 'numberInput'
