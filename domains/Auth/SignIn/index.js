@@ -70,10 +70,10 @@ const SignIn = ({ navigation }) => {
 
   const handleFailedAttempt = () => {
     Alert.alert(
-      'Unable to login',
-      'Your username or password may be incorrect, please try again.', [
-        { text: 'OK' }
-      ],
+      I18n.t('signIn.unableLogin'),
+      I18n.t('signIn.usernamePasswordIncorrect'), [
+      { text: 'OK' }
+    ],
       { cancelable: true }
     );
   };
@@ -84,8 +84,8 @@ const SignIn = ({ navigation }) => {
 
   const handleSaveCredentials = (values) => {
     Alert.alert(
-      'Credentials',
-      'Would you like to save your login credentials for future use?',
+      I18n.t('signIn.credentials'),
+      I18n.t('signIn.saveLoginCreds'),
       [
         {
           text: 'Yes',

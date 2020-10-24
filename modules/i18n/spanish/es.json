@@ -1,10 +1,23 @@
 {
+  "global": {
+    "yes": "Yes",
+    "no": "No",
+    "notSure": "Not Sure",
+    "other": "Other",
+    "submit": "Submit",
+    "fName": "First Name",
+    "lName": "Last Name",
+    "city": "City",
+    "commName": "Community Name",
+    "notes": "Notes"
+  },
   "signUp": {
     "firstName": "Nombre de pila",
     "lastName": "Apellido",
     "email": "Email",
     "phoneNumber": "Número de teléfono",
     "password": "Contraseña",
+    "password2": "Enter Password Again",
     "organization": "Organización",
     "termsOfService": {
       "view": "Ver los términos y el servicio",
@@ -12,13 +25,318 @@
     },
     "submit": "Enviar",
     "toEnglish": "Cambiar el idioma al inglés",
-    "toSpanish": "Cambio de idioma al español"
+    "toSpanish": "Cambio de idioma al español",
+    "errorTerms": "Error, terms and service need to be agreed to.",
+    "errorPassword": "Error, your passwords do not match."
   },
   "signIn": {
     "username": "Nombre de usuario",
     "password": "Contraseña",
     "showPassword": "Mostrar contraseña",
-    "submit": "Enviar",
-    "signUpLink": "No tienes una cuenta, regístrate!"
+    "login": "Log-In",
+    "signUpLink": "No tienes una cuenta, regístrate!",
+    "deleteCreds": "Delete Credentials",
+    "noAccount": "Don't have an account?",
+    "puente2020": "Puente 2020 |",
+    "termsConditions": "Terms & Conditions",
+    "forgotPassword": {
+      "enterEmail": "Please enter your email to reset your password",
+      "sendLink": "Send Reset Link",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign Up!",
+      "rememberPass": "Remember your Password?",
+      "signIn": "Sign In"
+    },
+    "credentialsModal": {
+      "useCreds": "Would you like to use your saved login credentials?"
+    },
+    "unableLogin": "Unable to login",
+    "usernamePasswordIncorrect": "Your username or password may be incorrect, please try again.",
+    "credentials": "Credentials",
+    "saveLoginCreds": "Would you like to save your login credentials for future use?"
+  },
+  "pinCode": {
+    "getPinCode": {
+      "enterPinCode": "Enter Pincode",
+      "incorrect1": "Incorrect pincode, please try again. This is your last chance to enter your pincode, your credentials will be reset and pincode will be deleted on another failed attempt.",
+      "incorrect2": "Incorrect pincode, please try again."
+    },
+    "storePinCode": {
+      "enterPinCode": "Enter Pincode to use instead of username/password"
+    }
+  },
+  "formsGallery": {
+    "puenteForms": "Puente Forms",
+    "customForms": "Custom Forms",
+    "ourMarketPlace": "Our Marketplace",
+    "discoverForms": "Discover forms created by trusted companies",
+    "exploreForms": "Explore Forms"
+  },
+  "identificationForm": {
+    "demographics": "Demographics",
+    "nickname": "Nickname",
+    "dob": {
+      "label": "Date of Birth",
+      "month": "Month",
+      "day": "Day",
+      "year": "Year"
+    },
+    "sex": {
+      "label": "Sex",
+      "male": "Male",
+      "female": "Female",
+      "notSay": "Prefer Not to Say"
+    },
+    "telephone": "Telephone Number",
+    "marriageStatus": {
+      "label": "Marriage Status",
+      "single": "Single",
+      "married": "Married",
+      "cohabitation": "Cohabitation",
+      "widow": "Widow"
+    },
+    "occupation": "Occupation",
+    "educationLevel": {
+      "label": "Education Level",
+      "lessPrim": "Less than Primary",
+      "prim": "Primary",
+      "someHS": "Some high school",
+      "hs": "Highschool",
+      "someCollege": "Some College",
+      "college": "College"
+    },
+    "location": "Location",
+    "insurance": "Insurance",
+    "insNumber": "Insurance Number",
+    "insProvider": "Insurance Provider",
+    "clinicProvider": "Clinic Provider",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "household": "Household"
+  },
+  "environmentalHealth": {
+    "name": "Environmental Health Form",
+    "yearsLived": {
+      "community": "Years Lived in the Community",
+      "house": "Years Lived in This House",
+      "less1": "Less than 1 Year",
+      "1_2": "1-2 years",
+      "3_4": "3-4 years",
+      "5_10": "5-10 years",
+      "moreThan10": "10+ years"
+    },
+    "biggestProblemComm": "Biggest Problem of the Community",
+    "waterAccess": {
+      "label": "Water Access",
+      "everyday": "Everyday",
+      "4_6": "4-6 days a week",
+      "2_3": "2-3 days per week",
+      "1perWeek": "Less than or equal to 1 day per week",
+      "1perMonth": "1 day per month",
+      "never": "Never"
+    },
+    "typeOfWater": {
+      "label": "Type of Water Do you Drink",
+      "bottled": "Bottled",
+      "tap": "Tap",
+      "filtered": "Filtered"
+    },
+    "bathroomAccess": "Bathroom Access",
+    "latrineAccess": "Latrine Access",
+    "clinicAccess": "Clinic Access",
+    "medicalProblemsGo": "Where do you go for medical problems?",
+    "dentalProblemsGo": "Where do you go for dental problems?",
+    "timesPerWeekTrash": "Times per Week Trash is Collected",
+    "trashBetweenPickups": "Where is trash left between pickups?",
+    "houseOwnership": "House Ownership",
+    "floorCondition": {
+      "label": "Condition of Floor in your house?",
+      "dirtFloorPoor": "Dirt Floor Poor Condition",
+      "dirtFloorWork": "Dirt Floor Working Condition",
+      "cementPoor": "Cement Floor Poor Condition",
+      "cementWorking": "Cement Floor Working Condition"
+    },
+    "roofCondition": {
+      "label": "Condition of Roof in your house?",
+      "poor": "Poor Condition",
+      "work": "Working Condition"
+    },
+    "typeStove": {
+      "label": "Type of Stove Top",
+      "constructedVentilation": "Constructed stove with ventilation",
+      "stoveTop": "Stovetop with tank or electricity",
+      "openFire": "Open Fire"
+    },
+    "houseMaterials": {
+      "label": "What material is your house made from?",
+      "zinc": "Zinc",
+      "wood": "Wood",
+      "partBlock_partWood": "Part block, part wood",
+      "block": "Block"
+    },
+    "electricityAccess": {
+      "label": "How often do you have access to electricity?",
+      "never": "Never",
+      "sometimes": "Sometimes",
+      "always": "Always"
+    },
+    "foodSecurity": "In the past month, have you ever worried that you or your family did not have enough food to eat?",
+    "govAssistance": {
+      "label": "Do you have access to government assistance?",
+      "foodStamps": "Food Stamps",
+      "adultLiteracy": "Adult literacy Program"
+    },
+    "numberIndividualsHouse": "Number of Individuals Living in the House",
+    "numberChildrenUnder5": "Number of children Living in this House under age of 5"
+  },
+  "evaluationMedical": {
+    "name": "Medical Assessment Form",
+    "chronicHypertension": "Chronic Condition Hypertension",
+    "chronicDiabetes": "Chronic Condition Diabetes",
+    "chronicOther": "Chronic Condition Other",
+    "doctor": "Have you seen a doctor for this problem?",
+    "statusOfHealth": {
+      "label": "Status of Health",
+      "receivingNoSupport": "Receiving Treatment or Follow-up Care | No Support Needed",
+      "receivingSupport": "Receiving Treatment or Follow-up Care | Support Needed",
+      "awaitingNoSupport": "Awaiting Treatment or Follow-up Care |  No Support Needed",
+      "noTreatmentSupport": "No Treatment | Support Needed"
+    },
+    "partOfBody": {
+      "label": "Part of Body",
+      "bonesJoints": "Bones or Joints",
+      "eyes": "Eyes",
+      "earsNoseThroat": "Ears, Nose or Throat",
+      "skin": "Skin",
+      "headMental": "Head or Mental Issues",
+      "stomachIntestines": "Stomach, Intestines",
+      "bladderUrinary": "Bladder, Urinary tract",
+      "reproductiveOrgans": "Reproductive Organs",
+      "nutritionIssues": "Nutrition Issue",
+      "---": "---"
+    },
+    "partOfBodyDescription": "Part of Body Description",
+    "duration": {
+      "label": "Duration",
+      "lastMonth": "Within Last Month",
+      "lastYear": "Within Last Year",
+      "last5Years": "Within Last 5 Years",
+      "past5Years": "Past 5 Years"
+    },
+    "problemSuddenness": {
+      "label": "Problem Suddenness",
+      "suddenTrauma": "Sudden and due to trauma",
+      "suddenNoTrauma": "Sudden but not to trauma",
+      "gradually": "Gradually"
+    },
+    "progressionOfCondition": {
+      "label": "Progression of Condition",
+      "improving": "Improving",
+      "worsening": "Worsening",
+      "constant": "Constant"
+    },
+    "generalHealthConsult": "General Health Consult Required?",
+    "surgicalRequired": "Surgical Need Required?",
+    "yourGuess": "Your Guess",
+    "immediateFollowupRequired": "Immediate Follow Up Required?",
+    "plan": "Plan"
+  },
+  "supplementaryForms": {
+    "attachResident": "Attach a Community Resident"
+  },
+  "forms": {
+    "successfullySubmitted": "Form successfully submitted",
+    "grabCoffee": "Grab yourself a coffee",
+    "suggestedForms": "Suggested next Forms",
+    "viewGallery": "View Forms Gallery"
+  },
+  "gdpr": {
+    "mustConsent": "Community member must consent before you can continue.",
+    "policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "viewFullPolicy": "View Full Policy",
+    "communityMemAgrees": "Community member agrees to data policy",
+    "continueToForm": "Continue to Form"
+  },
+  "dataCollection": {
+    "newRecord": "New Record",
+    "findRecord": "Find Record",
+    "viewAll": "View All Forms",
+    "back": "Back"
+  },
+  "home": {
+    "myTasks": "My Tasks",
+    "comingSoon": "Coming Soon",
+    "tasks": "Tasks",
+    "logOut": "Log Out"
+  },
+  "cards": {
+    "smallCards": {
+      "residentID": "Resident ID",
+      "environmental": "Environment",
+      "history": "History",
+      "medical": "Medical",
+      "evaluation": "Evaluation"
+    }
+  },
+  "findResident": {
+    "searchIndividual": "Search Individual",
+    "typeHere": "Type Here...",
+    "residentCard": {
+      "city": "City",
+      "community": "Community"
+    },
+    "residentPage": {
+      "demographics": {
+        "dob": "Date of Birth:",
+        "city": "City:",
+        "community": "Community:",
+        "province": "Province:",
+        "license": "License Number:"
+      },
+      "forms": {
+        "completedForms": "Completed Forms",
+        "formCategory": "Form Category",
+        "comingSoon": "Coming Soon",
+        "suggestedForms": "Suggested Forms"
+      },
+      "household": {
+        "editProfile": "Edit Profile",
+        "demographics": "Demographics",
+        "forms": "Forms",
+        "household": "Household",
+        "goBack": "Go back to find records"
+      }
+    }
+  },
+  "householdManager": {
+    "createHousehold": "Create a new household",
+    "linkIndividual": "Link this individual to an existing house",
+    "household": "Household",
+    "householdManager": "Household Manager",
+    "relationshipHousehold": "What is their role/relationship in the household?",
+    "linked": "Linked"
+  },
+  "header": {
+    "goodMorning": "Good morning",
+    "goodAfternoon": "Good afternoon",
+    "goodEvening": "Good evening",
+    "goodMorning!": "Good morning!",
+    "goodAfternoon!": "Good afternoon!",
+    "goodEvening!": "Good evening!",
+    "puente": "PUENTE",
+    "volunteerSince": "Volunteer Since",
+    "surveysCollected": "Surveys Collected"
+  },
+  "languagePicker": {
+    "english": "English",
+    "spanish": "Spanish"
+  },
+  "residentIdSearchbar": {
+    "searchIndividual": "Search Individual"
+  },
+  "termsModal": {
+    "termsService": "Terms and Service",
+    "policy": " Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "ok": "Ok"
   }
 }

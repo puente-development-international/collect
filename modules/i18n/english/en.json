@@ -27,7 +27,7 @@
     "toEnglish": "Changle language to English",
     "toSpanish": "Change Language to Spanish",
     "errorTerms": "Error, terms and service need to be agreed to.",
-    "errorPassword": "Error, your passwords do not match.",
+    "errorPassword": "Error, your passwords do not match."
   },
   "signIn": {
     "username": "Username",
@@ -49,7 +49,11 @@
     },
     "credentialsModal": {
       "useCreds": "Would you like to use your saved login credentials?"
-    }
+    },
+    "unableLogin":"Unable to login",
+    "usernamePasswordIncorrect":"Your username or password may be incorrect, please try again.",
+    "credentials":"Credentials",
+    "saveLoginCreds":"Would you like to save your login credentials for future use?"
   },
   "pinCode": {
     "getPinCode": {
