@@ -10,6 +10,8 @@ import NewRecordSVG from '../../../assets/icons/New-Record-icon.svg';
 import EnvSVG from '../../../assets/icons/Home-icon.svg';
 import MedEvalSVG from '../../../assets/icons/Heart-Icon.svg';
 
+import I18n from '../../../modules/i18n';
+
 /**
  * Carousel of Forms that are used for Form Navigation
  *
@@ -48,7 +50,7 @@ const SmallCardsCarousel = ({
         {form.tag === 'id' && (
         <View marginTop="auto" marginBottom="auto">
           <NewRecordSVG height={40} style={styles.svg} />
-          <Button labelStyle={styles.topButton} compact>Resident ID</Button>
+          <Button labelStyle={styles.topButton} compact>{I18n.t('cards.smallCards.residentID')}</Button>
           <Button labelStyle={styles.bottomButton} compact />
         </View>
         )}
@@ -57,8 +59,8 @@ const SmallCardsCarousel = ({
         <View marginTop="auto" marginBottom="auto">
           <EnvSVG height={40} style={styles.svg} />
           <View>
-            <Button labelStyle={styles.topButton} compact>Environmental</Button>
-            <Button labelStyle={styles.bottomButton} compact>History</Button>
+            <Button labelStyle={styles.topButton} compact>{I18n.t('cards.smallCards.environmental')}</Button>
+            <Button labelStyle={styles.bottomButton} compact>{I18n.t('cards.smallCards.history')}</Button>
           </View>
         </View>
         )}
@@ -66,8 +68,8 @@ const SmallCardsCarousel = ({
         <View marginTop="auto" marginBottom="auto">
           <MedEvalSVG height={40} style={styles.svg} />
           <View marginTop="auto">
-            <Button labelStyle={styles.topButton} compact>Medical</Button>
-            <Button labelStyle={styles.bottomButton} compact>Evaluation</Button>
+            <Button labelStyle={styles.topButton} compact>{I18n.t('cards.smallCards.medical')}</Button>
+            <Button labelStyle={styles.bottomButton} compact>{I18n.t('cards.smallCards.evaluation')}</Button>
           </View>
         </View>
         )}

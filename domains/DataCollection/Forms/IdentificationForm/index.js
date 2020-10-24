@@ -19,6 +19,7 @@ import { layout } from '../../../../modules/theme';
 import backgroundPostPatient from './utils';
 import configArray from './config/config';
 
+import I18n from '../../../../modules/i18n';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 
 // const validationSchema = yup.object().shape({
@@ -117,7 +118,7 @@ const IdentificationForm = ({
             <ActivityIndicator />
           ) : (
             <Button icon="human" onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
+              <Text>{I18n.t('global.submit')}</Text>
             </Button>
           )}
         </View>

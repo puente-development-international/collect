@@ -11,6 +11,8 @@ import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
 import { theme, layout } from '../../../../modules/theme';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 
+import I18n from '../../../../modules/i18n';
+
 const relationships = [
   'Parent', 'Sibling', 'Grand-Parent', 'Cousin', 'Other'
 ];
@@ -54,10 +56,10 @@ const HouseholdManager = (props) => {
         && (
           <View>
             <RadioButton.Group onValueChange={(value) => setModalView(value)} value={modalView}>
-              <RadioButton.Item label="Create a new household" value="first" />
-              <RadioButton.Item label="Link this individual to an existing house" value="second" />
+              <RadioButton.Item label={I18n.t('householdManager.createHousehold')} value="first" />
+              <RadioButton.Item label={I18n.t('householdManager.linkIndividual')} value="second" />
             </RadioButton.Group>
-            <Button style={layout.buttonGroupButtonStyle} icon="plus" mode="contained" onPress={createNewHousehold}>Household</Button>
+            <Button style={layout.buttonGroupButtonStyle} icon="plus" mode="contained" onPress={createNewHousehold}>{I18n.t('householdManager.household')}</Button>
           </View>
         )}
       {modalView === 'second'
@@ -68,14 +70,14 @@ const HouseholdManager = (props) => {
           >
             <Appbar.Header>
               <Appbar.BackAction onPress={() => setModalView('first')} />
-              <Appbar.Content title="Household Manager" subtitle="" />
+              <Appbar.Content title={I18n.t('householdManager.householdManager')} subtitle="" />
             </Appbar.Header>
             <ResidentIdSearchbar
               surveyee={selectPerson}
               setSurveyee={setSelectPerson}
               surveyingOrganization={surveyingOrganization}
             />
-            <Text>What is their role/relationship in the household?</Text>
+            <Text>{I18n.t('householdManager.relationshipHousehold')}</Text>
             <View style={layout.buttonGroupContainer}>
               {relationships.map((result) => (
                 <Button style={layout.buttonGroupButtonStyle} key={result} mode="outlined" onPress={() => setHouseholdRelationship(result)}>
@@ -84,7 +86,7 @@ const HouseholdManager = (props) => {
               ))}
             </View>
             <Button theme={{ backgroundColor: theme.colors.primary }} style={layout.buttonGroupButtonStyle} mode="contained" onPress={onSubmit}>
-              <Text>Submit</Text>
+              <Text>{I18n.t('global.submit')}</Text>
             </Button>
           </Modal>
         )}
@@ -92,7 +94,7 @@ const HouseholdManager = (props) => {
         && (
           <View>
             <RadioButton.Group onValueChange={(value) => setModalView(value)} value={modalView}>
-              <RadioButton.Item label="Linked" value="third" />
+              <RadioButton.Item label={I18n.t('householdManager.linked')} value="third" />
             </RadioButton.Group>
           </View>
         )}

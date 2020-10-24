@@ -239,8 +239,8 @@ const SignIn = ({ navigation }) => {
                     {formikProps.isSubmitting ? (
                       <ActivityIndicator />
                     ) : (
-                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
-                    )}
+                        <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                      )}
                     <CredentialsModal
                       modalVisible={modalVisible}
                       formikProps={formikProps}
@@ -252,7 +252,7 @@ const SignIn = ({ navigation }) => {
                   </View>
                 )}
               </Formik>
-              <Button onPress={deleteCreds}>Delete Credentials</Button>
+              <Button onPress={deleteCreds}>{I18n.t('signIn.deleteCreds')}</Button>
             </View>
           </ScrollView>
         )}
@@ -269,14 +269,14 @@ const SignIn = ({ navigation }) => {
       {!forgotPassword && (
         <View style={styles.footer}>
           <View style={styles.termsContainer}>
-            <Text style={styles.accountText}>Don&apos;t have an account?</Text>
+            <Text style={styles.accountText}>{I18n.t('signIn.noAccount')}</Text>
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp} labelStyle={{ marginLeft: 5 }}>
               Sign up!
             </Button>
           </View>
           <View style={styles.termsContainer}>
-            <Text style={styles.puenteText}>Puente 2020 |</Text>
-            <Button mode="text" theme={theme} onPress={handleTermsModal} labelStyle={{ marginLeft: 5 }}>Terms & Conditions</Button>
+            <Text style={styles.puenteText}>{I18n.t('signIn.puente2020')}</Text>
+            <Button mode="text" theme={theme} onPress={handleTermsModal} labelStyle={{ marginLeft: 5 }}>{I18n.t('signIn.termsConditions')}</Button>
           </View>
         </View>
       )}

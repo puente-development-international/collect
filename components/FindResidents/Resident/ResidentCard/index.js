@@ -9,6 +9,8 @@ import {
 
 import { theme } from '../../../../modules/theme';
 
+import I18n from '../../../../modules/i18n';
+
 const ResidentCard = ({
   resident, onSelectPerson
 }) => {
@@ -41,11 +43,11 @@ const ResidentCard = ({
         />
         <View style={styles.cityLicenseContainer}>
           <View style={styles.cityContainer}>
-            <Text style={styles.font}>City</Text>
+            <Text style={styles.font}>{I18n.t('findResident.residentCard.city')}</Text>
             <Text style={styles.font}>{city}</Text>
           </View>
           <View style={styles.licenseContainer}>
-            <Text style={styles.font}>Community</Text>
+            <Text style={styles.font}>{I18n.t('findResident.residentCard.community')}</Text>
             <Text style={styles.license}>{communityname}</Text>
           </View>
         </View>

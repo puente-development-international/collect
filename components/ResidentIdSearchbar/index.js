@@ -12,6 +12,8 @@ import { residentIDQuery } from '../../services/parse/crud';
 
 import ResidentCard from '../FindResidents/Resident/ResidentCard';
 
+import I18n from '../../modules/i18n';
+
 const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) => {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
@@ -63,7 +65,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
 
   return (
     <View>
-      <Text>Search Individual</Text>
+      <Text>{I18n.t('residentIdSearchbar.searchIndividual')}</Text>
       <Searchbar
         placeholder="Type Here..."
         onChangeText={onChangeSearch}

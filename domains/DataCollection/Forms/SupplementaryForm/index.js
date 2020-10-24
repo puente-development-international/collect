@@ -13,7 +13,7 @@ import { layout } from '../../../../modules/theme';
 
 import envConfig from './configs/envhealth.config';
 import medConfig from './configs/medical-evaluation.config';
-
+import I18n from '../../../../modules/i18n';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 
 const SupplementaryForm = ({
@@ -89,14 +89,14 @@ const SupplementaryForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button
-              disabled={!surveyee.objectId}
-              onPress={formikProps.handleSubmit}
-            >
-              {surveyee.objectId && <Text>Submit</Text>}
-              {!surveyee.objectId && <Text>Attach a Community Resident</Text>}
-            </Button>
-          )}
+              <Button
+                disabled={!surveyee.objectId}
+                onPress={formikProps.handleSubmit}
+              >
+                {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
+                {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
+              </Button>
+            )}
         </View>
       )}
     </Formik>

@@ -10,7 +10,7 @@ import { layout } from '../../../modules/theme';
 
 import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg';
 import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
-
+import I18n from '../../../modules/i18n';
 const FormGallery = (props) => {
   const {
     navigateToNewRecord, navigateToCustomForm, puenteForms, customForms
@@ -18,7 +18,7 @@ const FormGallery = (props) => {
   return (
     <View>
       <View style={layout.screenRow}>
-        <Text>Puente Forms</Text>
+        <Text>{I18n.t('formsGallery.puenteForms')}</Text>
         <SmallCardsCarousel
           puenteForms={puenteForms}
           navigateToNewRecord={navigateToNewRecord}
@@ -26,7 +26,7 @@ const FormGallery = (props) => {
         />
       </View>
       <View style={layout.screenRow}>
-        <Text>Custom Forms</Text>
+        <Text>{I18n.t('formsGallery.customForms')}</Text>
         <ScrollView horizontal>
           {customForms && customForms.map((form) => (
             <Card
@@ -58,10 +58,10 @@ const FormGallery = (props) => {
         <Card>
           <Card.Content>
             <ComingSoonSVG width={200} height={200} />
-            <Title>Our Marketplace</Title>
-            <Paragraph>Discover forms created by trusted companies</Paragraph>
+            <Title>{I18n.t('formsGallery.ourMarketPlace')}</Title>
+            <Paragraph>{I18n.t('formsGallery.discoverForms')}</Paragraph>
             <Button>
-              <Text>Explore Forms</Text>
+              <Text>{I18n.t('formsGallery.exploreForms')}</Text>
             </Button>
           </Card.Content>
         </Card>

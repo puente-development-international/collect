@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 import { theme } from '../../../../modules/theme';
 import { retrieveForgotPasswordFunction } from '../../../../services/parse/auth';
 import FormInput from '../../../../components/FormikFields/FormInput';
+import I18n from '../../../../modules/i18n';
 
 export default function ForgotPassword({ navigation, setForgotPassword }) {
   const handleSignUp = () => {
@@ -36,7 +37,7 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
           {(formikProps) => (
             <View>
               <View>
-                <Text style={{ marginHorizontal: 15, fontSize: 20, fontWeight: 'bold' }}>Please enter your email to reset your password</Text>
+                <Text style={{ marginHorizontal: 15, fontSize: 20, fontWeight: 'bold' }}>{I18n.t('signIn.forgotPassword.enterEmail')}</Text>
                 <FormInput
                   label="Email"
                   formikProps={formikProps}
@@ -44,7 +45,7 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
                   placeholder="Email"
                 />
               </View>
-              <Button mode="contained" theme={theme} onPress={formikProps.handleSubmit}>Send Reset Link</Button>
+              <Button mode="contained" theme={theme} onPress={formikProps.handleSubmit}>{I18n.t('signIn.forgotPassword.sendLink')}</Button>
             </View>
 
           )}
@@ -52,14 +53,14 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
       </View>
       <View style={styles.footer}>
         <View style={styles.termsContainer}>
-          <Text style={styles.accountText}>Don&apos;t have an account?</Text>
+          <Text style={styles.accountText}>{I18n.t('signIn.forgotPassword.noAccount')}</Text>
           <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp} labelStyle={{ marginLeft: 5 }}>
-            Sign up!
+            {I18n.t('signIn.forgotPassword.signUp')}
           </Button>
         </View>
         <View style={styles.termsContainer}>
-          <Text style={styles.puenteText}>Remember your Password? </Text>
-          <Button mode="text" theme={theme} onPress={handleSignIn} labelStyle={{ marginLeft: 5 }}>Sign in</Button>
+          <Text style={styles.puenteText}>{I18n.t('signIn.forgotPassword.rememberPass')}</Text>
+          <Button mode="text" theme={theme} onPress={handleSignIn} labelStyle={{ marginLeft: 5 }}>{I18n.t('signIn.forgotPassword.signIn')}</Button>
         </View>
       </View>
     </View>
