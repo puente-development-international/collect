@@ -5,12 +5,14 @@ import {
 } from 'react-native';
 
 import {
-  Text, Button, Searchbar
+  Headline, Button, Searchbar
 } from 'react-native-paper';
 
 import { residentIDQuery } from '../../services/parse/crud';
 
 import ResidentCard from '../FindResidents/Resident/ResidentCard';
+
+import styles from './index.styles';
 
 const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) => {
   const [data, setData] = useState([]);
@@ -63,7 +65,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
 
   return (
     <View>
-      <Text>Search Individual</Text>
+      <Headline style={styles.header}>Search Individual</Headline>
       <Searchbar
         placeholder="Type Here..."
         onChangeText={onChangeSearch}

@@ -9,7 +9,10 @@ import {
 import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
 
 import { theme, layout } from '../../../../modules/theme';
+
 import { postObjectsToClass } from '../../../../services/parse/crud';
+
+import styles from './index.style'
 
 // const relationships = [
 //   'Parent', 'Sibling', 'Grand-Parent', 'Cousin', 'Other'
@@ -21,7 +24,7 @@ const HouseholdManager = (props) => {
 
   const [selectPerson, setSelectPerson] = useState();
   const [, setHouseholdRelationship] = useState();
-  const [modalView, setModalView] = useState('first');
+  const [modalView, setModalView] = useState('zero');
 
   const onSubmit = () => {
     setModalView('third');
@@ -50,17 +53,23 @@ const HouseholdManager = (props) => {
 
   return (
     <View style={layout.formContainer}>
-      {modalView === 'first'
+      {modalView !== 'second' && modalView !== 'third'
         && (
           <View>
             <RadioButton.Group onValueChange={(value) => setModalView(value)} value={modalView}>
+              <RadioButton.Item label="Do Nothing" value="zero" />
               <RadioButton.Item label="Create a new household" value="first" />
+              {modalView === 'first' &&
+                < Button style={layout.buttonGroupButtonStyle} icon="plus" mode="contained" onPress={createNewHousehold}>Household</Button>
+              }
               <RadioButton.Item label="Link this individual to an existing house" value="second" />
             </RadioButton.Group>
-            <Button style={layout.buttonGroupButtonStyle} icon="plus" mode="contained" onPress={createNewHousehold}>Household</Button>
           </View>
-        )}
-      {modalView === 'second'
+        )
+      }
+
+      {
+        modalView === 'second'
         && (
           <Modal
             animationType="slide"
@@ -71,12 +80,13 @@ const HouseholdManager = (props) => {
               <Appbar.Content title="Household Manager" subtitle="" />
             </Appbar.Header>
 
-            <ResidentIdSearchbar
-              surveyee={selectPerson}
-              setSurveyee={setSelectPerson}
-              surveyingOrganization={surveyingOrganization}
-            />
-            {/* <Text>What is their role/relationship in the household?</Text>
+            <View style={styles.container}>
+              <ResidentIdSearchbar
+                surveyee={selectPerson}
+                setSurveyee={setSelectPerson}
+                surveyingOrganization={surveyingOrganization}
+              />
+              {/* <Text>What is their role/relationship in the household?</Text>
             <View style={layout.buttonGroupContainer}>
               {relationships.map((result) => (
                 <Button style={layout.buttonGroupButtonStyle} key={result} mode="outlined" onPress={() => setHouseholdRelationship(result)}>
@@ -84,11 +94,13 @@ const HouseholdManager = (props) => {
                 </Button>
               ))}
             </View> */}
-            <Button theme={{ backgroundColor: theme.colors.primary }} style={layout.buttonGroupButtonStyle} mode="contained" onPress={onSubmit}>
-              <Text>Submit</Text>
+              <Button theme={{ backgroundColor: theme.colors.primary }} style={layout.buttonGroupButtonStyle} mode="contained" onPress={onSubmit}>
+                Submit
             </Button>
+            </View>
           </Modal>
-        )}
+        )
+      }
       {modalView === 'third'
         && (
           <View>
@@ -96,8 +108,9 @@ const HouseholdManager = (props) => {
               <RadioButton.Item label="Linked" value="third" />
             </RadioButton.Group>
           </View>
-        )}
-    </View>
+        )
+      }
+    </View >
   );
 };
 
