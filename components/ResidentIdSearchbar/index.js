@@ -5,14 +5,16 @@ import {
 } from 'react-native';
 
 import {
-  Text, Button, Searchbar
+  Headline, Button, Searchbar
 } from 'react-native-paper';
 
 import { residentIDQuery } from '../../services/parse/crud';
 
+import I18n from '../../modules/i18n';
+
 import ResidentCard from '../FindResidents/Resident/ResidentCard';
 
-import I18n from '../../modules/i18n';
+import styles from './index.styles';
 
 const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) => {
   const [data, setData] = useState([]);
@@ -65,7 +67,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
 
   return (
     <View>
-      <Text>{I18n.t('residentIdSearchbar.searchIndividual')}</Text>
+      <Headline style={styles.header}>{I18n.t('residentIdSearchbar.searchIndividual')}</Headline>
       <Searchbar
         placeholder="Type Here..."
         onChangeText={onChangeSearch}
@@ -78,7 +80,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
         </View>
       ))}
 
-      {surveyee.objectId && (
+      {surveyee && surveyee.objectId && (
         <ResidentCard resident={surveyee} />
       )}
     </View>
