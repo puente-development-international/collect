@@ -147,65 +147,59 @@ const PaperInputPicker = ({
           />
         </View>
       )}
-      {
-        fieldType === 'header' && (
-          <View>
-            <Headline style={styles.header}>{label}</Headline>
-            <View
-              style={styles.horizontalLine}
-            />
+      {fieldType === 'header' && (
+        <View>
+          <Headline style={styles.header}>{label}</Headline>
+          <View
+            style={styles.horizontalLine}
+          />
+        </View>
+      )}
+      {fieldType === 'multiInputRow' && (
+        <View style={styles.container}>
+          <Text>{label}</Text>
+          <View style={styles.multiInputContainer}>
+            {data.options.map((result) => (
+              <View key={result} style={styles.inputItem}>
+                <TextInput
+                  label={result}
+                  onChangeText={handleChange(result)}
+                  onBlur={handleBlur(result)}
+                  {...rest} //eslint-disable-line
+                  mode="outlined"
+                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                />
+                <Text style={{ color: 'red' }}>
+                  {touched[result] && errors[result]}
+                </Text>
+              </View>
+            ))}
           </View>
-        )
-      }
-      {
-        fieldType === 'multiInputRow' && (
-          <View style={styles.container}>
-            <Text>{label}</Text>
-            <View style={styles.multiInputContainer}>
-              {data.options.map((result) => (
-                <View key={result} style={styles.inputItem}>
-                  <TextInput
-                    label={result}
-                    onChangeText={handleChange(result)}
-                    onBlur={handleBlur(result)}
-                    {...rest} //eslint-disable-line
-                    mode="outlined"
-                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                  />
-                  <Text style={{ color: 'red' }}>
-                    {touched[result] && errors[result]}
-                  </Text>
-                </View>
-              ))}
-            </View>
+        </View>
+      )}
+      {fieldType === 'multiInputRowNum' && (
+        <View style={styles.container}>
+          <Text>{label}</Text>
+          <View style={styles.multiInputContainer}>
+            {data.options.map((result) => (
+              <View key={result} style={styles.inputItem}>
+                <TextInput
+                  label={result}
+                  onChangeText={handleChange(result)}
+                  onBlur={handleBlur(result)}
+                  {...rest} //eslint-disable-line
+                  mode="outlined"
+                  keyboardType="numeric"
+                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                />
+                <Text style={{ color: 'red' }}>
+                  {touched[result] && errors[result]}
+                </Text>
+              </View>
+            ))}
           </View>
-        )
-      }
-      {
-        fieldType === 'multiInputRowNum' && (
-          <View style={styles.container}>
-            <Text>{label}</Text>
-            <View style={styles.multiInputContainer}>
-              {data.options.map((result) => (
-                <View key={result} style={styles.inputItem}>
-                  <TextInput
-                    label={result}
-                    onChangeText={handleChange(result)}
-                    onBlur={handleBlur(result)}
-                    {...rest} //eslint-disable-line
-                    mode="outlined"
-                    keyboardType="numeric"
-                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                  />
-                  <Text style={{ color: 'red' }}>
-                    {touched[result] && errors[result]}
-                  </Text>
-                </View>
-              ))}
-            </View>
-          </View>
-        )
-      }
+        </View>
+      )}
     </>
   );
 };
