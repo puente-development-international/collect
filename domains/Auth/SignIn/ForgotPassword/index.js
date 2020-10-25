@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import {
   Text, Button
@@ -18,38 +18,66 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
     setForgotPassword(false);
   };
 
-  return (
-    <View style={{ flex: 1, marginHorizontal: 15, marginTop: 15 }}>
-      <View style={{ flex: 9 }}>
-        <Formik
-          initialValues={{ email: '' }}
-          onSubmit={(values, actions) => {
-            retrieveForgotPasswordFunction(values).then((res) => {
-              console.log(res); //eslint-disable-line
-            }, (error) => {
-              console.log(error); //eslint-disable-line
-            });
-            setTimeout(() => {
-              actions.setSubmitting(false);
-            }, 1000);
-          }}
-        >
-          {(formikProps) => (
-            <View>
-              <View>
-                <Text style={{ marginHorizontal: 15, fontSize: 20, fontWeight: 'bold' }}>{I18n.t('signIn.forgotPassword.enterEmail')}</Text>
-                <FormInput
-                  label="Email"
-                  formikProps={formikProps}
-                  formikKey="email"
-                  placeholder="Email"
-                />
-              </View>
-              <Button mode="contained" theme={theme} onPress={formikProps.handleSubmit}>{I18n.t('signIn.forgotPassword.sendLink')}</Button>
-            </View>
+  const [emailSuccess, setEmailSuccess] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
-          )}
-        </Formik>
+  return (
+    <View style={{ flex: 1, marginHorizontal: 15, marginTop: 60 }}>
+      <View style={{ flex: 9 }}>
+        {!emailError && !emailSuccess && (
+          <View>
+            <Formik
+              initialValues={{ email: '' }}
+              onSubmit={(values, actions) => {
+                retrieveForgotPasswordFunction(values).then((res) => {
+                  setEmailSuccess(true);
+                  console.log(res); //eslint-disable-line
+                }, (error) => {
+                  setEmailError(true);
+                  console.log(error); //eslint-disable-line
+                });
+                setTimeout(() => {
+                  actions.setSubmitting(false);
+                }, 1000);
+              }}
+            >
+              {(formikProps) => (
+                <View>
+                  <View>
+                  <Text style={{ marginHorizontal: 15, fontSize: 20, fontWeight: 'bold' }}>{I18n.t('signIn.forgotPassword.enterEmail')}</Text>
+                    <FormInput
+                      label="Email"
+                      formikProps={formikProps}
+                      formikKey="email"
+                      placeholder="Email"
+                    />
+                  </View>
+                  <Button mode="contained" theme={theme} onPress={formikProps.handleSubmit}>{I18n.t('signIn.forgotPassword.sendLink')}</Button>
+                </View>
+
+              )}
+            </Formik>
+          </View>
+        )}
+        {emailSuccess && (
+          <View>
+            <Text style={{ marginHorizontal: 15, fontSize: 18, fontWeight: 'bold' }}>
+              Your password reset link has been sent to your email. Please
+              Check your email to change your password.
+            </Text>
+            <Button mode="text" theme={theme} onPress={handleSignIn}>Back to Sign in</Button>
+          </View>
+        )}
+        {emailError && (
+          <View>
+            <Text style={{ marginHorizontal: 15, fontSize: 18, fontWeight: 'bold' }}>
+              There was an error sending the password reset link. Please
+              ensure that you entered your email correctly. You can try again by clicking
+              the button below. If you believe the email is correct, please contact your manager.
+            </Text>
+            <Button style={{ marginTop: 10 }} mode="contained" onPress={() => setEmailError(false)}>Try Again</Button>
+          </View>
+        )}
       </View>
       <View style={styles.footer}>
         <View style={styles.termsContainer}>
