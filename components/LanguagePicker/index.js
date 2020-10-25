@@ -1,12 +1,13 @@
 import React from 'react';
 import { Picker } from 'native-base';
+import I18n from '../../modules/i18n';
 
 const languages = [
   {
-    key: 'en', label: 'English'
+    key: 'en', label: I18n.t('languagePicker.english')
   },
   {
-    key: 'es', label: 'Spanish'
+    key: 'es', label: I18n.t('languagePicker.spanish')
   }
 ];
 
