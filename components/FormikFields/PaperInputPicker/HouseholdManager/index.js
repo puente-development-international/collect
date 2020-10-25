@@ -11,9 +11,9 @@ import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
 import { theme, layout } from '../../../../modules/theme';
 import { postObjectsToClass } from '../../../../services/parse/crud';
 
-const relationships = [
-  'Parent', 'Sibling', 'Grand-Parent', 'Cousin', 'Other'
-];
+// const relationships = [
+//   'Parent', 'Sibling', 'Grand-Parent', 'Cousin', 'Other'
+// ];
 
 const HouseholdManager = (props) => {
   const { formikProps, formikKey, surveyingOrganization } = props;
@@ -70,19 +70,20 @@ const HouseholdManager = (props) => {
               <Appbar.BackAction onPress={() => setModalView('first')} />
               <Appbar.Content title="Household Manager" subtitle="" />
             </Appbar.Header>
+
             <ResidentIdSearchbar
               surveyee={selectPerson}
               setSurveyee={setSelectPerson}
               surveyingOrganization={surveyingOrganization}
             />
-            <Text>What is their role/relationship in the household?</Text>
+            {/* <Text>What is their role/relationship in the household?</Text>
             <View style={layout.buttonGroupContainer}>
               {relationships.map((result) => (
                 <Button style={layout.buttonGroupButtonStyle} key={result} mode="outlined" onPress={() => setHouseholdRelationship(result)}>
                   <Text>{result}</Text>
                 </Button>
               ))}
-            </View>
+            </View> */}
             <Button theme={{ backgroundColor: theme.colors.primary }} style={layout.buttonGroupButtonStyle} mode="contained" onPress={onSubmit}>
               <Text>Submit</Text>
             </Button>
