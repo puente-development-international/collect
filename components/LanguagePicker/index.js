@@ -1,13 +1,12 @@
 import React from 'react';
 import { Picker } from 'native-base';
-import I18n from '../../modules/i18n';
 
 const languages = [
   {
-    key: 'en', label: I18n.t('languagePicker.english')
+    key: 'en', label: 'English'
   },
   {
-    key: 'es', label: I18n.t('languagePicker.spanish')
+    key: 'es', label: 'Spanish'
   }
 ];
 
@@ -21,7 +20,7 @@ const LanguagePicker = (props) => {
       selectedValue={language}
       onValueChange={onChangeLanguage}
     >
-      {languages.map((lang) => <Picker.Item key={lang.key} value={lang.key} label={lang.label} />)}
+      {languages.map((lang) => <Picker.Item key={lang.key} value={lang.key} label={`🌐${lang.label}`} />)}
     </Picker>
   );
 };
