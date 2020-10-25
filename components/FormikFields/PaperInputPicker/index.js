@@ -127,11 +127,11 @@ const PaperInputPicker = ({
               <View style={{ marginLeft: 'auto', marginRight: 'auto', flexDirection: 'row' }}>
                 <Text style={{ paddingRight: 5, fontWeight: 'bold' }}>
                   Latitude:
-                    {location.latitude}
+                  {location.latitude}
                 </Text>
                 <Text style={{ paddingLeft: 5, fontWeight: 'bold' }}>
                   Longitude:
-                    {location.longitude}
+                  {location.longitude}
                 </Text>
               </View>
             </View>
