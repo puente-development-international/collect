@@ -81,7 +81,7 @@ const Header = ({ logOut }) => {
             </Headline>
             <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
               <Text style={styles.calculationText}>{`${I18n.t('header.volunteerSince')}\n${volunteerDate}`}</Text>
-              <Text style={styles.calculationText}>{`${I18n.t('header.surveysCollected')}n${surveyCount}`}</Text>
+              <Text style={styles.calculationText}>{`${I18n.t('header.surveysCollected')}\n${surveyCount}`}</Text>
             </View>
           </View>
         )}
