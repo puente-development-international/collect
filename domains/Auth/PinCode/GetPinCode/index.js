@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import FormInput from '../../../../components/FormikFields/FormInput';
 import { storeData, getData, deleteData } from '../../../../modules/async-storage';
 import { retrieveSignInFunction, retrieveCurrentUserFunction } from '../../../../services/parse/auth';
+import I18n from '../../../../modules/i18n';
 
 const GetPinCode = ({ navigation }) => {
   const [failedAttempts, setFailedAttempts] = useState(1);
@@ -45,12 +46,9 @@ const GetPinCode = ({ navigation }) => {
               deleteData('organization');
               navigation.navigate('Sign In');
             } else if (failedAttempts === 2) {
-              alert('Incorrect pincode, please try again. ' // eslint-disable-line
-                + 'This is your last chance to enter your pincode,'
-                + 'your credentials will be reset and pincode will be'
-                + ' deleted on another failed attempt.');
+              alert(I18n.t('pinCode.getPincode.incorrect1')); // eslint-disable-line
             } else {
-              alert('Incorrect pincode, please try again.'); // eslint-disable-line
+              alert(I18n.t('pinCode.getPincode.incorrect2'));// eslint-disable-line
             }
           }
         });
@@ -63,7 +61,7 @@ const GetPinCode = ({ navigation }) => {
       {(formikProps) => (
         <>
           <FormInput
-            label="Enter Pincode"
+            label={I18n.t('pinCode.getPinCode.enterPinCode')}
             formikProps={formikProps}
             formikKey="pincode"
             placeholder="123456"
@@ -73,7 +71,7 @@ const GetPinCode = ({ navigation }) => {
             <ActivityIndicator />
           ) : (
             <Button onPress={formikProps.handleSubmit}>
-              <Text>Submit</Text>
+              <Text>{I18n.t('global.submit')}</Text>
             </Button>
           )}
         </>
