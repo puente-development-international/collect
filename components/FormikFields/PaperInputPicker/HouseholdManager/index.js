@@ -92,7 +92,7 @@ const HouseholdManager = (props) => {
               ))}
             </View> */}
             <Button theme={{ backgroundColor: theme.colors.primary }} style={layout.buttonGroupButtonStyle} mode="contained" onPress={onSubmit}>
-              <Text>{I18n.t('global.submit')}</Text>
+              {I18n.t('global.submit')}
             </Button>
           </View>
         </Modal>
