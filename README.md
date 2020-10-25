@@ -10,6 +10,12 @@ Here are some quick npm commands to get started:
 - `npm build`: Build a production optimized bundle of the app.
 - `npm lint-fix`: Run the ESLinter.
 
+## Async Storage Values
+
+| Name of Value  | Description of Data                                                               |
+|----------------|-----------------------------------------------------------------------------------|
+| `organization` | Name of the surveying users surveyingOrganization                                 |
+| `residentData` | All `SurveyData` parse model data stored based on the users surveyingOrganization |
 
 ## Resources
 

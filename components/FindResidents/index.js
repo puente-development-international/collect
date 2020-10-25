@@ -5,14 +5,18 @@ import {
 } from 'react-native';
 
 import {
-  Text, Searchbar
+  Headline, Searchbar
 } from 'react-native-paper';
 
 import { residentIDQuery } from '../../services/parse/crud';
+
+import { getData, storeData } from '../../modules/async-storage';
+import I18n from '../../modules/i18n';
+
 import ResidentCard from './Resident/ResidentCard';
 import ResidentPage from './Resident/ResidentPage';
 
-import I18n from '../../modules/i18n';
+import styles from './index.styles';
 
 const FindResidents = ({
   selectPerson, setSelectPerson, organization, puenteForms, navigateToNewRecord,
@@ -27,6 +31,11 @@ const FindResidents = ({
   }, []);
 
   const fetchData = async () => {
+    await getData('residentData').then((residentData) => {
+      setData(residentData || []);
+      setResidents(residentData.slice() || [].slice());
+    });
+
     const queryParams = {
       skip: 0,
       offset: 0,
@@ -34,10 +43,15 @@ const FindResidents = ({
       parseColumn: 'surveyingOrganization',
       parseParam: organization,
     };
+
     let records = await residentIDQuery(queryParams);
     records = JSON.parse(JSON.stringify(records));
-    setData(records);
-    setResidents(records.slice());
+
+    if (data !== records) {
+      storeData(records, 'residentData');
+      setData(records);
+      setResidents(records.slice());
+    }
   };
 
   const filterList = () => data.filter(
@@ -75,10 +89,10 @@ const FindResidents = ({
   );
 
   return (
-    <View>
+    <View style={styles.container}>
       {!selectPerson && (
         <>
-          <Text>{I18n.t('findResident.searchIndividual')}</Text>
+          <Headline style={styles.header}>{I18n.t('findResident.searchIndividual')}</Headline>
           <Searchbar
             placeholder={I18n.t('findResident.typeHere')}
             onChangeText={onChangeSearch}
@@ -86,6 +100,7 @@ const FindResidents = ({
           />
         </>
       )}
+
       {/* Non-virtualized list */}
       {/* {!selectPerson && filterList(residents).map((listItem,) => (
         <View key={listItem.objectId}>

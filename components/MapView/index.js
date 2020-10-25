@@ -6,6 +6,8 @@ import { IconButton } from 'react-native-paper';
 
 import getLocation from '../../modules/geolocation';
 import { theme } from '../../modules/theme';
+import { getData } from '../../modules/async-storage';
+
 import { residentIDQuery } from '../../services/parse/crud';
 
 const Maps = ({ organization }) => {
@@ -18,10 +20,17 @@ const Maps = ({ organization }) => {
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
+    getData('residentData').then((residentData) => {
+      setMarkers(residentData);
+    });
+
     let isSubscribed = true;
+
     retrieveMarkers().then((records) => {
       if (isSubscribed) {
-        setMarkers(records); // sets records if promise is reached during mounting
+        if (records.length === 0) {
+          setMarkers(records); // sets records if promise is reached during mounting
+        }
       }
     });
     return function cleanup() {

@@ -2,22 +2,22 @@
   "global": {
     "yes": "Si",
     "no": "No",
-    "notSure": "Not Sure",
+    "notSure": "No esta seguro",
     "other": "Otro",
     "submit": "Entrega",
-    "fName": "First Name",
-    "lName": "Last Name",
-    "city": "City",
-    "commName": "Community Name",
-    "notes": "Notes"
+    "fName": "Primer Nombre",
+    "lName": "Apedillo",
+    "city": "Cuidad",
+    "commName": "Nombre de comunidad",
+    "notes": "Notas"
   },
   "signUp": {
-    "firstName": "Nombre de pila",
+    "firstName": "Nombre de verdadero",
     "lastName": "Apellido",
-    "email": "Email",
+    "email": "Correo electronico",
     "phoneNumber": "Número de teléfono",
     "password": "Contraseña",
-    "password2": "Enter Password Again",
+    "password2": "Entra contraseña de nuevo",
     "organization": "Organización",
     "termsOfService": {
       "view": "Ver los términos y el servicio",
@@ -25,317 +25,319 @@
     },
     "submit": "Enviar",
     "toEnglish": "Cambiar el idioma al inglés",
-    "toSpanish": "Cambio de idioma al español",
-    "errorTerms": "Error, terms and service need to be agreed to.",
-    "errorPassword": "Error, your passwords do not match."
+    "toSpanish": "Cambiar el idioma al español",
+    "errorTerms": "Error, se deben acordar los términos y el servicio",
+    "error Contraseña": "Error, sus contraseñas no coinciden."
   },
   "signIn": {
     "username": "Nombre de usuario",
     "password": "Contraseña",
     "showPassword": "Mostrar contraseña",
-    "login": "Log-In",
+    "login": "Iniciar sesión",
     "signUpLink": "No tienes una cuenta, regístrate!",
-    "deleteCreds": "Delete Credentials",
-    "noAccount": "Don't have an account?",
+    "deleteCreds": "Eliminar usuario",
+    "noAccount": "¿No tienes una cuenta?",
     "puente2020": "Puente 2020 |",
-    "termsConditions": "Terms & Conditions",
+    "termsConditions": "Términos y condiciones",
     "forgotPassword": {
-      "enterEmail": "Please enter your email to reset your password",
-      "sendLink": "Send Reset Link",
-      "noAccount": "Don't have an account?",
-      "signUp": "Sign Up!",
-      "rememberPass": "Remember your Password?",
-      "signIn": "Sign In"
+      "enterEmail": "Ingrese su correo electrónico para restablecer su contraseña",
+      "sendLink": "Enviar enlace de restablecimiento",
+      "noAccount": "¿No tienes una cuenta?",
+      "signUp": "¡Regístrate!",
+      "rememberPass": "¿Recuerdas tu contraseña?",
+      "signIn": "Registrarse"
     },
     "credentialsModal": {
-      "useCreds": "Would you like to use your saved login credentials?"
+      "useCreds": "¿Le gustaría guardar su usuario y contraseña?"
     },
-    "unableLogin": "Unable to login",
-    "usernamePasswordIncorrect": "Your username or password may be incorrect, please try again.",
-    "credentials": "Credentials",
-    "saveLoginCreds": "Would you like to save your login credentials for future use?"
+    "unableLogin": "No puede iniciar sesión",
+    "usernamePasswordIncorrect": "Su nombre de usuario o contraseña pueden ser incorrectos. Vuelva a intentarlo.",
+    "credentials": "Usuario y contraseña",
+    "saveLoginCreds": "¿Le gustaría guardar su usuario y contraseña de inicio de sesión para uso futuro?"
   },
   "pinCode": {
     "getPinCode": {
-      "enterPinCode": "Enter Pincode",
-      "incorrect1": "Incorrect pincode, please try again. This is your last chance to enter your pincode, your credentials will be reset and pincode will be deleted on another failed attempt.",
-      "incorrect2": "Incorrect pincode, please try again."
+      "enterPinCode": "Ingresar código PIN",
+      "incorrect1": "Código PIN incorrecto, inténtelo de nuevo. Esta es su última oportunidad para ingresar su código PIN, su usuario y contraseña se restablecerán y el código PIN se eliminará en otro intento fallido.",
+      "incorrect2": "Código PIN incorrecto, inténtalo de nuevo"
     },
     "storePinCode": {
-      "enterPinCode": "Enter Pincode to use instead of username/password"
+      "enterPinCode": "Ingrese el código PIN para usar en lugar del nombre de usuario / contraseña"
     }
   },
   "formsGallery": {
-    "puenteForms": "Puente Forms",
-    "customForms": "Custom Forms",
-    "ourMarketPlace": "Our Marketplace",
-    "discoverForms": "Discover forms created by trusted companies",
-    "exploreForms": "Explore Forms"
+    "puenteForms": "Formularios Puente",
+    "customForms": "Formularios personalizados",
+    "ourMarketPlace": "Nuestro mercado de formularios",
+    "discoverForms": "Descubra formularios creados por empresas de confianza",
+    "exploreForms": "Explorar formularios"
   },
   "identificationForm": {
-    "demographics": "Demographics",
-    "nickname": "Nickname",
+    "demographics": "Demografía",
+    "nickname": "Apodo",
     "dob": {
-      "label": "Date of Birth",
-      "month": "Month",
-      "day": "Day",
-      "year": "Year"
+      "label": "Fecha de nacimiento",
+      "month": "Mes",
+      "day": "Día",
+      "year": "Año"
     },
     "sex": {
-      "label": "Sex",
-      "male": "Male",
-      "female": "Female",
-      "notSay": "Prefer Not to Say"
+      "label": "Sexo",
+      "male": "Masculino",
+      "female": "Femenino",
+      "notSay": "Prefiero no decirlo"
     },
-    "telephone": "Telephone Number",
+    "telephone": "Número de teléfono",
     "marriageStatus": {
-      "label": "Marriage Status",
-      "single": "Single",
-      "married": "Married",
-      "cohabitation": "Cohabitation",
-      "widow": "Widow"
+      "label": "Estado civil",
+      "single": "Soltera",
+      "married": "Casada",
+      "cohabitation": "Unión libre",
+      "widow": "Viuda"
     },
-    "occupation": "Occupation",
+    "occupation": "Ocupación",
     "educationLevel": {
-      "label": "Education Level",
-      "lessPrim": "Less than Primary",
-      "prim": "Primary",
-      "someHS": "Some high school",
-      "hs": "Highschool",
-      "someCollege": "Some College",
-      "college": "College"
+      "label": "Nivel de Educación",
+      "lessPrim": "No termino la primaria",
+      "prim": "Termino la primaria",
+      "lesshs": "No termino la escuela secundaria",
+      "hs": "Termino la escuela secundaria",
+      "someHS": "Algún instituto",
+      "lesscollege": "Universidad sin terminar",
+      "college": "Universidad terminada",
+      "someCollege": "Alguna educación superior"
     },
-    "location": "Location",
-    "insurance": "Insurance",
-    "insNumber": "Insurance Number",
-    "insProvider": "Insurance Provider",
-    "clinicProvider": "Clinic Provider",
-    "latitude": "Latitude",
-    "longitude": "Longitude",
-    "household": "Household"
+    "location": "Ubicación",
+    "insurance": "Seguro",
+    "insNumber": "Numero de seguro",
+    "insProvider": "Proveedor de seguros",
+    "clinicProvider": "Proveedor de la clínica",
+    "latitude": "Latitud",
+    "longitude": "Longitud",
+    "household": "Casa"
   },
   "environmentalHealth": {
-    "name": "Environmental Health Form",
+    "name": "Formulario de salud ambiental",
     "yearsLived": {
-      "community": "Years Lived in the Community",
-      "house": "Years Lived in This House",
-      "less1": "Less than 1 Year",
-      "1_2": "1-2 years",
-      "3_4": "3-4 years",
-      "5_10": "5-10 years",
-      "moreThan10": "10+ years"
+      "community": "Años viviendo en la comunidad",
+      "house": "Años vividos en esta casa",
+      "less1": "Menos de 1 año",
+      "1_2": "1-2 años",
+      "3_4": "3-4 años",
+      "5_10": "5-10 años",
+      "moreThan10": "10+ años"
     },
-    "biggestProblemComm": "Biggest Problem of the Community",
+    "biggestProblemComm": "¿Cuál es el mayor problema de la comunidad?",
     "waterAccess": {
-      "label": "Water Access",
-      "everyday": "Everyday",
-      "4_6": "4-6 days a week",
-      "2_3": "2-3 days per week",
-      "1perWeek": "Less than or equal to 1 day per week",
-      "1perMonth": "1 day per month",
-      "never": "Never"
+      "label": "Acceso al agua",
+      "everyday": "Todos los días",
+      "4_6": "4-6 dias por semana",
+      "2_3": "2-3 dias por semana",
+      "1perWeek": "Menor o igual a 1 día a la semana",
+      "1perMonth": "1 día al mes",
+      "never": "Nunca"
     },
     "typeOfWater": {
-      "label": "Type of Water Do you Drink",
-      "bottled": "Bottled",
-      "tap": "Tap",
-      "filtered": "Filtered"
+      "label": "Tipo de agua que toma",
+      "bottled": "Embotellada",
+      "tap": "Llave",
+      "filtered": "Filtrada"
     },
-    "bathroomAccess": "Bathroom Access",
-    "latrineAccess": "Latrine Access",
-    "clinicAccess": "Clinic Access",
-    "medicalProblemsGo": "Where do you go for medical problems?",
-    "dentalProblemsGo": "Where do you go for dental problems?",
-    "timesPerWeekTrash": "Times per Week Trash is Collected",
-    "trashBetweenPickups": "Where is trash left between pickups?",
-    "houseOwnership": "House Ownership",
+    "bathroomAccess": "Acceso al baño",
+    "latrineAccess": "Acceso a letrinas",
+    "clinicAccess": "Acceso a la clínica",
+    "medicalProblemsGo": "¿A dónde vas por problemas médicos?",
+    "dentalProblemsGo": "¿A dónde vas por problemas dentales?",
+    "timesPerWeekTrash": "¿Cuántas veces por semana que se recogen la basura",
+    "trashBetweenPickups": "¿Dónde deja su basura al momento de ser recogida?",
+    "houseOwnership": "¿Esta casa es propia?",
     "floorCondition": {
-      "label": "Condition of Floor in your house?",
-      "dirtFloorPoor": "Dirt Floor Poor Condition",
-      "dirtFloorWork": "Dirt Floor Working Condition",
-      "cementPoor": "Cement Floor Poor Condition",
-      "cementWorking": "Cement Floor Working Condition"
+      "label": "¿Estado del suelo de su casa?",
+      "dirtFloorPoor": "Piso de tierra",
+      "dirtFloorWork": "Condiciones de trabajo del piso de tierra",
+      "cementPoor": "Piso de cemento en mal estado",
+      "cementWorking": "Piso de cemento en muy buen estado"
     },
     "roofCondition": {
-      "label": "Condition of Roof in your house?",
-      "poor": "Poor Condition",
-      "work": "Working Condition"
+      "label": "¿Condición del techo de su casa?",
+      "poor": "Condición pobre",
+      "work": "Condiciones de trabajo"
     },
     "typeStove": {
-      "label": "Type of Stove Top",
-      "constructedVentilation": "Constructed stove with ventilation",
-      "stoveTop": "Stovetop with tank or electricity",
-      "openFire": "Open Fire"
+      "label": "Tipo de estufa",
+      "constructedVentilation": "Estufa construida con ventilación",
+      "stoveTop": "Estufa con tanque o electricidad",
+      "openFire": " Leña"
     },
     "houseMaterials": {
-      "label": "What material is your house made from?",
+      "label": "¿De qué material está hecha tu casa?",
       "zinc": "Zinc",
-      "wood": "Wood",
-      "partBlock_partWood": "Part block, part wood",
+      "wood": "madera",
+      "partBlock_partWood": "Parte bloque, parte madera",
       "block": "Block"
     },
     "electricityAccess": {
-      "label": "How often do you have access to electricity?",
-      "never": "Never",
-      "sometimes": "Sometimes",
-      "always": "Always"
+      "label": "¿Con qué frecuencia tiene acceso a la electricidad?",
+      "never": "Nunca",
+      "sometimes": "A veces",
+      "always": "Siempre"
     },
-    "foodSecurity": "In the past month, have you ever worried that you or your family did not have enough food to eat?",
+    "foodSecurity": "En el último mes, ¿alguna vez te ha preocupado que tú o tu familia no tuvieran suficiente comida para comer?",
     "govAssistance": {
-      "label": "Do you have access to government assistance?",
-      "foodStamps": "Food Stamps",
-      "adultLiteracy": "Adult literacy Program"
+      "label": "¿Tiene acceso a la asistencia del gobierno?",
+      "foodStamps": "Cupones de alimentos",
+      "adultLiteracy": "Programa de alfabetización de adultos"
     },
-    "numberIndividualsHouse": "Number of Individuals Living in the House",
-    "numberChildrenUnder5": "Number of children Living in this House under age of 5"
+    "numberIndividualsHouse": "Número de personas que viven en la casa",
+    "numberChildrenUnder5": "Número de niños menores de 5 años que viven en esta casa"
   },
   "evaluationMedical": {
-    "name": "Medical Assessment Form",
-    "chronicHypertension": "Chronic Condition Hypertension",
-    "chronicDiabetes": "Chronic Condition Diabetes",
-    "chronicOther": "Chronic Condition Other",
-    "doctor": "Have you seen a doctor for this problem?",
+    "name": "Formulario de evaluación médica",
+    "chronicHypertension": "Hipertensión crónica",
+    "chronicDiabetes": "Diabetes crónica",
+    "chronicOther": "Otra condición crónica",
+    "doctor": "¿Has visto a un médico por este problema?",
     "statusOfHealth": {
-      "label": "Status of Health",
-      "receivingNoSupport": "Receiving Treatment or Follow-up Care | No Support Needed",
-      "receivingSupport": "Receiving Treatment or Follow-up Care | Support Needed",
-      "awaitingNoSupport": "Awaiting Treatment or Follow-up Care |  No Support Needed",
-      "noTreatmentSupport": "No Treatment | Support Needed"
+      "label": "Estado de salud",
+      "receivingNoSupport": "Recibir tratamiento o atención de seguimiento | No se necesita apoyo",
+      "receivingSupport": "Recibir tratamiento o atención de seguimiento | Se necesita apoyo",
+      "awaitingNoSupport": "En espera de tratamiento o atención de seguimiento | No se necesita apoyo",
+      "noTreatmentSupport": "Sin tratamiento | Se necesita apoyo"
     },
     "partOfBody": {
-      "label": "Part of Body",
-      "bonesJoints": "Bones or Joints",
+      "label": "Parte del cuerpo",
+      "bonesJoints": "Huesos o articulaciones",
       "eyes": "Eyes",
-      "earsNoseThroat": "Ears, Nose or Throat",
+      "earsNoseThroat": "Oídos, Nariz o Garganta",
       "skin": "Skin",
-      "headMental": "Head or Mental Issues",
+      "headMental": "Problemas mentales o de la cabeza",
       "stomachIntestines": "Stomach, Intestines",
-      "bladderUrinary": "Bladder, Urinary tract",
-      "reproductiveOrgans": "Reproductive Organs",
-      "nutritionIssues": "Nutrition Issue",
+      "bladderUrinary": "Vejiga, tracto urinario",
+      "reproductiveOrgans": "Órganos reproductivos",
+      "nutritionIssues": "Problema de nutrición",
       "---": "---"
     },
-    "partOfBodyDescription": "Part of Body Description",
+    "partOfBodyDescription": "Descripción de parte del cuerpo",
     "duration": {
-      "label": "Duration",
-      "lastMonth": "Within Last Month",
-      "lastYear": "Within Last Year",
-      "last5Years": "Within Last 5 Years",
-      "past5Years": "Past 5 Years"
+      "label": "Duración",
+      "lastMonth": "En el último mes",
+      "lastYear": "Dentro del año pasado",
+      "last5Years": "En los últimos 5 años",
+      "past5Years": "Últimos 5 años"
     },
     "problemSuddenness": {
-      "label": "Problem Suddenness",
-      "suddenTrauma": "Sudden and due to trauma",
-      "suddenNoTrauma": "Sudden but not to trauma",
-      "gradually": "Gradually"
+      "label": "Problema repentino",
+      "suddenTrauma": "Repentina y debido a un trauma",
+      "suddenNoTrauma": "Repentina pero no por un trauma",
+      "gradually": "Gradualmente"
     },
     "progressionOfCondition": {
-      "label": "Progression of Condition",
-      "improving": "Improving",
-      "worsening": "Worsening",
-      "constant": "Constant"
+      "label": "Progresión de la condición",
+      "improving": "Mejorando",
+      "worsening": "Empeorando",
+      "constant": "Constante"
     },
-    "generalHealthConsult": "General Health Consult Required?",
-    "surgicalRequired": "Surgical Need Required?",
-    "yourGuess": "Your Guess",
-    "immediateFollowupRequired": "Immediate Follow Up Required?",
+    "generalHealthConsult": "¿Se requiere una consulta de salud general?",
+    "surgicalRequired": "¿Necesidad quirúrgica requerida?",
+    "yourGuess": "Tu invitado",
+    "immediateFollowupRequired": "¿Se requiere seguimiento inmediato?",
     "plan": "Plan"
   },
   "supplementaryForms": {
-    "attachResident": "Attach a Community Resident"
+    "attachResident": "Adjuntar una residente de la comunidad"
   },
   "forms": {
-    "successfullySubmitted": "Form successfully submitted",
-    "grabCoffee": "Grab yourself a coffee",
-    "suggestedForms": "Suggested next Forms",
-    "viewGallery": "View Forms Gallery"
+    "successfullySubmitted": "Formulario entregado satisfactoriamente",
+    "grabCoffee": "Tómate un café",
+    "suggestedForms": "Formularios siguientes sugeridos",
+    "viewGallery": "Ver galería de formularios"
   },
   "gdpr": {
-    "mustConsent": "Community member must consent before you can continue.",
+    "mustConsent": "El miembro de la comunidad debe dar su consentimiento antes de poder continuar.",
     "policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    "viewFullPolicy": "View Full Policy",
-    "communityMemAgrees": "Community member agrees to data policy",
-    "continueToForm": "Continue to Form"
+    "viewFullPolicy": "Ver política completa",
+    "communityMemAgrees": "El miembro de la comunidad acepta la política de datos",
+    "continueToForm": "Continuar con el formulario"
   },
   "dataCollection": {
-    "newRecord": "New Record",
-    "findRecord": "Find Record",
-    "viewAll": "View All Forms",
-    "back": "Back"
+    "newRecord": "Nuevo record",
+    "findRecord": "Buscar registro",
+    "viewAll": "Ver todos los formularios",
+    "back": "Atrás"
   },
   "home": {
-    "myTasks": "My Tasks",
-    "comingSoon": "Coming Soon",
-    "tasks": "Tasks",
-    "logOut": "Log Out"
+    "myTasks": "Mis tareas",
+    "comingSoon": "Próximamente",
+    "tasks": "Tareas",
+    "logOut": "Cerrar sesión"
   },
   "cards": {
     "smallCards": {
-      "residentID": "Resident ID",
-      "environmental": "Environment",
-      "history": "History",
-      "medical": "Medical",
-      "evaluation": "Evaluation"
+      "residentID": "Identificación de residente",
+      "environmental": "Medio ambiente",
+      "history": "Historia",
+      "medical": "Médica",
+      "evaluation": "Evaluación"
     }
   },
   "findResident": {
-    "searchIndividual": "Search Individual",
-    "typeHere": "Type Here...",
+    "searchIndividual": "Buscar individuo",
+    "typeHere": "Escriba aquí...",
     "residentCard": {
       "city": "City",
-      "community": "Community"
+      "community": "Comunidad"
     },
     "residentPage": {
       "demographics": {
-        "dob": "Date of Birth:",
-        "city": "City:",
-        "community": "Community:",
-        "province": "Province:",
-        "license": "License Number:"
+        "dob": "Fecha de nacimiento:",
+        "city": "Ciudad:",
+        "community": "Comunidad:",
+        "province": "Provincia:",
+        "license": "Número de licencia:"
       },
       "forms": {
-        "completedForms": "Completed Forms",
-        "formCategory": "Form Category",
-        "comingSoon": "Coming Soon",
-        "suggestedForms": "Suggested Forms"
+        "completedForms": "Formularios completados",
+        "formCategory": "Categoría de formulario",
+        "comingSoon": "Próximamente",
+        "suggestedForms": "Formularios sugeridos"
       },
       "household": {
-        "editProfile": "Edit Profile",
-        "demographics": "Demographics",
-        "forms": "Forms",
-        "household": "Household",
-        "goBack": "Go back to find records"
+        "editProfile": "Editar perfil",
+        "demographics": "Demografía",
+        "forms": "Formularios",
+        "household": "Casa",
+        "goBack": "Vuelve para buscar registros"
       }
     }
   },
   "householdManager": {
-    "createHousehold": "Create a new household",
-    "linkIndividual": "Link this individual to an existing house",
-    "household": "Household",
-    "householdManager": "Household Manager",
-    "relationshipHousehold": "What is their role/relationship in the household?",
-    "linked": "Linked"
+    "createHousehold": "Crear un nuevo hogar",
+    "linkIndividual": "Vincular a esta persona a una casa existente",
+    "household": "Casa",
+    "householdManager": "Administrador del hogar",
+    "relationshipHousehold": "¿Cuál es su función / relación en el hogar?",
+    "linked": "Vinculada"
   },
   "header": {
-    "goodMorning": "Good morning",
-    "goodAfternoon": "Good afternoon",
-    "goodEvening": "Good evening",
-    "goodMorning!": "Good morning!",
-    "goodAfternoon!": "Good afternoon!",
-    "goodEvening!": "Good evening!",
+    "goodMorning": "Buenos días",
+    "goodAfternoon": "Buenas tardes",
+    "goodEvening": "Buena noches",
+    "goodMorning!": "¡Buenos días!",
+    "goodAfternoon!": "¡Buenas tardes!",
+    "goodEvening!": "¡Buena noches!",
     "puente": "PUENTE",
-    "volunteerSince": "Volunteer Since",
-    "surveysCollected": "Surveys Collected"
+    "volunteerSince": "Voluntaria desde",
+    "surveysCollected": "Encuestas recopiladas"
   },
   "languagePicker": {
-    "english": "English",
+    "english": "Ingles",
     "spanish": "Español"
   },
   "residentIdSearchbar": {
-    "searchIndividual": "Search Individual"
+    "searchIndividual": "Condiciones y servicio"
   },
   "termsModal": {
-    "termsService": "Terms and Service",
+    "termsService": "Condiciones y servicio",
     "policy": " Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "ok": "Ok"
   }
