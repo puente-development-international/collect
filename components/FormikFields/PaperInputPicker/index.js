@@ -99,60 +99,54 @@ const PaperInputPicker = ({
           </View>
         </View>
       )}
-      {
-        fieldType === 'autofill' && (
-          <View>
-            <AutoFill
-              parameter={data.parameter}
-              formikProps={formikProps}
-              formikKey={formikKey}
-              scrollViewScroll={scrollViewScroll}
-              setScrollViewScroll={setScrollViewScroll}
+      {fieldType === 'autofill' && (
+        <View>
+          <AutoFill
+            parameter={data.parameter}
+            formikProps={formikProps}
+            formikKey={formikKey}
+            scrollViewScroll={scrollViewScroll}
+            setScrollViewScroll={setScrollViewScroll}
+          />
+        </View>
+      )}
+      {fieldType === 'geolocation' && (
+        <View>
+          {location === null && (
+            <PaperButton
+              onPressEvent={handleLocation}
+              buttonText="Get Location"
             />
-          </View>
-        )
-      }
-      {
-        fieldType === 'geolocation' && (
-          <View>
-            {location === null && (
+          )}
+          {location !== null && (
+            <View>
               <PaperButton
                 onPressEvent={handleLocation}
-                buttonText="Get Location"
+                buttonText="Get Location Again"
               />
-            )}
-            {location !== null && (
-              <View>
-                <PaperButton
-                  onPressEvent={handleLocation}
-                  buttonText="Get Location Again"
-                />
-                <View style={{ marginLeft: 'auto', marginRight: 'auto', flexDirection: 'row' }}>
-                  <Text style={{ paddingRight: 5, fontWeight: 'bold' }}>
-                    Latitude:
-                    {location.latitude}
-                  </Text>
-                  <Text style={{ paddingLeft: 5, fontWeight: 'bold' }}>
-                    Longitude:
-                    {location.longitude}
-                  </Text>
-                </View>
+              <View style={{ marginLeft: 'auto', marginRight: 'auto', flexDirection: 'row' }}>
+                <Text style={{ paddingRight: 5, fontWeight: 'bold' }}>
+                  Latitude:
+                  {location.latitude}
+                </Text>
+                <Text style={{ paddingLeft: 5, fontWeight: 'bold' }}>
+                  Longitude:
+                  {location.longitude}
+                </Text>
               </View>
-            )}
-          </View>
-        )
-      }
-      {
-        fieldType === 'household' && (
-          <View>
-            <HouseholdManager
-              formikProps={formikProps}
-              formikKey={formikKey}
-              surveyingOrganization={surveyingOrganization}
-            />
-          </View>
-        )
-      }
+            </View>
+          )}
+        </View>
+      )}
+      {fieldType === 'household' && (
+        <View>
+          <HouseholdManager
+            formikProps={formikProps}
+            formikKey={formikKey}
+            surveyingOrganization={surveyingOrganization}
+          />
+        </View>
+      )}
       {
         fieldType === 'header' && (
           <View>

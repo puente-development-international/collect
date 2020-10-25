@@ -63,9 +63,9 @@ const IdentificationForm = ({
         const formObject = values;
         formObject.surveyingOrganization = surveyingOrganization;
         formObject.surveyingUser = surveyingUser;
-        formObject.latitude = values.location.latitude;
-        formObject.longitude = values.location.longitude;
-        formObject.altitude = values.location.altitude;
+        formObject.latitude = values.location?.latitude || 0;
+        formObject.longitude = values.location?.longitude || 0;
+        formObject.altitude = values.location?.altitude || 0;
 
         formObject.dob = `${values.Month || '00'}/${values.Day || '00'}/${values.Year || '0000'}`;
 

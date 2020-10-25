@@ -52,23 +52,9 @@ const FormGallery = (props) => {
           ))}
         </ScrollView>
       </View>
-      {customForms.length < 1 && (
-        <View style={layout.screenRow}>
-          <Card>
-            <Card.Title title="You do not have any custom forms" />
-            <Card.Content>
-              <Text>Check out our marketplace to view available forms</Text>
-              <Button>View Marketplace</Button>
-            </Card.Content>
-          </Card>
-        </View>
-      )}
       {/* <View style={layout.screenRow}>
         <Text>Manage My Pinned Forms</Text>
       </View> */}
-      <View style={layout.screenRow}>
-        <Text style={styles.header}>Market Place</Text>
-      </View>
       <View style={layout.screenRow}>
         <Card>
           <Card.Content>
@@ -94,10 +80,6 @@ const styles = StyleSheet.create({
   },
   buttonTextBig: {
     fontSize: 16
-  },
-  header: {
-    fontSize: 20,
-    fontWeight: 'bold'
   }
 });
 export default FormGallery;
