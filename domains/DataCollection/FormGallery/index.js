@@ -18,7 +18,7 @@ const FormGallery = (props) => {
   return (
     <View>
       <View style={layout.screenRow}>
-        <Text>Puente Forms</Text>
+        <Text style={styles.header}>Puente Forms</Text>
         <SmallCardsCarousel
           puenteForms={puenteForms}
           navigateToNewRecord={navigateToNewRecord}
@@ -26,7 +26,7 @@ const FormGallery = (props) => {
         />
       </View>
       <View style={layout.screenRow}>
-        <Text>Custom Forms</Text>
+        <Text style={styles.header}>Custom Forms</Text>
         <ScrollView horizontal>
           {customForms && customForms.map((form) => (
             <Card
@@ -51,9 +51,23 @@ const FormGallery = (props) => {
           ))}
         </ScrollView>
       </View>
+      {customForms.length < 1 && (
+        <View style={layout.screenRow}>
+          <Card>
+            <Card.Title title="You do not have any custom forms" />
+            <Card.Content>
+              <Text>Check out our marketplace to view available forms</Text>
+              <Button>View Marketplace</Button>
+            </Card.Content>
+          </Card>
+        </View>
+      )}
       {/* <View style={layout.screenRow}>
         <Text>Manage My Pinned Forms</Text>
       </View> */}
+      <View style={layout.screenRow}>
+        <Text style={styles.header}>Market Place</Text>
+      </View>
       <View style={layout.screenRow}>
         <Card>
           <Card.Content>
@@ -79,6 +93,10 @@ const styles = StyleSheet.create({
   },
   buttonTextBig: {
     fontSize: 16
+  },
+  header: {
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 });
 export default FormGallery;
