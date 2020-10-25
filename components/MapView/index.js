@@ -66,7 +66,7 @@ const Maps = ({ organization }) => {
         style={styles.mapStyle}
         region={region}
       >
-        {markers.map((marker) => (
+        {markers.length > 1 && markers.map((marker) => (
           marker.location && (
             <Marker
               key={marker.objectId}
