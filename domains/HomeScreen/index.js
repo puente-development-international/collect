@@ -16,6 +16,8 @@ import { layout } from '../../modules/theme';
 import Header from '../../components/Header';
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
 
+import I18n from '../../modules/i18n';
+
 const HomeScreen = (props) => {
   const [tasks, setTasks] = useState(null);
   const { navigation } = props;
@@ -41,13 +43,13 @@ const HomeScreen = (props) => {
       <Header logOut={logOut} />
       <ScrollView>
         <View style={layout.screenRow}>
-          <Title>My Tasks</Title>
+          <Title>{I18n.t('home.myTasks')}</Title>
           <Card>
             <Card.Content>
               <ComingSoonSVG width={200} height={200} />
-              <Paragraph>Coming Soon</Paragraph>
+              <Paragraph>{I18n.t('home.comingSoon')}</Paragraph>
               <Button onPress={showTasks} mode="contained">
-                <Text>Tasks</Text>
+                <Text>{I18n.t('home.tasks')}</Text>
               </Button>
               {tasks != null
                 && tasks.map((task) => (
@@ -72,7 +74,7 @@ const HomeScreen = (props) => {
           </Card>
         </View> */}
         <Button onPress={logOut} mode="contained">
-          <Text>Log Out</Text>
+          <Text>{I18n.t('home.logOut')}</Text>
         </Button>
       </ScrollView>
     </View>

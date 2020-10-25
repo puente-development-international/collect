@@ -6,28 +6,30 @@ import {
   Text,
 } from 'react-native-paper';
 
+import I18n from '../../../../../modules/i18n';
+
 const Demographics = ({
   dob, community, province, city, license
 }) => (
   <View style={styles.container}>
     <Text style={styles.topLabel}>
-      Date of Birth:
-      {dob}
+      {I18n.t('findResident.residentPage.demographics.dob')}
+      {` ${dob}`}
     </Text>
     <Text style={styles.labels}>
-      City:
+      {I18n.t('findResident.residentPage.demographics.city')}
       {` ${city}`}
     </Text>
     <Text style={styles.labels}>
-      Community:
+      {I18n.t('findResident.residentPage.demographics.community')}
       {` ${community}`}
     </Text>
     <Text style={styles.labels}>
-      Province:
+      {I18n.t('findResident.residentPage.demographics.province')}
       {` ${province}`}
     </Text>
     <Text style={styles.labels}>
-      License Number:
+      {I18n.t('findResident.residentPage.demographics.license')}
       {` ${license}`}
     </Text>
   </View>

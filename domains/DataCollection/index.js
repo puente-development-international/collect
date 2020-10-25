@@ -27,6 +27,8 @@ import NewRecordSVG from '../../assets/icons/New-Record-icon.svg';
 
 import styles from './index.styles';
 
+import I18n from '../../modules/i18n';
+
 const puenteForms = [
   { tag: 'id', name: 'Resident ID' },
   { tag: 'env', name: 'Environmental Health' },
@@ -136,16 +138,16 @@ const DataCollection = ({ navigation }) => {
                   <View style={styles.cardContainer}>
                     <Card style={styles.cardSmallStyle} onPress={() => navigateToNewRecord()}>
                       <NewRecordSVG height={70} style={styles.svg} />
-                      <Button marginTop="auto">New Record</Button>
+                      <Button marginTop="auto">{I18n.t('dataCollection.newRecord')}</Button>
                     </Card>
                     <Card style={styles.cardSmallStyle} onPress={navigateToFindRecords}>
                       <FindRecordSVG height={65} style={styles.svg} />
-                      <Button marginTop="auto">Find Record</Button>
+                      <Button marginTop="auto">{I18n.t('dataCollection.findRecord')}</Button>
                     </Card>
                   </View>
                   <Card style={styles.cardSmallStyle} onPress={navigateToGallery}>
                     <ComingSoonSVG height={65} style={styles.svg} />
-                    <Button marginTop="auto">View All Forms</Button>
+                    <Button marginTop="auto">{I18n.t('dataCollection.viewAll')}</Button>
                   </Card>
                 </View>
               </View>
@@ -154,7 +156,7 @@ const DataCollection = ({ navigation }) => {
             && (
               <View>
                 <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
-                  <Text>Back</Text>
+                  <Text>{I18n.t('dataCollection.back')}</Text>
                 </Button>
                 <Forms
                   style={layout.line}
@@ -177,7 +179,7 @@ const DataCollection = ({ navigation }) => {
           {view === 'Gallery' && (
             <View>
               <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
-                <Text>Back</Text>
+                <Text>{I18n.t('dataCollection.back')}</Text>
               </Button>
               <FormGallery
                 navigation={navigation}
@@ -192,7 +194,7 @@ const DataCollection = ({ navigation }) => {
             && (
               <View>
                 <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
-                  <Text>Back</Text>
+                  <Text>{I18n.t('dataCollection.back')}</Text>
                 </Button>
                 <FindResidents
                   selectPerson={selectPerson}
