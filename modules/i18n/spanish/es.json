@@ -1,10 +1,10 @@
 {
   "global": {
-    "yes": "Yes",
+    "yes": "Si",
     "no": "No",
     "notSure": "Not Sure",
-    "other": "Other",
-    "submit": "Submit",
+    "other": "Otro",
+    "submit": "Entrega",
     "fName": "First Name",
     "lName": "Last Name",
     "city": "City",
@@ -329,7 +329,7 @@
   },
   "languagePicker": {
     "english": "English",
-    "spanish": "Spanish"
+    "spanish": "Español"
   },
   "residentIdSearchbar": {
     "searchIndividual": "Search Individual"

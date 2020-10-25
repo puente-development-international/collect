@@ -102,9 +102,7 @@ const SignIn = ({ navigation }) => {
   };
 
   const handleLanguage = (lang) => {
-    setLanguage({
-      lang
-    });
+    setLanguage(lang);
     I18n.locale = lang;
   };
 
