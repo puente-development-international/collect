@@ -86,7 +86,10 @@ const HouseholdManager = (props) => {
             {/* <Text>{I18n.t('householdManager.relationshipHousehold')}</Text>
             <View style={layout.buttonGroupContainer}>
               {relationships.map((result) => (
-                <Button style={layout.buttonGroupButtonStyle} key={result} mode="outlined" onPress={() => setHouseholdRelationship(result)}>
+                <Button
+                  style={layout.buttonGroupButtonStyle}
+                  key={result} mode="outlined"
+                  onPress={() => setHouseholdRelationship(result)}>
                   <Text>{result}</Text>
                 </Button>
               ))}
