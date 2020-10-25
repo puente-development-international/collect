@@ -75,9 +75,9 @@ export default function SignUp({ navigation }) {
             }}
             onSubmit={(values, actions) => {
               if (!checked) {
-                alert('Error, terms and service need to be agreed to.'); // eslint-disable-line
+                alert(I18n.t('signUp.errorTerms')); // eslint-disable-line
               } else if (values.password !== values.password2) {
-                alert("Error, your passwords do not match.") // eslint-disable-line
+                alert(I18n.t('signUp.errorPassword')) // eslint-disable-line
               } else {
                 retrieveSignUpFunction(values)
                   .then((user) => {

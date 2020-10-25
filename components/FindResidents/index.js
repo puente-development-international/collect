@@ -12,6 +12,8 @@ import { residentIDQuery } from '../../services/parse/crud';
 import ResidentCard from './Resident/ResidentCard';
 import ResidentPage from './Resident/ResidentPage';
 
+import I18n from '../../modules/i18n';
+
 const FindResidents = ({
   selectPerson, setSelectPerson, organization, puenteForms, navigateToNewRecord,
   surveyee, setSurveyee, setView
@@ -76,9 +78,9 @@ const FindResidents = ({
     <View>
       {!selectPerson && (
         <>
-          <Text>Search Individual</Text>
+          <Text>{I18n.t('findResident.searchIndividual')}</Text>
           <Searchbar
-            placeholder="Type Here..."
+            placeholder={I18n.t('findResident.typeHere')}
             onChangeText={onChangeSearch}
             value={query}
           />

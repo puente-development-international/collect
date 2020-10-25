@@ -10,18 +10,20 @@ import { theme } from '../../../../../modules/theme';
 import ComingSoonSVG from '../../../../../assets/graphics/static/Adventurer.svg';
 import SmallCardsCarousel from '../../../../Cards/SmallCardsCarousel';
 
+import I18n from '../../../../../modules/i18n';
+
 const Forms = ({
   puenteForms, navigateToNewRecord, surveyee, setView
 }) => (
   <View style={styles.container}>
-    <Title style={styles.title}>Completed Forms</Title>
-    <Text style={styles.category}>Form Category</Text>
+    <Title style={styles.title}>{I18n.t('findResident.residentPage.forms.completedForms')}</Title>
+    <Text style={styles.category}>{I18n.t('findResident.residentPage.forms.formCategory')}</Text>
     <View
       style={styles.horizontalLine}
     />
     <ComingSoonSVG width={200} height={200} />
-    <Text>Coming Soon</Text>
-    <Title style={styles.title}>Suggested Forms</Title>
+    <Text>{I18n.t('findResident.residentPage.forms.comingSoon')}</Text>
+    <Title style={styles.title}>{I18n.t('findResident.residentPage.forms.suggestedForms')}</Title>
     <SmallCardsCarousel
       puenteForms={puenteForms}
       navigateToNewRecord={navigateToNewRecord}

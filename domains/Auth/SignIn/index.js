@@ -70,8 +70,8 @@ const SignIn = ({ navigation }) => {
 
   const handleFailedAttempt = () => {
     Alert.alert(
-      'Unable to login',
-      'Your username or password may be incorrect, please try again.', [
+      I18n.t('signIn.unableLogin'),
+      I18n.t('signIn.usernamePasswordIncorrect'), [
         { text: 'OK' }
       ],
       { cancelable: true }
@@ -84,8 +84,8 @@ const SignIn = ({ navigation }) => {
 
   const handleSaveCredentials = (values) => {
     Alert.alert(
-      'Credentials',
-      'Would you like to save your login credentials for future use?',
+      I18n.t('signIn.credentials'),
+      I18n.t('signIn.saveLoginCreds'),
       [
         {
           text: 'Yes',
@@ -102,9 +102,7 @@ const SignIn = ({ navigation }) => {
   };
 
   const handleLanguage = (lang) => {
-    setLanguage({
-      lang
-    });
+    setLanguage(lang);
     I18n.locale = lang;
   };
 
@@ -241,7 +239,7 @@ const SignIn = ({ navigation }) => {
                     {formikProps.isSubmitting ? (
                       <ActivityIndicator />
                     ) : (
-                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
+                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
                     )}
                     <CredentialsModal
                       modalVisible={modalVisible}
@@ -254,7 +252,7 @@ const SignIn = ({ navigation }) => {
                   </View>
                 )}
               </Formik>
-              <Button onPress={deleteCreds}>Delete Credentials</Button>
+              <Button onPress={deleteCreds}>{I18n.t('signIn.deleteCreds')}</Button>
             </View>
           </ScrollView>
         )}
@@ -271,14 +269,14 @@ const SignIn = ({ navigation }) => {
       {!forgotPassword && (
         <View style={styles.footer}>
           <View style={styles.termsContainer}>
-            <Text style={styles.accountText}>Don&apos;t have an account?</Text>
+            <Text style={styles.accountText}>{I18n.t('signIn.noAccount')}</Text>
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp} labelStyle={{ marginLeft: 5 }}>
               Sign up!
             </Button>
           </View>
           <View style={styles.termsContainer}>
-            <Text style={styles.puenteText}>Puente 2020 |</Text>
-            <Button mode="text" theme={theme} onPress={handleTermsModal} labelStyle={{ marginLeft: 5 }}>Terms & Conditions</Button>
+            <Text style={styles.puenteText}>{I18n.t('signIn.puente2020')}</Text>
+            <Button mode="text" theme={theme} onPress={handleTermsModal} labelStyle={{ marginLeft: 5 }}>{I18n.t('signIn.termsConditions')}</Button>
           </View>
         </View>
       )}

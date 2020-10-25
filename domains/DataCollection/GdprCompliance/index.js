@@ -9,6 +9,7 @@ import {
 import { theme } from '../../../modules/theme';
 
 import TermsModal from '../../../components/TermsModal';
+import I18n from '../../../modules/i18n';
 
 const GdprCompliance = ({
   setConsent
@@ -19,7 +20,7 @@ const GdprCompliance = ({
     if (checked) {
       setConsent(true);
     } else {
-      alert("Community member must consent before you can continue."); // eslint-disable-line
+      alert(I18n.t('gdpr.mustConsent')); // eslint-disable-line
     }
   };
   return (
@@ -27,22 +28,14 @@ const GdprCompliance = ({
       <Title style={{ marginLeft: 15 }}>Consent Form</Title>
       <View style={styles.container}>
         <Text style={{ flex: 2, padding: 10 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-          in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-          nulla pariatur.a. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum dolore
-          eu fugiat nulla pariatur.
+          {I18n.t('gdpr.policy')}
         </Text>
         <Button
           style={styles.policyButton}
           mode="outlined"
           onPress={() => setVisible(true)}
         >
-          View Full Policy
+          {I18n.t('gdpr.viewFullPolicy')}
         </Button>
       </View>
       <TermsModal
@@ -53,17 +46,18 @@ const GdprCompliance = ({
         <View style={styles.checkbox}>
           <Checkbox
             disabled={false}
-            theme={theme}
+            // theme={theme}
+            color={theme.colors.primary}
             status={checked ? 'checked' : 'unchecked'}
             onPress={() => {
               setChecked(!checked);
             }}
           />
         </View>
-        <Text style={styles.checkboxText}>Community member agrees to data policy</Text>
+        <Text style={styles.checkboxText}>{I18n.t('gdpr.communityMemAgrees')}</Text>
       </View>
 
-      <Button style={{ margin: 15 }} mode="contained" onPress={() => continueToForm()}>Continue to Form</Button>
+      <Button style={{ margin: 15 }} mode="contained" onPress={() => continueToForm()}>{I18n.t('gdpr.continueToForm')}</Button>
     </View>
   );
 };

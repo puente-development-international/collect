@@ -10,6 +10,8 @@ import {
 
 import { residentIDQuery } from '../../services/parse/crud';
 
+import I18n from '../../modules/i18n';
+
 import ResidentCard from '../FindResidents/Resident/ResidentCard';
 
 import styles from './index.styles';
@@ -65,7 +67,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
 
   return (
     <View>
-      <Headline style={styles.header}>Search Individual</Headline>
+      <Headline style={styles.header}>{I18n.t('residentIdSearchbar.searchIndividual')}</Headline>
       <Searchbar
         placeholder="Type Here..."
         onChangeText={onChangeSearch}

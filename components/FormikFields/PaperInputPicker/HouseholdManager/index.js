@@ -9,6 +9,7 @@ import {
 import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
 
 import { theme, layout } from '../../../../modules/theme';
+import I18n from '../../../../modules/i18n';
 
 import { postObjectsToClass } from '../../../../services/parse/crud';
 
@@ -57,57 +58,52 @@ const HouseholdManager = (props) => {
           <View>
             <RadioButton.Group onValueChange={(value) => setModalView(value)} value={modalView}>
               <RadioButton.Item label="Do Nothing" value="zero" />
-              <RadioButton.Item label="Create a new household" value="first" />
+              <RadioButton.Item label={I18n.t('householdManager.createHousehold')} value="first" />
               {modalView === 'first'
-                && <Button style={layout.buttonGroupButtonStyle} icon="plus" mode="contained" onPress={createNewHousehold}>Household</Button>}
-              <RadioButton.Item label="Link this individual to an existing house" value="second" />
+                && <Button style={layout.buttonGroupButtonStyle} icon="plus" mode="contained" onPress={createNewHousehold}>{I18n.t('householdManager.household')}</Button>}
+              <RadioButton.Item label={I18n.t('householdManager.linkIndividual')} value="second" />
             </RadioButton.Group>
           </View>
         )}
 
-      {
-        modalView === 'second'
-        && (
-          <Modal
-            animationType="slide"
-            visible
-          >
-            <Appbar.Header>
-              <Appbar.BackAction onPress={() => setModalView('first')} />
-              <Appbar.Content title="Household Manager" subtitle="" />
-            </Appbar.Header>
+      {modalView === 'second' && (
+        <Modal
+          animationType="slide"
+          visible
+        >
+          <Appbar.Header>
+            <Appbar.BackAction onPress={() => setModalView('first')} />
+            <Appbar.Content title={I18n.t('householdManager.householdManager')} subtitle="" />
+          </Appbar.Header>
 
-            <View style={styles.container}>
-              <ResidentIdSearchbar
-                surveyee={selectPerson}
-                setSurveyee={setSelectPerson}
-                surveyingOrganization={surveyingOrganization}
-              />
-              {/* <Text>What is their role/relationship in the household?</Text>
-<View style={layout.buttonGroupContainer}>
-{relationships.map((result) => (
-<Button
-  style={layout.buttonGroupButtonStyle}
-  key={result} mode="outlined" onPress={() => setHouseholdRelationship(result)}>
-<Text>{result}</Text>
-</Button>
-))}
+          <View style={styles.container}>
+            <ResidentIdSearchbar
+              surveyee={selectPerson}
+              setSurveyee={setSelectPerson}
+              surveyingOrganization={surveyingOrganization}
+            />
+
+            {/* <Text>{I18n.t('householdManager.relationshipHousehold')}</Text>
+            <View style={layout.buttonGroupContainer}>
+              {relationships.map((result) => (
+                <Button style={layout.buttonGroupButtonStyle} key={result} mode="outlined" onPress={() => setHouseholdRelationship(result)}>
+                  <Text>{result}</Text>
+                </Button>
+              ))}
             </View> */}
-              <Button theme={{ backgroundColor: theme.colors.primary }} style={layout.buttonGroupButtonStyle} mode="contained" onPress={onSubmit}>
-                Submit
-              </Button>
-            </View>
-          </Modal>
-        )
-      }
-      {modalView === 'third'
-        && (
-          <View>
-            <RadioButton.Group onValueChange={(value) => setModalView(value)} value={modalView}>
-              <RadioButton.Item label="Linked" value="third" />
-            </RadioButton.Group>
+            <Button theme={{ backgroundColor: theme.colors.primary }} style={layout.buttonGroupButtonStyle} mode="contained" onPress={onSubmit}>
+              <Text>{I18n.t('global.submit')}</Text>
+            </Button>
           </View>
-        )}
+        </Modal>
+      )}
+      {modalView === 'third' && (
+        <View>
+          <RadioButton.Group onValueChange={(value) => setModalView(value)} value={modalView}>
+            <RadioButton.Item label={I18n.t('householdManager.linked')} value="third" />
+          </RadioButton.Group>
+        </View>
+      )}
     </View>
   );
 };
