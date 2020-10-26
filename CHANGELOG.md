@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.0.1...v8.0.2) (2020-10-26)
+
+
+### Bug Fixes
+
+* mapview ([87ad15c](https://github.com/hopetambala/puente-reactnative-collect/commit/87ad15c64c617589a5ff67335a83a740bedc1f52))
+
 ### [8.0.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.0.0...v8.0.1) (2020-10-26)
 
 
