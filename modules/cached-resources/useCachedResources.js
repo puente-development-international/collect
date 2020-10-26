@@ -27,8 +27,10 @@ export default function useCachedResources() {
         SplashScreen.preventAutoHideAsync();
 
         await getData('organization').then(async (org) => {
-          const residentData = await fetchResidentData(org);
-          storeData(residentData, 'residentData');
+          if (org) {
+            const residentData = await fetchResidentData(org);
+            storeData(residentData, 'residentData');
+          }
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

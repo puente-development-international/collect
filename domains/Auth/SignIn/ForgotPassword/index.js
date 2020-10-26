@@ -44,7 +44,7 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
               {(formikProps) => (
                 <View>
                   <View>
-                  <Text style={{ marginHorizontal: 15, fontSize: 20, fontWeight: 'bold' }}>{I18n.t('signIn.forgotPassword.enterEmail')}</Text>
+                    <Text style={{ marginHorizontal: 15, fontSize: 20, fontWeight: 'bold' }}>{I18n.t('signIn.forgotPassword.enterEmail')}</Text>
                     <FormInput
                       label="Email"
                       formikProps={formikProps}

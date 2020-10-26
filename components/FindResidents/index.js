@@ -32,8 +32,10 @@ const FindResidents = ({
 
   const fetchData = async () => {
     await getData('residentData').then((residentData) => {
-      setData(residentData || []);
-      setResidents(residentData.slice() || [].slice());
+      if (residentData) {
+        setData(residentData || []);
+        setResidents(residentData.slice() || [].slice());
+      }
     });
 
     const queryParams = {

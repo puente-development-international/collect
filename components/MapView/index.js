@@ -8,35 +8,35 @@ import getLocation from '../../modules/geolocation';
 import { theme } from '../../modules/theme';
 import { getData } from '../../modules/async-storage';
 
-import { residentIDQuery } from '../../services/parse/crud';
+// import { residentIDQuery } from '../../services/parse/crud';
 
-const Maps = ({ organization }) => {
+const Maps = () => {
   const [region, setRegion] = useState({
     latitude: 18.4861,
     longitude: -69.9312,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+
   const [markers, setMarkers] = useState([]);
 
   useEffect(() => {
-    getData('residentData').then((residentData) => {
-      setMarkers(residentData);
-    });
-
-    let isSubscribed = true;
-
-    retrieveMarkers().then((records) => {
-      if (isSubscribed) {
-        if (records.length === 0) {
-          setMarkers(records); // sets records if promise is reached during mounting
-        }
-      }
-    });
-    return function cleanup() {
-      isSubscribed = false; // cancels promise when component unmounts
-    };
+    retriveAsyncMarkers();
   }, []);
+
+  // useEffect(() => {
+  //   let isSubscribed = true;
+  //   retrieveMarkers().then((records) => {
+  //     if (isSubscribed) {
+  //       if (records !== markers) {
+  //         setMarkers(records); // sets records if promise is reached during mounting
+  //       }
+  //     }
+  //   });
+  //   return function cleanup() {
+  //     isSubscribed = false; // cancels promise when component unmounts
+  //   };
+  // }, []);
 
   const handleLocation = async () => {
     const currentLocation = await getLocation();
@@ -48,17 +48,25 @@ const Maps = ({ organization }) => {
     });
   };
 
-  const retrieveMarkers = async () => {
-    const queryParams = {
-      skip: 0,
-      offset: 0,
-      limit: 10000,
-      parseColumn: 'surveyingOrganization',
-      parseParam: organization,
-    };
-
-    return residentIDQuery(queryParams).then((recs) => JSON.parse(JSON.stringify(recs)));
+  const retriveAsyncMarkers = async () => {
+    getData('residentData').then((residentData) => {
+      if (residentData) {
+        setMarkers(residentData);
+      }
+    });
   };
+
+  // const retrieveMarkers = async () => {
+  //   const queryParams = {
+  //     skip: 0,
+  //     offset: 0,
+  //     limit: 10000,
+  //     parseColumn: 'surveyingOrganization',
+  //     parseParam: organization,
+  //   };
+
+  //   return residentIDQuery(queryParams).then((recs) => JSON.parse(JSON.stringify(recs)));
+  // };
 
   return (
     <View style={styles.container}>
@@ -66,7 +74,7 @@ const Maps = ({ organization }) => {
         style={styles.mapStyle}
         region={region}
       >
-        {markers.length > 1 && markers.map((marker) => (
+        {markers && markers.map((marker) => (
           marker.location && (
             <Marker
               key={marker.objectId}
@@ -83,8 +91,6 @@ const Maps = ({ organization }) => {
           onPress={handleLocation}
           color={theme.colors.primary}
           style={{ backgroundColor: theme.colors.background, opacity: 0.8 }}
-
-        // animated
         />
       </View>
     </View>
