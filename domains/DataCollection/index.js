@@ -61,7 +61,6 @@ const DataCollection = ({ navigation }) => {
     }).catch(() => {
       setSurveyingOrganization(surveyingOrganization || '');
     });
-
     customQueryService(0, 5000, 'FormSpecificationsV2', 'organizations', surveyingOrganization).then((forms) => {
       setCustomForms(JSON.parse(JSON.stringify(forms)));
     });

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
+import { Spinner } from 'native-base';
 
 import MapView, { Marker } from 'react-native-maps';
 import { IconButton } from 'react-native-paper';
@@ -8,9 +9,9 @@ import getLocation from '../../modules/geolocation';
 import { theme } from '../../modules/theme';
 import { getData } from '../../modules/async-storage';
 
-// import { residentIDQuery } from '../../services/parse/crud';
+import { residentIDQuery } from '../../services/parse/crud';
 
-const Maps = () => {
+const Maps = ({ organization }) => {
   const [region, setRegion] = useState({
     latitude: 18.4861,
     longitude: -69.9312,
@@ -19,6 +20,7 @@ const Maps = () => {
   });
 
   const [markers, setMarkers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     retriveAsyncMarkers();
@@ -56,17 +58,22 @@ const Maps = () => {
     });
   };
 
-  // const retrieveMarkers = async () => {
-  //   const queryParams = {
-  //     skip: 0,
-  //     offset: 0,
-  //     limit: 10000,
-  //     parseColumn: 'surveyingOrganization',
-  //     parseParam: organization,
-  //   };
+  const retrieveMarkers = async () => {
+    setLoading(true);
+    const queryParams = {
+      skip: 0,
+      offset: 0,
+      limit: 10000,
+      parseColumn: 'surveyingOrganization',
+      parseParam: organization,
+    };
 
-  //   return residentIDQuery(queryParams).then((recs) => JSON.parse(JSON.stringify(recs)));
-  // };
+    residentIDQuery(queryParams).then((recs) => {
+      const records = JSON.parse(JSON.stringify(recs));
+      setMarkers(records);
+      setLoading(false);
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -85,10 +92,18 @@ const Maps = () => {
           )
         ))}
       </MapView>
+      {loading
+        && <Spinner style={styles.loading} color={theme.colors.primary} />}
       <View style={styles.buttonStyle}>
         <IconButton
           icon="crosshairs-gps"
           onPress={handleLocation}
+          color={theme.colors.primary}
+          style={{ backgroundColor: theme.colors.background, opacity: 0.8 }}
+        />
+        <IconButton
+          icon="refresh"
+          onPress={retrieveMarkers}
           color={theme.colors.primary}
           style={{ backgroundColor: theme.colors.background, opacity: 0.8 }}
         />
@@ -114,6 +129,11 @@ const styles = StyleSheet.create({
     bottom: '0%',
     alignSelf: 'flex-end', // for align to right,
     right: 10,
+  },
+  loading: {
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
   }
 });
 
