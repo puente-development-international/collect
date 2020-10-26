@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v7.1.0...v8.0.0) (2020-10-26)
+
+
+### Features
+
+* add caching to map view and find records ([462e13a](https://github.com/hopetambala/puente-reactnative-collect/commit/462e13ab9e25ccbd5fc20cb7176f1ee2d24c9585))
+* add splash screen ([d2d7f9a](https://github.com/hopetambala/puente-reactnative-collect/commit/d2d7f9ab4ef6900b60a20eaa4ddf22cb47dfcdf5))
+
+
+### Bug Fixes
+
+* catch when there are no markers stored ([ece91f9](https://github.com/hopetambala/puente-reactnative-collect/commit/ece91f910934fb90d9c392fdc41aaa19cc38a2a8))
+* **deps:** update dependency @expo/vector-icons to v10.2.1 ([e31597d](https://github.com/hopetambala/puente-reactnative-collect/commit/e31597d9d5fbb2d9f3a904512c360c37682de155))
+* failsafe for missing properties ([843700f](https://github.com/hopetambala/puente-reactnative-collect/commit/843700f5852ec7be53c9c939a4b7e415f2321ae9))
+* location being parsed from formik Fiekd ([c8ecceb](https://github.com/hopetambala/puente-reactnative-collect/commit/c8eccebdacd5a39687a43fbf4af471a699c2713d))
+* missing enter ([6d01630](https://github.com/hopetambala/puente-reactnative-collect/commit/6d016309714156ae94c0d4d64652223aa1bd0b7a))
+* **deps:** update dependency @expo/vector-icons to v10.2.1 ([6f1b628](https://github.com/hopetambala/puente-reactnative-collect/commit/6f1b6288d8c8b5cad6a8a768e6eeb01fc2aba2b3))
+* state not persisting ([8bb6e0f](https://github.com/hopetambala/puente-reactnative-collect/commit/8bb6e0fac75c1230866a9940b6f6270895fe5058))
+* **android:**  problem with alert ([7a7be91](https://github.com/hopetambala/puente-reactnative-collect/commit/7a7be9196d7e65fb1ea401675ef98d7ca9986491))
+
 ## [7.1.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v7.0.2...v7.1.0) (2020-10-19)
 
 
