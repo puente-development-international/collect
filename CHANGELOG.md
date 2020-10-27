@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.0...v8.1.1) (2020-10-27)
+
+
+### Bug Fixes
+
+* current user function preventing login ([a9116a6](https://github.com/hopetambala/puente-reactnative-collect/commit/a9116a66774c69b971e240c3d6e54c8d0472776f))
+
 ## [8.1.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.0.2...v8.1.0) (2020-10-27)
 
 
