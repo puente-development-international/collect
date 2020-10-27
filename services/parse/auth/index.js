@@ -69,9 +69,7 @@ function retrieveCurrentUserFunction() {
 }
 
 function retrieveCurrentUserAsyncFunction() {
-  return Parse.User.currentAsync().then((user) => {
-    return user
-  });
+  return Parse.User.currentAsync().then((user) => user);
 }
 
 function retrieveDeleteUserFunction(params) {
@@ -79,6 +77,9 @@ function retrieveDeleteUserFunction(params) {
 }
 
 export {
-  initialize, retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
-  retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveCurrentUserAsyncFunction, retrieveDeleteUserFunction
+  initialize,
+  retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
+  retrieveForgotPasswordFunction,
+  retrieveCurrentUserFunction, retrieveCurrentUserAsyncFunction,
+  retrieveDeleteUserFunction
 };

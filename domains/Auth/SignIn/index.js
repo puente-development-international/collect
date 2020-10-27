@@ -72,8 +72,8 @@ const SignIn = ({ navigation }) => {
     Alert.alert(
       I18n.t('signIn.unableLogin'),
       I18n.t('signIn.usernamePasswordIncorrect'), [
-      { text: 'OK' }
-    ],
+        { text: 'OK' }
+      ],
       { cancelable: true }
     );
   };
@@ -131,7 +131,7 @@ const SignIn = ({ navigation }) => {
         storeData(currentUser, 'currentUser');
       }
     });
-  }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -157,14 +157,14 @@ const SignIn = ({ navigation }) => {
                             if (userCreds === null || values.username !== userCreds.username
                               || values.password !== userCreds.password) {
                               // Store user organization
-                              storeUserInformation()
+                              storeUserInformation();
                               handleSaveCredentials(values);
                             } else {
-                              storeUserInformation()
+                              storeUserInformation();
                             }
                           }, () => {
                             // Store user organization
-                            storeUserInformation()
+                            storeUserInformation();
                             // no credentials saved, give option to save
                             handleSaveCredentials(values);
                           });
@@ -233,8 +233,8 @@ const SignIn = ({ navigation }) => {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
-                    )}
+                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                  )}
                   <CredentialsModal
                     modalVisible={modalVisible}
                     formikProps={formikProps}
