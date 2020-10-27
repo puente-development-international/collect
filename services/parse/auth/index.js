@@ -68,11 +68,17 @@ function retrieveCurrentUserFunction() {
   return null;
 }
 
+function retrieveCurrentUserAsyncFunction() {
+  return Parse.User.currentAsync().then((user) => {
+    return user
+  });
+}
+
 function retrieveDeleteUserFunction(params) {
   Parse.Cloud.run('deleteUser', params).then((result) => result);
 }
 
 export {
   initialize, retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
-  retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction
+  retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveCurrentUserAsyncFunction, retrieveDeleteUserFunction
 };

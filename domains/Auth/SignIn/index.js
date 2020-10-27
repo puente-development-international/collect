@@ -22,7 +22,7 @@ import * as Network from 'expo-network';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import { retrieveSignInFunction, retrieveCurrentUserFunction } from '../../../services/parse/auth';
+import { retrieveSignInFunction, retrieveCurrentUserAsyncFunction } from '../../../services/parse/auth';
 
 import { storeData, getData, deleteData } from '../../../modules/async-storage';
 import I18n from '../../../modules/i18n';
@@ -72,8 +72,8 @@ const SignIn = ({ navigation }) => {
     Alert.alert(
       I18n.t('signIn.unableLogin'),
       I18n.t('signIn.usernamePasswordIncorrect'), [
-        { text: 'OK' }
-      ],
+      { text: 'OK' }
+    ],
       { cancelable: true }
     );
   };
@@ -123,6 +123,16 @@ const SignIn = ({ navigation }) => {
     deleteData('credentials');
   };
 
+  const storeUserInformation = async () => {
+    const currentUser = await retrieveCurrentUserAsyncFunction();
+    getData('organization').then((asyncOrg) => {
+      if (asyncOrg !== currentUser.get('organization')) {
+        storeData(currentUser.get('organization'), 'organization');
+        storeData(currentUser, 'currentUser');
+      }
+    });
+  }
+
   return (
     <KeyboardAvoidingView
       enabled
@@ -141,38 +151,20 @@ const SignIn = ({ navigation }) => {
                     retrieveSignInFunction(values.username, values.password)
                       .then(() => {
                         getData('credentials')
-                          .then((userCreds) => {
+                          .then(async (userCreds) => {
                             // credentials saved do not match those entered, overwrite saved
                             // credentials
                             if (userCreds === null || values.username !== userCreds.username
                               || values.password !== userCreds.password) {
                               // Store user organization
-                              const currentUser = retrieveCurrentUserFunction();
-                              getData('organization').then((organization) => {
-                                if (organization !== currentUser.organization) {
-                                  storeData(currentUser.organization, 'organization');
-                                  storeData(currentUser, 'currentUser');
-                                }
-                                handleSaveCredentials(values);
-                              });
+                              storeUserInformation()
+                              handleSaveCredentials(values);
                             } else {
-                              const currentUser = retrieveCurrentUserFunction();
-                              getData('organization').then((organization) => {
-                                if (organization !== currentUser.organization) {
-                                  storeData(currentUser.organization, 'organization');
-                                  storeData(currentUser, 'currentUser');
-                                }
-                              });
+                              storeUserInformation()
                             }
                           }, () => {
                             // Store user organization
-                            const currentUser = retrieveCurrentUserFunction();
-                            getData('organization').then((organization) => {
-                              if (organization !== currentUser.organization) {
-                                storeData(currentUser.organization, 'organization');
-                                storeData(currentUser, 'currentUser');
-                              }
-                            });
+                            storeUserInformation()
                             // no credentials saved, give option to save
                             handleSaveCredentials(values);
                           });
@@ -241,8 +233,8 @@ const SignIn = ({ navigation }) => {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
-                  )}
+                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                    )}
                   <CredentialsModal
                     modalVisible={modalVisible}
                     formikProps={formikProps}
