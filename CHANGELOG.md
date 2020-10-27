@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.0.2...v8.1.0) (2020-10-27)
+
+
+### Bug Fixes
+
+* get Parse working with async :tada: ([cb7820b](https://github.com/hopetambala/puente-reactnative-collect/commit/cb7820b80219c8596c20470d71cee176c1392b0f))
+
 ### [8.0.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.0.1...v8.0.2) (2020-10-26)
 
 
