@@ -1,9 +1,9 @@
 import { Parse } from 'parse/react-native';
-import { AsyncStorage } from 'react-native';
-import getEnvVars from '../../../environment';
+import AsyncStorage from '@react-native-community/async-storage';
+import selectedENV from '../../../environment';
 
 function initialize() {
-  const { parseAppId, parseJavascriptKey, parseServerUrl } = getEnvVars();
+  const { parseAppId, parseJavascriptKey, parseServerUrl } = selectedENV;
 
   Parse.setAsyncStorage(AsyncStorage);
   Parse.initialize(parseAppId, parseJavascriptKey);

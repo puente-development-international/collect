@@ -1,9 +1,9 @@
-import getEnvVars from '../../environment';
+import selectedENV from '../../environment';
 
 const axios = require('axios');
 
 function retrievePuenteAutofillData(parameter) {
-  const { AWS_LAMBDA_URL } = getEnvVars();
+  const { AWS_LAMBDA_URL } = selectedENV;
   return axios.get(AWS_LAMBDA_URL, {
     params: {
       bucket_name: 'google-sheets-lambda',
