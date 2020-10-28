@@ -1,5 +1,5 @@
 import { Parse } from 'parse/react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import selectedENV from '../../../environment';
 
 function initialize() {
@@ -68,11 +68,18 @@ function retrieveCurrentUserFunction() {
   return null;
 }
 
+function retrieveCurrentUserAsyncFunction() {
+  return Parse.User.currentAsync().then((user) => user);
+}
+
 function retrieveDeleteUserFunction(params) {
   Parse.Cloud.run('deleteUser', params).then((result) => result);
 }
 
 export {
-  initialize, retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
-  retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction
+  initialize,
+  retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
+  retrieveForgotPasswordFunction,
+  retrieveCurrentUserFunction, retrieveCurrentUserAsyncFunction,
+  retrieveDeleteUserFunction
 };

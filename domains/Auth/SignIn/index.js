@@ -22,7 +22,7 @@ import * as Network from 'expo-network';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import { retrieveSignInFunction, retrieveCurrentUserFunction } from '../../../services/parse/auth';
+import { retrieveSignInFunction, retrieveCurrentUserAsyncFunction } from '../../../services/parse/auth';
 
 import { storeData, getData, deleteData } from '../../../modules/async-storage';
 import I18n from '../../../modules/i18n';
@@ -123,6 +123,16 @@ const SignIn = ({ navigation }) => {
     deleteData('credentials');
   };
 
+  const storeUserInformation = async () => {
+    const currentUser = await retrieveCurrentUserAsyncFunction();
+    getData('organization').then((asyncOrg) => {
+      if (asyncOrg !== currentUser.get('organization')) {
+        storeData(currentUser.get('organization'), 'organization');
+        storeData(currentUser, 'currentUser');
+      }
+    });
+  };
+
   return (
     <KeyboardAvoidingView
       enabled
@@ -138,61 +148,40 @@ const SignIn = ({ navigation }) => {
               onSubmit={(values, actions) => {
                 checkOnlineStatus().then((connected) => {
                   if (connected) {
-                    retrieveSignInFunction(values.username, values.password)
-                      .then(() => {
-                        getData('credentials')
-                          .then((userCreds) => {
-                            // credentials saved do not match those entered, overwrite saved
-                            // credentials
-                            if (userCreds === null || values.username !== userCreds.username
-                              || values.password !== userCreds.password) {
-                              // Store user organization
-                              const currentUser = retrieveCurrentUserFunction();
-                              getData('organization').then((organization) => {
-                                if (organization !== currentUser.organization) {
-                                  storeData(currentUser.organization, 'organization');
-                                  storeData(currentUser, 'currentUser');
-                                }
-                                handleSaveCredentials(values);
-                              });
-                            } else {
-                              const currentUser = retrieveCurrentUserFunction();
-                              getData('organization').then((organization) => {
-                                if (organization !== currentUser.organization) {
-                                  storeData(currentUser.organization, 'organization');
-                                  storeData(currentUser, 'currentUser');
-                                }
-                              });
-                            }
-                          }, () => {
-                            // Store user organization
-                            const currentUser = retrieveCurrentUserFunction();
-                            getData('organization').then((organization) => {
-                              if (organization !== currentUser.organization) {
-                                storeData(currentUser.organization, 'organization');
-                                storeData(currentUser, 'currentUser');
-                              }
-                            });
-                            // no credentials saved, give option to save
-                            handleSaveCredentials(values);
-                          });
-                        navigation.navigate('Root');
-                      }, (err) => {
-                        handleFailedAttempt(err);
+                    retrieveSignInFunction(values.username, values.password).then(async () => {
+                      await getData('credentials').then(async (userCreds) => {
+                        // credentials saved do not match those entered, overwrite saved
+                        // credentials
+                        if (userCreds === null || values.username !== userCreds.username
+                          || values.password !== userCreds.password) {
+                          // Store user organization
+                          storeUserInformation();
+                          handleSaveCredentials(values);
+                        } else {
+                          storeUserInformation();
+                        }
+                      }, () => {
+                        // Store user organization
+                        storeUserInformation();
+                        // no credentials saved, give option to save
+                        handleSaveCredentials(values);
                       });
+                      navigation.navigate('Root');
+                    }, (err) => {
+                      handleFailedAttempt(err);
+                    });
                   } else {
                     // offline
-                    getData('credentials')
-                      .then((userCreds) => {
-                        // username and password entered (or saved in creds) match the saved cred
-                        if (values.username === userCreds.username
-                          && values.password === userCreds.password) {
-                          // need some pincode verification
-                          navigation.navigate('Root');
-                        } else {
-                          // cannot log in offline without saved credentials, connect to internet
-                        }
-                      });
+                    getData('credentials').then((userCreds) => {
+                      // username and password entered (or saved in creds) match the saved cred
+                      if (values.username === userCreds.username
+                        && values.password === userCreds.password) {
+                        // need some pincode verification
+                        navigation.navigate('Root');
+                      } else {
+                        // cannot log in offline without saved credentials, connect to internet
+                      }
+                    });
                   }
                 });
                 setTimeout(() => {
