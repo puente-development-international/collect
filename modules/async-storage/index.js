@@ -4,9 +4,11 @@ const storeData = async (value, storageName) => {
   try {
     const jsonValue = JSON.stringify(value);
     await AsyncStorage.setItem(storageName, jsonValue);
+    return;
   } catch (e) {
     // saving error
     console.log(e); //eslint-disable-line
+
   }
 };
 
@@ -16,8 +18,8 @@ const getData = async (storageName) => {
     return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (e) {
     console.log(e); //eslint-disable-line
+    return null;
   }
-
 };
 
 const deleteData = async (storageName) => {
@@ -31,6 +33,7 @@ const getAllData = async () => {
     return result;
   } catch (e) {
     console.log(e); //eslint-disable-line
+    return null;
   }
 };
 
