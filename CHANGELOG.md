@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.3](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.2...v8.1.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* async storage libraries ([e122169](https://github.com/hopetambala/puente-reactnative-collect/commit/e1221692fa30dcc0ef4d223064a01537c988aebe))
+* revert change ([90745b2](https://github.com/hopetambala/puente-reactnative-collect/commit/90745b2de0487033c513493fb563b890621fcd45))
+
 ### [8.1.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.1...v8.1.2) (2020-10-27)
 
 ### [8.1.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.0...v8.1.1) (2020-10-27)
