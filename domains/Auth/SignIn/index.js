@@ -152,7 +152,7 @@ const SignIn = ({ navigation }) => {
                       await getData('credentials').then(async (userCreds) => {
                         // credentials saved do not match those entered, overwrite saved
                         // credentials
-                        if (userCreds || values.username !== userCreds.username
+                        if (userCreds === null || values.username !== userCreds.username
                           || values.password !== userCreds.password) {
                           // Store user organization
                           storeUserInformation();
