@@ -17,7 +17,7 @@ import {
   Checkbox, Button, Text
 } from 'react-native-paper';
 
-import * as Network from 'expo-network';
+// import * as Network from 'expo-network';
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -72,8 +72,8 @@ const SignIn = ({ navigation }) => {
     Alert.alert(
       I18n.t('signIn.unableLogin'),
       I18n.t('signIn.usernamePasswordIncorrect'), [
-        { text: 'OK' }
-      ],
+      { text: 'OK' }
+    ],
       { cancelable: true }
     );
   };
@@ -114,24 +114,24 @@ const SignIn = ({ navigation }) => {
     setForgotPassword(true);
   };
 
-  async function checkOnlineStatus() {
-    const status = await Network.getNetworkStateAsync();
-    const { isConnected } = status;
-    return isConnected;
-  }
+  // async function checkOnlineStatus() {
+  //   const status = await Network.getNetworkStateAsync();
+  //   const { isConnected } = status;
+  //   return isConnected;
+  // }
   const deleteCreds = () => {
     deleteData('credentials');
   };
 
-  const storeUserInformation = async () => {
-    const currentUser = await retrieveCurrentUserAsyncFunction();
-    getData('organization').then((asyncOrg) => {
-      if (asyncOrg !== currentUser.get('organization')) {
-        storeData(currentUser.get('organization'), 'organization');
-        storeData(currentUser, 'currentUser');
-      }
-    });
-  };
+  // const storeUserInformation = async () => {
+  //   const currentUser = await retrieveCurrentUserAsyncFunction();
+  //   getData('organization').then((asyncOrg) => {
+  //     if (asyncOrg !== currentUser.get('organization')) {
+  //       storeData(currentUser.get('organization'), 'organization');
+  //       storeData(currentUser, 'currentUser');
+  //     }
+  //   });
+  // };
 
   return (
     <KeyboardAvoidingView
@@ -146,43 +146,10 @@ const SignIn = ({ navigation }) => {
             <Formik
               initialValues={{ username: '', password: '' }}
               onSubmit={(values, actions) => {
-                checkOnlineStatus().then((connected) => {
-                  if (connected) {
-                    retrieveSignInFunction(values.username, values.password).then(async () => {
-                      await getData('credentials').then(async (userCreds) => {
-                        // credentials saved do not match those entered, overwrite saved
-                        // credentials
-                        if (userCreds === null || values.username !== userCreds.username
-                          || values.password !== userCreds.password) {
-                          // Store user organization
-                          storeUserInformation();
-                          handleSaveCredentials(values);
-                        } else {
-                          storeUserInformation();
-                        }
-                      }, () => {
-                        // Store user organization
-                        storeUserInformation();
-                        // no credentials saved, give option to save
-                        handleSaveCredentials(values);
-                      });
-                      navigation.navigate('Root');
-                    }, (err) => {
-                      handleFailedAttempt(err);
-                    });
-                  } else {
-                    // offline
-                    getData('credentials').then((userCreds) => {
-                      // username and password entered (or saved in creds) match the saved cred
-                      if (values.username === userCreds.username
-                        && values.password === userCreds.password) {
-                        // need some pincode verification
-                        navigation.navigate('Root');
-                      } else {
-                        // cannot log in offline without saved credentials, connect to internet
-                      }
-                    });
-                  }
+                retrieveSignInFunction(values.username, values.password).then(async () => {
+                  navigation.navigate('Root');
+                }, (err) => {
+                  handleFailedAttempt(err);
                 });
                 setTimeout(() => {
                   actions.setSubmitting(false);
@@ -230,8 +197,8 @@ const SignIn = ({ navigation }) => {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
-                  )}
+                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                    )}
                   <CredentialsModal
                     modalVisible={modalVisible}
                     formikProps={formikProps}
