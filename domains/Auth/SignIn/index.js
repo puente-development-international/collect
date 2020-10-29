@@ -22,7 +22,7 @@ import * as Network from 'expo-network';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import { retrieveSignInFunction, retrieveCurrentUserFunction } from '../../../services/parse/auth';
+import { retrieveSignInFunction, retrieveCurrentUserAsyncFunction } from '../../../services/parse/auth';
 
 import { storeData, getData, deleteData } from '../../../modules/async-storage';
 import I18n from '../../../modules/i18n';
@@ -70,8 +70,8 @@ const SignIn = ({ navigation }) => {
 
   const handleFailedAttempt = () => {
     Alert.alert(
-      'Unable to login',
-      'Your username or password may be incorrect, please try again.', [
+      I18n.t('signIn.unableLogin'),
+      I18n.t('signIn.usernamePasswordIncorrect'), [
         { text: 'OK' }
       ],
       { cancelable: true }
@@ -84,8 +84,8 @@ const SignIn = ({ navigation }) => {
 
   const handleSaveCredentials = (values) => {
     Alert.alert(
-      'Credentials',
-      'Would you like to save your login credentials for future use?',
+      I18n.t('signIn.credentials'),
+      I18n.t('signIn.saveLoginCreds'),
       [
         {
           text: 'Yes',
@@ -102,9 +102,7 @@ const SignIn = ({ navigation }) => {
   };
 
   const handleLanguage = (lang) => {
-    setLanguage({
-      lang
-    });
+    setLanguage(lang);
     I18n.locale = lang;
   };
 
@@ -125,111 +123,98 @@ const SignIn = ({ navigation }) => {
     deleteData('credentials');
   };
 
+  const storeUserInformation = async () => {
+    const currentUser = await retrieveCurrentUserAsyncFunction();
+    getData('organization').then((asyncOrg) => {
+      if (asyncOrg !== currentUser.get('organization')) {
+        storeData(currentUser.get('organization'), 'organization');
+        storeData(currentUser, 'currentUser');
+      }
+    });
+  };
+
   return (
     <KeyboardAvoidingView
       enabled
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{ backgroundColor: theme.colors.accent, flex: 1 }}
     >
-      <SafeAreaView>
-
-        {!forgotPassword && (
+      {!forgotPassword && (
+        <SafeAreaView style={{ flex: 9 }}>
           <ScrollView keyboardShouldPersistTaps="always">
-            <View style={{ flex: 9 }}>
-              <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
-              <Formik
-                initialValues={{ username: '', password: '' }}
-                onSubmit={(values, actions) => {
-                  checkOnlineStatus().then((connected) => {
-                    if (connected) {
-                      retrieveSignInFunction(values.username, values.password)
-                        .then(() => {
-                          getData('credentials')
-                            .then((userCreds) => {
-                              // credentials saved do not match those entered, overwrite saved
-                              // credentials
-                              if (userCreds === null || values.username !== userCreds.username
-                                || values.password !== userCreds.password) {
-                                // Store user organization
-                                const currentUser = retrieveCurrentUserFunction();
-                                getData('organization').then((organization) => {
-                                  if (organization !== currentUser.organization) {
-                                    storeData(currentUser.organization, 'organization');
-                                    storeData(currentUser, 'currentUser');
-                                  }
-                                  handleSaveCredentials(values);
-                                });
-                              } else {
-                                const currentUser = retrieveCurrentUserFunction();
-                                getData('organization').then((organization) => {
-                                  if (organization !== currentUser.organization) {
-                                    storeData(currentUser.organization, 'organization');
-                                    storeData(currentUser, 'currentUser');
-                                  }
-                                });
-                              }
-                            }, () => {
-                              // Store user organization
-                              const currentUser = retrieveCurrentUserFunction();
-                              getData('organization').then((organization) => {
-                                if (organization !== currentUser.organization) {
-                                  storeData(currentUser.organization, 'organization');
-                                  storeData(currentUser, 'currentUser');
-                                }
-                              });
-                              // no credentials saved, give option to save
-                              handleSaveCredentials(values);
-                            });
-                          navigation.navigate('Root');
-                        }, () => {
-                          handleFailedAttempt();
-                        });
-                    } else {
-                      // offline
-                      getData('credentials')
-                        .then((userCreds) => {
-                          // username and password entered (or saved in creds) match the saved cred
-                          if (values.username === userCreds.username
-                            && values.password === userCreds.password) {
-                            // need some pincode verification
-                            navigation.navigate('Root');
-                          } else {
-                            // cannot log in offline without saved credentials, connect to internet
-                          }
-                        });
-                    }
-                  });
-                  setTimeout(() => {
-                    actions.setSubmitting(false);
-                  }, 1000);
-                }}
-                validationSchema={validationSchema}
-              >
-                {(formikProps) => (
-                  <View>
-                    <View style={styles.logoContainer}>
-                      <BlackLogo height={130} />
-                    </View>
-                    <FormInput
-                      label={I18n.t('signIn.username')}
-                      formikProps={formikProps}
-                      formikKey="username"
-                      placeholder="johndoe@example.com"
-                      autoFocus
-                    />
-                    <FormInput
-                      label={I18n.t('signIn.password')}
-                      formikProps={formikProps}
-                      formikKey="password"
-                      placeholder="Password"
-                      secureTextEntry={!checked}
-                    />
-                    <Button style={{ marginRight: 'auto' }} onPress={handleForgotPassword}>Forgot password?</Button>
+            <LanguagePicker language={language} onChangeLanguage={handleLanguage} />
+            <Formik
+              initialValues={{ username: '', password: '' }}
+              onSubmit={(values, actions) => {
+                checkOnlineStatus().then((connected) => {
+                  if (connected) {
+                    retrieveSignInFunction(values.username, values.password).then(async () => {
+                      await getData('credentials').then(async (userCreds) => {
+                        // credentials saved do not match those entered, overwrite saved
+                        // credentials
+                        if (userCreds === null || values.username !== userCreds.username
+                          || values.password !== userCreds.password) {
+                          // Store user organization
+                          storeUserInformation();
+                          handleSaveCredentials(values);
+                        } else {
+                          storeUserInformation();
+                        }
+                      }, () => {
+                        // Store user organization
+                        storeUserInformation();
+                        // no credentials saved, give option to save
+                        handleSaveCredentials(values);
+                      });
+                      navigation.navigate('Root');
+                    }, (err) => {
+                      handleFailedAttempt(err);
+                    });
+                  } else {
+                    // offline
+                    getData('credentials').then((userCreds) => {
+                      // username and password entered (or saved in creds) match the saved cred
+                      if (values.username === userCreds.username
+                        && values.password === userCreds.password) {
+                        // need some pincode verification
+                        navigation.navigate('Root');
+                      } else {
+                        // cannot log in offline without saved credentials, connect to internet
+                      }
+                    });
+                  }
+                });
+                setTimeout(() => {
+                  actions.setSubmitting(false);
+                }, 1000);
+              }}
+              validationSchema={validationSchema}
+            >
+              {(formikProps) => (
+                <View>
+                  <View style={styles.logoContainer}>
+                    <BlackLogo height={130} />
+                  </View>
+                  <FormInput
+                    label={I18n.t('signIn.username')}
+                    formikProps={formikProps}
+                    formikKey="username"
+                    placeholder="johndoe@example.com"
+                  />
+                  <FormInput
+                    label={I18n.t('signIn.password')}
+                    formikProps={formikProps}
+                    formikKey="password"
+                    placeholder="Password"
+                    secureTextEntry={!checked}
+                  />
+                  <View style={{ flexDirection: 'row' }}>
                     <View style={styles.container}>
                       <View style={styles.checkbox}>
                         <Checkbox
                           disabled={false}
-                          theme={theme}
+                          // theme={theme}
+                          color={theme.colors.primary}
                           status={checked ? 'checked' : 'unchecked'}
                           onPress={() => {
                             setChecked(!checked);
@@ -238,47 +223,51 @@ const SignIn = ({ navigation }) => {
                       </View>
                       <Text style={styles.passwordText}>{I18n.t('signIn.showPassword')}</Text>
                     </View>
-                    {formikProps.isSubmitting ? (
-                      <ActivityIndicator />
-                    ) : (
-                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>Log-In</Button>
-                    )}
-                    <CredentialsModal
-                      modalVisible={modalVisible}
-                      formikProps={formikProps}
-                      user={user}
-                      setModalVisible={setModalVisible}
-                      navigation={navigation}
-                    />
-
+                    <Button style={{ flex: 1 }} onPress={handleForgotPassword}>
+                      Forgot password?
+                    </Button>
                   </View>
-                )}
-              </Formik>
-              <Button onPress={deleteCreds}>Delete Credentials</Button>
-            </View>
+                  {formikProps.isSubmitting ? (
+                    <ActivityIndicator />
+                  ) : (
+                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                  )}
+                  <CredentialsModal
+                    modalVisible={modalVisible}
+                    formikProps={formikProps}
+                    user={user}
+                    setModalVisible={setModalVisible}
+                    navigation={navigation}
+                  />
+
+                </View>
+              )}
+            </Formik>
+            <Button onPress={deleteCreds}>{I18n.t('signIn.deleteCreds')}</Button>
           </ScrollView>
-        )}
-        <TermsModal visible={visible} setVisible={setVisible} />
-        {forgotPassword && (
-          <ForgotPassword
-            navigation={navigation}
-            forgotPassword={forgotPassword}
-            setForgotPassword={setForgotPassword}
-          />
-        )}
-      </SafeAreaView>
+
+          <TermsModal visible={visible} setVisible={setVisible} />
+        </SafeAreaView>
+      )}
+      {forgotPassword && (
+        <ForgotPassword
+          navigation={navigation}
+          forgotPassword={forgotPassword}
+          setForgotPassword={setForgotPassword}
+        />
+      )}
 
       {!forgotPassword && (
         <View style={styles.footer}>
           <View style={styles.termsContainer}>
-            <Text style={styles.accountText}>Don&apos;t have an account?</Text>
+            <Text style={styles.accountText}>{I18n.t('signIn.noAccount')}</Text>
             <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp} labelStyle={{ marginLeft: 5 }}>
               Sign up!
             </Button>
           </View>
           <View style={styles.termsContainer}>
-            <Text style={styles.puenteText}>Puente 2020 |</Text>
-            <Button mode="text" theme={theme} onPress={handleTermsModal} labelStyle={{ marginLeft: 5 }}>Terms & Conditions</Button>
+            <Text style={styles.puenteText}>{I18n.t('signIn.puente2020')}</Text>
+            <Button mode="text" theme={theme} onPress={handleTermsModal} labelStyle={{ marginLeft: 5 }}>{I18n.t('signIn.termsConditions')}</Button>
           </View>
         </View>
       )}
@@ -289,18 +278,21 @@ const SignIn = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: 20,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flex: 1,
+    marginLeft: 15
   },
   passwordText: {
-    flex: 10,
+    flex: 7,
     fontSize: 15,
-    marginLeft: 10
+    marginLeft: 10,
+    marginTop: 'auto',
+    marginBottom: 'auto'
   },
   checkbox: {
-    flex: 1,
+    flex: 2,
     borderRadius: 5,
-    marginLeft: 0,
+    // marginLeft: 0,
     backgroundColor: 'white'
   },
   submitButton: {

@@ -9,11 +9,13 @@ import {
 
 import { theme } from '../../../../modules/theme';
 
+import I18n from '../../../../modules/i18n';
+
 const ResidentCard = ({
   resident, onSelectPerson
 }) => {
   const {
-    fname, lname, nickname, city, picture
+    fname, lname, nickname, city, picture, communityname
   } = resident;
   const [pictureUrl, setPictureUrl] = useState();
   useEffect(() => {
@@ -41,12 +43,12 @@ const ResidentCard = ({
         />
         <View style={styles.cityLicenseContainer}>
           <View style={styles.cityContainer}>
-            <Text style={styles.font}>City</Text>
+            <Text style={styles.font}>{I18n.t('findResident.residentCard.city')}</Text>
             <Text style={styles.font}>{city}</Text>
           </View>
           <View style={styles.licenseContainer}>
-            <Text style={styles.font}>License Number</Text>
-            <Text style={styles.license}>License #</Text>
+            <Text style={styles.font}>{I18n.t('findResident.residentCard.community')}</Text>
+            <Text style={styles.license}>{communityname}</Text>
           </View>
         </View>
       </TouchableOpacity>

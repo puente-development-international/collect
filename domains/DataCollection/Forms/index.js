@@ -12,6 +12,7 @@ import ResidentIdSearchbar from '../../../components/ResidentIdSearchbar';
 
 import PostSubmissionSVG from '../../../assets/graphics/static/Submission-Page-Icon.svg';
 import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
+import I18n from '../../../modules/i18n';
 
 const Forms = (props) => {
   const {
@@ -73,18 +74,18 @@ const Forms = (props) => {
           }}
           >
             <PostSubmissionSVG width={350} height={350} />
-            <Text>Form successfully submitted</Text>
-            <Text>Grab yourself a coffee</Text>
+            <Text>{I18n.t('forms.successfullySubmitted')}</Text>
+            <Text>{I18n.t('forms.grabCoffee')}</Text>
           </View>
           <View style={layout.container}>
-            <Text>Suggested next Forms</Text>
+            <Text>{I18n.t('forms.suggestedForms')}</Text>
             <SmallCardsCarousel
               puenteForms={puenteForms}
               navigateToNewRecord={navigateToNewRecord}
               setUser={false}
             />
             <Button mode="contained" onPress={navigateToGallery}>
-              <Text style={{ color: 'white' }}>View Forms Gallery</Text>
+              <Text style={{ color: 'white' }}>{I18n.t('forms.viewGallery')}</Text>
             </Button>
           </View>
         </View>

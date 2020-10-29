@@ -9,6 +9,8 @@ import { getData } from '../../modules/async-storage';
 
 import styles from './index.styles';
 
+import I18n from '../../modules/i18n';
+
 const Header = ({ logOut }) => {
   const { header, headerText, headerIcon } = styles;
 
@@ -28,11 +30,11 @@ const Header = ({ logOut }) => {
     const curHr = today.getHours();
 
     if (curHr < 12) {
-      setVolunteerGreeting(`Good morning ${name}!` || 'Good morning!');
+      setVolunteerGreeting(`${I18n.t('header.goodMorning')} ${name}!` || I18n.t('header.goodMorning!'));
     } else if (curHr < 18) {
-      setVolunteerGreeting(`Good afternoon ${name}!` || 'Good afternoon!');
+      setVolunteerGreeting(`${I18n.t('header.goodAfternoon')} ${name}!` || I18n.t('header.goodAfternoon!'));
     } else {
-      setVolunteerGreeting(`Good evening ${name}!` || 'Good evening!');
+      setVolunteerGreeting(`${I18n.t('header.goodEvening')} ${name}!` || I18n.t('header.goodEvening!'));
     }
   };
 
@@ -52,7 +54,7 @@ const Header = ({ logOut }) => {
   return (
     <View style={styles.container}>
       <View style={header}>
-        <Text style={headerText}>PUENTE</Text>
+        <Text style={headerText}>{I18n.t('header.puente')}</Text>
         <View style={headerIcon}>
           <IconButton
             color={headerIcon.color}
@@ -78,8 +80,8 @@ const Header = ({ logOut }) => {
               <Emoji name="coffee" />
             </Headline>
             <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-              <Text style={styles.calculationText}>{`Volunteer Since\n${volunteerDate}`}</Text>
-              <Text style={styles.calculationText}>{`Surveys Collected\n${surveyCount}`}</Text>
+              <Text style={styles.calculationText}>{`${I18n.t('header.volunteerSince')}\n${volunteerDate}`}</Text>
+              <Text style={styles.calculationText}>{`${I18n.t('header.surveysCollected')}\n${surveyCount}`}</Text>
             </View>
           </View>
         )}

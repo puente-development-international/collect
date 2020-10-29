@@ -11,6 +11,8 @@ import Forms from './Forms';
 import Household from './Housheold';
 import { theme } from '../../../../modules/theme';
 
+import I18n from '../../../../modules/i18n';
+
 const ResidentPage = ({
   fname, lname, nickname, city, picture, selectPerson, setSelectPerson,
   puenteForms, navigateToNewRecord, setSurveyee, setView
@@ -58,7 +60,7 @@ const ResidentPage = ({
             style={styles.button}
             contentStyle={styles.buttonContent}
           >
-            Edit Profile
+            {I18n.t('findResident.residentPage.household.editProfile')}
           </Button>
         </View>
       </View>
@@ -66,9 +68,9 @@ const ResidentPage = ({
         style={styles.horizontalLine}
       />
       <View style={styles.navigationButtons}>
-        <Button onPress={() => showDemographics()}>Demographics</Button>
-        <Button onPress={() => showForms(true)}>Forms</Button>
-        <Button onPress={() => showHousehold(true)}>Household</Button>
+        <Button onPress={() => showDemographics()}>{I18n.t('findResident.residentPage.household.demographics')}</Button>
+        <Button onPress={() => showForms(true)}>{I18n.t('findResident.residentPage.household.forms')}</Button>
+        <Button onPress={() => showHousehold(true)}>{I18n.t('findResident.residentPage.household.household')}</Button>
       </View>
       <View
         style={styles.horizontalLine}
@@ -95,7 +97,7 @@ const ResidentPage = ({
       {household && (
         <Household />
       )}
-      <Button onPress={() => setSelectPerson()}>go back to find records</Button>
+      <Button onPress={() => setSelectPerson()}>{I18n.t('findResident.residentPage.household.goBack')}</Button>
     </View>
   );
 };

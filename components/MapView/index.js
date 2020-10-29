@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
+import { Spinner } from 'native-base';
 
 import MapView, { Marker } from 'react-native-maps';
 import { IconButton } from 'react-native-paper';
 
 import getLocation from '../../modules/geolocation';
 import { theme } from '../../modules/theme';
+import { getData } from '../../modules/async-storage';
+
 import { residentIDQuery } from '../../services/parse/crud';
 
 const Maps = ({ organization }) => {
@@ -15,19 +18,27 @@ const Maps = ({ organization }) => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
+
   const [markers, setMarkers] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    let isSubscribed = true;
-    retrieveMarkers().then((records) => {
-      if (isSubscribed) {
-        setMarkers(records); // sets records if promise is reached during mounting
-      }
-    });
-    return function cleanup() {
-      isSubscribed = false; // cancels promise when component unmounts
-    };
+    retriveAsyncMarkers();
   }, []);
+
+  // useEffect(() => {
+  //   let isSubscribed = true;
+  //   retrieveMarkers().then((records) => {
+  //     if (isSubscribed) {
+  //       if (records !== markers) {
+  //         setMarkers(records); // sets records if promise is reached during mounting
+  //       }
+  //     }
+  //   });
+  //   return function cleanup() {
+  //     isSubscribed = false; // cancels promise when component unmounts
+  //   };
+  // }, []);
 
   const handleLocation = async () => {
     const currentLocation = await getLocation();
@@ -39,7 +50,16 @@ const Maps = ({ organization }) => {
     });
   };
 
+  const retriveAsyncMarkers = async () => {
+    getData('residentData').then((residentData) => {
+      if (residentData) {
+        setMarkers(residentData);
+      }
+    });
+  };
+
   const retrieveMarkers = async () => {
+    setLoading(true);
     const queryParams = {
       skip: 0,
       offset: 0,
@@ -48,7 +68,11 @@ const Maps = ({ organization }) => {
       parseParam: organization,
     };
 
-    return residentIDQuery(queryParams).then((recs) => JSON.parse(JSON.stringify(recs)));
+    residentIDQuery(queryParams).then((recs) => {
+      const records = JSON.parse(JSON.stringify(recs));
+      setMarkers(records);
+      setLoading(false);
+    });
   };
 
   return (
@@ -57,7 +81,7 @@ const Maps = ({ organization }) => {
         style={styles.mapStyle}
         region={region}
       >
-        {markers.map((marker) => (
+        {markers && markers.map((marker) => (
           marker.location && (
             <Marker
               key={marker.objectId}
@@ -68,14 +92,20 @@ const Maps = ({ organization }) => {
           )
         ))}
       </MapView>
+      {loading
+        && <Spinner style={styles.loading} color={theme.colors.primary} />}
       <View style={styles.buttonStyle}>
         <IconButton
           icon="crosshairs-gps"
           onPress={handleLocation}
           color={theme.colors.primary}
           style={{ backgroundColor: theme.colors.background, opacity: 0.8 }}
-
-        // animated
+        />
+        <IconButton
+          icon="refresh"
+          onPress={retrieveMarkers}
+          color={theme.colors.primary}
+          style={{ backgroundColor: theme.colors.background, opacity: 0.8 }}
         />
       </View>
     </View>
@@ -99,6 +129,11 @@ const styles = StyleSheet.create({
     bottom: '0%',
     alignSelf: 'flex-end', // for align to right,
     right: 10,
+  },
+  loading: {
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
   }
 });
 

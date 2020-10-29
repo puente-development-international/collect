@@ -1,9 +1,9 @@
 import { Parse } from 'parse/react-native';
-import { AsyncStorage } from 'react-native';
-import getEnvVars from '../../../environment';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import selectedENV from '../../../environment';
 
 function initialize() {
-  const { parseAppId, parseJavascriptKey, parseServerUrl } = getEnvVars();
+  const { parseAppId, parseJavascriptKey, parseServerUrl } = selectedENV;
 
   Parse.setAsyncStorage(AsyncStorage);
   Parse.initialize(parseAppId, parseJavascriptKey);
@@ -45,7 +45,13 @@ function retrieveSignOutFunction() {
 }
 
 function retrieveForgotPasswordFunction(params) {
-  Parse.Cloud.run('forgotPassword', params).then((result) => result);
+  return new Promise((resolve, reject) => {
+    Parse.Cloud.run('forgotPassword', params).then((result) => {
+      resolve(result);
+    }, (error) => {
+      reject(error);
+    });
+  });
 }
 
 function retrieveCurrentUserFunction() {
@@ -62,11 +68,18 @@ function retrieveCurrentUserFunction() {
   return null;
 }
 
+function retrieveCurrentUserAsyncFunction() {
+  return Parse.User.currentAsync().then((user) => user);
+}
+
 function retrieveDeleteUserFunction(params) {
   Parse.Cloud.run('deleteUser', params).then((result) => result);
 }
 
 export {
-  initialize, retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
-  retrieveForgotPasswordFunction, retrieveCurrentUserFunction, retrieveDeleteUserFunction
+  initialize,
+  retrieveSignUpFunction, retrieveSignInFunction, retrieveSignOutFunction,
+  retrieveForgotPasswordFunction,
+  retrieveCurrentUserFunction, retrieveCurrentUserAsyncFunction,
+  retrieveDeleteUserFunction
 };
