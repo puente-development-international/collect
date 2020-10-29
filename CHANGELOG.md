@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.9](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.8...v8.1.9) (2020-10-29)
+
+
+### Bug Fixes
+
+*  packagerOpts ([013efd2](https://github.com/hopetambala/puente-reactnative-collect/commit/013efd261ff6a4a9cadcc914039e6e6e2ed61ac7))
+
 ### [8.1.8](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.7...v8.1.8) (2020-10-29)
 
 
