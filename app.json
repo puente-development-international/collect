@@ -34,7 +34,6 @@
       "package": "io.ionic.starter1270348"
     },
     "packagerOpts": {
-      "config": "metro.config.js",
       "sourceExts": [
         "expo.ts",
         "expo.tsx",
