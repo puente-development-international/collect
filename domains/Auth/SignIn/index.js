@@ -17,7 +17,7 @@ import {
   Checkbox, Button, Text
 } from 'react-native-paper';
 
-// import * as Network from 'expo-network';
+import * as Network from 'expo-network';
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
@@ -114,24 +114,24 @@ const SignIn = ({ navigation }) => {
     setForgotPassword(true);
   };
 
-  // async function checkOnlineStatus() {
-  //   const status = await Network.getNetworkStateAsync();
-  //   const { isConnected } = status;
-  //   return isConnected;
-  // }
+  async function checkOnlineStatus() {
+    const status = await Network.getNetworkStateAsync();
+    const { isConnected } = status;
+    return isConnected;
+  }
   const deleteCreds = () => {
     deleteData('credentials');
   };
 
-  // const storeUserInformation = async () => {
-  //   const currentUser = await retrieveCurrentUserAsyncFunction();
-  //   getData('organization').then((asyncOrg) => {
-  //     if (asyncOrg !== currentUser.get('organization')) {
-  //       storeData(currentUser.get('organization'), 'organization');
-  //       storeData(currentUser, 'currentUser');
-  //     }
-  //   });
-  // };
+  const storeUserInformation = async () => {
+    const currentUser = await retrieveCurrentUserAsyncFunction();
+    getData('organization').then((asyncOrg) => {
+      if (asyncOrg !== currentUser.get('organization')) {
+        storeData(currentUser.get('organization'), 'organization');
+        storeData(currentUser, 'currentUser');
+      }
+    });
+  };
 
   return (
     <KeyboardAvoidingView
@@ -146,10 +146,43 @@ const SignIn = ({ navigation }) => {
             <Formik
               initialValues={{ username: '', password: '' }}
               onSubmit={(values, actions) => {
-                retrieveSignInFunction(values.username, values.password).then(async () => {
-                  navigation.navigate('Root');
-                }, (err) => {
-                  handleFailedAttempt(err);
+                checkOnlineStatus().then((connected) => {
+                  if (connected) {
+                    retrieveSignInFunction(values.username, values.password).then(() => {
+                      getData('credentials').then((userCreds) => {
+                        // credentials saved do not match those entered, overwrite saved
+                        // credentials
+                        if (userCreds === null || values.username !== userCreds.username
+                          || values.password !== userCreds.password) {
+                          // Store user organization
+                          storeUserInformation();
+                          handleSaveCredentials(values);
+                        } else {
+                          storeUserInformation();
+                        }
+                      }, () => {
+                        // Store user organization
+                        storeUserInformation();
+                        // no credentials saved, give option to save
+                        handleSaveCredentials(values);
+                      });
+                      navigation.navigate('Root');
+                    }, (err) => {
+                      handleFailedAttempt(err);
+                    });
+                  } else {
+                    // offline
+                    getData('credentials').then((userCreds) => {
+                      // username and password entered (or saved in creds) match the saved cred
+                      if (values.username === userCreds.username
+                        && values.password === userCreds.password) {
+                        // need some pincode verification
+                        navigation.navigate('Root');
+                      } else {
+                        // cannot log in offline without saved credentials, connect to internet
+                      }
+                    });
+                  }
                 });
                 setTimeout(() => {
                   actions.setSubmitting(false);
