@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.8](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.7...v8.1.8) (2020-10-29)
+
+
+### Bug Fixes
+
+* remove network check ([1f40483](https://github.com/hopetambala/puente-reactnative-collect/commit/1f4048330d387f73c9674e7cb33e7da0902e4483))
+
 ### [8.1.7](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.6...v8.1.7) (2020-10-29)
 
 
