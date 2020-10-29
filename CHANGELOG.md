@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.5](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.4...v8.1.5) (2020-10-29)
+
+
+### Features
+
+* enable screens for android ([88ee173](https://github.com/hopetambala/puente-reactnative-collect/commit/88ee173ae655480038720e3f8382fe538ec7ac3c))
+
+
+### Bug Fixes
+
+* add fix for android ([09274a0](https://github.com/hopetambala/puente-reactnative-collect/commit/09274a0443891c65fc9d67b29a102067cbbd26db)), closes [/github.com/react-navigation/react-navigation/issues/6919#issuecomment-592093015](https://github.com/hopetambala//github.com/react-navigation/react-navigation/issues/6919/issues/issuecomment-592093015)
+
 ### [8.1.4](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.3...v8.1.4) (2020-10-29)
 
 ### [8.1.3](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.2...v8.1.3) (2020-10-28)
