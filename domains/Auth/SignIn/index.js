@@ -146,50 +146,47 @@ const SignIn = ({ navigation }) => {
             <Formik
               initialValues={{ username: '', password: '' }}
               onSubmit={(values, actions) => {
-                // checkOnlineStatus().then((connected) => {
-                // if (connected) {
-                retrieveSignInFunction(values.username, values.password).then(() => {
-                  getData('credentials').then((userCreds) => {
-                    // credentials saved do not match those entered, overwrite saved
-                    // credentials
-                    if (userCreds === null || values.username !== userCreds.username
-                      || values.password !== userCreds.password) {
-                      // Store user organization
-                      storeUserInformation();
-                      handleSaveCredentials(values);
-                    } else {
-                      storeUserInformation();
-                    }
-                  }, () => {
-                    // Store user organization
-                    storeUserInformation();
-                    // no credentials saved, give option to save
-                    handleSaveCredentials(values);
-                  });
-                  actions.setSubmitting(false);
-                  navigation.navigate('Root');
-                }, (err) => {
-                  handleFailedAttempt(err);
+                checkOnlineStatus().then((connected) => {
+                  if (connected) {
+                    retrieveSignInFunction(values.username, values.password).then(() => {
+                      getData('credentials').then((userCreds) => {
+                        // credentials saved do not match those entered, overwrite saved
+                        // credentials
+                        if (userCreds === null || values.username !== userCreds.username
+                          || values.password !== userCreds.password) {
+                          // Store user organization
+                          storeUserInformation();
+                          handleSaveCredentials(values);
+                        } else {
+                          storeUserInformation();
+                        }
+                      }, () => {
+                        // Store user organization
+                        storeUserInformation();
+                        // no credentials saved, give option to save
+                        handleSaveCredentials(values);
+                      });
+                      navigation.navigate('Root');
+                    }, (err) => {
+                      handleFailedAttempt(err);
+                    });
+                  } else {
+                    // offline
+                    getData('credentials').then((userCreds) => {
+                      // username and password entered (or saved in creds) match the saved cred
+                      if (values.username === userCreds.username
+                        && values.password === userCreds.password) {
+                        // need some pincode verification
+                        navigation.navigate('Root');
+                      } else {
+                        // cannot log in offline without saved credentials, connect to internet
+                      }
+                    });
+                  }
                 });
-                // } 
-                // else {
-                //   // offline
-                //   getData('credentials').then((userCreds) => {
-                //     // username and password entered (or saved in creds) match the saved cred
-                //     if (values.username === userCreds.username
-                //       && values.password === userCreds.password) {
-                //       // need some pincode verification
-                //       actions.setSubmitting(false);
-                //       navigation.navigate('Root');
-                //     } else {
-                //       // cannot log in offline without saved credentials, connect to internet
-                //     }
-                //   });
-                // }
-                // });
-                // setTimeout(() => {
-                //   actions.setSubmitting(false);
-                // }, 1000);
+                setTimeout(() => {
+                  actions.setSubmitting(false);
+                }, 1000);
               }}
               validationSchema={validationSchema}
             >
