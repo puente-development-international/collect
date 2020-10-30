@@ -25,6 +25,9 @@ Here are some quick npm commands to get started:
 - [Expo](https://docs.expo.io/versions/latest/)
 - [Understanding Flexbox](https://yogalayout.com/playground)
 
+## Troubleshooting
+- [React-Native Navigation Crash in Android](https://github.com/react-navigation/react-navigation/issues/6919#issuecomment-592093015)
+
 
 ## Standards
 [![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/expo-community/standard-version-expo)

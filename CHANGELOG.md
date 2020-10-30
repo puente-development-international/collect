@@ -2,6 +2,58 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.10](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.9...v8.1.10) (2020-10-29)
+
+
+### Bug Fixes
+
+* remove mapview so that android works ([f2880ac](https://github.com/hopetambala/puente-reactnative-collect/commit/f2880ac24f08baf64a4f63783451eb6b9a280ae7))
+
+### [8.1.9](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.8...v8.1.9) (2020-10-29)
+
+
+### Bug Fixes
+
+*  packagerOpts ([013efd2](https://github.com/hopetambala/puente-reactnative-collect/commit/013efd261ff6a4a9cadcc914039e6e6e2ed61ac7))
+
+### [8.1.8](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.7...v8.1.8) (2020-10-29)
+
+
+### Bug Fixes
+
+* remove network check ([1f40483](https://github.com/hopetambala/puente-reactnative-collect/commit/1f4048330d387f73c9674e7cb33e7da0902e4483))
+
+### [8.1.7](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.6...v8.1.7) (2020-10-29)
+
+
+### Bug Fixes
+
+* remove offline functionality for local ([820f40e](https://github.com/hopetambala/puente-reactnative-collect/commit/820f40e5a266de95e6cda3f3cc46a1ece3e227e7))
+
+### [8.1.6](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.5...v8.1.6) (2020-10-29)
+
+### [8.1.5](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.4...v8.1.5) (2020-10-29)
+
+
+### Features
+
+* enable screens for android ([88ee173](https://github.com/hopetambala/puente-reactnative-collect/commit/88ee173ae655480038720e3f8382fe538ec7ac3c))
+
+
+### Bug Fixes
+
+* add fix for android ([09274a0](https://github.com/hopetambala/puente-reactnative-collect/commit/09274a0443891c65fc9d67b29a102067cbbd26db)), closes [/github.com/react-navigation/react-navigation/issues/6919#issuecomment-592093015](https://github.com/hopetambala//github.com/react-navigation/react-navigation/issues/6919/issues/issuecomment-592093015)
+
+### [8.1.4](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.3...v8.1.4) (2020-10-29)
+
+### [8.1.3](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.2...v8.1.3) (2020-10-28)
+
+
+### Bug Fixes
+
+* async storage libraries ([e122169](https://github.com/hopetambala/puente-reactnative-collect/commit/e1221692fa30dcc0ef4d223064a01537c988aebe))
+* revert change ([90745b2](https://github.com/hopetambala/puente-reactnative-collect/commit/90745b2de0487033c513493fb563b890621fcd45))
+
 ### [8.1.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.1...v8.1.2) (2020-10-27)
 
 ### [8.1.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.0...v8.1.1) (2020-10-27)
