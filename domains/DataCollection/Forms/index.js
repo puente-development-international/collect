@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 
+import { layout } from '../../../modules/theme';
+import I18n from '../../../modules/i18n';
+
 import IdentificationForm from './IdentificationForm';
 import SupplementaryForm from './SupplementaryForm';
 import GdprCompliance from '../GdprCompliance';
 
-import { layout } from '../../../modules/theme';
-
 import ResidentIdSearchbar from '../../../components/ResidentIdSearchbar';
+import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
 
 import PostSubmissionSVG from '../../../assets/graphics/static/Submission-Page-Icon.svg';
-import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
-import I18n from '../../../modules/i18n';
 
 const Forms = (props) => {
   const {

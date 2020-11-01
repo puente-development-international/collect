@@ -253,6 +253,7 @@
     "viewGallery": "Ver galería de formularios"
   },
   "gdpr": {
+    "consentForm": "Formulario de consentimiento",
     "mustConsent": "El miembro de la comunidad debe dar su consentimiento antes de poder continuar.",
     "policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     "viewFullPolicy": "Ver política completa",
@@ -334,7 +335,7 @@
     "spanish": "Español"
   },
   "residentIdSearchbar": {
-    "searchIndividual": "Condiciones y servicio"
+    "searchIndividual": "Buscar individuo"
   },
   "termsModal": {
     "termsService": "Condiciones y servicio",

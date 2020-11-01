@@ -50,10 +50,10 @@
     "credentialsModal": {
       "useCreds": "Would you like to use your saved login credentials?"
     },
-    "unableLogin":"Unable to login",
-    "usernamePasswordIncorrect":"Your username or password may be incorrect, please try again.",
-    "credentials":"Credentials",
-    "saveLoginCreds":"Would you like to save your login credentials for future use?"
+    "unableLogin": "Unable to login",
+    "usernamePasswordIncorrect": "Your username or password may be incorrect, please try again.",
+    "credentials": "Credentials",
+    "saveLoginCreds": "Would you like to save your login credentials for future use?"
   },
   "pinCode": {
     "getPinCode": {
@@ -251,6 +251,7 @@
     "viewGallery": "View Forms Gallery"
   },
   "gdpr": {
+    "consentForm": "Consent Form",
     "mustConsent": "Community member must consent before you can continue.",
     "policy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     "viewFullPolicy": "View Full Policy",
@@ -293,46 +294,46 @@
         "province": "Province:",
         "license": "License Number:"
       },
-      "forms":{
-        "completedForms":"Completed Forms",
-        "formCategory":"Form Category",
-        "comingSoon":"Coming Soon",
-        "suggestedForms":"Suggested Forms"
+      "forms": {
+        "completedForms": "Completed Forms",
+        "formCategory": "Form Category",
+        "comingSoon": "Coming Soon",
+        "suggestedForms": "Suggested Forms"
       },
-      "household":{
-        "editProfile":"Edit Profile",
-        "demographics":"Demographics",
-        "forms":"Forms",
-        "household":"Household",
-        "goBack":"Go back to find records"
+      "household": {
+        "editProfile": "Edit Profile",
+        "demographics": "Demographics",
+        "forms": "Forms",
+        "household": "Household",
+        "goBack": "Go back to find records"
       }
     }
   },
-  "householdManager":{
-    "createHousehold":"Create a new household",
-    "linkIndividual":"Link this individual to an existing house",
-    "household":"Household",
-    "householdManager":"Household Manager",
-    "relationshipHousehold":"What is their role/relationship in the household?",
-    "linked":"Linked"
+  "householdManager": {
+    "createHousehold": "Create a new household",
+    "linkIndividual": "Link this individual to an existing house",
+    "household": "Household",
+    "householdManager": "Household Manager",
+    "relationshipHousehold": "What is their role/relationship in the household?",
+    "linked": "Linked"
   },
-  "header":{
-    "goodMorning":"Good morning",
-    "goodAfternoon":"Good afternoon",
-    "goodEvening":"Good evening",
-    "goodMorning!":"Good morning!",
-    "goodAfternoon!":"Good afternoon!",
-    "goodEvening!":"Good evening!",
-    "puente":"PUENTE",
-    "volunteerSince":"Volunteer Since",
-    "surveysCollected":"Surveys Collected"
+  "header": {
+    "goodMorning": "Good morning",
+    "goodAfternoon": "Good afternoon",
+    "goodEvening": "Good evening",
+    "goodMorning!": "Good morning!",
+    "goodAfternoon!": "Good afternoon!",
+    "goodEvening!": "Good evening!",
+    "puente": "PUENTE",
+    "volunteerSince": "Volunteer Since",
+    "surveysCollected": "Surveys Collected"
   },
-  "languagePicker":{
-    "english":"English",
-    "spanish":"Spanish"
+  "languagePicker": {
+    "english": "English",
+    "spanish": "Spanish"
   },
-  "residentIdSearchbar":{
-    "searchIndividual":"Search Individual"
+  "residentIdSearchbar": {
+    "searchIndividual": "Search Individual"
   },
   "termsModal": {
     "termsService": "Terms and Service",
