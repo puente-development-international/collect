@@ -166,7 +166,7 @@ const configArray = [
     label: I18n.t('identificationForm.insNumber'),
     formikKey: 'insuranceNumber',
     value: '',
-    fieldType: 'input'
+    fieldType: 'numberInput'
   },
   {
     label: I18n.t('identificationForm.insProvider'),

@@ -22,8 +22,11 @@ export default function ForgotPassword({ navigation, setForgotPassword }) {
   const [emailError, setEmailError] = useState(false);
 
   return (
-    <View style={{ flex: 1, marginHorizontal: 15, marginTop: 60 }}>
+    <View style={{ flex: 1, marginHorizontal: 15, marginTop: 50 }}>
       <View style={{ flex: 9 }}>
+        <Button icon="arrow-left" width={100} onPress={handleSignIn}>
+          Back
+        </Button>
         {!emailError && !emailSuccess && (
           <View>
             <Formik
