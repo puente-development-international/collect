@@ -55,11 +55,12 @@ const FormGallery = (props) => {
       {customForms.length < 1 && (
         <View style={layout.screenRow}>
           <Card>
-            <Card.Title title="You do not have any custom forms" />
-            <Card.Content>
-              <Text>Check out our marketplace to view available forms</Text>
-              <Button>View Marketplace</Button>
-            </Card.Content>
+            <Card.Title title={I18n.t('formsGallery.noCustomForms')} />
+            {/* To be used when marketplace is available */}
+            {/* <Card.Content>
+              <Text>{I18n.t('formsGallery.checkOutMarketplace')}</Text>
+              <Button>{I18n.t('formsGallery.viewMarketplace')}</Button>
+            </Card.Content> */}
           </Card>
         </View>
       )}
