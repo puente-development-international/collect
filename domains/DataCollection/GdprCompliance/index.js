@@ -25,7 +25,7 @@ const GdprCompliance = ({
   };
   return (
     <View>
-      <Title style={{ marginLeft: 15 }}>Consent Form</Title>
+      <Title style={{ marginLeft: 15 }}>{I18n.t('gdpr.consentForm')}</Title>
       <View style={styles.container}>
         <Text style={{ flex: 2, padding: 10 }}>
           {I18n.t('gdpr.policy')}
