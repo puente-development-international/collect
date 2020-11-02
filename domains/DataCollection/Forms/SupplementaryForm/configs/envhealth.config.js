@@ -29,7 +29,8 @@ const configArray = {
         label: I18n.t('environmentalHealth.yearsLived.moreThan10'),
         value: 'moreThan10'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.yearsLived.house'),
@@ -57,14 +58,15 @@ const configArray = {
         label: I18n.t('environmentalHealth.yearsLived.moreThan10'),
         value: 'moreThan10'
       }
-    ]
-
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.biggestProblemComm'),
     formikKey: 'biggestproblemofcommunity',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.waterAccess.label'),
@@ -96,7 +98,8 @@ const configArray = {
         label: I18n.t('environmentalHealth.waterAccess.never'),
         value: 'Never'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.typeOfWater.label'),
@@ -116,7 +119,8 @@ const configArray = {
         label: I18n.t('environmentalHealth.typeOfWater.filtered'),
         value: 'filtered'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.bathroomAccess'),
@@ -132,7 +136,8 @@ const configArray = {
         label: I18n.t('global.no'),
         value: 'No'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.latrineAccess'),
@@ -148,7 +153,8 @@ const configArray = {
         label: I18n.t('global.no'),
         value: 'No'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.clinicAccess'),
@@ -164,31 +170,36 @@ const configArray = {
         label: I18n.t('global.no'),
         value: 'No'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.medicalProblemsGo'),
     formikKey: 'medicalproblemswheredoyougo',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.dentalProblemsGo'),
     formikKey: 'dentalproblemswheredoyougo',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.timesPerWeekTrash'),
     formikKey: 'timesperweektrashcollected',
     value: '',
-    fieldType: 'numberInput'
+    fieldType: 'numberInput',
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.trashBetweenPickups'),
     formikKey: 'wheretrashleftbetweenpickups',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.houseOwnership'),
@@ -204,7 +215,8 @@ const configArray = {
         label: I18n.t('global.no'),
         value: 'No'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.floorCondition.label'),
@@ -228,7 +240,8 @@ const configArray = {
         label: I18n.t('environmentalHealth.floorCondition.cementWorking'),
         value: 'cementWorking'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.roofCondition.label'),
@@ -244,7 +257,8 @@ const configArray = {
         label: I18n.t('environmentalHealth.roofCondition.work'),
         value: 'working'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.typeStove.label'),
@@ -264,7 +278,8 @@ const configArray = {
         label: I18n.t('environmentalHealth.typeStove.openFire'),
         value: 'openfire-noVentilation'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.houseMaterials.label'),
@@ -288,7 +303,8 @@ const configArray = {
         label: I18n.t('environmentalHealth.houseMaterials.block'),
         value: 'block'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.electricityAccess.label'),
@@ -308,7 +324,8 @@ const configArray = {
         label: I18n.t('environmentalHealth.electricityAccess.always'),
         value: 'always'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.foodSecurity'),
@@ -328,7 +345,8 @@ const configArray = {
         label: I18n.t('global.notSure'),
         value: 'not_sure'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.govAssistance.label'),
@@ -348,19 +366,22 @@ const configArray = {
         label: I18n.t('global.other'),
         value: 'other'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.numberIndividualsHouse'),
     formikKey: 'numberofIndividualsLivingintheHouse',
     value: '',
-    fieldType: 'numberInput'
+    fieldType: 'numberInput',
+    validation: true
   },
   {
     label: I18n.t('environmentalHealth.numberChildrenUnder5'),
     formikKey: 'numberofChildrenLivinginHouseUndertheAgeof5',
     value: '',
-    fieldType: 'numberInput'
+    fieldType: 'numberInput',
+    validation: true
   },
   ]
 };

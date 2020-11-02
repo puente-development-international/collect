@@ -46,7 +46,7 @@ const PaperInputPicker = ({
             theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
           />
           <Text style={{ color: 'red' }}>
-            {touched[formikKey] && errors[formikKey]}
+            {errors[formikKey]}
           </Text>
         </View>
       )}
@@ -62,7 +62,7 @@ const PaperInputPicker = ({
             theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
           />
           <Text style={{ color: 'red' }}>
-            {touched[formikKey] && errors[formikKey]}
+            {errors[formikKey]}
           </Text>
         </View>
       )}
@@ -97,6 +97,9 @@ const PaperInputPicker = ({
               </View>
             ))}
           </View>
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
         </View>
       )}
       {fieldType === 'autofill' && (
@@ -108,6 +111,9 @@ const PaperInputPicker = ({
             scrollViewScroll={scrollViewScroll}
             setScrollViewScroll={setScrollViewScroll}
           />
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
         </View>
       )}
       {fieldType === 'geolocation' && (
@@ -134,6 +140,9 @@ const PaperInputPicker = ({
                   {location.longitude}
                 </Text>
               </View>
+              <Text style={{ color: 'red' }}>
+                {errors[formikKey]}
+              </Text>
             </View>
           )}
         </View>
@@ -170,7 +179,7 @@ const PaperInputPicker = ({
                   theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
                 />
                 <Text style={{ color: 'red' }}>
-                  {touched[result] && errors[result]}
+                  {errors[result]}
                 </Text>
               </View>
             ))}
@@ -193,7 +202,7 @@ const PaperInputPicker = ({
                   theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
                 />
                 <Text style={{ color: 'red' }}>
-                  {touched[result] && errors[result]}
+                  {errors[result]}
                 </Text>
               </View>
             ))}

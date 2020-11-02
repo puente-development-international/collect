@@ -18,7 +18,8 @@ const configArray = {
           label: I18n.t('global.no'),
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.chronicDiabetes'),
@@ -34,7 +35,8 @@ const configArray = {
           label: I18n.t('global.no'),
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.chronicOther'),
@@ -50,7 +52,8 @@ const configArray = {
           label: I18n.t('global.no'),
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.doctor'),
@@ -66,13 +69,15 @@ const configArray = {
           label: I18n.t('global.no'),
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('global.notes'),
       formikKey: 'received_treatment_notes',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.statusOfHealth.label'),
@@ -100,7 +105,8 @@ const configArray = {
           label: I18n.t('global.other'),
           value: 'other'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.partOfBody.label'),
@@ -148,13 +154,15 @@ const configArray = {
           label: I18n.t('evaluationMedical.partOfBody.---'),
           value: ''
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.partOfBodyDescription'),
       formikKey: 'part_of_body_description',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.duration.label'),
@@ -178,7 +186,8 @@ const configArray = {
           label: I18n.t('evaluationMedical.duration.past5Years'),
           value: 'after_5_years'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.problemSuddenness.label'),
@@ -198,7 +207,8 @@ const configArray = {
           label: I18n.t('evaluationMedical.problemSuddenness.gradually'),
           value: 'gradually'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.progressionOfCondition.label'),
@@ -218,13 +228,15 @@ const configArray = {
           label: I18n.t('evaluationMedical.progressionOfCondition.constant'),
           value: 'constant'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('global.notes'),
       formikKey: 'notes',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.generalHealthConsult'),
@@ -240,7 +252,8 @@ const configArray = {
           label: I18n.t('global.no'),
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.surgicalRequired'),
@@ -256,13 +269,15 @@ const configArray = {
           label: I18n.t('global.no'),
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.yourGuess'),
       formikKey: 'AssessmentandEvaluation_Surgical_Guess',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.immediateFollowupRequired'),
@@ -278,13 +293,15 @@ const configArray = {
           label: I18n.t('global.no'),
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: I18n.t('evaluationMedical.plan'),
       formikKey: 'planOfAction',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: true
     },
   ]
 };

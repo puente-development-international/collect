@@ -21,6 +21,7 @@ import configArray from './config/config';
 
 import I18n from '../../../../modules/i18n';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
+import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
 
 // const validationSchema = yup.object().shape({
 //   fname: yup
@@ -42,6 +43,8 @@ const IdentificationForm = ({
       backgroundPostPatient();
     }, 10000);
 
+    setValidationSchema(yupValidationPicker(configArray));
+
     return () => {
       clearInterval(interval);
     };
@@ -49,10 +52,12 @@ const IdentificationForm = ({
 
   const [inputs, setInputs] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
+  const [validationSchema, setValidationSchema] = useState();
 
   useEffect(() => {
     setInputs(configArray);
   }, [setInputs, configArray]);
+
 
   return (
     <Formik
@@ -102,7 +107,10 @@ const IdentificationForm = ({
           }
         });
       }}
-    // validationSchema={validationSchema}
+      validationSchema={validationSchema}
+      // only validate on submit, errors persist after fixing
+      validateOnBlur={false}
+      validateOnChange={false}
     >
       {(formikProps) => (
         <View style={layout.formContainer}>
@@ -121,14 +129,14 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <PaperButton
-              onPressEvent={formikProps.handleSubmit}
-              buttonText={I18n.t('global.submit')}
-            />
-          // <Button icon="human" onPress={formikProps.handleSubmit}>
-          //   <Text>Submit</Text>
-          // </Button>
-          )}
+              <PaperButton
+                onPressEvent={formikProps.handleSubmit}
+                buttonText={I18n.t('global.submit')}
+              />
+              // <Button icon="human" onPress={formikProps.handleSubmit}>
+              //   <Text>Submit</Text>
+              // </Button>
+            )}
         </View>
       )}
     </Formik>
