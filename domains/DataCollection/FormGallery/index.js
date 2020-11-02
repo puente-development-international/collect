@@ -68,7 +68,7 @@ const FormGallery = (props) => {
         <Text>Manage My Pinned Forms</Text>
       </View> */}
       <View style={layout.screenRow}>
-        <Text style={styles.header}>Market Place</Text>
+        <Text style={styles.header}>{I18n.t('formsGallery.marketPlace')}</Text>
       </View>
       <View style={layout.screenRow}>
         <Card>

@@ -71,9 +71,10 @@
     "ourMarketPlace": "Nuestro mercado de formularios",
     "discoverForms": "Descubra formularios creados por empresas de confianza",
     "exploreForms": "Explorar formularios",
-    "noCustomForms": "You do not have any custom forms",
-    "checkOutMarketplace": "Check out our marketplace to view available forms",
-    "viewMarketplace": "View Marketplace"
+    "noCustomForms": "No tiene formularios personalizados",
+    "checkOutMarketplace": "Visite nuestro mercado para ver los formularios disponibles",
+    "viewMarketplace": "Ver mercado de formularios",
+    "marketPlace": "Mercado de formularios"
   },
   "identificationForm": {
     "demographics": "Demografía",
