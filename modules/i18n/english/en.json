@@ -70,7 +70,11 @@
     "customForms": "Custom Forms",
     "ourMarketPlace": "Our Marketplace",
     "discoverForms": "Discover forms created by trusted companies",
-    "exploreForms": "Explore Forms"
+    "exploreForms": "Explore Forms",
+    "noCustomForms": "You do not have any custom forms",
+    "checkOutMarketplace": "Check out our marketplace to view available forms",
+    "viewMarketplace": "View Marketplace",
+    "marketPlace": "Marketplace"
   },
   "identificationForm": {
     "demographics": "Demographics",
