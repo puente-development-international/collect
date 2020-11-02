@@ -33,11 +33,11 @@ const SupplementaryForm = ({
   useEffect(() => {
     if (selectedForm === 'env') {
       setConfig(envConfig);
-      setValidationSchema(yupValidationPicker(envConfig['fields']));
+      setValidationSchema(yupValidationPicker(envConfig.fields));
     }
     if (selectedForm === 'med-eval') {
       setConfig(medConfig);
-      setValidationSchema(yupValidationPicker(medConfig['fields']));
+      setValidationSchema(yupValidationPicker(medConfig.fields));
     }
     if (selectedForm === 'custom') setConfig(customForm);
   }, [selectedForm, config]);
@@ -100,14 +100,14 @@ const SupplementaryForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button
-                disabled={!surveyee.objectId}
-                onPress={formikProps.handleSubmit}
-              >
-                {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
-                {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
-              </Button>
-            )}
+            <Button
+              disabled={!surveyee.objectId}
+              onPress={formikProps.handleSubmit}
+            >
+              {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
+              {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
+            </Button>
+          )}
         </View>
       )}
     </Formik>

@@ -58,7 +58,6 @@ const IdentificationForm = ({
     setInputs(configArray);
   }, [setInputs, configArray]);
 
-
   return (
     <Formik
       initialValues={{}}
@@ -129,14 +128,14 @@ const IdentificationForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <PaperButton
-                onPressEvent={formikProps.handleSubmit}
-                buttonText={I18n.t('global.submit')}
-              />
-              // <Button icon="human" onPress={formikProps.handleSubmit}>
-              //   <Text>Submit</Text>
-              // </Button>
-            )}
+            <PaperButton
+              onPressEvent={formikProps.handleSubmit}
+              buttonText={I18n.t('global.submit')}
+            />
+          // <Button icon="human" onPress={formikProps.handleSubmit}>
+          //   <Text>Submit</Text>
+          // </Button>
+          )}
         </View>
       )}
     </Formik>

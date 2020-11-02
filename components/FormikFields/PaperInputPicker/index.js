@@ -20,7 +20,7 @@ const PaperInputPicker = ({
 }) => {
   const { label, formikKey, fieldType } = data;
   const {
-    handleChange, handleBlur, touched, errors, setFieldValue, values
+    handleChange, handleBlur, errors, setFieldValue, values
   } = formikProps;
 
   const [location, setLocation] = React.useState({ latitude: 5, longitude: 10, altitude: 0 });
