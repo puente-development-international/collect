@@ -27,7 +27,8 @@
     "toEnglish": "Cambiar el idioma al inglés",
     "toSpanish": "Cambiar el idioma al español",
     "errorTerms": "Error, se deben acordar los términos y el servicio",
-    "error Contraseña": "Error, sus contraseñas no coinciden."
+    "error Contraseña": "Error, sus contraseñas no coinciden.",
+    "usernameError": "Sign up attempt failed.\n\nYou might have attempted to sign up with a username (email/phone number) that has been previously registered with another account.\n\nPlease contact your supervisor if you believe this is an error."
   },
   "signIn": {
     "username": "Nombre de usuario",

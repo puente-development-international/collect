@@ -88,6 +88,7 @@ export default function SignUp({ navigation }) {
                 } else {
                   retrieveSignUpFunction(values)
                     .then((user) => {
+                      console.log("sign up success")
                       const userString = JSON.stringify(user);
                       const userValues = JSON.parse(userString);
                       const { username } = userValues;
@@ -105,9 +106,13 @@ export default function SignUp({ navigation }) {
                           navigation.navigate('Root');
                         }, () => {
                           // sign in failed, alert user
+                          console.log("fail 1")
                         });
-                    }, () => {
+                    }, (error) => {
                       // sign up failed alert user
+                      console.log(error);
+                      console.log("fail 2")
+                      alert("Sign up attempt failed.\n\nYou might have attempted to sign up with a username (email/phone number) that has been previously registered with another account.\n\nPlease contact your supervisor if you believe this is an error.")
                     });
                 }
                 setTimeout(() => {
@@ -182,8 +187,8 @@ export default function SignUp({ navigation }) {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
-                  )}
+                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
+                    )}
 
                   <TermsModal visible={visible} setVisible={setVisible} />
                 </>
