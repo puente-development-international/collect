@@ -13,7 +13,7 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { retrieveSignUpFunction, retrieveSignInFunction, retrieveCurrentUserFunction } from '../../../services/parse/auth';
+import { retrieveSignUpFunction } from '../../../services/parse/auth';
 
 import FormInput from '../../../components/FormikFields/FormInput';
 import TermsModal from '../../../components/TermsModal';
@@ -88,25 +88,13 @@ export default function SignUp({ navigation }) {
                 } else {
                   retrieveSignUpFunction(values)
                     .then((user) => {
-                      const userString = JSON.stringify(user);
-                      const userValues = JSON.parse(userString);
-                      const { username } = userValues;
-                      // sign user in after successful sign up
-                      retrieveSignInFunction(username, values.password)
-                        .then(() => {
-                          // user signed in and signed up
-                          // store organization for future use
-                          const currentUser = retrieveCurrentUserFunction();
-                          getData('organization').then((organization) => {
-                            if (organization !== currentUser.organization) {
-                              storeData(currentUser.organization, 'organization');
-                            }
-                          });
-                          navigation.navigate('Root');
-                        }, () => {
-                          // sign in failed, alert user
-                        });
-                    }, (error) => {
+                      getData('organization').then((organization) => {
+                        if (organization !== user.get('organization')) {
+                          storeData(user.get('organization'), 'organization');
+                        }
+                        navigation.navigate('Root');
+                      });
+                    }).catch((error) => {
                       // sign up failed alert user
                       console.log(`Error: ${error.code} ${error.message}`); // eslint-disable-line
                       alert(I18n.t('signUp.usernameError')); // eslint-disable-line
