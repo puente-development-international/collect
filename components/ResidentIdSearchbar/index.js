@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { Headline, Button, Searchbar } from 'react-native-paper';
 import { Spinner } from 'native-base';
 
@@ -75,6 +75,10 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
     setQuery('');
   };
 
+  const renderItem = ({ item }) => (
+    <Button onPress={() => onSelectSurveyee(item)}>{`${item?.fname} ${item?.lname}`}</Button>
+  );
+
   return (
     <View>
       <Headline style={styles.header}>{I18n.t('residentIdSearchbar.searchIndividual')}</Headline>
@@ -87,11 +91,19 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
       {loading
         && <Spinner color="blue" />}
 
-      {query !== '' && filterList(residents).map((listItem,) => (
+      {/* {query !== '' && filterList(residents).map((listItem,) => (
         <View key={listItem.objectId}>
-          <Button onPress={() => onSelectSurveyee(listItem)}>{listItem.fname}</Button>
+          <Button onPress={() => onSelectSurveyee(listItem)}>{listItem.fname || listItem.lname}</Button>
         </View>
-      ))}
+      ))} */}
+
+      {query !== '' && (
+        <FlatList
+          data={filterList(residents)}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.objectId}
+        />
+      )}
 
       {surveyee && surveyee.objectId && (
         <ResidentCard resident={surveyee} />
