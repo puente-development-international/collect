@@ -1,363 +1,362 @@
-import I18n from '../../../../../modules/i18n';
-
 const configArray = {
   class: 'HistoryEnvironmentalHealth',
-  name: I18n.t('environmentalHealth.name'),
+  name: 'environmentalHealth.name',
+  customForm: false,
   fields: [{
-    label: I18n.t('environmentalHealth.yearsLived.community'),
+    label: 'environmentalHealth.yearsLived.community',
     formikKey: 'yearsLivedinthecommunity',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('environmentalHealth.yearsLived.less1'),
+        label: 'environmentalHealth.yearsLived.less1',
         value: 'lessThan1'
       },
       {
-        label: I18n.t('environmentalHealth.yearsLived.1_2'),
+        label: 'environmentalHealth.yearsLived.1_2',
         value: '1_2'
       },
       {
-        label: I18n.t('environmentalHealth.yearsLived.3_4'),
+        label: 'environmentalHealth.yearsLived.3_4',
         value: '3_4'
       },
       {
-        label: I18n.t('environmentalHealth.yearsLived.3_4'),
+        label: 'environmentalHealth.yearsLived.3_4',
         value: '5_10'
       },
       {
-        label: I18n.t('environmentalHealth.yearsLived.moreThan10'),
+        label: 'environmentalHealth.yearsLived.moreThan10',
         value: 'moreThan10'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.yearsLived.house'),
+    label: 'environmentalHealth.yearsLived.house',
     formikKey: 'yearsLivedinThisHouse',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('environmentalHealth.yearsLived.less1'),
+        label: 'environmentalHealth.yearsLived.less1',
         value: 'lessThan1'
       },
       {
-        label: I18n.t('environmentalHealth.yearsLived.1_2'),
+        label: 'environmentalHealth.yearsLived.1_2',
         value: '1_2'
       },
       {
-        label: I18n.t('environmentalHealth.yearsLived.3_4'),
+        label: 'environmentalHealth.yearsLived.3_4',
         value: '3_4'
       },
       {
-        label: I18n.t('environmentalHealth.yearsLived.3_4'),
+        label: 'environmentalHealth.yearsLived.3_4',
         value: '5_10'
       },
       {
-        label: I18n.t('environmentalHealth.yearsLived.moreThan10'),
+        label: 'environmentalHealth.yearsLived.moreThan10',
         value: 'moreThan10'
       }
     ]
 
   },
   {
-    label: I18n.t('environmentalHealth.biggestProblemComm'),
+    label: 'environmentalHealth.biggestProblemComm',
     formikKey: 'biggestproblemofcommunity',
     value: '',
     fieldType: 'input'
   },
   {
-    label: I18n.t('environmentalHealth.waterAccess.label'),
+    label: 'environmentalHealth.waterAccess.label',
     formikKey: 'waterAccess',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('environmentalHealth.waterAccess.everyday'),
+        label: 'environmentalHealth.waterAccess.everyday',
         value: 'everyday'
       },
       {
-        label: I18n.t('environmentalHealth.waterAccess.4_6'),
+        label: 'environmentalHealth.waterAccess.4_6',
         value: '4-6AWeek'
       },
       {
-        label: I18n.t('environmentalHealth.waterAccess.2_3'),
+        label: 'environmentalHealth.waterAccess.2_3',
         value: '2-3AWeek'
       },
       {
-        label: I18n.t('environmentalHealth.waterAccess.1perWeek'),
+        label: 'environmentalHealth.waterAccess.1perWeek',
         value: '1AWeek'
       },
       {
-        label: I18n.t('environmentalHealth.waterAccess.1perMonth'),
+        label: 'environmentalHealth.waterAccess.1perMonth',
         value: '1AMonth'
       },
       {
-        label: I18n.t('environmentalHealth.waterAccess.never'),
+        label: 'environmentalHealth.waterAccess.never',
         value: 'Never'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.typeOfWater.label'),
+    label: 'environmentalHealth.typeOfWater.label',
     formikKey: 'typeofWaterdoyoudrink',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('environmentalHealth.typeOfWater.bottled'),
+        label: 'environmentalHealth.typeOfWater.bottled',
         value: 'bottled'
       },
       {
-        label: I18n.t('environmentalHealth.typeOfWater.tap'),
+        label: 'environmentalHealth.typeOfWater.tap',
         value: 'tap'
       },
       {
-        label: I18n.t('environmentalHealth.typeOfWater.filtered'),
+        label: 'environmentalHealth.typeOfWater.filtered',
         value: 'filtered'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.bathroomAccess'),
+    label: 'environmentalHealth.bathroomAccess',
     formikKey: 'bathroomAccess',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('global.yes'),
+        label: 'global.yes',
         value: 'Yes'
       },
       {
-        label: I18n.t('global.no'),
+        label: 'global.no',
         value: 'No'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.latrineAccess'),
+    label: 'environmentalHealth.latrineAccess',
     formikKey: 'latrineAccess',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('global.yes'),
+        label: 'global.yes',
         value: 'Yes'
       },
       {
-        label: I18n.t('global.no'),
+        label: 'global.no',
         value: 'No'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.clinicAccess'),
+    label: 'environmentalHealth.clinicAccess',
     formikKey: 'clinicAccess',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('global.yes'),
+        label: 'global.yes',
         value: 'Yes'
       },
       {
-        label: I18n.t('global.no'),
+        label: 'global.no',
         value: 'No'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.medicalProblemsGo'),
+    label: 'environmentalHealth.medicalProblemsGo',
     formikKey: 'medicalproblemswheredoyougo',
     value: '',
     fieldType: 'input'
   },
   {
-    label: I18n.t('environmentalHealth.dentalProblemsGo'),
+    label: 'environmentalHealth.dentalProblemsGo',
     formikKey: 'dentalproblemswheredoyougo',
     value: '',
     fieldType: 'input'
   },
   {
-    label: I18n.t('environmentalHealth.timesPerWeekTrash'),
+    label: 'environmentalHealth.timesPerWeekTrash',
     formikKey: 'timesperweektrashcollected',
     value: '',
     fieldType: 'numberInput'
   },
   {
-    label: I18n.t('environmentalHealth.trashBetweenPickups'),
+    label: 'environmentalHealth.trashBetweenPickups',
     formikKey: 'wheretrashleftbetweenpickups',
     value: '',
     fieldType: 'input'
   },
   {
-    label: I18n.t('environmentalHealth.houseOwnership'),
+    label: 'environmentalHealth.houseOwnership',
     formikKey: 'houseownership',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('global.yes'),
+        label: 'global.yes',
         value: 'Yes'
       },
       {
-        label: I18n.t('global.no'),
+        label: 'global.no',
         value: 'No'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.floorCondition.label'),
+    label: 'environmentalHealth.floorCondition.label',
     formikKey: 'conditionoFloorinyourhouse',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('environmentalHealth.floorCondition.dirtFloorPoor'),
+        label: 'environmentalHealth.floorCondition.dirtFloorPoor',
         value: 'dirtPoor'
       },
       {
-        label: I18n.t('environmentalHealth.floorCondition.dirtFloorWork'),
+        label: 'environmentalHealth.floorCondition.dirtFloorWork',
         value: 'dirtWorking'
       },
       {
-        label: I18n.t('environmentalHealth.floorCondition.cementPoor'),
+        label: 'environmentalHealth.floorCondition.cementPoor',
         value: 'cementPoor'
       },
       {
-        label: I18n.t('environmentalHealth.floorCondition.cementWorking'),
+        label: 'environmentalHealth.floorCondition.cementWorking',
         value: 'cementWorking'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.roofCondition.label'),
+    label: 'environmentalHealth.roofCondition.label',
     formikKey: 'conditionoRoofinyourhouse',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('environmentalHealth.roofCondition.poor'),
+        label: 'environmentalHealth.roofCondition.poor',
         value: 'poor'
       },
       {
-        label: I18n.t('environmentalHealth.roofCondition.work'),
+        label: 'environmentalHealth.roofCondition.work',
         value: 'working'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.typeStove.label'),
+    label: 'environmentalHealth.typeStove.label',
     formikKey: 'stoveType',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('environmentalHealth.typeStove.constructedVentilation'),
+        label: 'environmentalHealth.typeStove.constructedVentilation',
         value: 'cementStove-Ventilation'
       },
       {
-        label: I18n.t('environmentalHealth.typeStove.stoveTop'),
+        label: 'environmentalHealth.typeStove.stoveTop',
         value: 'stoveTop'
       },
       {
-        label: I18n.t('environmentalHealth.typeStove.openFire'),
+        label: 'environmentalHealth.typeStove.openFire',
         value: 'openfire-noVentilation'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.houseMaterials.label'),
+    label: 'environmentalHealth.houseMaterials.label',
     formikKey: 'houseMaterial',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('environmentalHealth.houseMaterials.zinc'),
+        label: 'environmentalHealth.houseMaterials.zinc',
         value: 'zinc'
       },
       {
-        label: I18n.t('environmentalHealth.houseMaterials.wood'),
+        label: 'environmentalHealth.houseMaterials.wood',
         value: 'wood'
       },
       {
-        label: I18n.t('environmentalHealth.houseMaterials.partBlock_partWood'),
+        label: 'environmentalHealth.houseMaterials.partBlock_partWood',
         value: 'partBlock_partWood'
       },
       {
-        label: I18n.t('environmentalHealth.houseMaterials.block'),
+        label: 'environmentalHealth.houseMaterials.block',
         value: 'block'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.electricityAccess.label'),
+    label: 'environmentalHealth.electricityAccess.label',
     formikKey: 'electricityAccess',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('environmentalHealth.electricityAccess.never'),
+        label: 'environmentalHealth.electricityAccess.never',
         value: 'never'
       },
       {
-        label: I18n.t('environmentalHealth.electricityAccess.sometimes'),
+        label: 'environmentalHealth.electricityAccess.sometimes',
         value: 'sometimes'
       },
       {
-        label: I18n.t('environmentalHealth.electricityAccess.always'),
+        label: 'environmentalHealth.electricityAccess.always',
         value: 'always'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.foodSecurity'),
+    label: 'environmentalHealth.foodSecurity',
     formikKey: 'foodSecurity',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('global.yes'),
+        label: 'global.yes',
         value: 'Yes'
       },
       {
-        label: I18n.t('global.no'),
+        label: 'global.no',
         value: 'No'
       },
       {
-        label: I18n.t('global.notSure'),
+        label: 'global.notSure',
         value: 'not_sure'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.govAssistance.label'),
+    label: 'environmentalHealth.govAssistance.label',
     formikKey: 'govAssistance',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('environmentalHealth.govAssistance.foodStamps'),
+        label: 'environmentalHealth.govAssistance.foodStamps',
         value: 'solidaridad'
       },
       {
-        label: I18n.t('environmentalHealth.govAssistance.adultLiteracy'),
+        label: 'environmentalHealth.govAssistance.adultLiteracy',
         value: 'aprendiendo'
       },
       {
-        label: I18n.t('global.other'),
+        label: 'global.other',
         value: 'other'
       }
     ]
   },
   {
-    label: I18n.t('environmentalHealth.numberIndividualsHouse'),
+    label: 'environmentalHealth.numberIndividualsHouse',
     formikKey: 'numberofIndividualsLivingintheHouse',
     value: '',
     fieldType: 'numberInput'
   },
   {
-    label: I18n.t('environmentalHealth.numberChildrenUnder5'),
+    label: 'environmentalHealth.numberChildrenUnder5',
     formikKey: 'numberofChildrenLivinginHouseUndertheAgeof5',
     value: '',
     fieldType: 'numberInput'

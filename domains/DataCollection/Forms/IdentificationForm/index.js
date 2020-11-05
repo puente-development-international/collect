@@ -114,6 +114,7 @@ const IdentificationForm = ({
                 surveyingOrganization={surveyingOrganization}
                 scrollViewScroll={scrollViewScroll}
                 setScrollViewScroll={setScrollViewScroll}
+                customForm={false}
               // placeholder="Ana"
               />
             </View>
