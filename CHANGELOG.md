@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.3.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.3.0...v8.3.1) (2020-11-05)
+
+
+### Bug Fixes
+
+* add a flatlist ([32a49f5](https://github.com/hopetambala/puente-reactnative-collect/commit/32a49f56c35610606c077dcde51c0f793d562588))
+* caching records ([5997c57](https://github.com/hopetambala/puente-reactnative-collect/commit/5997c57e46b1416e26df1f68a8f91064e6fc328b))
+
 ## [8.3.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.2.0...v8.3.0) (2020-11-05)
 
 
