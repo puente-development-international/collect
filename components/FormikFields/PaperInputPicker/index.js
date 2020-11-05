@@ -96,7 +96,9 @@ const PaperInputPicker = ({
                     mode="outlined"
                     onPress={() => setFieldValue(formikKey, result.value)}
                   >
-                    <Text style={{ color: theme.colors.primary }}>{customForm ? result.label : I18n.t(result.label)}</Text>
+                    <Text style={{ color: theme.colors.primary }}>
+                      {customForm ? result.label : I18n.t(result.label)}
+                    </Text>
                   </Button>
                 )}
               </View>

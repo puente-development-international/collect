@@ -1,5 +1,3 @@
-import I18n from '../../../../../modules/i18n';
-
 const configArray = {
   class: 'EvaluationMedical',
   name: 'evaluationMedical.name',
