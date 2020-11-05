@@ -38,7 +38,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
     const queryParams = {
       skip: 0,
       offset: 0,
-      limit: 10000,
+      limit: 100000,
       parseColumn: 'surveyingOrganization',
       parseParam: surveyingOrganization,
     };

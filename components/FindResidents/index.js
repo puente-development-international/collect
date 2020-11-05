@@ -26,7 +26,7 @@ const FindResidents = ({
 
   useEffect(() => {
     fetchAsyncData();
-  }, []);
+  }, [organization]);
 
   const fetchAsyncData = () => {
     setLoading(true);
@@ -44,7 +44,7 @@ const FindResidents = ({
     const queryParams = {
       skip: 0,
       offset: 0,
-      limit: 10000,
+      limit: 100000,
       parseColumn: 'surveyingOrganization',
       parseParam: organization,
     };
@@ -52,11 +52,10 @@ const FindResidents = ({
     let records = await residentIDQuery(queryParams);
     records = JSON.parse(JSON.stringify(records));
 
-    if (data !== records) {
-      storeData(records, 'residentData');
-      setData(records);
-      setResidents(records.slice());
-    }
+    storeData(records, 'residentData');
+
+    setData(records);
+    setResidents(records.slice());
     setLoading(false);
   };
 
