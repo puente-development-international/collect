@@ -30,6 +30,8 @@ export default function useCachedResources() {
           if (org) {
             const residentData = await fetchResidentData(org);
             storeData(residentData, 'residentData');
+          } else {
+            storeData([], 'residentData');
           }
         });
       } catch (e) {

@@ -34,7 +34,7 @@ const configArray = [
       'identificationForm.dob.month',
       'identificationForm.dob.day',
       'identificationForm.dob.year'
-    ]
+    ],
     validation: true
   },
   {
@@ -195,7 +195,7 @@ const configArray = [
   //   value: ""
   // },
   {
-    label: I18n.t('identificationForm.location'),
+    label: 'identificationForm.location',
     formikKey: 'location',
     value: {},
     fieldType: 'geolocation',

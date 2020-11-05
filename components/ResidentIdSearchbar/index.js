@@ -5,6 +5,7 @@ import { Spinner } from 'native-base';
 
 import { residentIDQuery } from '../../services/parse/crud';
 
+import { getData } from '../../modules/async-storage';
 import I18n from '../../modules/i18n';
 
 import ResidentCard from '../FindResidents/Resident/ResidentCard';
@@ -18,8 +19,19 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchData();
+    fetchAsyncData();
   }, [surveyingOrganization]);
+
+  const fetchAsyncData = () => {
+    setLoading(true);
+    getData('residentData').then((residentData) => {
+      if (residentData) {
+        setData(residentData || []);
+        setResidents(residentData.slice() || [].slice());
+      }
+      setLoading(false);
+    });
+  };
 
   const fetchData = async () => {
     setLoading(true);
@@ -71,6 +83,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
         onChangeText={onChangeSearch}
         value={query}
       />
+      <Button onPress={fetchData}>Refresh</Button>
       {loading
         && <Spinner color="blue" />}
 
