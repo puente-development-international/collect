@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.3.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.2.0...v8.3.0) (2020-11-05)
+
+
+### Bug Fixes
+
+* problems with caching records on splash screen ([3690467](https://github.com/hopetambala/puente-reactnative-collect/commit/3690467c67d0ed8550f80559237457d218025925))
+
 ## [8.2.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.10...v8.2.0) (2020-11-04)
 
 
