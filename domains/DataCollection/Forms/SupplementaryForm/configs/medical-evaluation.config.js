@@ -17,7 +17,8 @@ const configArray = {
           label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'evaluationMedical.chronicDiabetes',
@@ -33,7 +34,8 @@ const configArray = {
           label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'evaluationMedical.chronicOther',
@@ -49,7 +51,8 @@ const configArray = {
           label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'evaluationMedical.doctor',
@@ -65,13 +68,15 @@ const configArray = {
           label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'global.notes',
       formikKey: 'received_treatment_notes',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: true
     },
     {
       label: 'evaluationMedical.statusOfHealth.label',
@@ -99,7 +104,8 @@ const configArray = {
           label: 'global.other',
           value: 'other'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'evaluationMedical.partOfBody.label',
@@ -147,13 +153,15 @@ const configArray = {
           label: 'evaluationMedical.partOfBody.---',
           value: ''
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'evaluationMedical.partOfBodyDescription',
       formikKey: 'part_of_body_description',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: true
     },
     {
       label: 'evaluationMedical.duration.label',
@@ -177,7 +185,8 @@ const configArray = {
           label: 'evaluationMedical.duration.past5Years',
           value: 'after_5_years'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'evaluationMedical.problemSuddenness.label',
@@ -197,7 +206,8 @@ const configArray = {
           label: 'evaluationMedical.problemSuddenness.gradually',
           value: 'gradually'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'evaluationMedical.progressionOfCondition.label',
@@ -217,13 +227,15 @@ const configArray = {
           label: 'evaluationMedical.progressionOfCondition.constant',
           value: 'constant'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'global.notes',
       formikKey: 'notes',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: true
     },
     {
       label: 'evaluationMedical.generalHealthConsult',
@@ -239,7 +251,8 @@ const configArray = {
           label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'evaluationMedical.surgicalRequired',
@@ -255,13 +268,15 @@ const configArray = {
           label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'evaluationMedical.yourGuess',
       formikKey: 'AssessmentandEvaluation_Surgical_Guess',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: true
     },
     {
       label: 'evaluationMedical.immediateFollowupRequired',
@@ -277,13 +292,15 @@ const configArray = {
           label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: true
     },
     {
       label: 'evaluationMedical.plan',
       formikKey: 'planOfAction',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: true
     },
   ]
 };

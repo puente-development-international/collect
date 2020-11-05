@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.2.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.10...v8.2.0) (2020-11-04)
+
+
+### Bug Fixes
+
+* ability to create roles ([ed40e28](https://github.com/hopetambala/puente-reactnative-collect/commit/ed40e2860afa14c43bbbbe57f4c995435b50fb8d))
+* missing translations ([1716a1f](https://github.com/hopetambala/puente-reactnative-collect/commit/1716a1f502de26b8f9bef338ec8079ce70284c11))
+* remove unused tests ([afcb5e9](https://github.com/hopetambala/puente-reactnative-collect/commit/afcb5e9913222864b75e1b8360476bc950319552))
+* spanish translation for household ([81d6801](https://github.com/hopetambala/puente-reactnative-collect/commit/81d68010d8e125038a1f0c9bc89ffc63a14c6510))
+* spanish translation on GDPR page ([cdafb81](https://github.com/hopetambala/puente-reactnative-collect/commit/cdafb81912ee78a01c2e30cb613cd54ab6eb6f2b))
+
 ### [8.1.10](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.1.9...v8.1.10) (2020-10-29)
 
 

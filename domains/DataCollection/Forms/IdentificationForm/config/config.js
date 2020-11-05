@@ -3,26 +3,27 @@ const configArray = [
     label: 'identificationForm.demographics',
     fieldType: 'header',
     formikKey: 'none_bi',
-
   },
   {
     label: 'global.fName',
     formikKey: 'fname',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: true
   },
   {
     label: 'global.lName',
     formikKey: 'lname',
     value: '',
-    fieldType: 'input'
-
+    fieldType: 'input',
+    validation: true
   },
   {
     label: 'identificationForm.nickname',
     formikKey: 'nickname',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: true
   },
   {
     label: 'identificationForm.dob.label',
@@ -34,6 +35,7 @@ const configArray = [
       'identificationForm.dob.day',
       'identificationForm.dob.year'
     ]
+    validation: true
   },
   {
     label: 'identificationForm.sex.label',
@@ -53,13 +55,15 @@ const configArray = [
         label: 'identificationForm.sex.notSay',
         value: 'prefer_not_to_say'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: 'identificationForm.telephone',
     formikKey: 'telephoneNumber',
     value: '',
-    fieldType: 'numberInput'
+    fieldType: 'numberInput',
+    validation: true
   },
   // {
   //   label: 'Demographic Information',
@@ -89,14 +93,15 @@ const configArray = [
         label: 'identificationForm.marriageStatus.widow',
         value: 'widow'
       }
-    ]
+    ],
+    validation: true
   },
   {
     label: 'identificationForm.occupation',
     formikKey: 'occupation',
     value: '',
-    fieldType: 'input'
-
+    fieldType: 'input',
+    validation: true
   },
   {
     label: 'identificationForm.educationLevel.label',
@@ -128,26 +133,30 @@ const configArray = [
         label: 'identificationForm.educationLevel.college',
         value: 'college'
       },
-    ]
+    ],
+    validation: true
   },
   {
     label: 'identificationForm.location',
     fieldType: 'header',
     formikKey: 'none_location',
+    validation: true
   },
   {
     label: 'global.commName',
     formikKey: 'communityname',
     value: '',
     fieldType: 'autofill',
-    parameter: 'Communities'
+    parameter: 'Communities',
+    validation: true
   },
   {
     label: 'global.city',
     formikKey: 'city',
     value: '',
     fieldType: 'autofill',
-    parameter: 'City'
+    parameter: 'City',
+    validation: true
   },
   // {
   //   label: "Province",
@@ -158,25 +167,27 @@ const configArray = [
     label: 'identificationForm.insurance',
     fieldType: 'header',
     formikKey: 'none_insurance',
-
   },
   {
     label: 'identificationForm.insNumber',
     formikKey: 'insuranceNumber',
     value: '',
-    fieldType: 'numberInput'
+    fieldType: 'numberInput',
+    validation: true
   },
   {
     label: 'identificationForm.insProvider',
     formikKey: 'insuranceProvider',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: true
   },
   {
     label: 'identificationForm.clinicProvider',
     formikKey: 'clinicProvider',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: true
   },
   // {
   //   label: "Cedula Number",
@@ -184,9 +195,11 @@ const configArray = [
   //   value: ""
   // },
   {
+    label: I18n.t('identificationForm.location'),
     formikKey: 'location',
     value: {},
-    fieldType: 'geolocation'
+    fieldType: 'geolocation',
+    validation: true
   },
   // {
   //   label: 'Latitude',
@@ -203,8 +216,7 @@ const configArray = [
   {
     label: 'identificationForm.household',
     fieldType: 'header',
-    formikKey: 'none_household',
-
+    formikKey: 'none_household'
   },
   {
     label: 'identificationForm.household',
