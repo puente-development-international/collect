@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import {
   Modal, Text, Portal, Headline, Button
 } from 'react-native-paper';
@@ -18,9 +19,11 @@ export default function TermsModal(props) {
         contentContainerStyle={styles.modal}
         dismissable={false}
       >
-        <Headline theme={theme}>{I18n.t('termsModal.termsService')}</Headline>
-        <Text>{I18n.t('termsModal.policy')}</Text>
-        <Button mode="contained" theme={theme} color="#3E81FD" style={styles.button} onPress={() => setVisible(false)}>{I18n.t('termsModal.ok')}</Button>
+        <ScrollView>
+          <Headline theme={theme}>{I18n.t('termsModal.termsService')}</Headline>
+          <Text>{I18n.t('termsModal.policy')}</Text>
+          <Button mode="contained" theme={theme} color="#3E81FD" style={styles.button} onPress={() => setVisible(false)}>{I18n.t('termsModal.ok')}</Button>
+        </ScrollView>
       </Modal>
     </Portal>
   );
