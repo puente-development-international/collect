@@ -93,6 +93,7 @@ const SupplementaryForm = ({
               <PaperInputPicker
                 data={result}
                 formikProps={formikProps}
+                customForm={config.customForm}
               />
             </View>
           ))}

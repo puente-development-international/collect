@@ -17,6 +17,7 @@ import FindResidents from '../../components/FindResidents';
 
 import { deleteData, getData } from '../../modules/async-storage';
 import { layout } from '../../modules/theme';
+import I18n from '../../modules/i18n';
 
 import { customQueryService } from '../../services/parse/crud';
 import { retrieveSignOutFunction } from '../../services/parse/auth';
@@ -26,8 +27,6 @@ import FindRecordSVG from '../../assets/graphics/static/Find-Record-Icon.svg';
 import NewRecordSVG from '../../assets/icons/New-Record-icon.svg';
 
 import styles from './index.styles';
-
-import I18n from '../../modules/i18n';
 
 const puenteForms = [
   { tag: 'id', name: 'Resident ID' },
