@@ -193,9 +193,11 @@ const DataCollection = ({ navigation }) => {
           {view === 'Find Records'
             && (
               <View>
-                <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
-                  <Text>{I18n.t('dataCollection.back')}</Text>
-                </Button>
+                {!selectPerson && (
+                  <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
+                    <Text>{I18n.t('dataCollection.back')}</Text>
+                  </Button>
+                )}
                 <FindResidents
                   selectPerson={selectPerson}
                   setSelectPerson={setSelectPerson}

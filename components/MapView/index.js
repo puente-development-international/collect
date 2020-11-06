@@ -24,6 +24,7 @@ const Maps = ({ organization }) => {
 
   useEffect(() => {
     retriveAsyncMarkers();
+    handleLocation();
   }, []);
 
   // useEffect(() => {
