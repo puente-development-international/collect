@@ -176,17 +176,17 @@ const PaperInputPicker = ({
           <Text>{translatedLabel}</Text>
           <View style={styles.multiInputContainer}>
             {data.options.map((result) => (
-              <View key={result} style={styles.inputItem}>
+              <View key={customForm ? result : I18n.t(result)} style={styles.inputItem}>
                 <TextInput
                   label={customForm ? result : I18n.t(result)}
-                  onChangeText={handleChange(result)}
-                  onBlur={handleBlur(result)}
+                  onChangeText={handleChange(customForm ? result : I18n.t(result))}
+                  onBlur={handleBlur(customForm ? result : I18n.t(result))}
                   {...rest} //eslint-disable-line
                   mode="outlined"
                   theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
                 />
                 <Text style={{ color: 'red' }}>
-                  {errors[result]}
+                  {errors[customForm ? result : I18n.t(result)]}
                 </Text>
               </View>
             ))}
@@ -198,18 +198,18 @@ const PaperInputPicker = ({
           <Text>{translatedLabel}</Text>
           <View style={styles.multiInputContainer}>
             {data.options.map((result) => (
-              <View key={result} style={styles.inputItem}>
+              <View key={customForm ? result : I18n.t(result)} style={styles.inputItem}>
                 <TextInput
                   label={customForm ? result : I18n.t(result)}
-                  onChangeText={handleChange(result)}
-                  onBlur={handleBlur(result)}
+                  onChangeText={handleChange(customForm ? result : I18n.t(result))}
+                  onBlur={handleBlur(customForm ? result : I18n.t(result))}
                   {...rest} //eslint-disable-line
                   mode="outlined"
                   keyboardType="numeric"
                   theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
                 />
                 <Text style={{ color: 'red' }}>
-                  {errors[result]}
+                  {errors[customForm ? result : I18n.t(result)]}
                 </Text>
               </View>
             ))}

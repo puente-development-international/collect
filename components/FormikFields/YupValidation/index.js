@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-
+import I18n from '../../../modules/i18n';
 export default function yupValidationPicker(fields) {
   let validationSchema = yup.object().shape({});
   fields.map((result) => {
@@ -21,7 +21,7 @@ export default function yupValidationPicker(fields) {
       } else if (fieldType === 'multiInputRow' || fieldType === 'multiInputRowNum') {
         options.map((option) => {
           const resultSchemaMultiInput = {};
-          resultSchemaMultiInput[option] = yup.string().label(label).required();
+          resultSchemaMultiInput[I18n.t(option)] = yup.string().label(label).required();
           const resultObjectMultiInput = yup.object().shape(resultSchemaMultiInput);
           validationSchema = validationSchema.concat(resultObjectMultiInput);
         });
