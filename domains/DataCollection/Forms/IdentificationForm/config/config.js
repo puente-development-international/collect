@@ -32,16 +32,16 @@ const configArray = [
     fieldType: 'multiInputRowNum',
     options: [
       {
-      label: 'identificationForm.dob.month',
-      value: 'Month'
+        label: 'identificationForm.dob.month',
+        value: 'Month'
       },
       {
-      label: 'identificationForm.dob.day',
-      value: 'Day'
+        label: 'identificationForm.dob.day',
+        value: 'Day'
       },
       {
-      label: 'identificationForm.dob.year',
-      value: 'Year'
+        label: 'identificationForm.dob.year',
+        value: 'Year'
       }
     ],
     validation: true

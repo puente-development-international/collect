@@ -198,18 +198,18 @@ const PaperInputPicker = ({
           <Text>{translatedLabel}</Text>
           <View style={styles.multiInputContainer}>
             {data.options.map((result) => (
-              <View key={result['value']} style={styles.inputItem}>
+              <View key={result.value} style={styles.inputItem}>
                 <TextInput
-                  label={customForm ? result['label'] : I18n.t(result['label'])}
-                  onChangeText={handleChange(result['value'])}
-                  onBlur={handleBlur(result['value'])}
+                  label={customForm ? result.label : I18n.t(result.label)}
+                  onChangeText={handleChange(result.value)}
+                  onBlur={handleBlur(result.value)}
                   {...rest} //eslint-disable-line
                   mode="outlined"
                   keyboardType="numeric"
                   theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
                 />
                 <Text style={{ color: 'red' }}>
-                  {errors[result['value']]}
+                  {errors[result.value]}
                 </Text>
               </View>
             ))}
