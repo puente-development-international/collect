@@ -22,7 +22,7 @@ export default function yupValidationPicker(fields) {
       } else if (fieldType === 'multiInputRow' || fieldType === 'multiInputRowNum') {
         options.map((option) => {
           const resultSchemaMultiInput = {};
-          resultSchemaMultiInput[I18n.t(option)] = yup.string().label(I18n.t(option)).required();
+          resultSchemaMultiInput[option['value']] = yup.string().label(option['value']).required();
           const resultObjectMultiInput = yup.object().shape(resultSchemaMultiInput);
           validationSchema = validationSchema.concat(resultObjectMultiInput);
         });
