@@ -15,12 +15,15 @@ import PaperButton from '../../Button';
 import { theme, layout } from '../../../modules/theme';
 import styles from './index.style';
 
+import I18n from '../../../modules/i18n';
+
 const PaperInputPicker = ({
-  data, formikProps, scrollViewScroll, setScrollViewScroll, surveyingOrganization, ...rest
+  data, formikProps, scrollViewScroll, setScrollViewScroll, surveyingOrganization,
+  customForm, ...rest
 }) => {
   const { label, formikKey, fieldType } = data;
   const {
-    handleChange, handleBlur, touched, errors, setFieldValue, values
+    handleChange, handleBlur, errors, setFieldValue, values
   } = formikProps;
 
   const [location, setLocation] = React.useState({ latitude: 5, longitude: 10, altitude: 0 });
@@ -33,12 +36,14 @@ const PaperInputPicker = ({
     setLocation({ latitude, longitude, altitude });
   };
 
+  const translatedLabel = customForm ? label : I18n.t(label);
+
   return (
     <>
       {fieldType === 'input' && (
         <View style={styles}>
           <TextInput
-            label={label}
+            label={translatedLabel}
             onChangeText={handleChange(formikKey)}
             onBlur={handleBlur(formikKey)}
             {...rest} //eslint-disable-line
@@ -46,14 +51,14 @@ const PaperInputPicker = ({
             theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
           />
           <Text style={{ color: 'red' }}>
-            {touched[formikKey] && errors[formikKey]}
+            {errors[formikKey]}
           </Text>
         </View>
       )}
       {fieldType === 'numberInput' && (
         <View style={styles}>
           <TextInput
-            label={label}
+            label={translatedLabel}
             onChangeText={handleChange(formikKey)}
             onBlur={handleBlur(formikKey)}
             {...rest} //eslint-disable-line
@@ -62,13 +67,13 @@ const PaperInputPicker = ({
             theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
           />
           <Text style={{ color: 'red' }}>
-            {touched[formikKey] && errors[formikKey]}
+            {errors[formikKey]}
           </Text>
         </View>
       )}
       {fieldType === 'select' && (
         <View>
-          <Text style={layout.selectLabel}>{label}</Text>
+          <Text style={layout.selectLabel}>{translatedLabel}</Text>
           <View style={layout.buttonGroupContainer}>
             {data.options.map((result) => (
               <View key={result.value}>
@@ -80,7 +85,7 @@ const PaperInputPicker = ({
                     mode="contained"
                     onPress={() => setFieldValue(formikKey, result.value)}
                   >
-                    <Text style={{ color: 'white' }}>{result.label}</Text>
+                    <Text style={{ color: 'white' }}>{customForm ? result.label : I18n.t(result.label)}</Text>
                   </Button>
                 )}
                 {/* non-selected value */}
@@ -91,12 +96,17 @@ const PaperInputPicker = ({
                     mode="outlined"
                     onPress={() => setFieldValue(formikKey, result.value)}
                   >
-                    <Text style={{ color: theme.colors.primary }}>{result.label}</Text>
+                    <Text style={{ color: theme.colors.primary }}>
+                      {customForm ? result.label : I18n.t(result.label)}
+                    </Text>
                   </Button>
                 )}
               </View>
             ))}
           </View>
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
         </View>
       )}
       {fieldType === 'autofill' && (
@@ -108,6 +118,9 @@ const PaperInputPicker = ({
             scrollViewScroll={scrollViewScroll}
             setScrollViewScroll={setScrollViewScroll}
           />
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
         </View>
       )}
       {fieldType === 'geolocation' && (
@@ -134,6 +147,9 @@ const PaperInputPicker = ({
                   {location.longitude}
                 </Text>
               </View>
+              <Text style={{ color: 'red' }}>
+                {errors[formikKey]}
+              </Text>
             </View>
           )}
         </View>
@@ -149,7 +165,7 @@ const PaperInputPicker = ({
       )}
       {fieldType === 'header' && (
         <View>
-          <Headline style={styles.header}>{label}</Headline>
+          <Headline style={styles.header}>{translatedLabel}</Headline>
           <View
             style={styles.horizontalLine}
           />
@@ -157,12 +173,12 @@ const PaperInputPicker = ({
       )}
       {fieldType === 'multiInputRow' && (
         <View style={styles.container}>
-          <Text>{label}</Text>
+          <Text>{translatedLabel}</Text>
           <View style={styles.multiInputContainer}>
             {data.options.map((result) => (
               <View key={result} style={styles.inputItem}>
                 <TextInput
-                  label={result}
+                  label={customForm ? result : I18n.t(result)}
                   onChangeText={handleChange(result)}
                   onBlur={handleBlur(result)}
                   {...rest} //eslint-disable-line
@@ -170,7 +186,7 @@ const PaperInputPicker = ({
                   theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
                 />
                 <Text style={{ color: 'red' }}>
-                  {touched[result] && errors[result]}
+                  {errors[result]}
                 </Text>
               </View>
             ))}
@@ -179,12 +195,12 @@ const PaperInputPicker = ({
       )}
       {fieldType === 'multiInputRowNum' && (
         <View style={styles.container}>
-          <Text>{label}</Text>
+          <Text>{translatedLabel}</Text>
           <View style={styles.multiInputContainer}>
             {data.options.map((result) => (
               <View key={result} style={styles.inputItem}>
                 <TextInput
-                  label={result}
+                  label={customForm ? result : I18n.t(result)}
                   onChangeText={handleChange(result)}
                   onBlur={handleBlur(result)}
                   {...rest} //eslint-disable-line
@@ -193,7 +209,7 @@ const PaperInputPicker = ({
                   theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
                 />
                 <Text style={{ color: 'red' }}>
-                  {touched[result] && errors[result]}
+                  {errors[result]}
                 </Text>
               </View>
             ))}
