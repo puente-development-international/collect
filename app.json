@@ -31,7 +31,8 @@
     },
     "android": {
       "versionCode": 380080301,
-      "package": "io.ionic.starter1270348"
+      "package": "io.ionic.starter1270348",
+      "softwareKeyboardLayoutMode": "pan"
     },
     "packagerOpts": {
       "config": "metro.config.js",
