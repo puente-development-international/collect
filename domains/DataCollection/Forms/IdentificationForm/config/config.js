@@ -31,9 +31,18 @@ const configArray = [
     value: '',
     fieldType: 'multiInputRowNum',
     options: [
-      'identificationForm.dob.month',
-      'identificationForm.dob.day',
-      'identificationForm.dob.year'
+      {
+        label: 'identificationForm.dob.month',
+        value: 'Month'
+      },
+      {
+        label: 'identificationForm.dob.day',
+        value: 'Day'
+      },
+      {
+        label: 'identificationForm.dob.year',
+        value: 'Year'
+      }
     ],
     validation: true
   },

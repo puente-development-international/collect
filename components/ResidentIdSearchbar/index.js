@@ -93,7 +93,9 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
 
       {/* {query !== '' && filterList(residents).map((listItem,) => (
         <View key={listItem.objectId}>
-          <Button onPress={() => onSelectSurveyee(listItem)}>{listItem.fname || listItem.lname}</Button>
+          <Button onPress={() => onSelectSurveyee(listItem)}>
+          {listItem.fname || listItem.lname}
+          </Button>
         </View>
       ))} */}
 
