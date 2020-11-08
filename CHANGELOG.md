@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.3.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.3.1...v8.3.2) (2020-11-08)
+
+
+### Bug Fixes
+
+* [Android] Tab bar renders above keyboard ([10b12a7](https://github.com/hopetambala/puente-reactnative-collect/commit/10b12a7e31369af41c998d68a730c9ee0576e74f)), closes [/github.com/react-navigation/react-navigation/issues/6700#issuecomment-658893985](https://github.com/hopetambala//github.com/react-navigation/react-navigation/issues/6700/issues/issuecomment-658893985)
+
 ### [8.3.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.3.0...v8.3.1) (2020-11-05)
 
 
