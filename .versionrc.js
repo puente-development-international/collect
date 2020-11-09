@@ -17,13 +17,13 @@ module.exports = {
     }
   ],
   types: [
-    { type: 'chore', section: 'Other chores' },
-    { type: 'ci', section: 'Pipeline changes' },
-    { type: 'docs', section: 'Documentation changes' },
-    { type: 'feat', section: 'New features' },
+    { type: 'chore', section: 'Chores' },
+    { type: 'ci', section: 'Pipeline Changes' },
+    { type: 'docs', section: 'Documentation Changes' },
+    { type: 'feat', section: 'New Features' },
     { type: 'fix', section: 'Bug fixes' },
     { type: 'perf', hidden: true },
-    { type: 'refactor', section: 'Code refactors' },
+    { type: 'refactor', section: 'Code Refactors' },
     { type: 'release', hidden: true },
     { type: 'style', hidden: true },
     { type: 'test', hidden: true },
