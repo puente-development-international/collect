@@ -30,4 +30,4 @@ Here are some quick npm commands to get started:
 
 
 ## Standards
-[![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/expo-community/standard-version-expo) 
+[![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/expo-community/standard-version-expo)
