@@ -38,6 +38,22 @@ const PaperInputPicker = ({
 
   const translatedLabel = customForm ? label : I18n.t(label);
 
+  const addArrayVal = (result) => {
+    if (values[formikKey] || values[formikKey] === []) {
+      // let temp = values[formikKey];
+      // temp = temp.push(result.value);
+      // console.log("TEMP",temp)
+      setFieldValue(formikKey, values[formikKey].concat([result.value]));
+      console.log("SET", values[formikKey]);
+    }
+    else {
+      setFieldValue(formikKey, [result.value]);
+    }
+  }
+  React.useEffect(() => {
+    console.log(values[formikKey])
+  })
+
   return (
     <>
       {fieldType === 'input' && (
@@ -79,31 +95,121 @@ const PaperInputPicker = ({
               <View key={result.value}>
                 {/* selected value */}
                 {result.value === values[formikKey] && (
-                  <Button
-                    style={layout.buttonGroupButtonStyle}
-                    key={result.value}
-                    mode="contained"
-                    onPress={() => setFieldValue(formikKey, result.value)}
-                  >
-                    <Text style={{ color: 'white' }}>{customForm ? result.label : I18n.t(result.label)}</Text>
-                  </Button>
+                  <View>
+                    <Button
+                      style={layout.buttonGroupButtonStyle}
+                      key={result.value}
+                      mode="contained"
+                      onPress={() => setFieldValue(formikKey, result.value)}
+                    >
+                      <Text style={{ color: 'white' }}>{customForm ? result.label : I18n.t(result.label)}</Text>
+                    </Button>
+                  </View>
                 )}
                 {/* non-selected value */}
                 {result.value !== values[formikKey] && (
-                  <Button
-                    style={layout.buttonGroupButtonStyle}
-                    key={result.value}
-                    mode="outlined"
-                    onPress={() => setFieldValue(formikKey, result.value)}
-                  >
-                    <Text style={{ color: theme.colors.primary }}>
-                      {customForm ? result.label : I18n.t(result.label)}
-                    </Text>
-                  </Button>
+                  <View style={styles}>
+                    <Button
+                      style={layout.buttonGroupButtonStyle}
+                      key={result.value}
+                      mode="outlined"
+                      onPress={() => setFieldValue(formikKey, result.value)}
+                    >
+                      <Text style={{ color: theme.colors.primary }}>
+                        {customForm ? result.label : I18n.t(result.label)}
+                      </Text>
+                    </Button>
+                  </View>
                 )}
               </View>
             ))}
           </View>
+          {/* text input option along with select option */}
+          {data.options.map((result) => (
+            <View>
+              {result.text === true && result.value === values[formikKey] && (
+                <View style={styles} key={result.textKey}>
+                  <TextInput
+                    label={customForm ? result.label : I18n.t(result.label)}
+                    onChangeText={handleChange(result.textKey)}
+                    onBlur={handleBlur(result.textKey)}
+                    {...rest} //eslint-disable-line
+                    mode="outlined"
+                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                  />
+                  <Text style={{ color: 'red' }}>
+                    {errors[result.textKey]}
+                  </Text>
+                </View>
+              )}
+            </View>
+          ))}
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
+        </View>
+      )}
+      {fieldType === 'selectMulti' && (
+        <View>
+          <Text style={layout.selectLabel}>{translatedLabel}</Text>
+          <View style={layout.buttonGroupContainer}>
+            {data.options.map((result) => (
+              <View key={result.value}>
+                {/* selected value */}
+                {values[formikKey] && values[formikKey].includes(result.value) && (
+                  <View>
+                    <Button
+                      style={layout.buttonGroupButtonStyle}
+                      key={result.value}
+                      mode="contained"
+                      onPress={() => {
+                        const test = values[formikKey].filter(item => item !== result.value);
+                        setFieldValue(formikKey, test)
+                      }
+                      }
+                    >
+                      <Text style={{ color: 'white' }}>{customForm ? result.label : I18n.t(result.label)}</Text>
+                    </Button>
+                  </View>
+                )}
+                {/* non-selected value */}
+                {(!values[formikKey] || !(values[formikKey]).includes(result.value)) && (
+                  <View style={styles}>
+                    <Button
+                      style={layout.buttonGroupButtonStyle}
+                      key={result.value}
+                      mode="outlined"
+                      onPress={() => addArrayVal(result)}
+                    >
+                      <Text style={{ color: theme.colors.primary }}>
+                        {customForm ? result.label : I18n.t(result.label)}
+                      </Text>
+                    </Button>
+                  </View>
+                )}
+              </View>
+            ))}
+          </View>
+          {/* text input option along with select option */}
+          {data.options.map((result) => (
+            <View>
+              {result.text === true && values[formikKey] && values[formikKey].includes(result.value) && (
+                <View style={styles} key={result.textKey}>
+                  <TextInput
+                    label={customForm ? result.label : I18n.t(result.label)}
+                    onChangeText={handleChange(result.textKey)}
+                    onBlur={handleBlur(result.textKey)}
+                    {...rest} //eslint-disable-line
+                    mode="outlined"
+                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                  />
+                  <Text style={{ color: 'red' }}>
+                    {errors[result.textKey]}
+                  </Text>
+                </View>
+              )}
+            </View>
+          ))}
           <Text style={{ color: 'red' }}>
             {errors[formikKey]}
           </Text>
