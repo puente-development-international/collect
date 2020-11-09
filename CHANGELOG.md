@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.3.4](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.3.3...v8.3.4) (2020-11-09)
+
+
+### Bug fixes
+
+* stuff ([295998b](https://github.com/hopetambala/puente-reactnative-collect/commit/295998b3fe16ec42650f06074593db808151d91f))
+
+
+### Documentation changes
+
+* add ability to have better messages ([25d1d1e](https://github.com/hopetambala/puente-reactnative-collect/commit/25d1d1e3e5fa1eb5218ed51c9218bb8dab62438d))
+
+
+### Other chores
+
+* **release:** 8.3.3 ([58f73e7](https://github.com/hopetambala/puente-reactnative-collect/commit/58f73e71a2da77991516e632f31a08282a487cec))
+* readme ([d6b99c3](https://github.com/hopetambala/puente-reactnative-collect/commit/d6b99c3c66c708c6d8ceae0f225ea3ed405ee06c))
+
 ### [8.3.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.3.1...v8.3.2) (2020-11-08)
 
 
