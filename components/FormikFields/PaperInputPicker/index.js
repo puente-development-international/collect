@@ -40,19 +40,11 @@ const PaperInputPicker = ({
 
   const addArrayVal = (result) => {
     if (values[formikKey] || values[formikKey] === []) {
-      // let temp = values[formikKey];
-      // temp = temp.push(result.value);
-      // console.log("TEMP",temp)
       setFieldValue(formikKey, values[formikKey].concat([result.value]));
-      console.log("SET", values[formikKey]);
-    }
-    else {
+    } else {
       setFieldValue(formikKey, [result.value]);
     }
-  }
-  React.useEffect(() => {
-    console.log(values[formikKey])
-  })
+  };
 
   return (
     <>
@@ -163,10 +155,9 @@ const PaperInputPicker = ({
                       key={result.value}
                       mode="contained"
                       onPress={() => {
-                        const test = values[formikKey].filter(item => item !== result.value);
-                        setFieldValue(formikKey, test)
-                      }
-                      }
+                        const test = values[formikKey].filter((item) => item !== result.value);
+                        setFieldValue(formikKey, test);
+                      }}
                     >
                       <Text style={{ color: 'white' }}>{customForm ? result.label : I18n.t(result.label)}</Text>
                     </Button>
@@ -193,20 +184,21 @@ const PaperInputPicker = ({
           {/* text input option along with select option */}
           {data.options.map((result) => (
             <View>
-              {result.text === true && values[formikKey] && values[formikKey].includes(result.value) && (
-                <View style={styles} key={result.textKey}>
-                  <TextInput
-                    label={customForm ? result.label : I18n.t(result.label)}
-                    onChangeText={handleChange(result.textKey)}
-                    onBlur={handleBlur(result.textKey)}
-                    {...rest} //eslint-disable-line
-                    mode="outlined"
-                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                  />
-                  <Text style={{ color: 'red' }}>
-                    {errors[result.textKey]}
-                  </Text>
-                </View>
+              {result.text === true && values[formikKey]
+                && values[formikKey].includes(result.value) && (
+                  <View style={styles} key={result.textKey}>
+                    <TextInput
+                      label={customForm ? result.label : I18n.t(result.label)}
+                      onChangeText={handleChange(result.textKey)}
+                      onBlur={handleBlur(result.textKey)}
+                      {...rest} //eslint-disable-line
+                      mode="outlined"
+                      theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                    />
+                    <Text style={{ color: 'red' }}>
+                      {errors[result.textKey]}
+                    </Text>
+                  </View>
               )}
             </View>
           ))}
