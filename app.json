@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "8.3.3",
+    "version": "8.3.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -23,14 +23,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "8.3.3",
+      "buildNumber": "8.3.2",
       "bundleIdentifier": "io.ionic.starter1270348"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "android": {
-      "versionCode": 380080303,
+      "versionCode": 380080302,
       "package": "io.ionic.starter1270348",
       "softwareKeyboardLayoutMode": "pan"
     },
