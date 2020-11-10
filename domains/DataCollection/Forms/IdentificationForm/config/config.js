@@ -168,7 +168,7 @@ const configArray = [
     validation: false
   },
   {
-    label: "Province",
+    label: "identificationForm.province",
     formikKey: 'province',
     value: "",
     fieldType: 'input',
@@ -201,7 +201,7 @@ const configArray = [
     validation: false
   },
   {
-    label: "Cedula Number",
+    label: "identificationForm.cedulaNumber",
     formikKey: 'cedulaNumber',
     value: "",
     fieldType: 'input',
