@@ -23,7 +23,7 @@ const configArray = [
     formikKey: 'nickname',
     value: '',
     fieldType: 'input',
-    validation: true
+    validation: false
   },
   {
     label: 'identificationForm.dob.label',
@@ -44,7 +44,7 @@ const configArray = [
         value: 'Year'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'identificationForm.sex.label',
@@ -72,7 +72,7 @@ const configArray = [
     formikKey: 'telephoneNumber',
     value: '',
     fieldType: 'numberInput',
-    validation: true
+    validation: false
   },
   // {
   //   label: 'Demographic Information',
@@ -110,7 +110,7 @@ const configArray = [
     formikKey: 'occupation',
     value: '',
     fieldType: 'input',
-    validation: true
+    validation: false
   },
   {
     label: 'identificationForm.educationLevel.label',
@@ -149,7 +149,7 @@ const configArray = [
     label: 'identificationForm.location',
     fieldType: 'header',
     formikKey: 'none_location',
-    validation: true
+    validation: false
   },
   {
     label: 'global.commName',
@@ -157,7 +157,7 @@ const configArray = [
     value: '',
     fieldType: 'autofill',
     parameter: 'Communities',
-    validation: true
+    validation: false
   },
   {
     label: 'global.city',
@@ -165,13 +165,15 @@ const configArray = [
     value: '',
     fieldType: 'autofill',
     parameter: 'City',
+    validation: false
+  },
+  {
+    label: "Province",
+    formikKey: 'province',
+    value: "",
+    fieldType: 'input',
     validation: true
   },
-  // {
-  //   label: "Province",
-  //   formikKey: 'province',
-  //   value: ""
-  // },
   {
     label: 'identificationForm.insurance',
     fieldType: 'header',
@@ -182,50 +184,39 @@ const configArray = [
     formikKey: 'insuranceNumber',
     value: '',
     fieldType: 'numberInput',
-    validation: true
+    validation: false
   },
   {
     label: 'identificationForm.insProvider',
     formikKey: 'insuranceProvider',
     value: '',
     fieldType: 'input',
-    validation: true
+    validation: false
   },
   {
     label: 'identificationForm.clinicProvider',
     formikKey: 'clinicProvider',
     value: '',
     fieldType: 'input',
-    validation: true
+    validation: false
   },
-  // {
-  //   label: "Cedula Number",
-  //   formikKey: 'cedulaNumber',
-  //   value: ""
-  // },
+  {
+    label: "Cedula Number",
+    formikKey: 'cedulaNumber',
+    value: "",
+    fieldType: 'input',
+    validation: false
+  },
   {
     label: 'identificationForm.location',
     formikKey: 'location',
     value: {},
     fieldType: 'geolocation',
-    validation: true
+    validation: false
   },
-  // {
-  //   label: 'Latitude',
-  //   formikKey: 'latitude',
-  //   value: 0,
-  //   fieldType: 'geolocation'
-  // },
-  // {
-  //   label: 'Longitude',
-  //   formikKey: 'longitude',
-  //   value: 0,
-  //   fieldType: 'geolocation'
-  // },
   {
     label: 'identificationForm.household',
     fieldType: 'header',
-    formikKey: 'none_household'
   },
   {
     label: 'identificationForm.household',
