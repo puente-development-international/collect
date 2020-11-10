@@ -112,9 +112,11 @@
       "college": "Universidad terminada",
       "someCollege": "Alguna educación superior"
     },
+    "cedulaNumber": "Número de cedula",
     "location": "Ubicación",
+    "province": "Provincia",
     "insurance": "Seguro",
-    "insNumber": "Numero de seguro",
+    "insNumber": "Número de seguro",
     "insProvider": "Proveedor de seguros",
     "clinicProvider": "Proveedor de la clínica",
     "latitude": "Latitud",
