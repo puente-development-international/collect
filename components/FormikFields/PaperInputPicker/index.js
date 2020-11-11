@@ -118,7 +118,7 @@ const PaperInputPicker = ({
           </View>
           {/* text input option along with select option */}
           {data.options.map((result) => (
-            <View>
+            <View key={result.value}>
               {result.text === true && result.value === values[formikKey] && (
                 <View style={styles} key={result.textKey}>
                   <TextInput
@@ -183,7 +183,7 @@ const PaperInputPicker = ({
           </View>
           {/* text input option along with select option */}
           {data.options.map((result) => (
-            <View>
+            <View key={result.value}>
               {result.text === true && values[formikKey]
                 && values[formikKey].includes(result.value) && (
                   <View style={styles} key={result.textKey}>
@@ -199,7 +199,7 @@ const PaperInputPicker = ({
                       {errors[result.textKey]}
                     </Text>
                   </View>
-              )}
+                )}
             </View>
           ))}
           <Text style={{ color: 'red' }}>
