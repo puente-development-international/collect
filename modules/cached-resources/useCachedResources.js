@@ -8,7 +8,7 @@ const fetchResidentData = async (surveyingOrganization) => {
   const queryParams = {
     skip: 0,
     offset: 0,
-    limit: 10000,
+    limit: 100000,
     parseColumn: 'surveyingOrganization',
     parseParam: surveyingOrganization,
   };
@@ -29,7 +29,7 @@ export default function useCachedResources() {
         await getData('organization').then(async (org) => {
           if (org) {
             const residentData = await fetchResidentData(org);
-            storeData(residentData, 'residentData');
+            storeData(residentData || [], 'residentData');
           }
         });
       } catch (e) {

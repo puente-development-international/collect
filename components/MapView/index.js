@@ -51,7 +51,7 @@ const Maps = ({ organization }) => {
     });
   };
 
-  const retriveAsyncMarkers = async () => {
+  const retriveAsyncMarkers = () => {
     getData('residentData').then((residentData) => {
       if (residentData) {
         setMarkers(residentData);
@@ -59,7 +59,7 @@ const Maps = ({ organization }) => {
     });
   };
 
-  const retrieveMarkers = async () => {
+  const retrieveMarkers = () => {
     setLoading(true);
     const queryParams = {
       skip: 0,

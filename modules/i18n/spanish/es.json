@@ -31,7 +31,7 @@
     "usernameError": "Sign up attempt failed.\n\nYou might have attempted to sign up with a username (email/phone number) that has been previously registered with another account.\n\nPlease contact your supervisor if you believe this is an error."
   },
   "signIn": {
-    "username": "Nombre de usuario",
+    "username": "Número de teléfono o Correo electronico ",
     "password": "Contraseña",
     "showPassword": "Mostrar contraseña",
     "login": "Iniciar sesión",
@@ -112,9 +112,11 @@
       "college": "Universidad terminada",
       "someCollege": "Alguna educación superior"
     },
+    "cedulaNumber": "Número de cedula",
     "location": "Ubicación",
+    "province": "Provincia",
     "insurance": "Seguro",
-    "insNumber": "Numero de seguro",
+    "insNumber": "Número de seguro",
     "insProvider": "Proveedor de seguros",
     "clinicProvider": "Proveedor de la clínica",
     "latitude": "Latitud",

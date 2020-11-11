@@ -1,290 +1,306 @@
-import I18n from '../../../../../modules/i18n';
-
 const configArray = {
   class: 'EvaluationMedical',
-  name: I18n.t('evaluationMedical.name'),
+  name: 'evaluationMedical.name',
+  customForm: false,
   fields: [
     {
-      label: I18n.t('evaluationMedical.chronicHypertension'),
+      label: 'evaluationMedical.chronicHypertension',
       formikKey: 'chronic_condition_hypertension',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('global.yes'),
+          label: 'global.yes',
           value: 'Yes'
         },
         {
-          label: I18n.t('global.no'),
+          label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.chronicDiabetes'),
+      label: 'evaluationMedical.chronicDiabetes',
       formikKey: 'chronic_condition_diabetes',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('global.yes'),
+          label: 'global.yes',
           value: 'Yes'
         },
         {
-          label: I18n.t('global.no'),
+          label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.chronicOther'),
+      label: 'evaluationMedical.chronicOther',
       formikKey: 'chronic_condition_other',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('global.yes'),
+          label: 'global.yes',
           value: 'Yes'
         },
         {
-          label: I18n.t('global.no'),
+          label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.doctor'),
+      label: 'evaluationMedical.doctor',
       formikKey: 'seen_doctor',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('global.yes'),
+          label: 'global.yes',
           value: 'Yes'
         },
         {
-          label: I18n.t('global.no'),
+          label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('global.notes'),
+      label: 'global.notes',
       formikKey: 'received_treatment_notes',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.statusOfHealth.label'),
+      label: 'evaluationMedical.statusOfHealth.label',
       formikKey: 'received_treatment_description',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('evaluationMedical.statusOfHealth.receivingNoSupport'),
+          label: 'evaluationMedical.statusOfHealth.receivingNoSupport',
           value: 'receiving_treatment_no_support_required'
         },
         {
-          label: I18n.t('evaluationMedical.statusOfHealth.receivingSupport'),
+          label: 'evaluationMedical.statusOfHealth.receivingSupport',
           value: 'receiving_treatment_support_required'
         },
         {
-          label: I18n.t('evaluationMedical.statusOfHealth.awaitingNoSupport'),
+          label: 'evaluationMedical.statusOfHealth.awaitingNoSupport',
           value: 'awaiting_treatment_support_required'
         },
         {
-          label: I18n.t('evaluationMedical.statusOfHealth.noTreatmentSupport'),
+          label: 'evaluationMedical.statusOfHealth.noTreatmentSupport',
           value: 'no_treatment_support_required'
         },
         {
-          label: I18n.t('global.other'),
+          label: 'global.other',
           value: 'other'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.partOfBody.label'),
+      label: 'evaluationMedical.partOfBody.label',
       formikKey: 'part_of_body',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('evaluationMedical.partOfBody.bonesJoints'),
+          label: 'evaluationMedical.partOfBody.bonesJoints',
           value: 'bones_or_joints'
         },
         {
-          label: I18n.t('evaluationMedical.partOfBody.eyes'),
+          label: 'evaluationMedical.partOfBody.eyes',
           value: 'eyes'
         },
         {
-          label: I18n.t('evaluationMedical.partOfBody.earsNoseThroat'),
+          label: 'evaluationMedical.partOfBody.earsNoseThroat',
           value: 'ear_nose_throat'
         },
         {
-          label: I18n.t('evaluationMedical.partOfBody.skin'),
+          label: 'evaluationMedical.partOfBody.skin',
           value: 'skin'
         },
         {
-          label: I18n.t('evaluationMedical.partOfBody.headMental'),
+          label: 'evaluationMedical.partOfBody.headMental',
           value: 'head_mental_issue'
         },
         {
-          label: I18n.t('evaluationMedical.partOfBody.stomachIntestines'),
+          label: 'evaluationMedical.partOfBody.stomachIntestines',
           value: 'stomach_intestines'
         },
         {
-          label: I18n.t('evaluationMedical.partOfBody.bladderUrinary'),
+          label: 'evaluationMedical.partOfBody.bladderUrinary',
           value: 'bladder_urinary'
         },
         {
-          label: I18n.t('evaluationMedical.partOfBody.reproductiveOrgans'),
+          label: 'evaluationMedical.partOfBody.reproductiveOrgans',
           value: 'reproductive_organs'
         },
         {
-          label: I18n.t('evaluationMedical.partOfBody.nutritionIssues'),
+          label: 'evaluationMedical.partOfBody.nutritionIssues',
           value: 'nutrition'
         },
         {
-          label: I18n.t('evaluationMedical.partOfBody.---'),
+          label: 'evaluationMedical.partOfBody.---',
           value: ''
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.partOfBodyDescription'),
+      label: 'evaluationMedical.partOfBodyDescription',
       formikKey: 'part_of_body_description',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.duration.label'),
+      label: 'evaluationMedical.duration.label',
       formikKey: 'duration',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('evaluationMedical.duration.lastMonth'),
+          label: 'evaluationMedical.duration.lastMonth',
           value: 'within_last_month'
         },
         {
-          label: I18n.t('evaluationMedical.duration.lastYear'),
+          label: 'evaluationMedical.duration.lastYear',
           value: 'within_last_year'
         },
         {
-          label: I18n.t('evaluationMedical.duration.last5Years'),
+          label: 'evaluationMedical.duration.last5Years',
           value: 'within_last_5_years'
         },
         {
-          label: I18n.t('evaluationMedical.duration.past5Years'),
+          label: 'evaluationMedical.duration.past5Years',
           value: 'after_5_years'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.problemSuddenness.label'),
+      label: 'evaluationMedical.problemSuddenness.label',
       formikKey: 'trauma_induced',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('evaluationMedical.problemSuddenness.suddenTrauma'),
+          label: 'evaluationMedical.problemSuddenness.suddenTrauma',
           value: 'suddenly_due_to_trauma'
         },
         {
-          label: I18n.t('evaluationMedical.problemSuddenness.suddenNoTrauma'),
+          label: 'evaluationMedical.problemSuddenness.suddenNoTrauma',
           value: 'suddenly_but_not_due_to_trauma'
         },
         {
-          label: I18n.t('evaluationMedical.problemSuddenness.gradually'),
+          label: 'evaluationMedical.problemSuddenness.gradually',
           value: 'gradually'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.progressionOfCondition.label'),
+      label: 'evaluationMedical.progressionOfCondition.label',
       formikKey: 'condition_progression',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('evaluationMedical.progressionOfCondition.improving'),
+          label: 'evaluationMedical.progressionOfCondition.improving',
           value: 'improve'
         },
         {
-          label: I18n.t('evaluationMedical.progressionOfCondition.worsening'),
+          label: 'evaluationMedical.progressionOfCondition.worsening',
           value: 'worsen'
         },
         {
-          label: I18n.t('evaluationMedical.progressionOfCondition.constant'),
+          label: 'evaluationMedical.progressionOfCondition.constant',
           value: 'constant'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('global.notes'),
+      label: 'global.notes',
       formikKey: 'notes',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.generalHealthConsult'),
+      label: 'evaluationMedical.generalHealthConsult',
       formikKey: 'AssessmentandEvaluation',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('global.yes'),
+          label: 'global.yes',
           value: 'Yes'
         },
         {
-          label: I18n.t('global.no'),
+          label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.surgicalRequired'),
+      label: 'evaluationMedical.surgicalRequired',
       formikKey: 'AssessmentandEvaluation_Surgical',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('global.yes'),
+          label: 'global.yes',
           value: 'Yes'
         },
         {
-          label: I18n.t('global.no'),
+          label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.yourGuess'),
+      label: 'evaluationMedical.yourGuess',
       formikKey: 'AssessmentandEvaluation_Surgical_Guess',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.immediateFollowupRequired'),
+      label: 'evaluationMedical.immediateFollowupRequired',
       formikKey: 'immediate_follow_up',
       value: '',
       fieldType: 'select',
       options: [
         {
-          label: I18n.t('global.yes'),
+          label: 'global.yes',
           value: 'Yes'
         },
         {
-          label: I18n.t('global.no'),
+          label: 'global.no',
           value: 'No'
         }
-      ]
+      ],
+      validation: false
     },
     {
-      label: I18n.t('evaluationMedical.plan'),
+      label: 'evaluationMedical.plan',
       formikKey: 'planOfAction',
       value: '',
-      fieldType: 'input'
+      fieldType: 'input',
+      validation: false
     },
   ]
 };

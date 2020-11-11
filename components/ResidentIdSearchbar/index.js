@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { Headline, Button, Searchbar } from 'react-native-paper';
 import { Spinner } from 'native-base';
 
 import { residentIDQuery } from '../../services/parse/crud';
 
+import { getData } from '../../modules/async-storage';
 import I18n from '../../modules/i18n';
 
 import ResidentCard from '../FindResidents/Resident/ResidentCard';
@@ -18,15 +19,26 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchData();
+    fetchAsyncData();
   }, [surveyingOrganization]);
+
+  const fetchAsyncData = () => {
+    setLoading(true);
+    getData('residentData').then((residentData) => {
+      if (residentData) {
+        setData(residentData || []);
+        setResidents(residentData.slice() || [].slice());
+      }
+      setLoading(false);
+    });
+  };
 
   const fetchData = async () => {
     setLoading(true);
     const queryParams = {
       skip: 0,
       offset: 0,
-      limit: 10000,
+      limit: 100000,
       parseColumn: 'surveyingOrganization',
       parseParam: surveyingOrganization,
     };
@@ -63,6 +75,10 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
     setQuery('');
   };
 
+  const renderItem = ({ item }) => (
+    <Button onPress={() => onSelectSurveyee(item)}>{`${item?.fname} ${item?.lname}`}</Button>
+  );
+
   return (
     <View>
       <Headline style={styles.header}>{I18n.t('residentIdSearchbar.searchIndividual')}</Headline>
@@ -71,14 +87,25 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
         onChangeText={onChangeSearch}
         value={query}
       />
+      <Button onPress={fetchData}>Refresh</Button>
       {loading
         && <Spinner color="blue" />}
 
-      {query !== '' && filterList(residents).map((listItem,) => (
+      {/* {query !== '' && filterList(residents).map((listItem,) => (
         <View key={listItem.objectId}>
-          <Button onPress={() => onSelectSurveyee(listItem)}>{listItem.fname}</Button>
+          <Button onPress={() => onSelectSurveyee(listItem)}>
+          {listItem.fname || listItem.lname}
+          </Button>
         </View>
-      ))}
+      ))} */}
+
+      {query !== '' && (
+        <FlatList
+          data={filterList(residents)}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.objectId}
+        />
+      )}
 
       {surveyee && surveyee.objectId && (
         <ResidentCard resident={surveyee} />

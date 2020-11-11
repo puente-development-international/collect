@@ -1,67 +1,78 @@
-import I18n from '../../../../../modules/i18n';
-
 const configArray = [
   {
-    label: I18n.t('identificationForm.demographics'),
+    label: 'identificationForm.demographics',
     fieldType: 'header',
     formikKey: 'none_bi',
-
   },
   {
-    label: I18n.t('global.fName'),
+    label: 'global.fName',
     formikKey: 'fname',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: true
   },
   {
-    label: I18n.t('global.lName'),
+    label: 'global.lName',
     formikKey: 'lname',
     value: '',
-    fieldType: 'input'
-
+    fieldType: 'input',
+    validation: true
   },
   {
-    label: I18n.t('identificationForm.nickname'),
+    label: 'identificationForm.nickname',
     formikKey: 'nickname',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: false
   },
   {
-    label: I18n.t('identificationForm.dob.label'),
+    label: 'identificationForm.dob.label',
     formikKey: 'dob',
     value: '',
     fieldType: 'multiInputRowNum',
     options: [
-      I18n.t('identificationForm.dob.month'),
-      I18n.t('identificationForm.dob.day'),
-      I18n.t('identificationForm.dob.year')
-    ]
+      {
+        label: 'identificationForm.dob.month',
+        value: 'Month'
+      },
+      {
+        label: 'identificationForm.dob.day',
+        value: 'Day'
+      },
+      {
+        label: 'identificationForm.dob.year',
+        value: 'Year'
+      }
+    ],
+    validation: false
   },
   {
-    label: I18n.t('identificationForm.sex.label'),
+    label: 'identificationForm.sex.label',
     formikKey: 'sex',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('identificationForm.sex.male'),
+        label: 'identificationForm.sex.male',
         value: 'male'
       },
       {
-        label: I18n.t('identificationForm.sex.female'),
+        label: 'identificationForm.sex.female',
         value: 'female'
       },
       {
-        label: I18n.t('identificationForm.sex.notSay'),
+        label: 'identificationForm.sex.notSay',
         value: 'prefer_not_to_say'
       }
-    ]
+    ],
+    validation: true
   },
   {
-    label: I18n.t('identificationForm.telephone'),
+    label: 'identificationForm.telephone',
     formikKey: 'telephoneNumber',
     value: '',
-    fieldType: 'numberInput'
+    fieldType: 'numberInput',
+    validation: false
   },
   // {
   //   label: 'Demographic Information',
@@ -70,146 +81,145 @@ const configArray = [
 
   // },
   {
-    label: I18n.t('identificationForm.marriageStatus.label'),
+    label: 'identificationForm.marriageStatus.label',
     formikKey: 'marriageStatus',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('identificationForm.marriageStatus.single'),
+        label: 'identificationForm.marriageStatus.single',
         value: 'single'
       },
       {
-        label: I18n.t('identificationForm.marriageStatus.married'),
+        label: 'identificationForm.marriageStatus.married',
         value: 'married'
       },
       {
-        label: I18n.t('identificationForm.marriageStatus.cohabitation'),
+        label: 'identificationForm.marriageStatus.cohabitation',
         value: 'free_union'
       },
       {
-        label: I18n.t('identificationForm.marriageStatus.widow'),
+        label: 'identificationForm.marriageStatus.widow',
         value: 'widow'
       }
-    ]
+    ],
+    validation: true
   },
   {
-    label: I18n.t('identificationForm.occupation'),
+    label: 'identificationForm.occupation',
     formikKey: 'occupation',
     value: '',
-    fieldType: 'input'
-
+    fieldType: 'input',
+    validation: false
   },
   {
-    label: I18n.t('identificationForm.educationLevel.label'),
+    label: 'identificationForm.educationLevel.label',
     formikKey: 'educationLevel',
     value: '',
     fieldType: 'select',
     options: [
       {
-        label: I18n.t('identificationForm.educationLevel.lessPrim'),
+        label: 'identificationForm.educationLevel.lessPrim',
         value: 'lessThanprimary'
       },
       {
-        label: I18n.t('identificationForm.educationLevel.prim'),
+        label: 'identificationForm.educationLevel.prim',
         value: 'primary'
       },
       {
-        label: I18n.t('identificationForm.educationLevel.someHS'),
+        label: 'identificationForm.educationLevel.someHS',
         value: 'someHighSchool'
       },
       {
-        label: I18n.t('identificationForm.educationLevel.hs'),
+        label: 'identificationForm.educationLevel.hs',
         value: 'highschool'
       },
       {
-        label: I18n.t('identificationForm.educationLevel.someCollege'),
+        label: 'identificationForm.educationLevel.someCollege',
         value: 'someCollege'
       },
       {
-        label: I18n.t('identificationForm.educationLevel.college'),
+        label: 'identificationForm.educationLevel.college',
         value: 'college'
       },
-    ]
+    ],
+    validation: true
   },
   {
-    label: I18n.t('identificationForm.location'),
+    label: 'identificationForm.location',
     fieldType: 'header',
     formikKey: 'none_location',
+    validation: false
   },
   {
-    label: I18n.t('global.commName'),
+    label: 'global.commName',
     formikKey: 'communityname',
     value: '',
     fieldType: 'autofill',
-    parameter: 'Communities'
+    parameter: 'Communities',
+    validation: false
   },
   {
-    label: I18n.t('global.city'),
+    label: 'global.city',
     formikKey: 'city',
     value: '',
     fieldType: 'autofill',
-    parameter: 'City'
+    parameter: 'City',
+    validation: false
   },
-  // {
-  //   label: "Province",
-  //   formikKey: 'province',
-  //   value: ""
-  // },
   {
-    label: I18n.t('identificationForm.insurance'),
+    label: 'identificationForm.province',
+    formikKey: 'province',
+    value: '',
+    fieldType: 'input',
+    validation: true
+  },
+  {
+    label: 'identificationForm.insurance',
     fieldType: 'header',
     formikKey: 'none_insurance',
-
   },
   {
-    label: I18n.t('identificationForm.insNumber'),
+    label: 'identificationForm.insNumber',
     formikKey: 'insuranceNumber',
     value: '',
-    fieldType: 'numberInput'
+    fieldType: 'numberInput',
+    validation: false
   },
   {
-    label: I18n.t('identificationForm.insProvider'),
+    label: 'identificationForm.insProvider',
     formikKey: 'insuranceProvider',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: false
   },
   {
-    label: I18n.t('identificationForm.clinicProvider'),
+    label: 'identificationForm.clinicProvider',
     formikKey: 'clinicProvider',
     value: '',
-    fieldType: 'input'
+    fieldType: 'input',
+    validation: false
   },
-  // {
-  //   label: "Cedula Number",
-  //   formikKey: 'cedulaNumber',
-  //   value: ""
-  // },
   {
+    label: 'identificationForm.cedulaNumber',
+    formikKey: 'cedulaNumber',
+    value: '',
+    fieldType: 'input',
+    validation: false
+  },
+  {
+    label: 'identificationForm.location',
     formikKey: 'location',
     value: {},
-    fieldType: 'geolocation'
+    fieldType: 'geolocation',
+    validation: false
   },
-  // {
-  //   label: 'Latitude',
-  //   formikKey: 'latitude',
-  //   value: 0,
-  //   fieldType: 'geolocation'
-  // },
-  // {
-  //   label: 'Longitude',
-  //   formikKey: 'longitude',
-  //   value: 0,
-  //   fieldType: 'geolocation'
-  // },
   {
-    label: I18n.t('identificationForm.household'),
+    label: 'identificationForm.household',
     fieldType: 'header',
-    formikKey: 'none_household',
-
   },
   {
-    label: I18n.t('identificationForm.household'),
+    label: 'identificationForm.household',
     formikKey: 'householdId',
     value: '',
     fieldType: 'household'

@@ -28,10 +28,10 @@
     "toSpanish": "Change Language to Spanish",
     "errorTerms": "Error, terms and service need to be agreed to.",
     "errorPassword": "Error, your passwords do not match.",
-    "usernameError":"Sign up attempt failed.\n\nYou might have attempted to sign up with a username (email/phone number) that has been previously registered with another account.\n\nPlease contact your supervisor if you believe this is an error."
+    "usernameError": "Sign up attempt failed.\n\nYou might have attempted to sign up with a username (email/phone number) that has been previously registered with another account.\n\nPlease contact your supervisor if you believe this is an error."
   },
   "signIn": {
-    "username": "Username",
+    "username": "Email or Phone Number",
     "password": "Password",
     "showPassword": "Show Password",
     "login": "Log-In",
@@ -110,7 +110,9 @@
       "someCollege": "Some College",
       "college": "College"
     },
+    "cedulaNumber": "License Number",
     "location": "Location",
+    "province": "Province",
     "insurance": "Insurance",
     "insNumber": "Insurance Number",
     "insProvider": "Insurance Provider",

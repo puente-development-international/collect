@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import {
-  View, FlatList
-} from 'react-native';
+import { View, FlatList } from 'react-native';
+import { Headline, Searchbar, Button } from 'react-native-paper';
 
-import {
-  Headline, Searchbar
-} from 'react-native-paper';
+import { Spinner } from 'native-base';
 
 import { residentIDQuery } from '../../services/parse/crud';
 
@@ -25,23 +22,29 @@ const FindResidents = ({
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
   const [residents, setResidents] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchAsyncData();
+  }, [organization]);
 
-  const fetchData = async () => {
-    await getData('residentData').then((residentData) => {
+  const fetchAsyncData = () => {
+    setLoading(true);
+    getData('residentData').then((residentData) => {
       if (residentData) {
         setData(residentData || []);
         setResidents(residentData.slice() || [].slice());
       }
+      setLoading(false);
     });
+  };
 
+  const fetchData = async () => {
+    setLoading(true);
     const queryParams = {
       skip: 0,
       offset: 0,
-      limit: 10000,
+      limit: 100000,
       parseColumn: 'surveyingOrganization',
       parseParam: organization,
     };
@@ -49,11 +52,11 @@ const FindResidents = ({
     let records = await residentIDQuery(queryParams);
     records = JSON.parse(JSON.stringify(records));
 
-    if (data !== records) {
-      storeData(records, 'residentData');
-      setData(records);
-      setResidents(records.slice());
-    }
+    storeData(records, 'residentData');
+
+    setData(records);
+    setResidents(records.slice());
+    setLoading(false);
   };
 
   const filterList = () => data.filter(
@@ -101,6 +104,7 @@ const FindResidents = ({
               onChangeText={onChangeSearch}
               value={query}
             />
+            <Button onPress={fetchData}>Refresh</Button>
           </>
         )}
 
@@ -113,6 +117,8 @@ const FindResidents = ({
           />
         </View>
       ))} */}
+        {loading
+          && <Spinner color="blue" />}
 
         {!selectPerson
           && (
@@ -123,6 +129,7 @@ const FindResidents = ({
             />
           )}
       </View>
+
       {selectPerson && (
         <ResidentPage
           fname={selectPerson.fname}
