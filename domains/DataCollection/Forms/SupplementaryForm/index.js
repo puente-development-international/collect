@@ -16,6 +16,7 @@ import medConfig from './configs/medical-evaluation.config';
 import I18n from '../../../../modules/i18n';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
+import addSelectTextInputs from './utils';
 
 const SupplementaryForm = ({
   navigation, selectedForm, setSelectedForm, surveyee, surveyingUser, surveyingOrganization,
@@ -51,18 +52,20 @@ const SupplementaryForm = ({
         formObject.surveyingUser = surveyingUser;
         formObject.surveyingOrganization = surveyingOrganization;
 
+        const formObjectUpdated = addSelectTextInputs(values, formObject);
+
         const postParams = {
           parseParentClassID: surveyee.objectId,
           parseParentClass: 'SurveyData',
           parseClass: config.class,
           photoFile,
-          localObject: formObject
+          localObject: formObjectUpdated
         };
 
         if (selectedForm === 'custom') {
           postParams.parseClass = 'FormResults';
 
-          const fieldsArray = Object.entries(formObject).map((obj) => ({
+          const fieldsArray = Object.entries(formObjectUpdated).map((obj) => ({
             title: obj[0],
             answer: obj[1]
           }));
@@ -83,8 +86,6 @@ const SupplementaryForm = ({
         });
       }}
       validationSchema={validationSchema}
-    // validateOnBlur={false}
-    // validateOnChange={false}
     >
       {(formikProps) => (
         <View style={layout.formContainer}>
@@ -101,14 +102,14 @@ const SupplementaryForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button
-              disabled={!surveyee.objectId}
-              onPress={formikProps.handleSubmit}
-            >
-              {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
-              {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
-            </Button>
-          )}
+              <Button
+                disabled={!surveyee.objectId}
+                onPress={formikProps.handleSubmit}
+              >
+                {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
+                {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
+              </Button>
+            )}
         </View>
       )}
     </Formik>
