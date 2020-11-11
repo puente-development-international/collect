@@ -1,14 +1,15 @@
 function addSelectTextInputs(values, formObject) {
+  const newFormObject = formObject;
   Object.entries(values).forEach(([key, val]) => {
     if (key.slice(0, 2) === '__') {
-      let keys = key.split("__")
+      const keys = key.split('__');
       const formikKey = keys[1];
       const formikOrigVal = keys[2];
-      const index = formObject[formikKey].indexOf(formikOrigVal)
-      formObject[formikKey][index] = formikOrigVal + "__" + val;
-      delete formObject[key];
+      const index = newFormObject[formikKey].indexOf(formikOrigVal);
+      newFormObject[formikKey][index] = `${formikOrigVal}__${val}`;
+      delete newFormObject[key];
     }
-  })
+  });
   return formObject;
 }
 
