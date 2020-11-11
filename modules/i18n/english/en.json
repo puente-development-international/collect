@@ -110,7 +110,9 @@
       "someCollege": "Some College",
       "college": "College"
     },
+    "cedulaNumber": "License Number",
     "location": "Location",
+    "province": "Province",
     "insurance": "Insurance",
     "insNumber": "Insurance Number",
     "insProvider": "Insurance Provider",

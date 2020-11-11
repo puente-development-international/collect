@@ -29,7 +29,7 @@ const configArray = {
         value: 'moreThan10'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.yearsLived.house',
@@ -58,14 +58,14 @@ const configArray = {
         value: 'moreThan10'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.biggestProblemComm',
     formikKey: 'biggestproblemofcommunity',
     value: '',
     fieldType: 'input',
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.waterAccess.label',
@@ -98,7 +98,7 @@ const configArray = {
         value: 'Never'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.typeOfWater.label',
@@ -119,7 +119,7 @@ const configArray = {
         value: 'filtered'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.bathroomAccess',
@@ -136,7 +136,7 @@ const configArray = {
         value: 'No'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.latrineAccess',
@@ -153,7 +153,7 @@ const configArray = {
         value: 'No'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.clinicAccess',
@@ -170,35 +170,35 @@ const configArray = {
         value: 'No'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.medicalProblemsGo',
     formikKey: 'medicalproblemswheredoyougo',
     value: '',
     fieldType: 'input',
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.dentalProblemsGo',
     formikKey: 'dentalproblemswheredoyougo',
     value: '',
     fieldType: 'input',
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.timesPerWeekTrash',
     formikKey: 'timesperweektrashcollected',
     value: '',
     fieldType: 'numberInput',
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.trashBetweenPickups',
     formikKey: 'wheretrashleftbetweenpickups',
     value: '',
     fieldType: 'input',
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.houseOwnership',
@@ -215,7 +215,7 @@ const configArray = {
         value: 'No'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.floorCondition.label',
@@ -240,7 +240,7 @@ const configArray = {
         value: 'cementWorking'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.roofCondition.label',
@@ -257,7 +257,7 @@ const configArray = {
         value: 'working'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.typeStove.label',
@@ -278,7 +278,7 @@ const configArray = {
         value: 'openfire-noVentilation'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.houseMaterials.label',
@@ -303,7 +303,7 @@ const configArray = {
         value: 'block'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.electricityAccess.label',
@@ -324,7 +324,7 @@ const configArray = {
         value: 'always'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.foodSecurity',
@@ -345,7 +345,7 @@ const configArray = {
         value: 'not_sure'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.govAssistance.label',
@@ -366,21 +366,21 @@ const configArray = {
         value: 'other'
       }
     ],
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.numberIndividualsHouse',
     formikKey: 'numberofIndividualsLivingintheHouse',
     value: '',
     fieldType: 'numberInput',
-    validation: true
+    validation: false
   },
   {
     label: 'environmentalHealth.numberChildrenUnder5',
     formikKey: 'numberofChildrenLivinginHouseUndertheAgeof5',
     value: '',
     fieldType: 'numberInput',
-    validation: true
+    validation: false
   },
   ]
 };

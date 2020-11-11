@@ -18,7 +18,7 @@ const configArray = {
           value: 'No'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.chronicDiabetes',
@@ -35,7 +35,7 @@ const configArray = {
           value: 'No'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.chronicOther',
@@ -52,7 +52,7 @@ const configArray = {
           value: 'No'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.doctor',
@@ -69,14 +69,14 @@ const configArray = {
           value: 'No'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'global.notes',
       formikKey: 'received_treatment_notes',
       value: '',
       fieldType: 'input',
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.statusOfHealth.label',
@@ -105,7 +105,7 @@ const configArray = {
           value: 'other'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.partOfBody.label',
@@ -154,14 +154,14 @@ const configArray = {
           value: ''
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.partOfBodyDescription',
       formikKey: 'part_of_body_description',
       value: '',
       fieldType: 'input',
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.duration.label',
@@ -186,7 +186,7 @@ const configArray = {
           value: 'after_5_years'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.problemSuddenness.label',
@@ -207,7 +207,7 @@ const configArray = {
           value: 'gradually'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.progressionOfCondition.label',
@@ -228,14 +228,14 @@ const configArray = {
           value: 'constant'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'global.notes',
       formikKey: 'notes',
       value: '',
       fieldType: 'input',
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.generalHealthConsult',
@@ -252,7 +252,7 @@ const configArray = {
           value: 'No'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.surgicalRequired',
@@ -269,14 +269,14 @@ const configArray = {
           value: 'No'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.yourGuess',
       formikKey: 'AssessmentandEvaluation_Surgical_Guess',
       value: '',
       fieldType: 'input',
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.immediateFollowupRequired',
@@ -293,14 +293,14 @@ const configArray = {
           value: 'No'
         }
       ],
-      validation: true
+      validation: false
     },
     {
       label: 'evaluationMedical.plan',
       formikKey: 'planOfAction',
       value: '',
       fieldType: 'input',
-      validation: true
+      validation: false
     },
   ]
 };
