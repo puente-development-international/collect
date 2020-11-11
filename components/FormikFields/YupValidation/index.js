@@ -3,7 +3,7 @@ import I18n from '../../../modules/i18n';
 
 export default function yupValidationPicker(fields) {
   let validationSchema = yup.object().shape({});
-  fields.map((result) => {
+  fields.forEach((result) => {
     const {
       label, formikKey, fieldType, validation, options
     } = result;
@@ -20,7 +20,7 @@ export default function yupValidationPicker(fields) {
         const resultObjectGeo = yup.object().shape(resultSchemaGeo);
         validationSchema = validationSchema.concat(resultObjectGeo);
       } else if (fieldType === 'multiInputRow' || fieldType === 'multiInputRowNum') {
-        options.map((option) => {
+        options.forEach((option) => {
           const resultSchemaMultiInput = {};
           resultSchemaMultiInput[option.value] = yup.string().label(option.value).required();
           const resultObjectMultiInput = yup.object().shape(resultSchemaMultiInput);

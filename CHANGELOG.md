@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.4.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.3.4...v8.4.0) (2020-11-10)
+
+
+### Bug fixes
+
+* add missing identification form fields and their translations ([a986b15](https://github.com/hopetambala/puente-reactnative-collect/commit/a986b15a8e09259abf08edbc54d86e707a2a1e4b))
+
+
+### Chores
+
+* add in all required fields for ID ([6e65760](https://github.com/hopetambala/puente-reactnative-collect/commit/6e657604ab8e45ae0449fdec10a375cb9f9e70a5))
+* linting error with map() ([31ac1fa](https://github.com/hopetambala/puente-reactnative-collect/commit/31ac1fab7aeb36a0a0d6f92fae0ed4f3a69acf8c))
+* update changelog generation ([ff9eada](https://github.com/hopetambala/puente-reactnative-collect/commit/ff9eadadfc78d81034894782f6a8a54c71d6e528))
+
+
+### Code Refactors
+
+* linting ([ecce1fb](https://github.com/hopetambala/puente-reactnative-collect/commit/ecce1fbb4dc96004f4f3b622cfd256c657415299))
+
+### [8.3.4](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.3.3...v8.3.4) (2020-11-09)
+
+
+### Bug fixes
+
+* stuff ([295998b](https://github.com/hopetambala/puente-reactnative-collect/commit/295998b3fe16ec42650f06074593db808151d91f))
+
+
+### Documentation changes
+
+* add ability to have better messages ([25d1d1e](https://github.com/hopetambala/puente-reactnative-collect/commit/25d1d1e3e5fa1eb5218ed51c9218bb8dab62438d))
+
+
+### Other chores
+
+* **release:** 8.3.3 ([58f73e7](https://github.com/hopetambala/puente-reactnative-collect/commit/58f73e71a2da77991516e632f31a08282a487cec))
+* readme ([d6b99c3](https://github.com/hopetambala/puente-reactnative-collect/commit/d6b99c3c66c708c6d8ceae0f225ea3ed405ee06c))
+
 ### [8.3.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.3.1...v8.3.2) (2020-11-08)
 
 
