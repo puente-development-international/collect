@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {
-  View, Modal, StyleSheet
+  View, Modal
 } from 'react-native';
 import {
-  Button, RadioButton, Appbar, Text, Snackbar
+  Button, RadioButton, Appbar, Text
 } from 'react-native-paper';
 
 import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
@@ -27,10 +27,7 @@ const HouseholdManager = (props) => {
   // const [, setHouseholdRelationship] = useState();
   const [modalView, setModalView] = useState('unset');
   const [householdSet, setHouseholdSet] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const onToggleSnackBar = () => setVisible(!visible);
 
-  const onDismissSnackBar = () => setVisible(false);
   const onSubmit = () => {
     setModalView('third');
     attachToExistingHousehold();
@@ -42,7 +39,6 @@ const HouseholdManager = (props) => {
   };
 
   const createNewHousehold = () => {
-
     // create new householdId and attach on the residentIdForm
     const postParams = {
       parseClass: 'Household',
@@ -57,7 +53,6 @@ const HouseholdManager = (props) => {
     setHouseholdSet(true);
   };
 
-
   return (
     <View style={layout.formContainer}>
       {modalView !== 'second' && modalView !== 'third'
@@ -65,7 +60,7 @@ const HouseholdManager = (props) => {
           <View>
             {!householdSet && modalView !== 'zero' && (
               <RadioButton.Group
-                onValueChange={(value) => {setModalView(value)}}
+                onValueChange={(value) => { setModalView(value); }}
                 value={modalView}
               >
                 <RadioButton.Item label="Do Nothing" value="zero" />
@@ -79,7 +74,7 @@ const HouseholdManager = (props) => {
               && <Text>You have successfully created a new household.</Text>}
             {modalView === 'zero' && (
               <View>
-                <Text>You've chosen not to link a household.</Text>
+                <Text>You have chosen not to link a household.</Text>
                 <Button style={{ marginTop: 10 }} onPress={() => setModalView('')}>Add or Create a Household</Button>
               </View>
             )}
@@ -130,11 +125,5 @@ const HouseholdManager = (props) => {
     </View>
   );
 };
-
-const style = StyleSheet.create({
-  button: {
-    marginRight: 'auto'
-  }
-})
 
 export default HouseholdManager;
