@@ -63,7 +63,7 @@ const HouseholdManager = (props) => {
                 onValueChange={(value) => { setModalView(value); }}
                 value={modalView}
               >
-                <RadioButton.Item label="Do Nothing" value="zero" />
+                <RadioButton.Item label={I18n.t('householdManager.doNothing')} value="zero" />
                 <RadioButton.Item label={I18n.t('householdManager.createHousehold')} value="first" />
                 {modalView === 'first'
                   && <Button style={layout.buttonGroupButtonStyle} icon="plus" mode="contained" onPress={createNewHousehold}>{I18n.t('householdManager.household')}</Button>}
@@ -71,11 +71,11 @@ const HouseholdManager = (props) => {
               </RadioButton.Group>
             )}
             {householdSet && modalView === 'first'
-              && <Text>You have successfully created a new household.</Text>}
+              && <Text>{I18n.t('householdManager.successCreateHousehold')}</Text>}
             {modalView === 'zero' && (
               <View>
-                <Text>You have chosen not to link a household.</Text>
-                <Button style={{ marginTop: 10 }} onPress={() => setModalView('')}>Add or Create a Household</Button>
+                <Text>{I18n.t('householdManager.noHousehold')}</Text>
+                <Button style={{ marginTop: 10 }} onPress={() => setModalView('')}>{I18n.t('householdManager.addCreateHousehold')}</Button>
               </View>
             )}
           </View>

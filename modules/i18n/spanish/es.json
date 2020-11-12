@@ -324,7 +324,11 @@
     "household": "Casa",
     "householdManager": "Administrador del hogar",
     "relationshipHousehold": "¿Cuál es su función / relación en el hogar?",
-    "linked": "Vinculada"
+    "linked": "Vinculada",
+    "doNothing": "Do Nothing",
+    "successCreateHousehold": "You have successfully created a new household.",
+    "noHousehold": "You have chosen not to link a household.",
+    "addCreateHousehold": "Add or Create a Household"
   },
   "header": {
     "goodMorning": "Buenos días",

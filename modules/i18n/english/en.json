@@ -322,7 +322,11 @@
     "household": "Household",
     "householdManager": "Household Manager",
     "relationshipHousehold": "What is their role/relationship in the household?",
-    "linked": "Linked"
+    "linked": "Linked",
+    "doNothing": "Do Nothing",
+    "successCreateHousehold": "You have successfully created a new household.",
+    "noHousehold": "You have chosen not to link a household.",
+    "addCreateHousehold": "Add or Create a Household"
   },
   "header": {
     "goodMorning": "Good morning",
