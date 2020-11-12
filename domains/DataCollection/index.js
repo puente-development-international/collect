@@ -31,7 +31,8 @@ import styles from './index.styles';
 const puenteForms = [
   { tag: 'id', name: 'Resident ID' },
   { tag: 'env', name: 'Environmental Health' },
-  { tag: 'med-eval', name: 'Medical Evaluation' }
+  { tag: 'med-eval', name: 'Medical Evaluation' },
+  { tag: 'vitals', name: 'Vitals' }
 ];
 
 const DataCollection = ({ navigation }) => {

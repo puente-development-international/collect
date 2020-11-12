@@ -13,6 +13,7 @@ import { layout } from '../../../../modules/theme';
 
 import envConfig from './configs/envhealth.config';
 import medConfig from './configs/medical-evaluation.config';
+import vitalsConfig from './configs/vitals.config';
 import I18n from '../../../../modules/i18n';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
@@ -39,6 +40,10 @@ const SupplementaryForm = ({
     if (selectedForm === 'med-eval') {
       setConfig(medConfig);
       setValidationSchema(yupValidationPicker(medConfig.fields));
+    }
+    if (selectedForm === 'vitals') {
+      setConfig(vitalsConfig);
+      // setValidationSchema(yupValidationPicker(medConfig.fields));
     }
     if (selectedForm === 'custom') setConfig(customForm);
   }, [selectedForm, config]);
@@ -102,14 +107,14 @@ const SupplementaryForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button
-              disabled={!surveyee.objectId}
-              onPress={formikProps.handleSubmit}
-            >
-              {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
-              {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
-            </Button>
-          )}
+              <Button
+                disabled={!surveyee.objectId}
+                onPress={formikProps.handleSubmit}
+              >
+                {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
+                {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
+              </Button>
+            )}
         </View>
       )}
     </Formik>
