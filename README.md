@@ -17,6 +17,40 @@ Here are some quick npm commands to get started:
 | `organization` | Name of the surveying users surveyingOrganization                                 |
 | `residentData` | All `SurveyData` parse model data stored based on the users surveyingOrganization |
 
+## Select Values with Text Input
+Select and MultiSelect PaperInputPicker fieldTypes have the option to have a text associated with a given select option.
+
+For example if you wanted the user to have the option to add text when a user selects "Other", you would format your config for the field like this:
+
+  {
+    "label": "Some text.",
+    "formikKey": "KEY",
+    "value": [''],
+    "fieldType": "select", 
+    "options": [
+      {
+        "label": "Some text,
+        "value": "some_val"
+      },
+      {
+        "label": "Other",
+        "value": "OTHER",
+        "text": true,
+        "textKey": "__KEY__OTHER"
+      }
+    ]
+  }
+
+Important notes:
+"text": true
+  - This adds the text input field to the Other select option
+"textKey": "__KEY__OTHER"
+  - __: The double underscore at the beginning of the key is required. No other keys in the config use this and CANNOT use the double underscore or there will be errors
+  - KEY: this portion of the textKey needs to be an exact match to the formikKey of the field
+  - __: Second double underscore is also required. Without the first double underscore it will not matter.
+  - OTHER: This portion of the key is a direct match to the value of the select option. This is required to append the text input value to the original value in the array
+  - none of these values need to be capitalized
+
 ## Resources
 
 - [React Native Paper](https://callstack.github.io/react-native-paper/index.html)

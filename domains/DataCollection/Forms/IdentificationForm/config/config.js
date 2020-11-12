@@ -172,7 +172,7 @@ const configArray = [
     formikKey: 'province',
     value: '',
     fieldType: 'input',
-    validation: true
+    validation: false
   },
   {
     label: 'identificationForm.insurance',

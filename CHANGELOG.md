@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.5.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.4.0...v8.5.0) (2020-11-11)
+
+
+### New Features
+
+* textInput with selects works 🎉 ([8b4726f](https://github.com/hopetambala/puente-reactnative-collect/commit/8b4726fb529575763a0cd1008e89b21faf9ea921))
+
+
+### Chores
+
+* remove forced validation for province ([ca67717](https://github.com/hopetambala/puente-reactnative-collect/commit/ca67717fcd247d6e8870340776a5bd04c960c089))
+* remove validation ([192d209](https://github.com/hopetambala/puente-reactnative-collect/commit/192d2092bd55f8441b228ccf985a64fc463178ab))
+* update readme ([774bf3e](https://github.com/hopetambala/puente-reactnative-collect/commit/774bf3e9dc963a7dd12a191c8e404a99230f8644))
+
+
+### Bug fixes
+
+* linting issues ([db020ea](https://github.com/hopetambala/puente-reactnative-collect/commit/db020ea1bacd82f142fe010dff98b832b3b7289f))
+* not having key mapped to view ([d3c5d6c](https://github.com/hopetambala/puente-reactnative-collect/commit/d3c5d6c54f1f9e3c970147017349a7856ae32693))
+* remove validation on environmental health config ([bc0de14](https://github.com/hopetambala/puente-reactnative-collect/commit/bc0de14e977b31670f33b6db374657cd66cbd6be))
+
+
+### Code Refactors
+
+* linting ([ae97f65](https://github.com/hopetambala/puente-reactnative-collect/commit/ae97f6504b35554d7b69bb983e3344881e90cee5))
+
 ## [8.4.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.3.4...v8.4.0) (2020-11-10)
 
 
