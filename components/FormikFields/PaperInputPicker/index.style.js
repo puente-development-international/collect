@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 
   },
   inputItem: {
-    flex: 1,
+    flex: 7,
     marginHorizontal: 5
   },
   multiInputContainer: {

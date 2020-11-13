@@ -248,6 +248,32 @@
     "immediateFollowupRequired": "Immediate Follow Up Required?",
     "plan": "Plan"
   },
+  "vitals": {
+    "name": "Vitals",
+    "height": "Height",
+    "inches": "Inches",
+    "weight": "Weight",
+    "pounds": "Pounds",
+    "bmi": "Body Mass Index",
+    "temp": "Body Temperature",
+    "celsius": "°Celsius",
+    "pulse": "Pulse",
+    "bpm": "Beats Per Minute",
+    "respRate": "Repiratory Rate",
+    "breathspm": "Breaths Per Minute",
+    "bloodPressure": {
+      "label": "Blood Pressure",
+      "systolic": "Systolic",
+      "diastolic": "Diastolic"
+    },
+    "bloodOxygen": "Blood Oxygen",
+    "mmHg": "mm Hg",
+    "bloodSugar": "Blood Sugar",
+    "mgdL": "mg/dL",
+    "hemoglobinLevels": "Hemoglobin Levels",
+    "gdL": "g/dL",
+    "pain": "Pain"
+  },
   "supplementaryForms": {
     "attachResident": "Attach a Community Resident"
   },
@@ -283,7 +309,8 @@
       "environmental": "Environment",
       "history": "History",
       "medical": "Medical",
-      "evaluation": "Evaluation"
+      "evaluation": "Evaluation",
+      "vitals": "Vitals"
     }
   },
   "findResident": {

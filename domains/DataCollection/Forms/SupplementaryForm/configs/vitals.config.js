@@ -1,68 +1,68 @@
 const configArray = {
   class: 'HistoryEnvironmentalHealth',
-  name: 'environmentalHealth.name',
-  customForm: true,
+  name: 'vitals.name',
+  customForm: false,
   fields: [
     {
-      label: 'Vitals',
+      label: 'vitals.name',
       fieldType: 'header',
       formikKey: 'none_vitals',
     },
     {
-      label: 'Height',
-      sideLabel: 'Inches',
+      label: 'vitals.height',
+      sideLabel: 'vitals.inches',
       formikKey: 'height',
       value: '',
       fieldType: 'inputSideLabel',
       validation: false
     },
     {
-      label: 'Weight',
-      sideLabel: 'Pounds',
+      label: 'vitals.weight',
+      sideLabel: 'vitals.pounds',
       formikKey: 'weight',
       value: '',
       fieldType: 'inputSideLabel',
       validation: false
     },
     {
-      label: 'Body Mass Index',
+      label: 'vitals.bmi',
       formikKey: 'bmi',
       value: '',
       fieldType: 'input',
       validation: false
     },
     {
-      label: 'Body Temperature',
-      sideLabel: '°Celcius',
-      formikKey: 'bodyTemp',
+      label: 'vitals.temp',
+      sideLabel: 'vitals.celsius',
+      formikKey: 'temp',
       value: '',
       fieldType: 'inputSideLabel',
       validation: false
     },
     {
-      label: 'Pulse',
-      sideLabel: 'Beats Per Minute',
+      label: 'vitals.pulse',
+      sideLabel: 'vitals.bpm',
       formikKey: 'pulse',
       value: '',
       fieldType: 'inputSideLabel',
       validation: false
     },
     {
-      label: 'Respiratory Rate',
-      sideLabel: 'Breaths Per Minute',
-      formikKey: 'respiratory',
+      label: 'vitals.respRate',
+      sideLabel: 'vitals.breathspm',
+      formikKey: 'respRate',
       value: '',
       fieldType: 'inputSideLabel',
       validation: false
     },
     {
-      label: 'Blood Pressure',
-      formikKey: 'blood_pressure',
+      label: 'vitals.bloodPressure.label',
+      formikKey: 'bloodPressure',
       value: '',
       fieldType: 'multiInputRow',
       options: [
         {
-          label: 'Systolic',
+          label: 'vitals.bloodPressure.systolic',
           value: 'Systolic'
         },
         {
@@ -70,38 +70,38 @@ const configArray = {
           textSplit: true
         },
         {
-          label: 'Diastolic',
+          label: 'vitals.bloodPressure.diastolic',
           value: 'Diastolic'
         }
       ],
     },
     {
-      label: 'Blood Oxygen',
-      sideLabel: 'mm Hg',
-      formikKey: 'blood_oxygen',
+      label: 'vitals.bloodOxygen',
+      sideLabel: 'vitals.mmHg',
+      formikKey: 'bloodOxygen',
       value: '',
       fieldType: 'inputSideLabel',
       validation: false
     },
     {
-      label: 'Blood Sugar',
-      sideLabel: 'mg/dL',
-      formikKey: 'blood_sugar',
+      label: 'vitals.bloodSugar',
+      sideLabel: 'vitals.mgdL',
+      formikKey: 'bloodSugar',
       value: '',
       fieldType: 'inputSideLabel',
       validation: false
     },
     {
-      label: 'Hemoglobin Levels',
-      sideLabel: 'g/dL',
-      formikKey: 'blood_pressure',
+      label: 'vitals.hemoglobinLevels',
+      sideLabel: 'vitals.gdL',
+      formikKey: 'hemoglobinLevels',
       value: '',
       fieldType: 'inputSideLabel',
       validation: false
     },
     {
-      label: 'Pain',
-      formikKey: 'pain',
+      label: 'vitals.pain',
+      formikKey: 'painLevels',
       value: '',
       fieldType: 'input',
       validation: false

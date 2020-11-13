@@ -321,13 +321,16 @@ const PaperInputPicker = ({
         <View style={styles.container}>
           <Text>{translatedLabel}</Text>
           <View style={styles.multiInputContainer}>
-            {data.options.map((result) => (
-              <View key={result.value} style={styles.inputItem}>
-                {/* {!result.textSplit && (
-                  <View>
+            {data.options.map((result) =>
+              result.textSplit ? (
+                <View style={{ flex: 1 }}>
+                  <Text style={styleX.textSplit}>{result.label}</Text>
+                </View>
+              ) : (
+                  <View key={result.value} style={styles.inputItem}>
                     <TextInput
                       label={customForm ? result.label : I18n.t(result.label)}
-                      onChangeText={handleChange(customForm ? result : I18n.t(result.label))}
+                      onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
                       onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
                       {...rest} //eslint-disable-line
                       mode="outlined"
@@ -337,52 +340,35 @@ const PaperInputPicker = ({
                       {errors[customForm ? result.label : I18n.t(result.label)]}
                     </Text>
                   </View>
-                )} */}
-                {result.textSplit ? (
-                  <Text style={styleX.textSplit}>{result.label}</Text>
-                ) : (
-                    <View>
-                      <TextInput
-                        label={customForm ? result.label : I18n.t(result.label)}
-                        onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
-                        onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
-                        {...rest} //eslint-disable-line
-                        mode="outlined"
-                        theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                      />
-                      <Text style={{ color: 'red' }}>
-                        {errors[customForm ? result.label : I18n.t(result.label)]}
-                      </Text>
-                    </View>
-                  )}
-              </View>
-            ))}
+                ))}
           </View>
         </View>
       )}
-      {fieldType === 'multiInputRowNum' && (
-        <View style={styles.container}>
-          <Text>{translatedLabel}</Text>
-          <View style={styles.multiInputContainer}>
-            {data.options.map((result) => (
-              <View key={result.value} style={styles.inputItem}>
-                <TextInput
-                  label={customForm ? result.label : I18n.t(result.label)}
-                  onChangeText={handleChange(result.value)}
-                  onBlur={handleBlur(result.value)}
-                  {...rest} //eslint-disable-line
-                  mode="outlined"
-                  keyboardType="numeric"
-                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                />
-                <Text style={{ color: 'red' }}>
-                  {errors[result.value]}
-                </Text>
-              </View>
-            ))}
+      {
+        fieldType === 'multiInputRowNum' && (
+          <View style={styles.container}>
+            <Text>{translatedLabel}</Text>
+            <View style={styles.multiInputContainer}>
+              {data.options.map((result) => (
+                <View key={result.value} style={styles.inputItem}>
+                  <TextInput
+                    label={customForm ? result.label : I18n.t(result.label)}
+                    onChangeText={handleChange(result.value)}
+                    onBlur={handleBlur(result.value)}
+                    {...rest} //eslint-disable-line
+                    mode="outlined"
+                    keyboardType="numeric"
+                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                  />
+                  <Text style={{ color: 'red' }}>
+                    {errors[result.value]}
+                  </Text>
+                </View>
+              ))}
+            </View>
           </View>
-        </View>
-      )}
+        )
+      }
     </>
   );
 };
@@ -396,12 +382,11 @@ const styleX = StyleSheet.create({
     fontSize: 15
   },
   textSplit: {
-    fontSize: 15,
+    fontSize: 35,
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: 'auto',
-    marginBottom: 'auto',
-    flex: .001
+    marginBottom: 25,
   }
 })
 
