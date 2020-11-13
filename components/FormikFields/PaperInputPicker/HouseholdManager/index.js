@@ -3,7 +3,7 @@ import {
   View, Modal
 } from 'react-native';
 import {
-  Button, RadioButton, Appbar
+  Button, RadioButton, Appbar, Text
 } from 'react-native-paper';
 
 import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
@@ -15,14 +15,14 @@ import { postObjectsToClass } from '../../../../services/parse/crud';
 
 import styles from './index.style';
 
-// const relationships = [
-//   'Parent', 'Sibling', 'Grand-Parent', 'Cousin', 'Other'
-// ];
 
 const HouseholdManager = (props) => {
   const { formikProps, formikKey, surveyingOrganization } = props;
   const { setFieldValue } = formikProps;
-
+  const [relationships] = useState([
+    'Parent', 'Sibling', 'Grand-Parent', 'Cousin', 'Other'
+  ]);
+  const [relationship, setRelationship] = useState('')
   const [selectPerson, setSelectPerson] = useState();
   // const [, setHouseholdRelationship] = useState();
   const [modalView, setModalView] = useState('zero');
@@ -71,9 +71,9 @@ const HouseholdManager = (props) => {
           animationType="slide"
           visible
         >
-          <Appbar.Header>
+          <Appbar.Header style={{ backgroundColor: theme.colors.accent }}>
             <Appbar.BackAction onPress={() => setModalView('first')} />
-            <Appbar.Content title={I18n.t('householdManager.householdManager')} subtitle="" />
+            <Appbar.Content title={I18n.t('householdManager.householdManager')} subtitle="" titleStyle={{ fontSize: 20, fontWeight: 'bold' }} />
           </Appbar.Header>
 
           <View style={styles.container}>
@@ -83,18 +83,25 @@ const HouseholdManager = (props) => {
               surveyingOrganization={surveyingOrganization}
             />
 
-            {/* <Text>{I18n.t('householdManager.relationshipHousehold')}</Text>
-            <View style={layout.buttonGroupContainer}>
+            <Text>{I18n.t('householdManager.relationshipHousehold')}</Text>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
               {relationships.map((result) => (
-                <Button
-                  style={layout.buttonGroupButtonStyle}
-                  key={result} mode="outlined"
-                  onPress={() => setHouseholdRelationship(result)}>
-                  <Text>{result}</Text>
-                </Button>
+                // <Button
+                //   style={layout.buttonGroupButtonStyle}
+                //   key={result} mode="outlined"
+                //   onPress={() => setHouseholdRelationship(result)}>
+                //   <Text>{result}</Text>
+                // </Button>
+                <View key={result} style={layout.buttonGroupButtonStyle}>
+                  {relationship === result ? (
+                    <Button mode='contained'>{result}</Button>
+                  ) : (
+                      <Button mode='outlined' onPress={() => setRelationship(result)}>{result}</Button>
+                    )}
+                </View>
               ))}
-            </View> */}
-            <Button theme={{ backgroundColor: theme.colors.primary }} style={layout.buttonGroupButtonStyle} mode="contained" onPress={onSubmit}>
+            </View>
+            <Button theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit}>
               {I18n.t('global.submit')}
             </Button>
           </View>
