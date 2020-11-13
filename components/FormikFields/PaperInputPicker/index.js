@@ -21,7 +21,10 @@ const PaperInputPicker = ({
   data, formikProps, scrollViewScroll, setScrollViewScroll, surveyingOrganization,
   customForm, ...rest
 }) => {
-  const { label, formikKey, fieldType, sideLabel } = data;
+  const {
+    label, formikKey, fieldType, sideLabel
+  } = data;
+
   const {
     handleChange, handleBlur, errors, setFieldValue, values
   } = formikProps;
@@ -92,7 +95,7 @@ const PaperInputPicker = ({
               theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
               style={{ flex: 1 }}
             />
-            <Text style={styleX.sideLabel} >{translatedLabelSide}</Text>
+            <Text style={styleX.sideLabel}>{translatedLabelSide}</Text>
           </View>
           <Text style={{ color: 'red' }}>
             {errors[formikKey]}
@@ -111,7 +114,7 @@ const PaperInputPicker = ({
               theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
               style={{ flex: 1 }}
             />
-            <Text style={styleX.sideLabel} >{translatedLabelSide}</Text>
+            <Text style={styleX.sideLabel}>{translatedLabelSide}</Text>
             <TextInput
               label={translatedLabel}
               onChangeText={handleChange(formikKey)}
@@ -247,7 +250,7 @@ const PaperInputPicker = ({
                       {errors[result.textKey]}
                     </Text>
                   </View>
-                )}
+              )}
             </View>
           ))}
           <Text style={{ color: 'red' }}>
@@ -321,26 +324,25 @@ const PaperInputPicker = ({
         <View style={styles.container}>
           <Text>{translatedLabel}</Text>
           <View style={styles.multiInputContainer}>
-            {data.options.map((result) =>
-              result.textSplit ? (
-                <View style={{ flex: 1 }}>
-                  <Text style={styleX.textSplit}>{result.label}</Text>
-                </View>
-              ) : (
-                  <View key={result.value} style={styles.inputItem}>
-                    <TextInput
-                      label={customForm ? result.label : I18n.t(result.label)}
-                      onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
-                      onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
-                      {...rest} //eslint-disable-line
-                      mode="outlined"
-                      theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                    />
-                    <Text style={{ color: 'red' }}>
-                      {errors[customForm ? result.label : I18n.t(result.label)]}
-                    </Text>
-                  </View>
-                ))}
+            {data.options.map((result) => (result.textSplit ? (
+              <View style={{ flex: 1 }}>
+                <Text style={styleX.textSplit}>{result.label}</Text>
+              </View>
+            ) : (
+              <View key={result.value} style={styles.inputItem}>
+                <TextInput
+                  label={customForm ? result.label : I18n.t(result.label)}
+                  onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
+                  onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
+                    {...rest} //eslint-disable-line
+                  mode="outlined"
+                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                />
+                <Text style={{ color: 'red' }}>
+                  {errors[customForm ? result.label : I18n.t(result.label)]}
+                </Text>
+              </View>
+            )))}
           </View>
         </View>
       )}
@@ -388,6 +390,6 @@ const styleX = StyleSheet.create({
     marginTop: 'auto',
     marginBottom: 25,
   }
-})
+});
 
 export default PaperInputPicker;
