@@ -1,5 +1,5 @@
 const configArray = {
-  class: 'HistoryEnvironmentalHealth',
+  class: 'Vitals',
   name: 'vitals.name',
   customForm: false,
   fields: [
