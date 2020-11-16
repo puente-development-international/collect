@@ -113,7 +113,7 @@ const HouseholdManager = (props) => {
               surveyingOrganization={surveyingOrganization}
             />
             {!selectPerson && (
-              <Text style={{ fontWeight: 'bold', padding: 10 }}>Please use the searchbar to find and select the correct Househld.</Text>
+              <Text style={{ fontWeight: 'bold', padding: 10 }}>{I18n.t('householdManager.useSearchBar')}</Text>
             )}
             {selectPerson && (
               <Text>{I18n.t('householdManager.relationshipHousehold')}</Text>

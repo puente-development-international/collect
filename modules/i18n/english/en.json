@@ -322,7 +322,8 @@
     "household": "Household",
     "householdManager": "Household Manager",
     "relationshipHousehold": "What is their role/relationship in the household?",
-    "linked": "Linked"
+    "linked": "Linked",
+    "useSearchBar": "Please use the searchbar to find and select the correct Household."
   },
   "header": {
     "goodMorning": "Good morning",
