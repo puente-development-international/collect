@@ -199,7 +199,7 @@ const PaperInputPicker = ({
                       {errors[result.textKey]}
                     </Text>
                   </View>
-              )}
+                )}
             </View>
           ))}
           <Text style={{ color: 'red' }}>
@@ -258,6 +258,7 @@ const PaperInputPicker = ({
             formikProps={formikProps}
             formikKey={formikKey}
             surveyingOrganization={surveyingOrganization}
+            values={values}
           />
         </View>
       )}
