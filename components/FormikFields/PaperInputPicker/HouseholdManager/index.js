@@ -15,14 +15,17 @@ import { postObjectsToClass, postObjectsToClassWithRelation } from '../../../../
 
 import styles from './index.style';
 
-
 const HouseholdManager = (props) => {
-  const { formikProps, formikKey, surveyingOrganization, values } = props;
-  const { setFieldValue, handleBlur, handleChange, errors } = formikProps;
+  const {
+    formikProps, formikKey, surveyingOrganization, values
+  } = props;
+  const {
+    setFieldValue, handleBlur, handleChange, errors
+  } = formikProps;
   const [relationships] = useState([
     'Parent', 'Sibling', 'Grand-Parent', 'Cousin', 'Other'
   ]);
-  const [relationship, setRelationship] = useState('')
+  const [relationship, setRelationship] = useState('');
   const [selectPerson, setSelectPerson] = useState();
   // const [, setHouseholdRelationship] = useState();
   const [modalView, setModalView] = useState('zero');
@@ -30,11 +33,9 @@ const HouseholdManager = (props) => {
   const onSubmit = () => {
     if (!selectPerson) {
       alert('You must search and select an individual.') //eslint-disable-line
-    }
-    else if (relationship === '') {
+    } else if (relationship === '') {
       alert('You must select a role/relationship in the household.') //eslint-disable-line
-    }
-    else {
+    } else {
       setModalView('third');
       attachToExistingHousehold();
       postHouseholdRelation();
@@ -49,7 +50,7 @@ const HouseholdManager = (props) => {
   const postHouseholdRelation = () => {
     let finalRelationship = relationship;
     if (relationship === 'Other') {
-      finalRelationship += '__' + values['other']
+      finalRelationship += `__${values.other}`;
     }
     const postParams = {
       parseParentClassID: selectPerson.householdId,
@@ -62,10 +63,9 @@ const HouseholdManager = (props) => {
       }
     };
     postObjectsToClassWithRelation(postParams).then((result) => {
-      setFieldValue(formikKey, result.id)
-    })
-
-  }
+      setFieldValue(formikKey, result.id);
+    });
+  };
 
   const createNewHousehold = () => {
     // create new householdId and attach on the residentIdForm
@@ -122,24 +122,24 @@ const HouseholdManager = (props) => {
               {selectPerson && relationships.map((result) => (
                 <View key={result} style={layout.buttonGroupButtonStyle}>
                   {relationship === result ? (
-                    <Button mode='contained'>{result}</Button>
+                    <Button mode="contained">{result}</Button>
                   ) : (
-                      <Button mode='outlined' onPress={() => setRelationship(result)}>{result}</Button>
-                    )}
+                    <Button mode="outlined" onPress={() => setRelationship(result)}>{result}</Button>
+                  )}
                 </View>
               ))}
             </View>
             {relationship === 'Other' && (
               <View style={styles}>
                 <TextInput
-                  label={'Other'}
+                  label="Other"
                   onChangeText={handleChange('other')}
                   onBlur={handleBlur('other')}
                   mode="outlined"
                   theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
                 />
                 <Text style={{ color: 'red' }}>
-                  {errors['other']}
+                  {errors.other}
                 </Text>
               </View>
             )}
@@ -148,10 +148,10 @@ const HouseholdManager = (props) => {
                 {I18n.t('global.submit')}
               </Button>
             ) : (
-                <Button theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit} disabled={true}>
-                  {I18n.t('global.submit')}
-                </Button>
-              )}
+              <Button theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit} disabled>
+                {I18n.t('global.submit')}
+              </Button>
+            )}
 
           </View>
         </Modal>
