@@ -48,6 +48,9 @@ const ResidentPage = ({
   };
   return (
     <View>
+      <Button icon="arrow-left" width={100} onPress={() => setSelectPerson()}>
+        {I18n.t('dataCollection.back')}
+      </Button>
       <View style={styles.picNameContainer}>
         <Image
           style={styles.profPic}

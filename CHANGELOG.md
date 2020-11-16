@@ -7,13 +7,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### New Features
 
-* textInput with selects works 🎉 ([8b4726f](https://github.com/hopetambala/puente-reactnative-collect/commit/8b4726fb529575763a0cd1008e89b21faf9ea921))
+* textInput with selects works for OWS 🎉 ([8b4726f](https://github.com/hopetambala/puente-reactnative-collect/commit/8b4726fb529575763a0cd1008e89b21faf9ea921))
 
 
 ### Chores
 
 * remove forced validation for province ([ca67717](https://github.com/hopetambala/puente-reactnative-collect/commit/ca67717fcd247d6e8870340776a5bd04c960c089))
-* remove validation ([192d209](https://github.com/hopetambala/puente-reactnative-collect/commit/192d2092bd55f8441b228ccf985a64fc463178ab))
+* remove validation for identification form ([192d209](https://github.com/hopetambala/puente-reactnative-collect/commit/192d2092bd55f8441b228ccf985a64fc463178ab))
 * update readme ([774bf3e](https://github.com/hopetambala/puente-reactnative-collect/commit/774bf3e9dc963a7dd12a191c8e404a99230f8644))
 
 

@@ -94,21 +94,22 @@ const FindResidents = ({
   );
 
   return (
-    <View style={styles.container}>
-      {!selectPerson && (
-        <>
-          <Headline style={styles.header}>{I18n.t('findResident.searchIndividual')}</Headline>
-          <Searchbar
-            placeholder={I18n.t('findResident.typeHere')}
-            onChangeText={onChangeSearch}
-            value={query}
-          />
-          <Button onPress={fetchData}>Refresh</Button>
-        </>
-      )}
+    <View>
+      <View style={styles.container}>
+        {!selectPerson && (
+          <>
+            <Headline style={styles.header}>{I18n.t('findResident.searchIndividual')}</Headline>
+            <Searchbar
+              placeholder={I18n.t('findResident.typeHere')}
+              onChangeText={onChangeSearch}
+              value={query}
+            />
+            <Button onPress={fetchData}>Refresh</Button>
+          </>
+        )}
 
-      {/* Non-virtualized list */}
-      {/* {!selectPerson && filterList(residents).map((listItem,) => (
+        {/* Non-virtualized list */}
+        {/* {!selectPerson && filterList(residents).map((listItem,) => (
         <View key={listItem.objectId}>
           <ResidentCard
             resident={listItem}
@@ -116,18 +117,18 @@ const FindResidents = ({
           />
         </View>
       ))} */}
+        {loading
+          && <Spinner color="blue" />}
 
-      {loading
-        && <Spinner color="blue" />}
-
-      {!selectPerson
-        && (
-          <FlatList
-            data={filterList(residents)}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.objectId}
-          />
-        )}
+        {!selectPerson
+          && (
+            <FlatList
+              data={filterList(residents)}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.objectId}
+            />
+          )}
+      </View>
 
       {selectPerson && (
         <ResidentPage
