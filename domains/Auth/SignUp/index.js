@@ -71,11 +71,11 @@ export default function SignUp({ navigation }) {
       style={{ backgroundColor: theme.colors.accent, flex: 1 }}
     >
       <View>
-        <Button icon="arrow-left" width={100} style={{ paddingTop: 20 }} onPress={handleLogIn}>
+        <Button icon="arrow-left" width={100} style={{ paddingTop: 40 }} onPress={handleLogIn}>
           Back
         </Button>
         <ScrollView style={{ backgroundColor: theme.colors.accent }}>
-          <SafeAreaView style={{ marginTop: 30 }}>
+          <SafeAreaView style={{ marginTop: 10 }}>
             <Formik
               initialValues={{
                 firstname: '', lastname: '', email: '', phonenumber: '', password: '', password2: '', organization: ''
