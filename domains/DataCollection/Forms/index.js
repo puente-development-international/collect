@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 
-import { layout } from '../../../modules/theme';
+import { layout, theme } from '../../../modules/theme';
 import I18n from '../../../modules/i18n';
 
 import IdentificationForm from './IdentificationForm';
@@ -22,7 +22,7 @@ const Forms = (props) => {
     puenteForms,
     surveyingUser, surveyingOrganization,
     surveyee, setSurveyee,
-    customForm
+    customForm, navigateToRoot
   } = props;
 
   const [consent, setConsent] = useState(false);
@@ -86,6 +86,9 @@ const Forms = (props) => {
             />
             <Button mode="contained" onPress={navigateToGallery}>
               <Text style={{ color: 'white' }}>{I18n.t('forms.viewGallery')}</Text>
+            </Button>
+            <Button mode="text" onPress={navigateToRoot} theme={theme} style={{ marginTop: 5 }}>
+              Return to Data Collection Home
             </Button>
           </View>
         </View>
