@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  View, Text
+  View, Text, StyleSheet
 } from 'react-native';
 import {
   TextInput, Button, Headline
@@ -21,7 +21,10 @@ const PaperInputPicker = ({
   data, formikProps, scrollViewScroll, setScrollViewScroll, surveyingOrganization,
   customForm, ...rest
 }) => {
-  const { label, formikKey, fieldType } = data;
+  const {
+    label, formikKey, fieldType, sideLabel
+  } = data;
+
   const {
     handleChange, handleBlur, errors, setFieldValue, values
   } = formikProps;
@@ -37,6 +40,7 @@ const PaperInputPicker = ({
   };
 
   const translatedLabel = customForm ? label : I18n.t(label);
+  const translatedLabelSide = customForm ? sideLabel : I18n.t(sideLabel);
 
   const addArrayVal = (result) => {
     if (values[formikKey] || values[formikKey] === []) {
@@ -74,6 +78,53 @@ const PaperInputPicker = ({
             keyboardType="numeric"
             theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
           />
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
+        </View>
+      )}
+      {fieldType === 'inputSideLabel' && (
+        <View style={styles}>
+          <View style={{ flexDirection: 'row' }}>
+            <TextInput
+              label={translatedLabel}
+              onChangeText={handleChange(formikKey)}
+              onBlur={handleBlur(formikKey)}
+              {...rest} //eslint-disable-line
+              mode="outlined"
+              theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+              style={{ flex: 1 }}
+            />
+            <Text style={styleX.sideLabel}>{translatedLabelSide}</Text>
+          </View>
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
+        </View>
+      )}
+      {fieldType === 'inputSideBySideLabel' && (
+        <View style={styles}>
+          <View style={{ flexDirection: 'row' }}>
+            <TextInput
+              label={translatedLabel}
+              onChangeText={handleChange(formikKey)}
+              onBlur={handleBlur(formikKey)}
+              {...rest} //eslint-disable-line
+              mode="outlined"
+              theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+              style={{ flex: 1 }}
+            />
+            <Text style={styleX.sideLabel}>{translatedLabelSide}</Text>
+            <TextInput
+              label={translatedLabel}
+              onChangeText={handleChange(formikKey)}
+              onBlur={handleBlur(formikKey)}
+              {...rest} //eslint-disable-line
+              mode="outlined"
+              theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+              style={{ flex: 1 }}
+            />
+          </View>
           <Text style={{ color: 'red' }}>
             {errors[formikKey]}
           </Text>
@@ -273,49 +324,72 @@ const PaperInputPicker = ({
         <View style={styles.container}>
           <Text>{translatedLabel}</Text>
           <View style={styles.multiInputContainer}>
-            {data.options.map((result) => (
-              <View key={customForm ? result : I18n.t(result)} style={styles.inputItem}>
-                <TextInput
-                  label={customForm ? result : I18n.t(result)}
-                  onChangeText={handleChange(customForm ? result : I18n.t(result))}
-                  onBlur={handleBlur(customForm ? result : I18n.t(result))}
-                  {...rest} //eslint-disable-line
-                  mode="outlined"
-                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                />
-                <Text style={{ color: 'red' }}>
-                  {errors[customForm ? result : I18n.t(result)]}
-                </Text>
+            {data.options.map((result) => (result.textSplit ? (
+              <View style={{ flex: 1 }}>
+                <Text style={styleX.textSplit}>{result.label}</Text>
               </View>
-            ))}
-          </View>
-        </View>
-      )}
-      {fieldType === 'multiInputRowNum' && (
-        <View style={styles.container}>
-          <Text>{translatedLabel}</Text>
-          <View style={styles.multiInputContainer}>
-            {data.options.map((result) => (
+            ) : (
               <View key={result.value} style={styles.inputItem}>
                 <TextInput
                   label={customForm ? result.label : I18n.t(result.label)}
-                  onChangeText={handleChange(result.value)}
-                  onBlur={handleBlur(result.value)}
-                  {...rest} //eslint-disable-line
+                  onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
+                  onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
+                    {...rest} //eslint-disable-line
                   mode="outlined"
-                  keyboardType="numeric"
                   theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
                 />
                 <Text style={{ color: 'red' }}>
-                  {errors[result.value]}
+                  {errors[customForm ? result.label : I18n.t(result.label)]}
                 </Text>
               </View>
-            ))}
+            )))}
           </View>
         </View>
       )}
+      {
+        fieldType === 'multiInputRowNum' && (
+          <View style={styles.container}>
+            <Text>{translatedLabel}</Text>
+            <View style={styles.multiInputContainer}>
+              {data.options.map((result) => (
+                <View key={result.value} style={styles.inputItem}>
+                  <TextInput
+                    label={customForm ? result.label : I18n.t(result.label)}
+                    onChangeText={handleChange(result.value)}
+                    onBlur={handleBlur(result.value)}
+                    {...rest} //eslint-disable-line
+                    mode="outlined"
+                    keyboardType="numeric"
+                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                  />
+                  <Text style={{ color: 'red' }}>
+                    {errors[result.value]}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        )
+      }
     </>
   );
 };
+
+const styleX = StyleSheet.create({
+  sideLabel: {
+    flex: 1,
+    marginTop: 'auto',
+    marginBottom: 'auto',
+    padding: 10,
+    fontSize: 15
+  },
+  textSplit: {
+    fontSize: 35,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 'auto',
+    marginBottom: 25,
+  }
+});
 
 export default PaperInputPicker;
