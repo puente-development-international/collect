@@ -132,6 +132,7 @@ export default function SignUp({ navigation }) {
                     formikProps={formikProps}
                     formikKey="phonenumber"
                     placeholder="123-456-7890"
+                    keyboardType="numeric"
                   />
                   <FormInput
                     label={I18n.t('signUp.password')}
