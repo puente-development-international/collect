@@ -24,7 +24,10 @@
     "ios": {
       "supportsTablet": true,
       "buildNumber": "8.5.0",
-      "bundleIdentifier": "io.ionic.starter1270348"
+      "bundleIdentifier": "io.ionic.starter1270348",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to geo-tag surveys accurately."
+      }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
