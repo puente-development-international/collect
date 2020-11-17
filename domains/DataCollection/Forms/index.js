@@ -88,7 +88,7 @@ const Forms = (props) => {
               <Text style={{ color: 'white' }}>{I18n.t('forms.viewGallery')}</Text>
             </Button>
             <Button mode="text" onPress={navigateToRoot} theme={theme} style={{ marginTop: 5 }}>
-              Return to Data Collection Home
+              {I18n.t('forms.returnHome')}
             </Button>
           </View>
         </View>

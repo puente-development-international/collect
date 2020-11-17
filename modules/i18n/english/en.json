@@ -281,7 +281,8 @@
     "successfullySubmitted": "Form successfully submitted",
     "grabCoffee": "Grab yourself a coffee",
     "suggestedForms": "Suggested next Forms",
-    "viewGallery": "View Forms Gallery"
+    "viewGallery": "View Forms Gallery",
+    "returnHome": "Return to Data Collection Home"
   },
   "gdpr": {
     "consentForm": "Consent Form",
