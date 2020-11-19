@@ -28,7 +28,8 @@ const HouseholdManager = (props) => {
   const [relationship, setRelationship] = useState('');
   const [selectPerson, setSelectPerson] = useState();
   // const [, setHouseholdRelationship] = useState();
-  const [modalView, setModalView] = useState('zero');
+  const [modalView, setModalView] = useState('unset');
+  const [householdSet, setHouseholdSet] = useState(false);
 
   const onSubmit = () => {
     if (!selectPerson) {
@@ -79,6 +80,7 @@ const HouseholdManager = (props) => {
     postObjectsToClass(postParams).then((result) => {
       setFieldValue(formikKey, result.id);
     });
+    setHouseholdSet(true);
   };
 
   return (
@@ -86,13 +88,26 @@ const HouseholdManager = (props) => {
       {modalView !== 'second' && modalView !== 'third'
         && (
           <View>
-            <RadioButton.Group onValueChange={(value) => setModalView(value)} value={modalView}>
-              <RadioButton.Item label="Do Nothing" value="zero" />
-              <RadioButton.Item label={I18n.t('householdManager.createHousehold')} value="first" />
-              {modalView === 'first'
-                && <Button style={layout.buttonGroupButtonStyle} icon="plus" mode="contained" onPress={createNewHousehold}>{I18n.t('householdManager.household')}</Button>}
-              <RadioButton.Item label={I18n.t('householdManager.linkIndividual')} value="second" />
-            </RadioButton.Group>
+            {!householdSet && modalView !== 'zero' && (
+              <RadioButton.Group
+                onValueChange={(value) => { setModalView(value); }}
+                value={modalView}
+              >
+                <RadioButton.Item label={I18n.t('householdManager.doNothing')} value="zero" />
+                <RadioButton.Item label={I18n.t('householdManager.createHousehold')} value="first" />
+                {modalView === 'first'
+                  && <Button style={layout.buttonGroupButtonStyle} icon="plus" mode="contained" onPress={createNewHousehold}>{I18n.t('householdManager.household')}</Button>}
+                <RadioButton.Item label={I18n.t('householdManager.linkIndividual')} value="second" />
+              </RadioButton.Group>
+            )}
+            {householdSet && modalView === 'first'
+              && <Text>{I18n.t('householdManager.successCreateHousehold')}</Text>}
+            {modalView === 'zero' && (
+              <View>
+                <Text>{I18n.t('householdManager.noHousehold')}</Text>
+                <Button style={{ marginTop: 10 }} onPress={() => setModalView('')}>{I18n.t('householdManager.addCreateHousehold')}</Button>
+              </View>
+            )}
           </View>
         )}
 

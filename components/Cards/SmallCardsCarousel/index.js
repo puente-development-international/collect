@@ -73,6 +73,13 @@ const SmallCardsCarousel = ({
           </View>
         </View>
         )}
+        {form.tag === 'vitals' && (
+        <View marginTop="auto" marginBottom="auto">
+          <NewRecordSVG height={40} style={styles.svg} />
+          <Button labelStyle={styles.topButton} compact>{I18n.t('cards.smallCards.vitals')}</Button>
+          <Button labelStyle={styles.bottomButton} compact />
+        </View>
+        )}
       </Card>
     ))}
   </ScrollView>

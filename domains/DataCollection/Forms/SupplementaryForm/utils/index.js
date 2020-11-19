@@ -13,4 +13,15 @@ function addSelectTextInputs(values, formObject) {
   return formObject;
 }
 
-export default addSelectTextInputs;
+function vitalsBloodPressue(values, formObject) {
+  const newFormObject = formObject;
+  newFormObject.bloodPressure = `${values.Systolic || '00'}/${values.Diastolic || '00'}`;
+
+  const valuesToPrune = ['Systolic', 'Diastolic'];
+  valuesToPrune.forEach((value) => {
+    delete newFormObject[value];
+  });
+  return newFormObject;
+}
+
+export { addSelectTextInputs, vitalsBloodPressue };

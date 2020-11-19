@@ -31,7 +31,8 @@ import styles from './index.styles';
 const puenteForms = [
   { tag: 'id', name: 'Resident ID' },
   { tag: 'env', name: 'Environmental Health' },
-  { tag: 'med-eval', name: 'Medical Evaluation' }
+  { tag: 'med-eval', name: 'Medical Evaluation' },
+  { tag: 'vitals', name: 'Vitals' }
 ];
 
 const DataCollection = ({ navigation }) => {
@@ -192,9 +193,11 @@ const DataCollection = ({ navigation }) => {
           {view === 'Find Records'
             && (
               <View>
-                <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
-                  <Text>{I18n.t('dataCollection.back')}</Text>
-                </Button>
+                {!selectPerson && (
+                  <Button icon="arrow-left" width={100} onPress={navigateToRoot}>
+                    <Text>{I18n.t('dataCollection.back')}</Text>
+                  </Button>
+                )}
                 <FindResidents
                   selectPerson={selectPerson}
                   setSelectPerson={setSelectPerson}

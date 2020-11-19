@@ -250,6 +250,32 @@
     "immediateFollowupRequired": "¿Se requiere seguimiento inmediato?",
     "plan": "Plan"
   },
+  "vitals":{
+    "name": "Partes Vitales",
+    "height":"Altura",
+    "inches":"Pulgadas",
+    "weight":"Pesos",
+    "pounds":"Libras",
+    "bmi":"Indice de masa corporal",
+    "temp":"Temperatura",
+    "celsius":"°Celsius",
+    "pulse":"Pulso",
+    "bpm":"Latidos por minuto",
+    "respRate":"Frecuencia respiratoria",
+    "breathspm":"espiras por minuto",
+    "bloodPressure":{
+      "label":"Presion sanguinia",
+      "systolic":"Sistólico",
+      "diastolic":"Diastólico"
+    },
+    "bloodOxygen":"Saturacion de oxígeno en la sangre",
+    "mmHg":"mm Hg",
+    "bloodSugar":"Nivel de azucar",
+    "mgdL":"mg/dL",
+    "hemoglobinLevels":"Niveles de hemoglobina",
+    "gdL":"g/dL",
+    "pain":"Nivel de dolor"
+  },
   "supplementaryForms": {
     "attachResident": "Adjuntar una residente de la comunidad"
   },
@@ -325,7 +351,11 @@
     "householdManager": "Administrador del hogar",
     "relationshipHousehold": "¿Cuál es su función / relación en el hogar?",
     "linked": "Vinculada",
-    "useSearchBar": "Please use the searchbar to find and select the correct Household."
+    "useSearchBar": "Please use the searchbar to find and select the correct Household.",
+    "doNothing": "Haga nada",
+    "successCreateHousehold": "Ha creado correctamente un nuevo hogar.",
+    "noHousehold": "Ha elegido no vincular un hogar.",
+    "addCreateHousehold": "Agrega o crea un hogar"
   },
   "header": {
     "goodMorning": "Buenos días",
