@@ -181,7 +181,8 @@
       "zinc": "Zinc",
       "wood": "madera",
       "partBlock_partWood": "Parte bloque, parte madera",
-      "block": "Block"
+      "block": "Block",
+      "brickClay": "Ladrillo y arcilla"
     },
     "electricityAccess": {
       "label": "¿Con qué frecuencia tiene acceso a la electricidad?",
@@ -250,31 +251,31 @@
     "immediateFollowupRequired": "¿Se requiere seguimiento inmediato?",
     "plan": "Plan"
   },
-  "vitals":{
+  "vitals": {
     "name": "Partes Vitales",
-    "height":"Altura",
-    "inches":"Pulgadas",
-    "weight":"Pesos",
-    "pounds":"Libras",
-    "bmi":"Indice de masa corporal",
-    "temp":"Temperatura",
-    "celsius":"°Celsius",
-    "pulse":"Pulso",
-    "bpm":"Latidos por minuto",
-    "respRate":"Frecuencia respiratoria",
-    "breathspm":"espiras por minuto",
-    "bloodPressure":{
-      "label":"Presion sanguinia",
-      "systolic":"Sistólico",
-      "diastolic":"Diastólico"
+    "height": "Altura",
+    "inches": "Pulgadas",
+    "weight": "Pesos",
+    "pounds": "Libras",
+    "bmi": "Indice de masa corporal",
+    "temp": "Temperatura",
+    "celsius": "°Celsius",
+    "pulse": "Pulso",
+    "bpm": "Latidos por minuto",
+    "respRate": "Frecuencia respiratoria",
+    "breathspm": "espiras por minuto",
+    "bloodPressure": {
+      "label": "Presion sanguinia",
+      "systolic": "Sistólico",
+      "diastolic": "Diastólico"
     },
-    "bloodOxygen":"Saturacion de oxígeno en la sangre",
-    "mmHg":"mm Hg",
-    "bloodSugar":"Nivel de azucar",
-    "mgdL":"mg/dL",
-    "hemoglobinLevels":"Niveles de hemoglobina",
-    "gdL":"g/dL",
-    "pain":"Nivel de dolor"
+    "bloodOxygen": "Saturacion de oxígeno en la sangre",
+    "mmHg": "mm Hg",
+    "bloodSugar": "Nivel de azucar",
+    "mgdL": "mg/dL",
+    "hemoglobinLevels": "Niveles de hemoglobina",
+    "gdL": "g/dL",
+    "pain": "Nivel de dolor"
   },
   "supplementaryForms": {
     "attachResident": "Adjuntar una residente de la comunidad"
