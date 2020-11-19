@@ -279,10 +279,10 @@
   },
   "forms": {
     "successfullySubmitted": "Form successfully submitted",
-    "grabCoffee": "Grab yourself a coffee",
+    "grabCoffee": "Great job, grab yourself a coffee",
     "suggestedForms": "Suggested next Forms",
     "viewGallery": "View Forms Gallery",
-    "returnHome": "Return to Data Collection Home"
+    "returnHome": "Return Home"
   },
   "gdpr": {
     "consentForm": "Consent Form",

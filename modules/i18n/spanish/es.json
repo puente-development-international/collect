@@ -281,10 +281,10 @@
   },
   "forms": {
     "successfullySubmitted": "Formulario entregado satisfactoriamente",
-    "grabCoffee": "Tómate un café",
+    "grabCoffee": "Buen trabajo, tómate un café",
     "suggestedForms": "Formularios siguientes sugeridos",
     "viewGallery": "Ver galería de formularios",
-    "returnHome": "Return to Data Collection Home"
+    "returnHome": "Volver a casa"
   },
   "gdpr": {
     "consentForm": "Formulario de consentimiento",

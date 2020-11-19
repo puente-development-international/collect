@@ -74,11 +74,11 @@ const Forms = (props) => {
           }}
           >
             <PostSubmissionSVG width={350} height={350} />
-            <Text>{I18n.t('forms.successfullySubmitted')}</Text>
-            <Text>{I18n.t('forms.grabCoffee')}</Text>
+            <Text style={{ color: theme.colors.primary, fontSize: 25, fontWeight: 'bold' }}>{I18n.t('forms.successfullySubmitted')}</Text>
+            <Text style={{ fontSize: 15, marginTop: 10, marginBottom: 10 }}>{I18n.t('forms.grabCoffee')}</Text>
           </View>
           <View style={layout.container}>
-            <Text>{I18n.t('forms.suggestedForms')}</Text>
+            <Text style={{ fontSize: 15, marginBottom: 5 }}>{I18n.t('forms.suggestedForms')}</Text>
             <SmallCardsCarousel
               puenteForms={puenteForms}
               navigateToNewRecord={navigateToNewRecord}
