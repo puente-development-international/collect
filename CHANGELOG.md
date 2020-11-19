@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.6.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.6.1...v8.6.2) (2020-11-19)
+
+
+### New Features
+
+* add text question above input PIP question ([66bbd69](https://github.com/hopetambala/puente-reactnative-collect/commit/66bbd699888eca509f721ad5eb62c4352599d490))
+
+
+### Housekeeping Tasks
+
+* linting ([9d36fde](https://github.com/hopetambala/puente-reactnative-collect/commit/9d36fdeb5016a12931079b2b6c9348390e8f5212))
+
 ### [8.6.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.6.0...v8.6.1) (2020-11-19)
 
 ## [8.6.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.5.0...v8.6.0) (2020-11-17)
