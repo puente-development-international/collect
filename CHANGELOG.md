@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.6.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.5.0...v8.6.0) (2020-11-17)
+
+
+### New Features
+
+* add vitals form ui ([3c9fb10](https://github.com/hopetambala/puente-reactnative-collect/commit/3c9fb10bf924b9e1234d478a2c0d6489b96070bb))
+* vitals form working 🎉 ([4b2b08d](https://github.com/hopetambala/puente-reactnative-collect/commit/4b2b08d98998735a315c61a74d34c44a5d3c072d))
+
+
+### Housekeeping Tasks
+
+* add I18n translations ([747f6a7](https://github.com/hopetambala/puente-reactnative-collect/commit/747f6a7fccc0fe1a3e4cbec87a8e38faa37cfa09))
+* change changelog ([6cd4896](https://github.com/hopetambala/puente-reactnative-collect/commit/6cd489636d3d4d9a9d4f1ba40a8c37ea2b09e603))
+* fix linting ([35b1c9d](https://github.com/hopetambala/puente-reactnative-collect/commit/35b1c9d9bb2a28e5231431384966e61c4dd6ea2c))
+* fix linting issues ([807cddb](https://github.com/hopetambala/puente-reactnative-collect/commit/807cddb26dafe11c899d6ca3cfa21d209040130e))
+* I18n translations ([6315b69](https://github.com/hopetambala/puente-reactnative-collect/commit/6315b695a067d762f4adec8fab94176ad3ff7057))
+* merge master ([afa6370](https://github.com/hopetambala/puente-reactnative-collect/commit/afa6370503c674b37baa0709069ba8d337602092))
+
+
+### Code Refactors
+
+* linting ([7e25671](https://github.com/hopetambala/puente-reactnative-collect/commit/7e25671049d51b26078dcd77ba7833a668459d35))
+
+
+### Bug fixes
+
+* add purpose to application for using user's location ([7f01b18](https://github.com/hopetambala/puente-reactnative-collect/commit/7f01b18cedb7a75cbc800d3d426e92f2f10067c7))
+* housheold manager view ([50e551c](https://github.com/hopetambala/puente-reactnative-collect/commit/50e551cf41e6a2758414484c7bb490d8385d3be2))
+
 ## [8.5.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.4.0...v8.5.0) (2020-11-11)
 
 
