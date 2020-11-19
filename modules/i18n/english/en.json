@@ -350,6 +350,7 @@
     "householdManager": "Household Manager",
     "relationshipHousehold": "What is their role/relationship in the household?",
     "linked": "Linked",
+    "useSearchBar": "Please use the searchbar to find and select the correct Household.",
     "doNothing": "Do Nothing",
     "successCreateHousehold": "You have successfully created a new household.",
     "noHousehold": "You have chosen not to link a household.",
