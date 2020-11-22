@@ -352,6 +352,7 @@
     "householdManager": "Administrador del hogar",
     "relationshipHousehold": "¿Cuál es su función / relación en el hogar?",
     "linked": "Vinculada",
+    "useSearchBar": "Please use the searchbar to find and select the correct Household.",
     "doNothing": "Haga nada",
     "successCreateHousehold": "Ha creado correctamente un nuevo hogar.",
     "noHousehold": "Ha elegido no vincular un hogar.",
