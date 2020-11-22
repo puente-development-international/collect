@@ -329,6 +329,7 @@ const PaperInputPicker = ({
             formikProps={formikProps}
             formikKey={formikKey}
             surveyingOrganization={surveyingOrganization}
+            values={values}
           />
         </View>
       )}
