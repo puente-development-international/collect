@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  View, Text, StyleSheet, TouchableWithoutFeedback, Keyboard
+  View, Text, StyleSheet
 } from 'react-native';
 import {
   TextInput, Button, Headline
@@ -131,68 +131,66 @@ const PaperInputPicker = ({
         </View>
       )}
       {fieldType === 'select' && (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <View>
-            <Text style={layout.selectLabel}>{translatedLabel}</Text>
-            <View style={layout.buttonGroupContainer}>
-              {data.options.map((result) => (
-                <View key={result.value}>
-                  {/* selected value */}
-                  {result.value === values[formikKey] && (
-                    <View>
-                      <Button
-                        style={layout.buttonGroupButtonStyle}
-                        key={result.value}
-                        mode="contained"
-                        onPress={() => setFieldValue(formikKey, result.value)}
-                      >
-                        <Text style={{ color: 'white' }}>{customForm ? result.label : I18n.t(result.label)}</Text>
-                      </Button>
-                    </View>
-                  )}
-                  {/* non-selected value */}
-                  {result.value !== values[formikKey] && (
-                    <View style={styles}>
-                      <Button
-                        style={layout.buttonGroupButtonStyle}
-                        key={result.value}
-                        mode="outlined"
-                        onPress={() => setFieldValue(formikKey, result.value)}
-                      >
-                        <Text style={{ color: theme.colors.primary }}>
-                          {customForm ? result.label : I18n.t(result.label)}
-                        </Text>
-                      </Button>
-                    </View>
-                  )}
-                </View>
-              ))}
-            </View>
-            {/* text input option along with select option */}
+        <View>
+          <Text style={layout.selectLabel}>{translatedLabel}</Text>
+          <View style={layout.buttonGroupContainer}>
             {data.options.map((result) => (
               <View key={result.value}>
-                {result.text === true && result.value === values[formikKey] && (
-                  <View style={styles} key={result.textKey}>
-                    <TextInput
-                      label={customForm ? result.label : I18n.t(result.label)}
-                      onChangeText={handleChange(result.textKey)}
-                      onBlur={handleBlur(result.textKey)}
-                      {...rest} //eslint-disable-line
+                {/* selected value */}
+                {result.value === values[formikKey] && (
+                  <View>
+                    <Button
+                      style={layout.buttonGroupButtonStyle}
+                      key={result.value}
+                      mode="contained"
+                      onPress={() => setFieldValue(formikKey, result.value)}
+                    >
+                      <Text style={{ color: 'white' }}>{customForm ? result.label : I18n.t(result.label)}</Text>
+                    </Button>
+                  </View>
+                )}
+                {/* non-selected value */}
+                {result.value !== values[formikKey] && (
+                  <View style={styles}>
+                    <Button
+                      style={layout.buttonGroupButtonStyle}
+                      key={result.value}
                       mode="outlined"
-                      theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                    />
-                    <Text style={{ color: 'red' }}>
-                      {errors[result.textKey]}
-                    </Text>
+                      onPress={() => setFieldValue(formikKey, result.value)}
+                    >
+                      <Text style={{ color: theme.colors.primary }}>
+                        {customForm ? result.label : I18n.t(result.label)}
+                      </Text>
+                    </Button>
                   </View>
                 )}
               </View>
             ))}
-            <Text style={{ color: 'red' }}>
-              {errors[formikKey]}
-            </Text>
           </View>
-        </TouchableWithoutFeedback>
+          {/* text input option along with select option */}
+          {data.options.map((result) => (
+            <View key={result.value}>
+              {result.text === true && result.value === values[formikKey] && (
+                <View style={styles} key={result.textKey}>
+                  <TextInput
+                    label={customForm ? result.label : I18n.t(result.label)}
+                    onChangeText={handleChange(result.textKey)}
+                    onBlur={handleBlur(result.textKey)}
+                    {...rest} //eslint-disable-line
+                    mode="outlined"
+                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                  />
+                  <Text style={{ color: 'red' }}>
+                    {errors[result.textKey]}
+                  </Text>
+                </View>
+              )}
+            </View>
+          ))}
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
+        </View>
       )}
       {fieldType === 'selectMulti' && (
         <View>
