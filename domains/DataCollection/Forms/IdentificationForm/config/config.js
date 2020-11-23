@@ -33,15 +33,18 @@ const configArray = [
     options: [
       {
         label: 'identificationForm.dob.month',
-        value: 'Month'
+        value: 'Month',
+        maxLength: 2
       },
       {
         label: 'identificationForm.dob.day',
-        value: 'Day'
+        value: 'Day',
+        maxLength: 2
       },
       {
         label: 'identificationForm.dob.year',
-        value: 'Year'
+        value: 'Year',
+        maxLength: 4
       }
     ],
     validation: false

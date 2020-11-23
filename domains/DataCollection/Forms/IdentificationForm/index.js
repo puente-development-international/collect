@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   ActivityIndicator,
-  View
+  View, TouchableWithoutFeedback, Keyboard
 } from 'react-native';
 import { Formik } from 'formik';
 // import * as yup from 'yup';
@@ -59,87 +59,91 @@ const IdentificationForm = ({
   }, [setInputs, configArray]);
 
   return (
-    <Formik
-      initialValues={{}}
-      onSubmit={(values, actions) => {
-        setPhotoFile('Submitted Photo String');
+    <View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss()} accessible={false}>
+        <Formik
+          initialValues={{}}
+          onSubmit={(values, actions) => {
+            setPhotoFile('Submitted Photo String');
 
-        const formObject = values;
-        formObject.surveyingOrganization = surveyingOrganization;
-        formObject.surveyingUser = surveyingUser;
-        formObject.latitude = values.location?.latitude || 0;
-        formObject.longitude = values.location?.longitude || 0;
-        formObject.altitude = values.location?.altitude || 0;
+            const formObject = values;
+            formObject.surveyingOrganization = surveyingOrganization;
+            formObject.surveyingUser = surveyingUser;
+            formObject.latitude = values.location?.latitude || 0;
+            formObject.longitude = values.location?.longitude || 0;
+            formObject.altitude = values.location?.altitude || 0;
 
-        formObject.dob = `${values.Month || '00'}/${values.Day || '00'}/${values.Year || '0000'}`;
+            formObject.dob = `${values.Month || '00'}/${values.Day || '00'}/${values.Year || '0000'}`;
 
-        const valuesToPrune = ['Month', 'Day', 'Year', 'location'];
-        valuesToPrune.forEach((value) => {
-          delete formObject[value];
-        });
-
-        const submitAction = () => {
-          setTimeout(() => {
-            setSelectedForm('');
-            actions.setSubmitting(false);
-          }, 1000);
-        };
-
-        const postParams = {
-          parseClass: 'SurveyData',
-          signature: 'Sample Signature',
-          photoFile,
-          localObject: formObject
-        };
-
-        checkOnlineStatus().then((connected) => {
-          if (connected) {
-            postObjectsToClass(postParams).then((surveyee) => {
-              const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
-              setSurveyee(surveyeeSanitized);
-              submitAction();
+            const valuesToPrune = ['Month', 'Day', 'Year', 'location'];
+            valuesToPrune.forEach((value) => {
+              delete formObject[value];
             });
-          } else {
-            const id = `PatientID-${generateRandomID()}`;
-            storeData(postParams, id);
-            submitAction();
-          }
-        });
-      }}
-      validationSchema={validationSchema}
-      // only validate on submit, errors persist after fixing
-      validateOnBlur={false}
-      validateOnChange={false}
-    >
-      {(formikProps) => (
-        <View style={layout.formContainer}>
-          {inputs.length && inputs.map((result) => (
-            <View key={result.formikKey}>
-              <PaperInputPicker
-                data={result}
-                formikProps={formikProps}
-                surveyingOrganization={surveyingOrganization}
-                scrollViewScroll={scrollViewScroll}
-                setScrollViewScroll={setScrollViewScroll}
-                customForm={false}
-              // placeholder="Ana"
-              />
+
+            const submitAction = () => {
+              setTimeout(() => {
+                setSelectedForm('');
+                actions.setSubmitting(false);
+              }, 1000);
+            };
+
+            const postParams = {
+              parseClass: 'SurveyData',
+              signature: 'Sample Signature',
+              photoFile,
+              localObject: formObject
+            };
+
+            checkOnlineStatus().then((connected) => {
+              if (connected) {
+                postObjectsToClass(postParams).then((surveyee) => {
+                  const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
+                  setSurveyee(surveyeeSanitized);
+                  submitAction();
+                });
+              } else {
+                const id = `PatientID-${generateRandomID()}`;
+                storeData(postParams, id);
+                submitAction();
+              }
+            });
+          }}
+          validationSchema={validationSchema}
+          // only validate on submit, errors persist after fixing
+          validateOnBlur={false}
+          validateOnChange={false}
+        >
+          {(formikProps) => (
+            <View style={layout.formContainer}>
+              {inputs.length && inputs.map((result) => (
+                <View key={result.formikKey}>
+                  <PaperInputPicker
+                    data={result}
+                    formikProps={formikProps}
+                    surveyingOrganization={surveyingOrganization}
+                    scrollViewScroll={scrollViewScroll}
+                    setScrollViewScroll={setScrollViewScroll}
+                    customForm={false}
+                  // placeholder="Ana"
+                  />
+                </View>
+              ))}
+              {formikProps.isSubmitting ? (
+                <ActivityIndicator />
+              ) : (
+                  <PaperButton
+                    onPressEvent={formikProps.handleSubmit}
+                    buttonText={I18n.t('global.submit')}
+                  />
+                  // <Button icon="human" onPress={formikProps.handleSubmit}>
+                  //   <Text>Submit</Text>
+                  // </Button>
+                )}
             </View>
-          ))}
-          {formikProps.isSubmitting ? (
-            <ActivityIndicator />
-          ) : (
-            <PaperButton
-              onPressEvent={formikProps.handleSubmit}
-              buttonText={I18n.t('global.submit')}
-            />
-          // <Button icon="human" onPress={formikProps.handleSubmit}>
-          //   <Text>Submit</Text>
-          // </Button>
           )}
-        </View>
-      )}
-    </Formik>
+        </Formik>
+      </TouchableWithoutFeedback>
+    </View>
   );
 };
 
