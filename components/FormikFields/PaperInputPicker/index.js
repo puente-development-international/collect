@@ -102,6 +102,26 @@ const PaperInputPicker = ({
           </Text>
         </View>
       )}
+      {fieldType === 'inputSideLabelNum' && (
+        <View style={styles}>
+          <View style={{ flexDirection: 'row' }}>
+            <TextInput
+              label={translatedLabel}
+              onChangeText={handleChange(formikKey)}
+              onBlur={handleBlur(formikKey)}
+              {...rest} //eslint-disable-line
+              mode="outlined"
+              keyboardType="numeric"
+              theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+              style={{ flex: 1 }}
+            />
+            <Text style={styleX.sideLabel}>{translatedLabelSide}</Text>
+          </View>
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
+        </View>
+      )}
       {fieldType === 'inputSideLabelTextQuestNumber' && (
         <View style={styles}>
           <Text>{translatedLabel}</Text>
@@ -270,7 +290,7 @@ const PaperInputPicker = ({
                       {errors[result.textKey]}
                     </Text>
                   </View>
-              )}
+                )}
             </View>
           ))}
           <Text style={{ color: 'red' }}>
@@ -350,20 +370,20 @@ const PaperInputPicker = ({
                 <Text style={styleX.textSplit}>{result.label}</Text>
               </View>
             ) : (
-              <View key={result.value} style={styles.inputItem}>
-                <TextInput
-                  label={customForm ? result.label : I18n.t(result.label)}
-                  onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
-                  onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
+                <View key={result.value} style={styles.inputItem}>
+                  <TextInput
+                    label={customForm ? result.label : I18n.t(result.label)}
+                    onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
+                    onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
                     {...rest} //eslint-disable-line
-                  mode="outlined"
-                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                />
-                <Text style={{ color: 'red' }}>
-                  {errors[customForm ? result.label : I18n.t(result.label)]}
-                </Text>
-              </View>
-            )))}
+                    mode="outlined"
+                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                  />
+                  <Text style={{ color: 'red' }}>
+                    {errors[customForm ? result.label : I18n.t(result.label)]}
+                  </Text>
+                </View>
+              )))}
           </View>
         </View>
       )}
@@ -372,22 +392,26 @@ const PaperInputPicker = ({
           <View style={styles.container}>
             <Text>{translatedLabel}</Text>
             <View style={styles.multiInputContainer}>
-              {data.options.map((result) => (
-                <View key={result.value} style={styles.inputItem}>
-                  <TextInput
-                    label={customForm ? result.label : I18n.t(result.label)}
-                    onChangeText={handleChange(result.value)}
-                    onBlur={handleBlur(result.value)}
-                    {...rest} //eslint-disable-line
-                    mode="outlined"
-                    keyboardType="numeric"
-                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                  />
-                  <Text style={{ color: 'red' }}>
-                    {errors[result.value]}
-                  </Text>
+              {data.options.map((result) => (result.textSplit ? (
+                <View style={{ flex: 1 }}>
+                  <Text style={styleX.textSplit}>{result.label}</Text>
                 </View>
-              ))}
+              ) : (
+                  <View key={result.value} style={styles.inputItem}>
+                    <TextInput
+                      label={customForm ? result.label : I18n.t(result.label)}
+                      onChangeText={handleChange(result.value)}
+                      onBlur={handleBlur(result.value)}
+                      {...rest} //eslint-disable-line
+                      mode="outlined"
+                      keyboardType="numeric"
+                      theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                    />
+                    <Text style={{ color: 'red' }}>
+                      {errors[result.value]}
+                    </Text>
+                  </View>
+                )))}
             </View>
           </View>
         )
