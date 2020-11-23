@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "8.5.0",
+    "version": "8.6.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -23,14 +23,17 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "8.5.0",
-      "bundleIdentifier": "io.ionic.starter1270348"
+      "buildNumber": "8.6.2",
+      "bundleIdentifier": "io.ionic.starter1270348",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to geo-tag surveys accurately."
+      }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "android": {
-      "versionCode": 380080500,
+      "versionCode": 380080602,
       "package": "io.ionic.starter1270348",
       "softwareKeyboardLayoutMode": "pan"
     },

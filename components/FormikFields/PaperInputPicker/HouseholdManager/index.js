@@ -3,7 +3,7 @@ import {
   View, Modal
 } from 'react-native';
 import {
-  Button, RadioButton, Appbar, Text
+  Button, RadioButton, Appbar, Text, TextInput
 } from 'react-native-paper';
 
 import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
@@ -11,31 +11,61 @@ import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
 import { theme, layout } from '../../../../modules/theme';
 import I18n from '../../../../modules/i18n';
 
-import { postObjectsToClass } from '../../../../services/parse/crud';
+import { postObjectsToClass, postObjectsToClassWithRelation } from '../../../../services/parse/crud';
 
 import styles from './index.style';
 
-// const relationships = [
-//   'Parent', 'Sibling', 'Grand-Parent', 'Cousin', 'Other'
-// ];
-
 const HouseholdManager = (props) => {
-  const { formikProps, formikKey, surveyingOrganization } = props;
-  const { setFieldValue } = formikProps;
-
+  const {
+    formikProps, formikKey, surveyingOrganization, values
+  } = props;
+  const {
+    setFieldValue, handleBlur, handleChange, errors
+  } = formikProps;
+  const [relationships] = useState([
+    'Parent', 'Sibling', 'Grand-Parent', 'Cousin', 'Other'
+  ]);
+  const [relationship, setRelationship] = useState('');
   const [selectPerson, setSelectPerson] = useState();
   // const [, setHouseholdRelationship] = useState();
   const [modalView, setModalView] = useState('unset');
   const [householdSet, setHouseholdSet] = useState(false);
 
   const onSubmit = () => {
-    setModalView('third');
-    attachToExistingHousehold();
+    if (!selectPerson) {
+      alert('You must search and select an individual.') //eslint-disable-line
+    } else if (relationship === '') {
+      alert('You must select a role/relationship in the household.') //eslint-disable-line
+    } else {
+      setModalView('third');
+      attachToExistingHousehold();
+      postHouseholdRelation();
+    }
   };
 
   const attachToExistingHousehold = () => {
     // set householdId (from selectPerson) on the residentIdForm
     setFieldValue(formikKey, selectPerson.householdId || 'No Household Id Found');
+  };
+
+  const postHouseholdRelation = () => {
+    let finalRelationship = relationship;
+    if (relationship === 'Other') {
+      finalRelationship += `__${values.other}`;
+    }
+    const postParams = {
+      parseParentClassID: selectPerson.householdId,
+      parseParentClass: 'Household',
+      parseClass: 'Household',
+      localObject: {
+        relationship: finalRelationship,
+        latitude: 0,
+        longitude: 0
+      }
+    };
+    postObjectsToClassWithRelation(postParams).then((result) => {
+      setFieldValue(formikKey, result.id);
+    });
   };
 
   const createNewHousehold = () => {
@@ -86,9 +116,9 @@ const HouseholdManager = (props) => {
           animationType="slide"
           visible
         >
-          <Appbar.Header>
+          <Appbar.Header style={{ backgroundColor: theme.colors.accent }}>
             <Appbar.BackAction onPress={() => setModalView('first')} />
-            <Appbar.Content title={I18n.t('householdManager.householdManager')} subtitle="" />
+            <Appbar.Content title={I18n.t('householdManager.householdManager')} subtitle="" titleStyle={{ fontSize: 20, fontWeight: 'bold' }} />
           </Appbar.Header>
 
           <View style={styles.container}>
@@ -97,21 +127,47 @@ const HouseholdManager = (props) => {
               setSurveyee={setSelectPerson}
               surveyingOrganization={surveyingOrganization}
             />
-
-            {/* <Text>{I18n.t('householdManager.relationshipHousehold')}</Text>
-            <View style={layout.buttonGroupContainer}>
-              {relationships.map((result) => (
-                <Button
-                  style={layout.buttonGroupButtonStyle}
-                  key={result} mode="outlined"
-                  onPress={() => setHouseholdRelationship(result)}>
-                  <Text>{result}</Text>
-                </Button>
+            {!selectPerson && (
+              <Text style={{ fontWeight: 'bold', padding: 10 }}>{I18n.t('householdManager.useSearchBar')}</Text>
+            )}
+            {selectPerson && (
+              <Text>{I18n.t('householdManager.relationshipHousehold')}</Text>
+            )}
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+              {selectPerson && relationships.map((result) => (
+                <View key={result} style={layout.buttonGroupButtonStyle}>
+                  {relationship === result ? (
+                    <Button mode="contained">{result}</Button>
+                  ) : (
+                    <Button mode="outlined" onPress={() => setRelationship(result)}>{result}</Button>
+                  )}
+                </View>
               ))}
-            </View> */}
-            <Button theme={{ backgroundColor: theme.colors.primary }} style={layout.buttonGroupButtonStyle} mode="contained" onPress={onSubmit}>
-              {I18n.t('global.submit')}
-            </Button>
+            </View>
+            {relationship === 'Other' && (
+              <View style={styles}>
+                <TextInput
+                  label="Other"
+                  onChangeText={handleChange('other')}
+                  onBlur={handleBlur('other')}
+                  mode="outlined"
+                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                />
+                <Text style={{ color: 'red' }}>
+                  {errors.other}
+                </Text>
+              </View>
+            )}
+            {selectPerson ? (
+              <Button style={{ marginTop: 10 }} theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit}>
+                {I18n.t('global.submit')}
+              </Button>
+            ) : (
+              <Button theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit} disabled>
+                {I18n.t('global.submit')}
+              </Button>
+            )}
+
           </View>
         </Modal>
       )}

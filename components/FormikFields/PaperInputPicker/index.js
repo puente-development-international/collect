@@ -102,6 +102,26 @@ const PaperInputPicker = ({
           </Text>
         </View>
       )}
+      {fieldType === 'inputSideLabelTextQuestNumber' && (
+        <View style={styles}>
+          <Text>{translatedLabel}</Text>
+          <View style={{ flexDirection: 'row' }}>
+            <TextInput
+              onChangeText={handleChange(formikKey)}
+              onBlur={handleBlur(formikKey)}
+              {...rest} //eslint-disable-line
+              mode="outlined"
+              keyboardType="numeric"
+              theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+              style={{ flex: 1 }}
+            />
+            <Text style={styleX.sideLabel}>{translatedLabelSide}</Text>
+          </View>
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
+        </View>
+      )}
       {fieldType === 'inputSideBySideLabel' && (
         <View style={styles}>
           <View style={{ flexDirection: 'row' }}>
@@ -309,6 +329,7 @@ const PaperInputPicker = ({
             formikProps={formikProps}
             formikKey={formikKey}
             surveyingOrganization={surveyingOrganization}
+            values={values}
           />
         </View>
       )}
