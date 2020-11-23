@@ -250,7 +250,7 @@ const PaperInputPicker = ({
                       {errors[result.textKey]}
                     </Text>
                   </View>
-                )}
+              )}
             </View>
           ))}
           <Text style={{ color: 'red' }}>
@@ -329,20 +329,20 @@ const PaperInputPicker = ({
                 <Text style={styleX.textSplit}>{result.label}</Text>
               </View>
             ) : (
-                <View key={result.value} style={styles.inputItem}>
-                  <TextInput
-                    label={customForm ? result.label : I18n.t(result.label)}
-                    onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
-                    onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
+              <View key={result.value} style={styles.inputItem}>
+                <TextInput
+                  label={customForm ? result.label : I18n.t(result.label)}
+                  onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
+                  onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
                     {...rest} //eslint-disable-line
-                    mode="outlined"
-                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                  />
-                  <Text style={{ color: 'red' }}>
-                    {errors[customForm ? result.label : I18n.t(result.label)]}
-                  </Text>
-                </View>
-              )))}
+                  mode="outlined"
+                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                />
+                <Text style={{ color: 'red' }}>
+                  {errors[customForm ? result.label : I18n.t(result.label)]}
+                </Text>
+              </View>
+            )))}
           </View>
         </View>
       )}
