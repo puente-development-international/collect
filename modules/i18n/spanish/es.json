@@ -182,7 +182,8 @@
       "wood": "madera",
       "partBlock_partWood": "Parte bloque, parte madera",
       "block": "Block",
-      "brickClay": "Ladrillo y arcilla"
+      "brick": "Ladrillo",
+      "clay":" Arcilla"
     },
     "electricityAccess": {
       "label": "¿Con qué frecuencia tiene acceso a la electricidad?",

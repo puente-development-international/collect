@@ -180,7 +180,8 @@
       "wood": "Wood",
       "partBlock_partWood": "Part block, part wood",
       "block": "Block",
-      "brickClay": "Brick and Clay"
+      "brick": "Brick",
+      "clay": "Clay"
     },
     "electricityAccess": {
       "label": "How often do you have access to electricity?",
