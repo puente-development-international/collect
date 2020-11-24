@@ -102,6 +102,26 @@ const PaperInputPicker = ({
           </Text>
         </View>
       )}
+      {fieldType === 'inputSideLabelNum' && (
+        <View style={styles}>
+          <View style={{ flexDirection: 'row' }}>
+            <TextInput
+              label={translatedLabel}
+              onChangeText={handleChange(formikKey)}
+              onBlur={handleBlur(formikKey)}
+              {...rest} //eslint-disable-line
+              mode="outlined"
+              keyboardType="numeric"
+              theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+              style={{ flex: 1 }}
+            />
+            <Text style={styleX.sideLabel}>{translatedLabelSide}</Text>
+          </View>
+          <Text style={{ color: 'red' }}>
+            {errors[formikKey]}
+          </Text>
+        </View>
+      )}
       {fieldType === 'inputSideLabelTextQuestNumber' && (
         <View style={styles}>
           <Text>{translatedLabel}</Text>
@@ -372,13 +392,17 @@ const PaperInputPicker = ({
           <View style={styles.container}>
             <Text>{translatedLabel}</Text>
             <View style={styles.multiInputContainer}>
-              {data.options.map((result) => (
+              {data.options.map((result) => (result.textSplit ? (
+                <View style={{ flex: 1 }}>
+                  <Text style={styleX.textSplit}>{result.label}</Text>
+                </View>
+              ) : (
                 <View key={result.value} style={styles.inputItem}>
                   <TextInput
                     label={customForm ? result.label : I18n.t(result.label)}
                     onChangeText={handleChange(result.value)}
                     onBlur={handleBlur(result.value)}
-                    {...rest} //eslint-disable-line
+                      {...rest} //eslint-disable-line
                     mode="outlined"
                     keyboardType="numeric"
                     theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
@@ -387,7 +411,7 @@ const PaperInputPicker = ({
                     {errors[result.value]}
                   </Text>
                 </View>
-              ))}
+              )))}
             </View>
           </View>
         )

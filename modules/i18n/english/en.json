@@ -261,7 +261,7 @@
     "celsius": "°Celsius",
     "pulse": "Pulse",
     "bpm": "Beats Per Minute",
-    "respRate": "Repiratory Rate",
+    "respRate": "Respiratory Rate",
     "breathspm": "Breaths Per Minute",
     "bloodPressure": {
       "label": "Blood Pressure",

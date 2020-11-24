@@ -13,7 +13,7 @@ const configArray = {
       sideLabel: 'vitals.inches',
       formikKey: 'height',
       value: '',
-      fieldType: 'inputSideLabel',
+      fieldType: 'inputSideLabelNum',
       validation: false
     },
     {
@@ -21,14 +21,14 @@ const configArray = {
       sideLabel: 'vitals.pounds',
       formikKey: 'weight',
       value: '',
-      fieldType: 'inputSideLabel',
+      fieldType: 'inputSideLabelNum',
       validation: false
     },
     {
       label: 'vitals.bmi',
       formikKey: 'bmi',
       value: '',
-      fieldType: 'input',
+      fieldType: 'numberInput',
       validation: false
     },
     {
@@ -36,7 +36,7 @@ const configArray = {
       sideLabel: 'vitals.celsius',
       formikKey: 'temp',
       value: '',
-      fieldType: 'inputSideLabel',
+      fieldType: 'inputSideLabelNum',
       validation: false
     },
     {
@@ -44,7 +44,7 @@ const configArray = {
       sideLabel: 'vitals.bpm',
       formikKey: 'pulse',
       value: '',
-      fieldType: 'inputSideLabel',
+      fieldType: 'inputSideLabelNum',
       validation: false
     },
     {
@@ -52,14 +52,14 @@ const configArray = {
       sideLabel: 'vitals.breathspm',
       formikKey: 'respRate',
       value: '',
-      fieldType: 'inputSideLabel',
+      fieldType: 'inputSideLabelNum',
       validation: false
     },
     {
       label: 'vitals.bloodPressure.label',
       formikKey: 'bloodPressure',
       value: '',
-      fieldType: 'multiInputRow',
+      fieldType: 'multiInputRowNum',
       options: [
         {
           label: 'vitals.bloodPressure.systolic',
@@ -80,7 +80,7 @@ const configArray = {
       sideLabel: 'vitals.mmHg',
       formikKey: 'bloodOxygen',
       value: '',
-      fieldType: 'inputSideLabel',
+      fieldType: 'inputSideLabelNum',
       validation: false
     },
     {
@@ -88,7 +88,7 @@ const configArray = {
       sideLabel: 'vitals.mgdL',
       formikKey: 'bloodSugar',
       value: '',
-      fieldType: 'inputSideLabel',
+      fieldType: 'inputSideLabelNum',
       validation: false
     },
     {
@@ -96,7 +96,7 @@ const configArray = {
       sideLabel: 'vitals.gdL',
       formikKey: 'hemoglobinLevels',
       value: '',
-      fieldType: 'inputSideLabel',
+      fieldType: 'inputSideLabelNum',
       validation: false
     },
     {
