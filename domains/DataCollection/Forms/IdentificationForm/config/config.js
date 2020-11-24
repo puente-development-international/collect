@@ -50,6 +50,13 @@ const configArray = [
     validation: false
   },
   {
+    label: 'identificationForm.age',
+    formikKey: 'age',
+    value: '',
+    fieldType: 'numberInput',
+    validation: false
+  },
+  {
     label: 'identificationForm.sex.label',
     formikKey: 'sex',
     value: '',
