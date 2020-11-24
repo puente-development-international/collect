@@ -179,7 +179,9 @@
       "zinc": "Zinc",
       "wood": "Wood",
       "partBlock_partWood": "Part block, part wood",
-      "block": "Block"
+      "block": "Block",
+      "brick": "Brick",
+      "clay": "Clay"
     },
     "electricityAccess": {
       "label": "How often do you have access to electricity?",
