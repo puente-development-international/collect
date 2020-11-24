@@ -80,6 +80,7 @@
   "identificationForm": {
     "demographics": "Demographics",
     "nickname": "Nickname",
+    "age": "Age (if their date of birth isn't available)",
     "dob": {
       "label": "Date of Birth",
       "month": "Month",

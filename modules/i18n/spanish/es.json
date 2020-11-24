@@ -80,6 +80,7 @@
   "identificationForm": {
     "demographics": "Demografía",
     "nickname": "Apodo",
+    "age": "Edad (si la fecha no está disponible)",
     "dob": {
       "label": "Fecha de nacimiento",
       "month": "Mes",
@@ -332,6 +333,7 @@
     },
     "residentPage": {
       "demographics": {
+        "age": "Edad",
         "dob": "Fecha de nacimiento:",
         "city": "Ciudad:",
         "community": "Comunidad:",
