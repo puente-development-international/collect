@@ -173,6 +173,7 @@ const DataCollection = ({ navigation }) => {
                   surveyee={surveyee}
                   setSurveyee={setSurveyee}
                   customForm={customForm}
+                  setView={setView}
                 />
               </View>
             )}
@@ -206,7 +207,7 @@ const DataCollection = ({ navigation }) => {
                   navigateToNewRecord={navigateToNewRecord}
                   surveyee={surveyee}
                   setSurveyee={setSurveyee}
-                  setView={setView}
+                  navigateToRoot={navigateToRoot}
                 />
               </View>
             )}
