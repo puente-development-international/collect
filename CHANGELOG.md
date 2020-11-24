@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.7.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.6.2...v8.7.0) (2020-11-24)
+
+
+### New Features
+
+* add household relationship and update UI 🎉 ([3c2f853](https://github.com/hopetambala/puente-reactnative-collect/commit/3c2f853fb1fda4fd46230d0ad5b3cf7415408ae8))
+* inital UI for household manager ([89a816f](https://github.com/hopetambala/puente-reactnative-collect/commit/89a816fdd3883a186e13d0e93c8e80962e8df6b1))
+* max length values for dob ([6014a48](https://github.com/hopetambala/puente-reactnative-collect/commit/6014a48112bc81a63dec781bbfed4e8128e8dce6))
+
+
+### Housekeeping Tasks
+
+* add back to data collection home on submission ([a0121e3](https://github.com/hopetambala/puente-reactnative-collect/commit/a0121e39139d80fec2296ea1ff77ca047184c333))
+* add brick and clay to env health ([fc3691d](https://github.com/hopetambala/puente-reactnative-collect/commit/fc3691d84c48548043f4cfc19e59cce04098006f))
+* add brickClay option envHealth ([b5df796](https://github.com/hopetambala/puente-reactnative-collect/commit/b5df796bcdcac57378aeaa0e15c5eed68bee4df7))
+* add handled promise rejections ([2dd2b56](https://github.com/hopetambala/puente-reactnative-collect/commit/2dd2b5675893a51478e22b00dccfec47834fd5c8))
+* add I18n Translations ([b943642](https://github.com/hopetambala/puente-reactnative-collect/commit/b9436423747d4b91ca7dc2c99b367b10d738f658))
+* change vitals inputs to number ([a0ca6e1](https://github.com/hopetambala/puente-reactnative-collect/commit/a0ca6e180eb95f36ec62a13812f5bde713f0171c))
+* linting ([69c2c6e](https://github.com/hopetambala/puente-reactnative-collect/commit/69c2c6e3f67b604e68a27f604a3e2e120f47a141))
+* linting ([9170ded](https://github.com/hopetambala/puente-reactnative-collect/commit/9170dedfe01f0ac41faada56b60909079da71b67))
+* linting ([6781cfc](https://github.com/hopetambala/puente-reactnative-collect/commit/6781cfcb8820bf6efea9d8332e6de6e993188620))
+* remove keyboard on press ([1c15121](https://github.com/hopetambala/puente-reactnative-collect/commit/1c15121bc18f1fbf35ca1b19291ee71f0c4c6c66))
+
+
+### Bug fixes
+
+* add age as option on id form ([8f1f465](https://github.com/hopetambala/puente-reactnative-collect/commit/8f1f465c9f67e85e104264223a993090c7cfe175))
+* Configuration for rule "import/no-cycle" is invalid ([174320d](https://github.com/hopetambala/puente-reactnative-collect/commit/174320dd1a124b8b63b2bce44fb756c4206723d6))
+* english, spanish translations on Autofill ([b476b8a](https://github.com/hopetambala/puente-reactnative-collect/commit/b476b8af87def4d5cb08965c4f1294fae43ff5a7))
+* translation on environmental health form for roof condition ([5644e97](https://github.com/hopetambala/puente-reactnative-collect/commit/5644e9763b1e9ea3df08d54d52a666cb0ef9992b))
+* UI for form submission ([cef0035](https://github.com/hopetambala/puente-reactnative-collect/commit/cef0035f3e98b4c241860c578bd3cd406f3d0c32))
+
 ### [8.6.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.6.1...v8.6.2) (2020-11-19)
 
 

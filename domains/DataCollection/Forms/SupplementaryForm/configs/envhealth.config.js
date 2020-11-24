@@ -301,6 +301,14 @@ const configArray = {
       {
         label: 'environmentalHealth.houseMaterials.block',
         value: 'block'
+      },
+      {
+        label: 'environmentalHealth.houseMaterials.brick',
+        value: 'brick'
+      },
+      {
+        label: 'environmentalHealth.houseMaterials.clay',
+        value: 'clay'
       }
     ],
     validation: false

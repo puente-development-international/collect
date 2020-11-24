@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 
-import { layout } from '../../../modules/theme';
+import { layout, theme } from '../../../modules/theme';
 import I18n from '../../../modules/i18n';
 
 import IdentificationForm from './IdentificationForm';
@@ -22,7 +22,7 @@ const Forms = (props) => {
     puenteForms,
     surveyingUser, surveyingOrganization,
     surveyee, setSurveyee,
-    customForm
+    customForm, navigateToRoot
   } = props;
 
   const [consent, setConsent] = useState(false);
@@ -30,34 +30,40 @@ const Forms = (props) => {
   return (
     <View style={layout.screenContainer}>
       {consent === true && selectedForm === 'id' && (
-        <IdentificationForm
-          navigation={navigation}
-          scrollViewScroll={scrollViewScroll}
-          setScrollViewScroll={setScrollViewScroll}
-          setSelectedForm={setSelectedForm}
-          setSurveyee={setSurveyee}
-          surveyingOrganization={surveyingOrganization}
-          surveyingUser={surveyingUser}
-        />
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <IdentificationForm
+            navigation={navigation}
+            scrollViewScroll={scrollViewScroll}
+            setScrollViewScroll={setScrollViewScroll}
+            setSelectedForm={setSelectedForm}
+            setSurveyee={setSurveyee}
+            surveyingOrganization={surveyingOrganization}
+            surveyingUser={surveyingUser}
+          />
+        </TouchableWithoutFeedback>
       )}
       {consent === true && selectedForm !== 'id' && selectedForm !== '' && (
         <View>
-          <View style={layout.container}>
-            <ResidentIdSearchbar
-              surveyee={surveyee}
-              setSurveyee={setSurveyee}
-              surveyingOrganization={surveyingOrganization}
-            />
-          </View>
-          <SupplementaryForm
-            navigation={navigation}
-            selectedForm={selectedForm}
-            setSelectedForm={setSelectedForm}
-            surveyee={surveyee}
-            surveyingUser={surveyingUser}
-            surveyingOrganization={surveyingOrganization}
-            customForm={customForm}
-          />
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss()} accessible={false}>
+            <View>
+              <View style={layout.container}>
+                <ResidentIdSearchbar
+                  surveyee={surveyee}
+                  setSurveyee={setSurveyee}
+                  surveyingOrganization={surveyingOrganization}
+                />
+              </View>
+              <SupplementaryForm
+                navigation={navigation}
+                selectedForm={selectedForm}
+                setSelectedForm={setSelectedForm}
+                surveyee={surveyee}
+                surveyingUser={surveyingUser}
+                surveyingOrganization={surveyingOrganization}
+                customForm={customForm}
+              />
+            </View>
+          </TouchableWithoutFeedback>
         </View>
       )}
       {consent === false && (
@@ -74,11 +80,11 @@ const Forms = (props) => {
           }}
           >
             <PostSubmissionSVG width={350} height={350} />
-            <Text>{I18n.t('forms.successfullySubmitted')}</Text>
-            <Text>{I18n.t('forms.grabCoffee')}</Text>
+            <Text style={{ color: theme.colors.primary, fontSize: 25, fontWeight: 'bold' }}>{I18n.t('forms.successfullySubmitted')}</Text>
+            <Text style={{ fontSize: 15, marginTop: 10, marginBottom: 10 }}>{I18n.t('forms.grabCoffee')}</Text>
           </View>
           <View style={layout.container}>
-            <Text>{I18n.t('forms.suggestedForms')}</Text>
+            <Text style={{ fontSize: 15, marginBottom: 5 }}>{I18n.t('forms.suggestedForms')}</Text>
             <SmallCardsCarousel
               puenteForms={puenteForms}
               navigateToNewRecord={navigateToNewRecord}
@@ -86,6 +92,9 @@ const Forms = (props) => {
             />
             <Button mode="contained" onPress={navigateToGallery}>
               <Text style={{ color: 'white' }}>{I18n.t('forms.viewGallery')}</Text>
+            </Button>
+            <Button mode="text" onPress={navigateToRoot} theme={theme} style={{ marginTop: 5 }}>
+              {I18n.t('forms.returnHome')}
             </Button>
           </View>
         </View>

@@ -80,6 +80,7 @@
   "identificationForm": {
     "demographics": "Demografía",
     "nickname": "Apodo",
+    "age": "Edad (si la fecha no está disponible)",
     "dob": {
       "label": "Fecha de nacimiento",
       "month": "Mes",
@@ -181,7 +182,9 @@
       "zinc": "Zinc",
       "wood": "madera",
       "partBlock_partWood": "Parte bloque, parte madera",
-      "block": "Block"
+      "block": "Block",
+      "brick": "Ladrillo",
+      "clay": " Arcilla"
     },
     "electricityAccess": {
       "label": "¿Con qué frecuencia tiene acceso a la electricidad?",
@@ -281,9 +284,10 @@
   },
   "forms": {
     "successfullySubmitted": "Formulario entregado satisfactoriamente",
-    "grabCoffee": "Tómate un café",
+    "grabCoffee": "Buen trabajo, tómate un café",
     "suggestedForms": "Formularios siguientes sugeridos",
-    "viewGallery": "Ver galería de formularios"
+    "viewGallery": "Ver galería de formularios",
+    "returnHome": "Volver a casa"
   },
   "gdpr": {
     "consentForm": "Formulario de consentimiento",
@@ -305,6 +309,12 @@
     "tasks": "Tareas",
     "logOut": "Cerrar sesión"
   },
+  "components": {
+    "autofill": {
+      "placeholder": "Entra",
+      "placeholder_end": "aquí"
+    }
+  },
   "cards": {
     "smallCards": {
       "residentID": "Identificación de residente",
@@ -323,6 +333,7 @@
     },
     "residentPage": {
       "demographics": {
+        "age": "Edad",
         "dob": "Fecha de nacimiento:",
         "city": "Ciudad:",
         "community": "Comunidad:",
