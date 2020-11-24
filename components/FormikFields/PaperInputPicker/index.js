@@ -405,6 +405,7 @@ const PaperInputPicker = ({
                       {...rest} //eslint-disable-line
                     mode="outlined"
                     keyboardType="numeric"
+                    maxLength={result.maxLength ? result.maxLength : null}
                     theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
                   />
                   <Text style={{ color: 'red' }}>

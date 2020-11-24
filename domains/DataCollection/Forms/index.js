@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 
 import { layout, theme } from '../../../modules/theme';
@@ -30,34 +30,40 @@ const Forms = (props) => {
   return (
     <View style={layout.screenContainer}>
       {consent === true && selectedForm === 'id' && (
-        <IdentificationForm
-          navigation={navigation}
-          scrollViewScroll={scrollViewScroll}
-          setScrollViewScroll={setScrollViewScroll}
-          setSelectedForm={setSelectedForm}
-          setSurveyee={setSurveyee}
-          surveyingOrganization={surveyingOrganization}
-          surveyingUser={surveyingUser}
-        />
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <IdentificationForm
+            navigation={navigation}
+            scrollViewScroll={scrollViewScroll}
+            setScrollViewScroll={setScrollViewScroll}
+            setSelectedForm={setSelectedForm}
+            setSurveyee={setSurveyee}
+            surveyingOrganization={surveyingOrganization}
+            surveyingUser={surveyingUser}
+          />
+        </TouchableWithoutFeedback>
       )}
       {consent === true && selectedForm !== 'id' && selectedForm !== '' && (
         <View>
-          <View style={layout.container}>
-            <ResidentIdSearchbar
-              surveyee={surveyee}
-              setSurveyee={setSurveyee}
-              surveyingOrganization={surveyingOrganization}
-            />
-          </View>
-          <SupplementaryForm
-            navigation={navigation}
-            selectedForm={selectedForm}
-            setSelectedForm={setSelectedForm}
-            surveyee={surveyee}
-            surveyingUser={surveyingUser}
-            surveyingOrganization={surveyingOrganization}
-            customForm={customForm}
-          />
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss()} accessible={false}>
+            <View>
+              <View style={layout.container}>
+                <ResidentIdSearchbar
+                  surveyee={surveyee}
+                  setSurveyee={setSurveyee}
+                  surveyingOrganization={surveyingOrganization}
+                />
+              </View>
+              <SupplementaryForm
+                navigation={navigation}
+                selectedForm={selectedForm}
+                setSelectedForm={setSelectedForm}
+                surveyee={surveyee}
+                surveyingUser={surveyingUser}
+                surveyingOrganization={surveyingOrganization}
+                customForm={customForm}
+              />
+            </View>
+          </TouchableWithoutFeedback>
         </View>
       )}
       {consent === false && (
