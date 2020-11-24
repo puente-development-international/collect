@@ -165,8 +165,8 @@
     },
     "roofCondition": {
       "label": "Condition of Roof in your house?",
-      "poor": "Poor Condition",
-      "work": "Working Condition"
+      "normal": "Normal Condition",
+      "bad": "Bad Condition"
     },
     "typeStove": {
       "label": "Type of Stove Top",
