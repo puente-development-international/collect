@@ -167,8 +167,8 @@
     },
     "roofCondition": {
       "label": "¿Condición del techo de su casa?",
-      "poor": "Condición pobre",
-      "work": "Condiciones de trabajo"
+      "normal": "Condición normal",
+      "bad": "Condición mala"
     },
     "typeStove": {
       "label": "Tipo de estufa",

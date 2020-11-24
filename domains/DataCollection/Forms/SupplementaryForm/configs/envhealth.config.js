@@ -249,12 +249,12 @@ const configArray = {
     fieldType: 'select',
     options: [
       {
-        label: 'environmentalHealth.roofCondition.poor',
-        value: 'poor'
+        label: 'environmentalHealth.roofCondition.bad',
+        value: 'bad'
       },
       {
-        label: 'environmentalHealth.roofCondition.work',
-        value: 'working'
+        label: 'environmentalHealth.roofCondition.normal',
+        value: 'normal'
       }
     ],
     validation: false
