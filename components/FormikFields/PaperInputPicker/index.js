@@ -304,6 +304,7 @@ const PaperInputPicker = ({
             parameter={data.parameter}
             formikProps={formikProps}
             formikKey={formikKey}
+            label={label}
             scrollViewScroll={scrollViewScroll}
             setScrollViewScroll={setScrollViewScroll}
           />
@@ -366,7 +367,7 @@ const PaperInputPicker = ({
           <Text>{translatedLabel}</Text>
           <View style={styles.multiInputContainer}>
             {data.options.map((result) => (result.textSplit ? (
-              <View style={{ flex: 1 }}>
+              <View key={`${result}`} style={{ flex: 1 }}>
                 <Text style={styleX.textSplit}>{result.label}</Text>
               </View>
             ) : (
@@ -393,7 +394,7 @@ const PaperInputPicker = ({
             <Text>{translatedLabel}</Text>
             <View style={styles.multiInputContainer}>
               {data.options.map((result) => (result.textSplit ? (
-                <View style={{ flex: 1 }}>
+                <View key={`${result}`} style={{ flex: 1 }}>
                   <Text style={styleX.textSplit}>{result.label}</Text>
                 </View>
               ) : (

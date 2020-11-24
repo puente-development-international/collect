@@ -77,12 +77,6 @@ const configArray = [
     fieldType: 'numberInput',
     validation: false
   },
-  // {
-  //   label: 'Demographic Information',
-  //   fieldType: 'header',
-  //   formikKey: 'none_bi2',
-
-  // },
   {
     label: 'identificationForm.marriageStatus.label',
     formikKey: 'marriageStatus',

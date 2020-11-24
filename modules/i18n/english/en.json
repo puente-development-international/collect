@@ -306,6 +306,12 @@
     "tasks": "Tasks",
     "logOut": "Log Out"
   },
+  "components": {
+    "autofill": {
+      "placeholder": "Enter the",
+      "placeholder_end": "here"
+    }
+  },
   "cards": {
     "smallCards": {
       "residentID": "Resident ID",
