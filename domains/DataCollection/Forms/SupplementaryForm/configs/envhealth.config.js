@@ -249,12 +249,12 @@ const configArray = {
     fieldType: 'select',
     options: [
       {
-        label: 'environmentalHealth.roofCondition.poor',
-        value: 'poor'
+        label: 'environmentalHealth.roofCondition.bad',
+        value: 'bad'
       },
       {
-        label: 'environmentalHealth.roofCondition.work',
-        value: 'working'
+        label: 'environmentalHealth.roofCondition.normal',
+        value: 'normal'
       }
     ],
     validation: false
@@ -301,6 +301,14 @@ const configArray = {
       {
         label: 'environmentalHealth.houseMaterials.block',
         value: 'block'
+      },
+      {
+        label: 'environmentalHealth.houseMaterials.brick',
+        value: 'brick'
+      },
+      {
+        label: 'environmentalHealth.houseMaterials.clay',
+        value: 'clay'
       }
     ],
     validation: false

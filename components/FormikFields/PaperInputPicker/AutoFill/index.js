@@ -4,12 +4,12 @@ import {
   YellowBox
 } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
+
 import retrievePuenteAutofillData from '../../../../services/aws';
 
-YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
+import I18n from '../../../../modules/i18n';
 
-// RN < 0.52
-console.ignoredYellowBox = ['VirtualizedLists should never be nested']; // eslint-disable-line
+YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
 export default class AutoFill extends Component {
   constructor(props) {
@@ -45,9 +45,10 @@ export default class AutoFill extends Component {
     const fields = this.findField(query);
     const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
     const {
-      parameter, formikProps, formikKey, scrollViewScroll, setScrollViewScroll
+      label, formikProps, formikKey, scrollViewScroll, setScrollViewScroll
     } = this.props;
-    const placeholder = `Enter the ${parameter} here`;
+
+    const placeholder = `${I18n.t('components.autofill.placeholder')} ${I18n.t(label)} ${I18n.t('components.autofill.placeholder_end')}`;
 
     return (
       <View style={styles.container}>
@@ -96,8 +97,8 @@ export default class AutoFill extends Component {
           {fields.length > 0 ? (
             <Text style={styles.infoText}>{query}</Text>
           ) : (
-            <Text style={styles.infoText}>{placeholder}</Text>
-          )}
+              <Text style={styles.infoText}>{placeholder}</Text>
+            )}
         </View>
       </View>
     );

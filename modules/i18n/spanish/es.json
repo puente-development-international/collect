@@ -80,6 +80,7 @@
   "identificationForm": {
     "demographics": "Demografía",
     "nickname": "Apodo",
+    "age": "Edad (si la fecha no está disponible)",
     "dob": {
       "label": "Fecha de nacimiento",
       "month": "Mes",
@@ -167,8 +168,8 @@
     },
     "roofCondition": {
       "label": "¿Condición del techo de su casa?",
-      "poor": "Condición pobre",
-      "work": "Condiciones de trabajo"
+      "normal": "Condición normal",
+      "bad": "Condición mala"
     },
     "typeStove": {
       "label": "Tipo de estufa",
@@ -181,7 +182,9 @@
       "zinc": "Zinc",
       "wood": "madera",
       "partBlock_partWood": "Parte bloque, parte madera",
-      "block": "Block"
+      "block": "Block",
+      "brick": "Ladrillo",
+      "clay": " Arcilla"
     },
     "electricityAccess": {
       "label": "¿Con qué frecuencia tiene acceso a la electricidad?",
@@ -250,40 +253,41 @@
     "immediateFollowupRequired": "¿Se requiere seguimiento inmediato?",
     "plan": "Plan"
   },
-  "vitals":{
+  "vitals": {
     "name": "Partes Vitales",
-    "height":"Altura",
-    "inches":"Pulgadas",
-    "weight":"Pesos",
-    "pounds":"Libras",
-    "bmi":"Indice de masa corporal",
-    "temp":"Temperatura",
-    "celsius":"°Celsius",
-    "pulse":"Pulso",
-    "bpm":"Latidos por minuto",
-    "respRate":"Frecuencia respiratoria",
-    "breathspm":"espiras por minuto",
-    "bloodPressure":{
-      "label":"Presion sanguinia",
-      "systolic":"Sistólico",
-      "diastolic":"Diastólico"
+    "height": "Altura",
+    "inches": "Pulgadas",
+    "weight": "Pesos",
+    "pounds": "Libras",
+    "bmi": "Indice de masa corporal",
+    "temp": "Temperatura",
+    "celsius": "°Celsius",
+    "pulse": "Pulso",
+    "bpm": "Latidos por minuto",
+    "respRate": "Frecuencia respiratoria",
+    "breathspm": "espiras por minuto",
+    "bloodPressure": {
+      "label": "Presion sanguinia",
+      "systolic": "Sistólico",
+      "diastolic": "Diastólico"
     },
-    "bloodOxygen":"Saturacion de oxígeno en la sangre",
-    "mmHg":"mm Hg",
-    "bloodSugar":"Nivel de azucar",
-    "mgdL":"mg/dL",
-    "hemoglobinLevels":"Niveles de hemoglobina",
-    "gdL":"g/dL",
-    "pain":"Nivel de dolor"
+    "bloodOxygen": "Saturacion de oxígeno en la sangre",
+    "mmHg": "mm Hg",
+    "bloodSugar": "Nivel de azucar",
+    "mgdL": "mg/dL",
+    "hemoglobinLevels": "Niveles de hemoglobina",
+    "gdL": "g/dL",
+    "pain": "Nivel de dolor"
   },
   "supplementaryForms": {
     "attachResident": "Adjuntar una residente de la comunidad"
   },
   "forms": {
     "successfullySubmitted": "Formulario entregado satisfactoriamente",
-    "grabCoffee": "Tómate un café",
+    "grabCoffee": "Buen trabajo, tómate un café",
     "suggestedForms": "Formularios siguientes sugeridos",
-    "viewGallery": "Ver galería de formularios"
+    "viewGallery": "Ver galería de formularios",
+    "returnHome": "Volver a casa"
   },
   "gdpr": {
     "consentForm": "Formulario de consentimiento",
@@ -305,6 +309,12 @@
     "tasks": "Tareas",
     "logOut": "Cerrar sesión"
   },
+  "components": {
+    "autofill": {
+      "placeholder": "Entra",
+      "placeholder_end": "aquí"
+    }
+  },
   "cards": {
     "smallCards": {
       "residentID": "Identificación de residente",
@@ -323,6 +333,7 @@
     },
     "residentPage": {
       "demographics": {
+        "age": "Edad",
         "dob": "Fecha de nacimiento:",
         "city": "Ciudad:",
         "community": "Comunidad:",

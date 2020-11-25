@@ -80,6 +80,7 @@
   "identificationForm": {
     "demographics": "Demographics",
     "nickname": "Nickname",
+    "age": "Age (if their date of birth isn't available)",
     "dob": {
       "label": "Date of Birth",
       "month": "Month",
@@ -165,8 +166,8 @@
     },
     "roofCondition": {
       "label": "Condition of Roof in your house?",
-      "poor": "Poor Condition",
-      "work": "Working Condition"
+      "normal": "Normal Condition",
+      "bad": "Bad Condition"
     },
     "typeStove": {
       "label": "Type of Stove Top",
@@ -179,7 +180,9 @@
       "zinc": "Zinc",
       "wood": "Wood",
       "partBlock_partWood": "Part block, part wood",
-      "block": "Block"
+      "block": "Block",
+      "brick": "Brick",
+      "clay": "Clay"
     },
     "electricityAccess": {
       "label": "How often do you have access to electricity?",
@@ -259,7 +262,7 @@
     "celsius": "°Celsius",
     "pulse": "Pulse",
     "bpm": "Beats Per Minute",
-    "respRate": "Repiratory Rate",
+    "respRate": "Respiratory Rate",
     "breathspm": "Breaths Per Minute",
     "bloodPressure": {
       "label": "Blood Pressure",
@@ -279,9 +282,10 @@
   },
   "forms": {
     "successfullySubmitted": "Form successfully submitted",
-    "grabCoffee": "Grab yourself a coffee",
+    "grabCoffee": "Great job, grab yourself a coffee",
     "suggestedForms": "Suggested next Forms",
-    "viewGallery": "View Forms Gallery"
+    "viewGallery": "View Forms Gallery",
+    "returnHome": "Return Home"
   },
   "gdpr": {
     "consentForm": "Consent Form",
@@ -302,6 +306,12 @@
     "comingSoon": "Coming Soon",
     "tasks": "Tasks",
     "logOut": "Log Out"
+  },
+  "components": {
+    "autofill": {
+      "placeholder": "Enter the",
+      "placeholder_end": "here"
+    }
   },
   "cards": {
     "smallCards": {

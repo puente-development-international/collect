@@ -33,17 +33,27 @@ const configArray = [
     options: [
       {
         label: 'identificationForm.dob.month',
-        value: 'Month'
+        value: 'Month',
+        maxLength: 2
       },
       {
         label: 'identificationForm.dob.day',
-        value: 'Day'
+        value: 'Day',
+        maxLength: 2
       },
       {
         label: 'identificationForm.dob.year',
-        value: 'Year'
+        value: 'Year',
+        maxLength: 4
       }
     ],
+    validation: false
+  },
+  {
+    label: 'identificationForm.age',
+    formikKey: 'age',
+    value: '',
+    fieldType: 'numberInput',
     validation: false
   },
   {
@@ -74,12 +84,6 @@ const configArray = [
     fieldType: 'numberInput',
     validation: false
   },
-  // {
-  //   label: 'Demographic Information',
-  //   fieldType: 'header',
-  //   formikKey: 'none_bi2',
-
-  // },
   {
     label: 'identificationForm.marriageStatus.label',
     formikKey: 'marriageStatus',
