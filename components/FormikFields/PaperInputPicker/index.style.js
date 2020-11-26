@@ -4,7 +4,6 @@ import {
 
 import { theme } from '../../../modules/theme';
 
-
 const stylesDefault = StyleSheet.create({
   horizontalLine: {
     borderBottomColor: '#D0D0D0',
@@ -30,7 +29,7 @@ const stylesDefault = StyleSheet.create({
     marginTop: 10
   },
   label: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     color: theme.colors.black,
     backgroundColor: theme.colors.background
   }

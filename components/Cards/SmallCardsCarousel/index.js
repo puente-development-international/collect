@@ -3,14 +3,15 @@ import {
   View, StyleSheet, ScrollView
 } from 'react-native';
 import {
-  Card, Button
+  Card, Text
 } from 'react-native-paper';
+
+import I18n from '../../../modules/i18n';
+import { theme } from '../../../modules/theme';
 
 import NewRecordSVG from '../../../assets/icons/New-Record-icon.svg';
 import EnvSVG from '../../../assets/icons/Home-icon.svg';
 import MedEvalSVG from '../../../assets/icons/Heart-Icon.svg';
-
-import I18n from '../../../modules/i18n';
 
 /**
  * Carousel of Forms that are used for Form Navigation
@@ -48,36 +49,44 @@ const SmallCardsCarousel = ({
         }}
       >
         {form.tag === 'id' && (
-        <View marginTop="auto" marginBottom="auto">
+        <View style={styles.cardContainer}>
           <NewRecordSVG height={40} style={styles.svg} />
-          <Button labelStyle={styles.topButton} compact>{I18n.t('cards.smallCards.residentID')}</Button>
-          <Button labelStyle={styles.bottomButton} compact />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              {I18n.t('cards.smallCards.residentID')}
+            </Text>
+          </View>
         </View>
         )}
 
         {form.tag === 'env' && (
-        <View marginTop="auto" marginBottom="auto">
+        <View style={styles.cardContainer}>
           <EnvSVG height={40} style={styles.svg} />
-          <View>
-            <Button labelStyle={styles.topButton} compact>{I18n.t('cards.smallCards.environmental')}</Button>
-            <Button labelStyle={styles.bottomButton} compact>{I18n.t('cards.smallCards.history')}</Button>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              {`${I18n.t('cards.smallCards.environmental')} ${I18n.t('cards.smallCards.history')}`}
+            </Text>
           </View>
         </View>
         )}
         {form.tag === 'med-eval' && (
-        <View marginTop="auto" marginBottom="auto">
+        <View style={styles.cardContainer}>
           <MedEvalSVG height={40} style={styles.svg} />
-          <View marginTop="auto">
-            <Button labelStyle={styles.topButton} compact>{I18n.t('cards.smallCards.medical')}</Button>
-            <Button labelStyle={styles.bottomButton} compact>{I18n.t('cards.smallCards.evaluation')}</Button>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              {`${I18n.t('cards.smallCards.medical')} ${I18n.t('cards.smallCards.evaluation')}`}
+            </Text>
           </View>
         </View>
         )}
         {form.tag === 'vitals' && (
-        <View marginTop="auto" marginBottom="auto">
+        <View style={styles.cardContainer}>
           <NewRecordSVG height={40} style={styles.svg} />
-          <Button labelStyle={styles.topButton} compact>{I18n.t('cards.smallCards.vitals')}</Button>
-          <Button labelStyle={styles.bottomButton} compact />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              {I18n.t('cards.smallCards.vitals')}
+            </Text>
+          </View>
         </View>
         )}
       </Card>
@@ -96,15 +105,20 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-  topButton: {
-    marginTop: 10,
-    marginBottom: 0,
-    padding: 0
+  cardContainer: {
+    alignItems: 'center',
+    marginHorizontal: 14,
+    marginVertical: 14,
   },
-  bottomButton: {
-    marginTop: 0,
-    marginBottom: 0,
-    padding: 0
+  textContainer: {
+    flexDirection: 'row'
+  },
+  text: {
+    flexShrink: 1,
+    textAlign: 'center',
+    color: theme.colors.primary,
+    fontWeight: 'bold',
+    marginVertical: 7,
   }
 });
 

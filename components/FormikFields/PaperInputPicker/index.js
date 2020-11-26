@@ -6,17 +6,15 @@ import {
   TextInput, Button, Headline
 } from 'react-native-paper';
 
+import getLocation from '../../../modules/geolocation';
+import I18n from '../../../modules/i18n';
+import { theme, layout } from '../../../modules/theme';
+
+import PaperButton from '../../Button';
 import AutoFill from './AutoFill';
 import HouseholdManager from './HouseholdManager';
 
-import getLocation from '../../../modules/geolocation';
-import PaperButton from '../../Button';
-
-import { theme, layout } from '../../../modules/theme';
 import { stylesDefault, stylesPaper, styleX } from './index.style';
-
-import I18n from '../../../modules/i18n';
-import styles from '../../ResidentIdSearchbar/index.styles';
 
 const PaperInputPicker = ({
   data, formikProps, scrollViewScroll, setScrollViewScroll, surveyingOrganization,
@@ -55,11 +53,10 @@ const PaperInputPicker = ({
     <>
       {fieldType === 'input' && (
         <View style={stylesDefault.container} key={formikKey}>
-          {translatedLabel.length > 40 &&
-            <Text style={stylesDefault.label}>{translatedLabel}</Text>
-          }
+          {translatedLabel.length > 40
+            && <Text style={stylesDefault.label}>{translatedLabel}</Text>}
           <TextInput
-            label={translatedLabel.length > 40 ? "" : translatedLabel}
+            label={translatedLabel.length > 40 ? '' : translatedLabel}
             onChangeText={handleChange(formikKey)}
             onBlur={handleBlur(formikKey)}
             {...rest} //eslint-disable-line
@@ -74,11 +71,17 @@ const PaperInputPicker = ({
       )}
       {fieldType === 'numberInput' && (
         <View style={stylesDefault.container} key={formikKey}>
-          {translatedLabel.length > 40 &&
-            <Text style={[stylesDefault.label, { bottom: -15, zIndex: 1, left: 5, padding: 5 }]}>{translatedLabel}</Text>
-          }
+          {translatedLabel.length > 40
+            && (
+              <Text style={[stylesDefault.label, {
+                bottom: -15, zIndex: 1, left: 5, padding: 5
+              }]}
+              >
+                {translatedLabel}
+              </Text>
+            )}
           <TextInput
-            label={translatedLabel.length > 40 ? "" : translatedLabel}
+            label={translatedLabel.length > 40 ? '' : translatedLabel}
             onChangeText={handleChange(formikKey)}
             onBlur={handleBlur(formikKey)}
             {...rest} //eslint-disable-line
@@ -299,7 +302,7 @@ const PaperInputPicker = ({
                       {errors[result.textKey]}
                     </Text>
                   </View>
-                )}
+              )}
             </View>
           ))}
           <Text style={{ color: 'red' }}>
@@ -372,7 +375,7 @@ const PaperInputPicker = ({
         </View>
       )}
       {fieldType === 'multiInputRow' && (
-        <View style={stylesDefault.container} >
+        <View style={stylesDefault.container}>
           <Text style={stylesDefault.label}>{translatedLabel}</Text>
           <View style={stylesDefault.multiInputContainer}>
             {data.options.map((result) => (result.textSplit ? (
@@ -380,20 +383,20 @@ const PaperInputPicker = ({
                 <Text style={styleX.textSplit}>{result.label}</Text>
               </View>
             ) : (
-                <View key={result.value} style={stylesDefault.inputItem}>
-                  <TextInput
-                    label={customForm ? result.label : I18n.t(result.label)}
-                    onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
-                    onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
+              <View key={result.value} style={stylesDefault.inputItem}>
+                <TextInput
+                  label={customForm ? result.label : I18n.t(result.label)}
+                  onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
+                  onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
                     {...rest} //eslint-disable-line
-                    mode="outlined"
-                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                  />
-                  <Text style={{ color: 'red' }}>
-                    {errors[customForm ? result.label : I18n.t(result.label)]}
-                  </Text>
-                </View>
-              )))}
+                  mode="outlined"
+                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                />
+                <Text style={{ color: 'red' }}>
+                  {errors[customForm ? result.label : I18n.t(result.label)]}
+                </Text>
+              </View>
+            )))}
           </View>
         </View>
       )}
@@ -407,22 +410,22 @@ const PaperInputPicker = ({
                   <Text style={styleX.textSplit}>{result.label}</Text>
                 </View>
               ) : (
-                  <View key={result.value} style={stylesDefault.inputItem}>
-                    <TextInput
-                      label={customForm ? result.label : I18n.t(result.label)}
-                      onChangeText={handleChange(result.value)}
-                      onBlur={handleBlur(result.value)}
+                <View key={result.value} style={stylesDefault.inputItem}>
+                  <TextInput
+                    label={customForm ? result.label : I18n.t(result.label)}
+                    onChangeText={handleChange(result.value)}
+                    onBlur={handleBlur(result.value)}
                       {...rest} //eslint-disable-line
-                      mode="outlined"
-                      keyboardType="numeric"
-                      maxLength={result.maxLength ? result.maxLength : null}
-                      theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                    />
-                    <Text style={{ color: 'red' }}>
-                      {errors[result.value]}
-                    </Text>
-                  </View>
-                )))}
+                    mode="outlined"
+                    keyboardType="numeric"
+                    maxLength={result.maxLength ? result.maxLength : null}
+                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                  />
+                  <Text style={{ color: 'red' }}>
+                    {errors[result.value]}
+                  </Text>
+                </View>
+              )))}
             </View>
           </View>
         )
@@ -430,8 +433,5 @@ const PaperInputPicker = ({
     </>
   );
 };
-
-
-
 
 export default PaperInputPicker;

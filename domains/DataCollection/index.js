@@ -138,16 +138,17 @@ const DataCollection = ({ navigation }) => {
                   <View style={styles.cardContainer}>
                     <Card style={styles.cardSmallStyle} onPress={() => navigateToNewRecord()}>
                       <NewRecordSVG height={70} style={styles.svg} />
-                      <Button marginTop="auto">{I18n.t('dataCollection.newRecord')}</Button>
+                      <Text style={styles.text}>{I18n.t('dataCollection.newRecord')}</Text>
                     </Card>
                     <Card style={styles.cardSmallStyle} onPress={navigateToFindRecords}>
                       <FindRecordSVG height={65} style={styles.svg} />
-                      <Button marginTop="auto">{I18n.t('dataCollection.findRecord')}</Button>
+                      <Text style={styles.text}>{I18n.t('dataCollection.findRecord')}</Text>
+
                     </Card>
                   </View>
                   <Card style={styles.cardSmallStyle} onPress={navigateToGallery}>
                     <ComingSoonSVG height={65} style={styles.svg} />
-                    <Button marginTop="auto">{I18n.t('dataCollection.viewAll')}</Button>
+                    <Text style={styles.text}>{I18n.t('dataCollection.viewAll')}</Text>
                   </Card>
                 </View>
               </View>
