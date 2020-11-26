@@ -31,7 +31,7 @@ const stylesDefault = StyleSheet.create({
   },
   label: {
     fontWeight: "bold",
-    color: theme.colors.primary,
+    color: theme.colors.black,
     backgroundColor: theme.colors.background
   }
 
@@ -39,9 +39,9 @@ const stylesDefault = StyleSheet.create({
 
 const stylesPaper = {
   colors: {
-    placeholder: theme.colors.primary
+    placeholder: theme.colors.black
   },
-  text: 'black',
+  text: theme.colors.priary,
 };
 
 const styleX = StyleSheet.create({
