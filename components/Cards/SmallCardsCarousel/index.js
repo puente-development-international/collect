@@ -3,7 +3,7 @@ import {
   View, StyleSheet, ScrollView
 } from 'react-native';
 import {
-  Card, Button, Text
+  Card, Text
 } from 'react-native-paper';
 
 import I18n from '../../../modules/i18n';
@@ -12,8 +12,6 @@ import { theme } from '../../../modules/theme';
 import NewRecordSVG from '../../../assets/icons/New-Record-icon.svg';
 import EnvSVG from '../../../assets/icons/Home-icon.svg';
 import MedEvalSVG from '../../../assets/icons/Heart-Icon.svg';
-
-
 
 /**
  * Carousel of Forms that are used for Form Navigation
@@ -36,65 +34,65 @@ import MedEvalSVG from '../../../assets/icons/Heart-Icon.svg';
 const SmallCardsCarousel = ({
   puenteForms, navigateToNewRecord, setView, surveyee, setUser
 }) => (
-    <ScrollView horizontal>
-      {puenteForms.map((form) => (
-        <Card
-          key={form.tag}
-          style={styles.cardSmallStyle}
-          onPress={() => {
-            if (setUser) {
-              setView('Forms');
-              navigateToNewRecord(form.tag, surveyee);
-            } else {
-              navigateToNewRecord(form.tag);
-            }
-          }}
-        >
-          {form.tag === 'id' && (
-            <View style={styles.cardContainer}>
-              <NewRecordSVG height={40} style={styles.svg} />
-              <View style={styles.textContainer}>
-                <Text style={styles.text}>
-                  {I18n.t('cards.smallCards.residentID')}
-                </Text>
-              </View>
-            </View>
-          )}
+  <ScrollView horizontal>
+    {puenteForms.map((form) => (
+      <Card
+        key={form.tag}
+        style={styles.cardSmallStyle}
+        onPress={() => {
+          if (setUser) {
+            setView('Forms');
+            navigateToNewRecord(form.tag, surveyee);
+          } else {
+            navigateToNewRecord(form.tag);
+          }
+        }}
+      >
+        {form.tag === 'id' && (
+        <View style={styles.cardContainer}>
+          <NewRecordSVG height={40} style={styles.svg} />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              {I18n.t('cards.smallCards.residentID')}
+            </Text>
+          </View>
+        </View>
+        )}
 
-          {form.tag === 'env' && (
-            <View style={styles.cardContainer}>
-              <EnvSVG height={40} style={styles.svg} />
-              <View style={styles.textContainer}>
-                <Text style={styles.text}>
-                  {`${I18n.t('cards.smallCards.environmental')} ${I18n.t('cards.smallCards.history')}`}
-                </Text>
-              </View>
-            </View>
-          )}
-          {form.tag === 'med-eval' && (
-            <View style={styles.cardContainer}>
-              <MedEvalSVG height={40} style={styles.svg} />
-              <View style={styles.textContainer}>
-                <Text style={styles.text}>
-                  {`${I18n.t('cards.smallCards.medical')} ${I18n.t('cards.smallCards.evaluation')}`}
-                </Text>
-              </View>
-            </View>
-          )}
-          {form.tag === 'vitals' && (
-            <View style={styles.cardContainer}>
-              <NewRecordSVG height={40} style={styles.svg} />
-              <View style={styles.textContainer}>
-                <Text style={styles.text}>
-                  {I18n.t('cards.smallCards.vitals')}
-                </Text>
-              </View>
-            </View>
-          )}
-        </Card>
-      ))}
-    </ScrollView>
-  );
+        {form.tag === 'env' && (
+        <View style={styles.cardContainer}>
+          <EnvSVG height={40} style={styles.svg} />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              {`${I18n.t('cards.smallCards.environmental')} ${I18n.t('cards.smallCards.history')}`}
+            </Text>
+          </View>
+        </View>
+        )}
+        {form.tag === 'med-eval' && (
+        <View style={styles.cardContainer}>
+          <MedEvalSVG height={40} style={styles.svg} />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              {`${I18n.t('cards.smallCards.medical')} ${I18n.t('cards.smallCards.evaluation')}`}
+            </Text>
+          </View>
+        </View>
+        )}
+        {form.tag === 'vitals' && (
+        <View style={styles.cardContainer}>
+          <NewRecordSVG height={40} style={styles.svg} />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>
+              {I18n.t('cards.smallCards.vitals')}
+            </Text>
+          </View>
+        </View>
+        )}
+      </Card>
+    ))}
+  </ScrollView>
+);
 
 const styles = StyleSheet.create({
   cardSmallStyle: {
@@ -108,7 +106,7 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
   },
   cardContainer: {
-    alignItems: "center",
+    alignItems: 'center',
     marginHorizontal: 14,
     marginVertical: 14,
   },
@@ -117,21 +115,10 @@ const styles = StyleSheet.create({
   },
   text: {
     flexShrink: 1,
-    textAlign: "center",
+    textAlign: 'center',
     color: theme.colors.primary,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginVertical: 7,
-  },
-  topButton: {
-    marginTop: 10,
-    marginBottom: 0,
-    padding: 0,
-    flexWrap: "wrap"
-  },
-  bottomButton: {
-    marginTop: 0,
-    marginBottom: 0,
-    padding: 0
   }
 });
 

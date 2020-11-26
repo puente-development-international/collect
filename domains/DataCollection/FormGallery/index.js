@@ -6,11 +6,12 @@ import {
   Text, Button, Title, Paragraph, Card
 } from 'react-native-paper';
 
-import { layout } from '../../../modules/theme';
+import { theme, layout } from '../../../modules/theme';
+import I18n from '../../../modules/i18n';
+
+import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
 
 import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg';
-import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
-import I18n from '../../../modules/i18n';
 
 const FormGallery = (props) => {
   const {
@@ -37,16 +38,12 @@ const FormGallery = (props) => {
                 navigateToCustomForm(form);
               }}
             >
-              <View marginTop="auto" marginBottom="auto">
-                {form.name.length > 16 && (
-                  <Button labelStyle={styles.buttonTextSmall} compact>{form.name}</Button>
-                )}
-                {form.name.length > 10 && form.name.length <= 16 && (
-                  <Button labelStyle={styles.buttonTextMed} compact>{form.name}</Button>
-                )}
-                {form.name.length <= 10 && (
-                  <Button labelStyle={styles.buttonTextBig} compact>{form.name}</Button>
-                )}
+              <View style={styles.cardContainer}>
+                <View style={styles.textContainer}>
+                  <Text style={styles.text}>
+                    {form.name}
+                  </Text>
+                </View>
               </View>
             </Card>
           ))}
@@ -87,14 +84,20 @@ const FormGallery = (props) => {
 };
 
 const styles = StyleSheet.create({
-  buttonTextSmall: {
-    fontSize: 7
+  cardContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 20
   },
-  buttonTextMed: {
-    fontSize: 10
+  textContainer: {
+    flexDirection: 'row',
   },
-  buttonTextBig: {
-    fontSize: 16
+  text: {
+    flexShrink: 1,
+    textAlign: 'center',
+    color: theme.colors.primary,
+    fontWeight: 'bold',
+    marginVertical: 7,
   },
   header: {
     fontSize: 20,
