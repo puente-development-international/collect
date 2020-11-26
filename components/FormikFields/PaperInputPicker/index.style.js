@@ -31,7 +31,8 @@ const stylesDefault = StyleSheet.create({
   },
   label: {
     fontWeight: "bold",
-    color: theme.colors.primary
+    color: theme.colors.primary,
+    backgroundColor: theme.colors.background
   }
 
 });

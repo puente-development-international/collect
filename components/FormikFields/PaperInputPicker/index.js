@@ -55,11 +55,11 @@ const PaperInputPicker = ({
     <>
       {fieldType === 'input' && (
         <View style={stylesDefault.container} key={formikKey}>
-          {translatedLabel.length > 20 &&
+          {translatedLabel.length > 40 &&
             <Text style={stylesDefault.label}>{translatedLabel}</Text>
           }
           <TextInput
-            label={translatedLabel.length > 20 ? "" : translatedLabel}
+            label={translatedLabel.length > 40 ? "" : translatedLabel}
             onChangeText={handleChange(formikKey)}
             onBlur={handleBlur(formikKey)}
             {...rest} //eslint-disable-line
@@ -74,11 +74,11 @@ const PaperInputPicker = ({
       )}
       {fieldType === 'numberInput' && (
         <View style={stylesDefault.container} key={formikKey}>
-          {translatedLabel.length > 20 &&
-            <Text style={stylesDefault.label}>{translatedLabel}</Text>
+          {translatedLabel.length > 40 &&
+            <Text style={[stylesDefault.label, { bottom: -15, zIndex: 1, left: 5, padding: 5 }]}>{translatedLabel}</Text>
           }
           <TextInput
-            label={translatedLabel.length > 20 ? "" : translatedLabel}
+            label={translatedLabel.length > 40 ? "" : translatedLabel}
             onChangeText={handleChange(formikKey)}
             onBlur={handleBlur(formikKey)}
             {...rest} //eslint-disable-line
@@ -93,7 +93,7 @@ const PaperInputPicker = ({
         </View>
       )}
       {fieldType === 'inputSideLabel' && (
-        <View style={stylesDefault} key={formikKey}>
+        <View style={stylesDefault.container} key={formikKey}>
           <View style={{ flexDirection: 'row' }}>
             <TextInput
               label={translatedLabel}
@@ -242,8 +242,8 @@ const PaperInputPicker = ({
         </View>
       )}
       {fieldType === 'selectMulti' && (
-        <View key={formikKey}>
-          <Text style={layout.selectLabel}>{translatedLabel}</Text>
+        <View key={formikKey} style={stylesDefault.container}>
+          <Text style={[layout.selectLabel, stylesDefault.label]}>{translatedLabel}</Text>
           <View style={layout.buttonGroupContainer}>
             {data.options.map((result) => (
               <View key={result.value}>
