@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.8.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.7.0...v8.8.0) (2020-11-26)
+
+
+### Housekeeping Tasks
+
+* change renovate base ([c3e09d0](https://github.com/hopetambala/puente-reactnative-collect/commit/c3e09d0d609f8e68f7aab47591bc1739c1ea82f6))
+
+
+### New Features
+
+*  environmental form fixes for options ([c2bf383](https://github.com/hopetambala/puente-reactnative-collect/commit/c2bf38338574bf1738b04abba9c9548cf611c2d0))
+
+
+### Bug fixes
+
+* card styling of forms for form gallery ([7ba6d89](https://github.com/hopetambala/puente-reactnative-collect/commit/7ba6d8900e2abfaf0ceb4bb9e04a020afbdd36fa))
+* card titles on data collection home screen ([41bccf4](https://github.com/hopetambala/puente-reactnative-collect/commit/41bccf476fa91b88e4d918d4916cc9e16527e8d6))
+* style longer inputs like paper inputs ([ee5f0b1](https://github.com/hopetambala/puente-reactnative-collect/commit/ee5f0b147e39f7bf44fbd360d75f5aba2bdbba1d))
+* styling of cards in Puente forms carousel ([a5e6d2b](https://github.com/hopetambala/puente-reactnative-collect/commit/a5e6d2bb15926006a9fcd196ef8287706c09cbc6))
+* text wrapping with inputs ([f05af02](https://github.com/hopetambala/puente-reactnative-collect/commit/f05af02c8a92e1574e09de02f014ed3765185e1a))
+
 ## [8.7.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.6.2...v8.7.0) (2020-11-24)
 
 
