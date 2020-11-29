@@ -7,7 +7,7 @@ import {
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 
-import { postObjectsToClassWithRelation } from '../../../../services/parse/crud';
+import { postSupplementaryForm } from '../../../../modules/cached-resources';
 
 import { layout } from '../../../../modules/theme';
 
@@ -53,6 +53,7 @@ const SupplementaryForm = ({
       initialValues={{}}
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
+
         const formObject = values;
         formObject.surveyingUser = surveyingUser;
         formObject.surveyingOrganization = surveyingOrganization;
@@ -85,12 +86,7 @@ const SupplementaryForm = ({
           };
         }
 
-        postObjectsToClassWithRelation(postParams).then(() => {
-          setTimeout(() => {
-            actions.setSubmitting(false);
-            toRoot();
-          }, 1000);
-        });
+        postSupplementaryForm(postParams, actions, toRoot)
       }}
       validationSchema={validationSchema}
     >
@@ -109,14 +105,14 @@ const SupplementaryForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button
-              disabled={!surveyee.objectId}
-              onPress={formikProps.handleSubmit}
-            >
-              {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
-              {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
-            </Button>
-          )}
+              <Button
+                disabled={!surveyee.objectId}
+                onPress={formikProps.handleSubmit}
+              >
+                {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
+                {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
+              </Button>
+            )}
         </View>
       )}
     </Formik>

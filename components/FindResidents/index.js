@@ -5,7 +5,7 @@ import { Headline, Searchbar, Button } from 'react-native-paper';
 
 import { Spinner } from 'native-base';
 
-import { residentIDQuery } from '../../services/parse/crud';
+import { residentQuery } from '../../modules/cached-resources';
 
 import { getData, storeData } from '../../modules/async-storage';
 import I18n from '../../modules/i18n';
@@ -49,8 +49,7 @@ const FindResidents = ({
       parseParam: organization,
     };
 
-    let records = await residentIDQuery(queryParams);
-    records = JSON.parse(JSON.stringify(records));
+    let records = await residentQuery(queryParams);
 
     storeData(records, 'residentData');
 

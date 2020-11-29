@@ -3,7 +3,7 @@ import { View, FlatList } from 'react-native';
 import { Headline, Button, Searchbar } from 'react-native-paper';
 import { Spinner } from 'native-base';
 
-import { residentIDQuery } from '../../services/parse/crud';
+import { residentQuery } from '../../modules/cached-resources';
 
 import { getData } from '../../modules/async-storage';
 import I18n from '../../modules/i18n';
@@ -42,8 +42,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
       parseColumn: 'surveyingOrganization',
       parseParam: surveyingOrganization,
     };
-    let records = await residentIDQuery(queryParams);
-    records = JSON.parse(JSON.stringify(records));
+    let records = await residentQuery(queryParams);
 
     setData(records);
     setResidents(records.slice());

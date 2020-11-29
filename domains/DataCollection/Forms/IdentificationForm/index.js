@@ -6,13 +6,7 @@ import {
 import { Formik } from 'formik';
 // import * as yup from 'yup';
 
-import { postObjectsToClass } from '../../../../services/parse/crud';
-
-import {
-  storeData
-} from '../../../../modules/async-storage';
-import checkOnlineStatus from '../../../../modules/offline';
-import generateRandomID from '../../../../modules/utils';
+import { postIdentificationForm } from '../../../../modules/cached-resources';
 import { layout } from '../../../../modules/theme';
 import PaperButton from '../../../../components/Button';
 
@@ -94,19 +88,7 @@ const IdentificationForm = ({
               localObject: formObject
             };
 
-            checkOnlineStatus().then((connected) => {
-              if (connected) {
-                postObjectsToClass(postParams).then((surveyee) => {
-                  const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
-                  setSurveyee(surveyeeSanitized);
-                  submitAction();
-                });
-              } else {
-                const id = `PatientID-${generateRandomID()}`;
-                storeData(postParams, id);
-                submitAction();
-              }
-            });
+            postIdentificationForm(postParams, setSurveyee, submitAction)
           }}
           validationSchema={validationSchema}
           // only validate on submit, errors persist after fixing
@@ -131,14 +113,14 @@ const IdentificationForm = ({
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                <PaperButton
-                  onPressEvent={formikProps.handleSubmit}
-                  buttonText={I18n.t('global.submit')}
-                />
-              // <Button icon="human" onPress={formikProps.handleSubmit}>
-              //   <Text>Submit</Text>
-              // </Button>
-              )}
+                  <PaperButton
+                    onPressEvent={formikProps.handleSubmit}
+                    buttonText={I18n.t('global.submit')}
+                  />
+                  // <Button icon="human" onPress={formikProps.handleSubmit}>
+                  //   <Text>Submit</Text>
+                  // </Button>
+                )}
             </View>
           )}
         </Formik>

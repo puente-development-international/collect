@@ -11,7 +11,10 @@ import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
 import { theme, layout } from '../../../../modules/theme';
 import I18n from '../../../../modules/i18n';
 
-import { postObjectsToClass, postObjectsToClassWithRelation } from '../../../../services/parse/crud';
+import {
+  postHousehold,
+  postHouseholdWithRelation
+} from '../../../../modules/cached-resources';
 
 import styles from './index.style';
 
@@ -63,9 +66,7 @@ const HouseholdManager = (props) => {
         longitude: 0
       }
     };
-    postObjectsToClassWithRelation(postParams).then((result) => {
-      setFieldValue(formikKey, result.id);
-    });
+    postHouseholdWithRelation(postParams, setFieldValue, formikKey);
   };
 
   const createNewHousehold = () => {
@@ -77,9 +78,7 @@ const HouseholdManager = (props) => {
         longitude: 0
       }
     };
-    postObjectsToClass(postParams).then((result) => {
-      setFieldValue(formikKey, result.id);
-    });
+    postHousehold(postParams, setFieldValue, formikKey);
     setHouseholdSet(true);
   };
 
@@ -139,8 +138,8 @@ const HouseholdManager = (props) => {
                   {relationship === result ? (
                     <Button mode="contained">{result}</Button>
                   ) : (
-                    <Button mode="outlined" onPress={() => setRelationship(result)}>{result}</Button>
-                  )}
+                      <Button mode="outlined" onPress={() => setRelationship(result)}>{result}</Button>
+                    )}
                 </View>
               ))}
             </View>
@@ -163,10 +162,10 @@ const HouseholdManager = (props) => {
                 {I18n.t('global.submit')}
               </Button>
             ) : (
-              <Button theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit} disabled>
-                {I18n.t('global.submit')}
-              </Button>
-            )}
+                <Button theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit} disabled>
+                  {I18n.t('global.submit')}
+                </Button>
+              )}
 
           </View>
         </Modal>
