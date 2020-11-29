@@ -1,9 +1,9 @@
 import { postObjectsToClass, postObjectsToClassWithRelation } from '../../services/parse/crud';
-import checkOnlineStatus from '../../modules/offline';
-import generateRandomID from '../../modules/utils';
+import checkOnlineStatus from '../offline';
+import generateRandomID from '../utils';
 import {
   storeData
-} from '../../modules/async-storage';
+} from '../async-storage';
 
 function postIdentificationForm(postParams, setSurveyee, submitAction) {
   checkOnlineStatus().then((connected) => {
@@ -42,9 +42,9 @@ function postHouseholdWithRelation(postParams, setFieldValue, formikKey) {
   });
 }
 
-export { 
+export {
   postIdentificationForm,
   postSupplementaryForm,
   postHousehold,
-  postHouseholdWithRelation 
+  postHouseholdWithRelation
 };

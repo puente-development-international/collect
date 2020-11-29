@@ -42,7 +42,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
       parseColumn: 'surveyingOrganization',
       parseParam: surveyingOrganization,
     };
-    let records = await residentQuery(queryParams);
+    const records = await residentQuery(queryParams);
 
     setData(records);
     setResidents(records.slice());

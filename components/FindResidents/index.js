@@ -49,7 +49,7 @@ const FindResidents = ({
       parseParam: organization,
     };
 
-    let records = await residentQuery(queryParams);
+    const records = await residentQuery(queryParams);
 
     storeData(records, 'residentData');
 

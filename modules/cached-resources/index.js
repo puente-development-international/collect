@@ -1,5 +1,4 @@
-import { Form } from 'formik'
-import { residentQuery } from './read';
+import residentQuery from './read';
 import {
   postIdentificationForm,
   postSupplementaryForm,
@@ -13,4 +12,4 @@ export {
   postSupplementaryForm,
   postHousehold,
   postHouseholdWithRelation
-}
+};

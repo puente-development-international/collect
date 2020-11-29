@@ -86,7 +86,7 @@ const SupplementaryForm = ({
           };
         }
 
-        postSupplementaryForm(postParams, actions, toRoot)
+        postSupplementaryForm(postParams, actions, toRoot);
       }}
       validationSchema={validationSchema}
     >
@@ -105,14 +105,14 @@ const SupplementaryForm = ({
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button
-                disabled={!surveyee.objectId}
-                onPress={formikProps.handleSubmit}
-              >
-                {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
-                {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
-              </Button>
-            )}
+            <Button
+              disabled={!surveyee.objectId}
+              onPress={formikProps.handleSubmit}
+            >
+              {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
+              {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
+            </Button>
+          )}
         </View>
       )}
     </Formik>

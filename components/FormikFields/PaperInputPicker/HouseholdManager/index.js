@@ -138,8 +138,8 @@ const HouseholdManager = (props) => {
                   {relationship === result ? (
                     <Button mode="contained">{result}</Button>
                   ) : (
-                      <Button mode="outlined" onPress={() => setRelationship(result)}>{result}</Button>
-                    )}
+                    <Button mode="outlined" onPress={() => setRelationship(result)}>{result}</Button>
+                  )}
                 </View>
               ))}
             </View>
@@ -162,10 +162,10 @@ const HouseholdManager = (props) => {
                 {I18n.t('global.submit')}
               </Button>
             ) : (
-                <Button theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit} disabled>
-                  {I18n.t('global.submit')}
-                </Button>
-              )}
+              <Button theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit} disabled>
+                {I18n.t('global.submit')}
+              </Button>
+            )}
 
           </View>
         </Modal>

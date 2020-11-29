@@ -88,7 +88,7 @@ const IdentificationForm = ({
               localObject: formObject
             };
 
-            postIdentificationForm(postParams, setSurveyee, submitAction)
+            postIdentificationForm(postParams, setSurveyee, submitAction);
           }}
           validationSchema={validationSchema}
           // only validate on submit, errors persist after fixing
@@ -113,14 +113,14 @@ const IdentificationForm = ({
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                  <PaperButton
-                    onPressEvent={formikProps.handleSubmit}
-                    buttonText={I18n.t('global.submit')}
-                  />
-                  // <Button icon="human" onPress={formikProps.handleSubmit}>
-                  //   <Text>Submit</Text>
-                  // </Button>
-                )}
+                <PaperButton
+                  onPressEvent={formikProps.handleSubmit}
+                  buttonText={I18n.t('global.submit')}
+                />
+              // <Button icon="human" onPress={formikProps.handleSubmit}>
+              //   <Text>Submit</Text>
+              // </Button>
+              )}
             </View>
           )}
         </Formik>
