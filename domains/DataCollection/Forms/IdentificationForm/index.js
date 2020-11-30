@@ -88,7 +88,10 @@ const IdentificationForm = ({
               localObject: formObject
             };
 
-            postIdentificationForm(postParams, setSurveyee, submitAction);
+            postIdentificationForm(postParams).then((surveyee) => {
+              setSurveyee(surveyee);
+              submitAction();
+            })
           }}
           validationSchema={validationSchema}
           // only validate on submit, errors persist after fixing

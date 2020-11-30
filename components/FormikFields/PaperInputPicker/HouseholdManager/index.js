@@ -66,7 +66,9 @@ const HouseholdManager = (props) => {
         longitude: 0
       }
     };
-    postHouseholdWithRelation(postParams, setFieldValue, formikKey);
+    postHouseholdWithRelation(postParams).then((id) => {
+      setFieldValue(formikKey, id);
+    })
   };
 
   const createNewHousehold = () => {
@@ -78,7 +80,9 @@ const HouseholdManager = (props) => {
         longitude: 0
       }
     };
-    postHousehold(postParams, setFieldValue, formikKey);
+    postHousehold(postParams).then((id) => {
+      setFieldValue(formikKey, id);
+    })
     setHouseholdSet(true);
   };
 
@@ -138,8 +142,8 @@ const HouseholdManager = (props) => {
                   {relationship === result ? (
                     <Button mode="contained">{result}</Button>
                   ) : (
-                    <Button mode="outlined" onPress={() => setRelationship(result)}>{result}</Button>
-                  )}
+                      <Button mode="outlined" onPress={() => setRelationship(result)}>{result}</Button>
+                    )}
                 </View>
               ))}
             </View>
@@ -162,10 +166,10 @@ const HouseholdManager = (props) => {
                 {I18n.t('global.submit')}
               </Button>
             ) : (
-              <Button theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit} disabled>
-                {I18n.t('global.submit')}
-              </Button>
-            )}
+                <Button theme={{ backgroundColor: theme.colors.primary }} mode="contained" onPress={onSubmit} disabled>
+                  {I18n.t('global.submit')}
+                </Button>
+              )}
 
           </View>
         </Modal>

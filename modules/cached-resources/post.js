@@ -5,41 +5,53 @@ import {
   storeData
 } from '../async-storage';
 
-function postIdentificationForm(postParams, setSurveyee, submitAction) {
-  checkOnlineStatus().then((connected) => {
-    if (connected) {
-      postObjectsToClass(postParams).then((surveyee) => {
-        const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
-        setSurveyee(surveyeeSanitized);
-        submitAction();
-      });
-    } else {
-      const id = `PatientID-${generateRandomID()}`;
-      storeData(postParams, id);
-      submitAction();
-    }
-  });
+function postIdentificationForm(postParams) {
+  return new Promise((resolve, reject) => {
+    checkOnlineStatus().then((connected) => {
+      if (connected) {
+        postObjectsToClass(postParams).then((surveyee) => {
+          const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
+          resolve(surveyeeSanitized);
+        }, (error) => {
+          reject(error);
+        });
+      } else {
+        const id = `PatientID-${generateRandomID()}`;
+        storeData(postParams, id);
+        resolve('success');
+      }
+    });
+  })
 }
 
-function postSupplementaryForm(postParams, actions, toRoot) {
-  postObjectsToClassWithRelation(postParams).then(() => {
-    setTimeout(() => {
-      actions.setSubmitting(false);
-      toRoot();
-    }, 1000);
-  });
+function postSupplementaryForm(postParams) {
+  return new Promise((resolve, reject) => {
+    postObjectsToClassWithRelation(postParams).then(() => {
+      resolve('success');
+    }, (error) => {
+      reject(error);
+    });
+  })
 }
 
-function postHousehold(postParams, setFieldValue, formikKey) {
-  postObjectsToClass(postParams).then((result) => {
-    setFieldValue(formikKey, result.id);
-  });
+function postHousehold(postParams) {
+  return new Promise((resolve, reject) => {
+    postObjectsToClass(postParams).then((result) => {
+      resolve(result.id);
+    }, (error) => {
+      reject(error);
+    });
+  })
 }
 
-function postHouseholdWithRelation(postParams, setFieldValue, formikKey) {
-  postObjectsToClassWithRelation(postParams).then((result) => {
-    setFieldValue(formikKey, result.id);
-  });
+function postHouseholdWithRelation(postParams) {
+  return new Promise((resolve, reject) => {
+    postObjectsToClassWithRelation(postParams).then((result) => {
+      resolve(result.id);
+    }, (error) => {
+      reject(error);
+    });
+  })
 }
 
 export {
