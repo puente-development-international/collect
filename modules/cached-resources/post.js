@@ -21,7 +21,7 @@ function postIdentificationForm(postParams) {
         resolve('success');
       }
     });
-  })
+  });
 }
 
 function postSupplementaryForm(postParams) {
@@ -31,7 +31,7 @@ function postSupplementaryForm(postParams) {
     }, (error) => {
       reject(error);
     });
-  })
+  });
 }
 
 function postHousehold(postParams) {
@@ -41,7 +41,7 @@ function postHousehold(postParams) {
     }, (error) => {
       reject(error);
     });
-  })
+  });
 }
 
 function postHouseholdWithRelation(postParams) {
@@ -51,7 +51,7 @@ function postHouseholdWithRelation(postParams) {
     }, (error) => {
       reject(error);
     });
-  })
+  });
 }
 
 export {
