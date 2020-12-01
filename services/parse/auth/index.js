@@ -61,6 +61,9 @@ function retrieveForgotPasswordFunction(params) {
   });
 }
 
+/**
+ * Deprecated
+ */
 function retrieveCurrentUserFunction() {
   const u = Parse.User.current();
   if (u) {
