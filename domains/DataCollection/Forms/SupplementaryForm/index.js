@@ -7,7 +7,7 @@ import {
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 
-import { postObjectsToClassWithRelation } from '../../../../services/parse/crud';
+import { postSupplementaryForm } from '../../../../modules/cached-resources';
 
 import { layout } from '../../../../modules/theme';
 
@@ -53,6 +53,7 @@ const SupplementaryForm = ({
       initialValues={{}}
       onSubmit={(values, actions) => {
         setPhotoFile('Submitted Photo String');
+
         const formObject = values;
         formObject.surveyingUser = surveyingUser;
         formObject.surveyingOrganization = surveyingOrganization;
@@ -85,7 +86,7 @@ const SupplementaryForm = ({
           };
         }
 
-        postObjectsToClassWithRelation(postParams).then(() => {
+        postSupplementaryForm(postParams).then(() => {
           setTimeout(() => {
             actions.setSubmitting(false);
             toRoot();

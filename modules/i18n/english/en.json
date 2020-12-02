@@ -182,8 +182,8 @@
       "label": "What material is your house made from?",
       "zinc": "Zinc",
       "wood": "Wood",
-      "partBlock_partWood": "Part block, part wood",
-      "block": "Block",
+      "partBlock_partWood": "Part cinderblock, part wood",
+      "block": "Cinderblock",
       "brick": "Brick",
       "clay": "Clay"
     },
@@ -197,7 +197,8 @@
     "govAssistance": {
       "label": "Do you have access to government assistance?",
       "foodStamps": "Food Stamps",
-      "adultLiteracy": "Adult literacy Program"
+      "adultLiteracy": "Adult literacy Program",
+      "noAssistance": "No assistance"
     },
     "numberIndividualsHouse": "Number of Individuals Living in the House",
     "numberChildrenUnder5": "Number of children Living in this House under age of 5"
