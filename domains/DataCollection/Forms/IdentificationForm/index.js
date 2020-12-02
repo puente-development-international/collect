@@ -4,35 +4,21 @@ import {
   View, TouchableWithoutFeedback, Keyboard
 } from 'react-native';
 import { Formik } from 'formik';
-// import * as yup from 'yup';
 
 import { postObjectsToClass } from '../../../../services/parse/crud';
 
-import {
-  storeData
-} from '../../../../modules/async-storage';
+import { storeData } from '../../../../modules/async-storage';
 import checkOnlineStatus from '../../../../modules/offline';
 import generateRandomID from '../../../../modules/utils';
 import { layout } from '../../../../modules/theme';
-import PaperButton from '../../../../components/Button';
-
-import backgroundPostPatient from './utils';
-import configArray from './config/config';
-
 import I18n from '../../../../modules/i18n';
+
+import PaperButton from '../../../../components/Button';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
 
-// const validationSchema = yup.object().shape({
-//   fname: yup
-//     .string()
-//     .label('First Name')
-//     .required(),
-//   lname: yup
-//     .string()
-//     .label('Last Name')
-//     .required()
-// });
+import backgroundPostPatient from './utils';
+import configArray from './config/config';
 
 const IdentificationForm = ({
   scrollViewScroll, setScrollViewScroll,
