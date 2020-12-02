@@ -196,7 +196,8 @@
     "govAssistance": {
       "label": "¿Tiene acceso a la asistencia del gobierno?",
       "foodStamps": "Cupones de alimentos",
-      "adultLiteracy": "Programa de alfabetización de adultos"
+      "adultLiteracy": "Programa de alfabetización de adultos",
+      "noAssistance": "Sin ayuda"
     },
     "numberIndividualsHouse": "Número de personas que viven en la casa",
     "numberChildrenUnder5": "Número de niños menores de 5 años que viven en esta casa"

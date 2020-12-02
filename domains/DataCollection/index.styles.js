@@ -52,6 +52,13 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: 'auto'
+  },
+  text: {
+    flexShrink: 1,
+    textAlign: 'center',
+    color: theme.colors.primary,
+    fontWeight: 'bold',
+    marginVertical: 20,
   }
 });
 
