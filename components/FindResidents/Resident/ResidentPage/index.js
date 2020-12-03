@@ -132,7 +132,6 @@ const styles = StyleSheet.create({
   },
   nameContainer: {
     flexDirection: 'row',
-    // marginLeft: 20,
   },
   name: {
     color: '#696969',
@@ -151,7 +150,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   navigationButtonsContainer: {
-    // flex: 1,
     flexDirection: 'row',
     alignItems: 'flex-start',
   },
