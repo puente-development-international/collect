@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.8.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.8.1...v8.8.2) (2020-12-03)
+
+
+### Bug fixes
+
+* incorrect usage of current async function ([4739d74](https://github.com/hopetambala/puente-reactnative-collect/commit/4739d74078fd799003e461e2364552e3fd5bf417))
+* keyboard not hiding when signning in ([f2d631b](https://github.com/hopetambala/puente-reactnative-collect/commit/f2d631bb8a6a21ba0153f5f8c96abb428e5c6e5e))
+
+
+### New Features
+
+* add loading indicator for location ([e55ce97](https://github.com/hopetambala/puente-reactnative-collect/commit/e55ce97ebaec4d5cddd6afb9cae05cac24cf8e40))
+
+
+### Housekeeping Tasks
+
+* reformat findResident page ([a7d780f](https://github.com/hopetambala/puente-reactnative-collect/commit/a7d780f79e54948133055f767311f7762ef62a47))
+
 ### [8.8.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.8.0...v8.8.1) (2020-11-27)
 
 ## [8.8.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.7.0...v8.8.0) (2020-11-26)
