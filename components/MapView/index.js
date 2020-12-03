@@ -42,7 +42,7 @@ const Maps = ({ organization }) => {
   // }, []);
 
   const handleLocation = async () => {
-    const currentLocation = await getLocation();
+    const currentLocation = await getLocation().catch((e) => e);
     const { latitude, longitude } = currentLocation.coords;
     setRegion({
       ...region,
