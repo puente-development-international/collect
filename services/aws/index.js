@@ -12,13 +12,30 @@ function retrievePuenteAutofillData(parameter) {
     }
   })
     .then((response) => {
-      const results = [];
-      response.data.forEach((object) => {
-        if (!results.includes(object[parameter])) {
-          results.push(object[parameter]);
-        }
-      });
-      return results;
+      if (parameter !== 'all') {
+        const results = [];
+        response.data.forEach((object) => {
+          if (!results.includes(object[parameter].toUpperCase().trim()) && object[parameter] != "") {
+            results.push(object[parameter]);
+          }
+        });
+        return results;
+      }
+      else {
+        console.log("KEYS", Object.keys(response.data[0]))
+        const keys = Object.keys(response.data[0]);
+        const allData = {}
+        keys.forEach((key) => {
+          const results = [];
+          response.data.forEach((object) => {
+            if (!results.includes(object[key].toUpperCase().trim()) && object[key] != "") {
+              results.push(object[key]);
+            }
+          })
+          allData[key] = results;
+        })
+        return allData;
+      }
     })
     .catch((error) => {
       console.log(error); // eslint-disable-line

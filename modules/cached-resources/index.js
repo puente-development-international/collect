@@ -1,4 +1,4 @@
-import residentQuery from './read';
+import {residentQuery, cacheAutofillData} from './read';
 import {
   postIdentificationForm,
   postSupplementaryForm,
@@ -8,6 +8,7 @@ import {
 
 export {
   residentQuery,
+  cacheAutofillData,
   postIdentificationForm,
   postSupplementaryForm,
   postHousehold,
