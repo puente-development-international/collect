@@ -122,7 +122,10 @@
     "clinicProvider": "Proveedor de la clínica",
     "latitude": "Latitud",
     "longitude": "Longitud",
-    "household": "Casa"
+    "household": "Casa",
+    "subcounty": "Sub-condado",
+    "region": "Región",
+    "country": "País"
   },
   "environmentalHealth": {
     "name": "Formulario de salud ambiental",
