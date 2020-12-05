@@ -14,8 +14,11 @@ function retrievePuenteAutofillData(parameter) {
     .then((response) => {
       if (parameter !== 'all') {
         const results = [];
+        const resultsCapitalized = [];
         response.data.forEach((object) => {
-          if (!results.includes(object[parameter].toUpperCase().trim()) && object[parameter] != "") {
+          const objectCapitilized = object[parameter].toUpperCase().trim()
+          if (!resultsCapitalized.includes(objectCapitilized) && object[parameter] != "") {
+            resultsCapitalized.push(objectCapitilized);
             results.push(object[parameter]);
           }
         });
@@ -27,13 +30,18 @@ function retrievePuenteAutofillData(parameter) {
         const allData = {}
         keys.forEach((key) => {
           const results = [];
+          const resultsCapitalized = [];
           response.data.forEach((object) => {
-            if (!results.includes(object[key].toUpperCase().trim()) && object[key] != "") {
+            const objectCapitilized = object[key].toUpperCase().trim()
+            console.log(object)
+            if (!resultsCapitalized.includes(objectCapitilized) && object[key] != "") {
+              resultsCapitalized.push(objectCapitilized);
               results.push(object[key]);
             }
           })
           allData[key] = results;
         })
+        console.log(allData);
         return allData;
       }
     })
