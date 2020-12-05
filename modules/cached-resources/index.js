@@ -1,4 +1,4 @@
-import {residentQuery, cacheAutofillData} from './read';
+import { residentQuery, cacheAutofillData } from './read';
 import {
   postIdentificationForm,
   postSupplementaryForm,

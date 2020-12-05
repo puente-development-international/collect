@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
 
-import retrievePuenteAutofillData from '../../../../services/aws';
 import { cacheAutofillData } from '../../../../modules/cached-resources';
 
 import I18n from '../../../../modules/i18n';
@@ -13,11 +12,6 @@ import { getData } from '../../../../modules/async-storage';
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
-const getFields = (parameter) => {
-  cacheAutofillData(parameter).then((result) => {
-    return result;
-  })
-}
 export default class AutoFill extends Component {
   constructor(props) {
     super(props);
@@ -31,20 +25,11 @@ export default class AutoFill extends Component {
     const { parameter } = this.props;
     cacheAutofillData(parameter)
       .then(async () => {
-        // const data = await getData('autofill_information')[parameter]
-        const data = await getData('autofill_information')
+        const data = await getData('autofill_information');
         const result = data[parameter];
         this.state.fields = result;
       });
   }
-
-  // getFields(parameter) {
-  //   cacheAutofillData(parameter).then((result) => {
-  //     return result;
-  //   })
-  // }
-
-
 
   findField(query) {
     // method called everytime when we change the value of the input
@@ -115,8 +100,8 @@ export default class AutoFill extends Component {
           {fields.length > 0 ? (
             <Text style={styles.infoText}>{query}</Text>
           ) : (
-              <Text style={styles.infoText}>{placeholder}</Text>
-            )}
+            <Text style={styles.infoText}>{placeholder}</Text>
+          )}
         </View>
       </View>
     );

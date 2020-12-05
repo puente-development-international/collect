@@ -16,34 +16,30 @@ function retrievePuenteAutofillData(parameter) {
         const results = [];
         const resultsCapitalized = [];
         response.data.forEach((object) => {
-          const objectCapitilized = object[parameter].toUpperCase().trim()
-          if (!resultsCapitalized.includes(objectCapitilized) && object[parameter] != "") {
+          const objectCapitilized = object[parameter].toUpperCase().trim();
+          if (!resultsCapitalized.includes(objectCapitilized) && object[parameter] !== '') {
             resultsCapitalized.push(objectCapitilized);
             results.push(object[parameter]);
           }
         });
         return results;
       }
-      else {
-        console.log("KEYS", Object.keys(response.data[0]))
-        const keys = Object.keys(response.data[0]);
-        const allData = {}
-        keys.forEach((key) => {
-          const results = [];
-          const resultsCapitalized = [];
-          response.data.forEach((object) => {
-            const objectCapitilized = object[key].toUpperCase().trim()
-            console.log(object)
-            if (!resultsCapitalized.includes(objectCapitilized) && object[key] != "") {
-              resultsCapitalized.push(objectCapitilized);
-              results.push(object[key]);
-            }
-          })
-          allData[key] = results;
-        })
-        console.log(allData);
-        return allData;
-      }
+
+      const keys = Object.keys(response.data[0]);
+      const allData = {};
+      keys.forEach((key) => {
+        const results = [];
+        const resultsCapitalized = [];
+        response.data.forEach((object) => {
+          const objectCapitilized = object[key].toUpperCase().trim();
+          if (!resultsCapitalized.includes(objectCapitilized) && object[key] !== '') {
+            resultsCapitalized.push(objectCapitilized);
+            results.push(object[key]);
+          }
+        });
+        allData[key] = results;
+      });
+      return allData;
     })
     .catch((error) => {
       console.log(error); // eslint-disable-line

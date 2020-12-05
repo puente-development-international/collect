@@ -1,6 +1,6 @@
 import { residentIDQuery } from '../../services/parse/crud';
 import retrievePuenteAutofillData from '../../services/aws';
-import { storeData, getData } from '../async-storage'
+import { storeData, getData } from '../async-storage';
 import checkOnlineStatus from '../offline';
 
 async function residentQuery(queryParams) {
@@ -10,29 +10,19 @@ async function residentQuery(queryParams) {
 }
 
 async function cacheAutofillData(paramter) {
-  console.log("REally first hi");
   checkOnlineStatus().then((connected) => {
-    console.log("Connected", connected);
     if (connected) {
       retrievePuenteAutofillData('all').then((result) => {
-        storeData(result, 'autofill_information')
-        console.log("Resulkt", result)
+        storeData(result, 'autofill_information');
         return result[paramter];
-        // const data = await getData('autofill_information')
-        // console.log(paramter, data[paramter]);
-        // return data[paramter];
-      }, (error) => {
-        reject("1", error);
-      })
-    }
-    else {
+      });
+    } else {
       return getData('autofill_information')[paramter];
     }
-  })
-  console.log("First hi");
+  });
 }
 
 export {
   residentQuery,
   cacheAutofillData
-}
+};

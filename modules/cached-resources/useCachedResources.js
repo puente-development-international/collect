@@ -4,8 +4,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import { storeData, getData } from '../async-storage';
 import { residentIDQuery } from '../../services/parse/crud';
 
-import { cacheAutofillData } from './index';
-
 const fetchResidentData = async (surveyingOrganization) => {
   const queryParams = {
     skip: 0,
@@ -34,9 +32,6 @@ export default function useCachedResources() {
             storeData(residentData || [], 'residentData');
           }
         });
-        console.log("HI THERE JOE")
-        let test = cacheAutofillData();
-        console.log(test)
       } catch (e) {
         // We might want to provide this error information to an error reporting service
         // console.warn(e);
