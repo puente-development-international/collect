@@ -209,6 +209,7 @@ const DataCollection = ({ navigation }) => {
                   surveyee={surveyee}
                   setSurveyee={setSurveyee}
                   navigateToRoot={navigateToRoot}
+                  setView={setView}
                 />
               </View>
             )}
