@@ -1,4 +1,8 @@
-import residentQuery from './read';
+import {
+  residentQuery,
+  customFormsQuery,
+  getTasksAsync
+} from './read';
 import {
   postIdentificationForm,
   postSupplementaryForm,
@@ -8,6 +12,8 @@ import {
 
 export {
   residentQuery,
+  customFormsQuery,
+  getTasksAsync,
   postIdentificationForm,
   postSupplementaryForm,
   postHousehold,

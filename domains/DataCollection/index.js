@@ -20,6 +20,7 @@ import { layout } from '../../modules/theme';
 import I18n from '../../modules/i18n';
 
 import { customQueryService } from '../../services/parse/crud';
+import { customFormsQuery } from '../../modules/cached-resources';
 import { retrieveSignOutFunction } from '../../services/parse/auth';
 
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
@@ -61,8 +62,8 @@ const DataCollection = ({ navigation }) => {
     }).catch(() => {
       setSurveyingOrganization(surveyingOrganization || '');
     });
-    customQueryService(0, 5000, 'FormSpecificationsV2', 'organizations', surveyingOrganization).then((forms) => {
-      setCustomForms(JSON.parse(JSON.stringify(forms)));
+    customFormsQuery(surveyingOrganization).then((forms) => {
+      setCustomForms(forms);
     });
   }, [surveyingUser, surveyingOrganization]);
 
