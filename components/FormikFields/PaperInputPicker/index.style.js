@@ -2,7 +2,9 @@ import {
   StyleSheet
 } from 'react-native';
 
-const styles = StyleSheet.create({
+import { theme } from '../../../modules/theme';
+
+const stylesDefault = StyleSheet.create({
   horizontalLine: {
     borderBottomColor: '#D0D0D0',
     borderBottomWidth: 1,
@@ -18,12 +20,44 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   container: {
-    flexDirection: 'column'
+    flex: 1,
+    justifyContent: 'center',
+    padding: 10,
   },
   header: {
     fontWeight: 'bold',
     marginTop: 10
+  },
+  label: {
+    fontWeight: 'bold',
+    color: theme.colors.black,
+    backgroundColor: theme.colors.background
+  }
+
+});
+
+const stylesPaper = {
+  colors: {
+    placeholder: theme.colors.black
+  },
+  text: theme.colors.priary,
+};
+
+const styleX = StyleSheet.create({
+  sideLabel: {
+    flex: 1,
+    marginTop: 'auto',
+    marginBottom: 'auto',
+    padding: 10,
+    fontSize: 15
+  },
+  textSplit: {
+    fontSize: 35,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 'auto',
+    marginBottom: 25,
   }
 });
 
-export default styles;
+export { stylesDefault, stylesPaper, styleX };

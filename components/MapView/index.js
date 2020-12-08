@@ -27,22 +27,8 @@ const Maps = ({ organization }) => {
     handleLocation();
   }, []);
 
-  // useEffect(() => {
-  //   let isSubscribed = true;
-  //   retrieveMarkers().then((records) => {
-  //     if (isSubscribed) {
-  //       if (records !== markers) {
-  //         setMarkers(records); // sets records if promise is reached during mounting
-  //       }
-  //     }
-  //   });
-  //   return function cleanup() {
-  //     isSubscribed = false; // cancels promise when component unmounts
-  //   };
-  // }, []);
-
   const handleLocation = async () => {
-    const currentLocation = await getLocation();
+    const currentLocation = await getLocation().catch((e) => e);
     const { latitude, longitude } = currentLocation.coords;
     setRegion({
       ...region,

@@ -21,7 +21,7 @@ const configArray = {
         value: '3_4'
       },
       {
-        label: 'environmentalHealth.yearsLived.3_4',
+        label: 'environmentalHealth.yearsLived.5_10',
         value: '5_10'
       },
       {
@@ -368,6 +368,10 @@ const configArray = {
       {
         label: 'environmentalHealth.govAssistance.adultLiteracy',
         value: 'aprendiendo'
+      },
+      {
+        label: 'environmentalHealth.govAssistance.noAssistance',
+        value: 'no_assistance'
       },
       {
         label: 'global.other',

@@ -9,6 +9,7 @@ import {
   View,
   StyleSheet,
   Alert,
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   ScrollView
@@ -82,6 +83,11 @@ const SignIn = ({ navigation }) => {
     navigation.navigate('Sign Up');
   };
 
+  const handleSignIn = () => {
+    Keyboard.dismiss();
+    navigation.navigate('Root');
+  };
+
   const handleSaveCredentials = (values) => {
     Alert.alert(
       I18n.t('signIn.credentials'),
@@ -126,8 +132,8 @@ const SignIn = ({ navigation }) => {
   const storeUserInformation = async () => {
     const currentUser = await retrieveCurrentUserAsyncFunction();
     getData('organization').then((asyncOrg) => {
-      if (asyncOrg !== currentUser.get('organization')) {
-        storeData(currentUser.get('organization'), 'organization');
+      if (asyncOrg !== currentUser.organization) {
+        storeData(currentUser.organization, 'organization');
         storeData(currentUser, 'currentUser');
       }
     });
@@ -166,7 +172,7 @@ const SignIn = ({ navigation }) => {
                         // no credentials saved, give option to save
                         handleSaveCredentials(values);
                       });
-                      navigation.navigate('Root');
+                      handleSignIn();
                     }, (err) => {
                       handleFailedAttempt(err);
                     });
@@ -177,7 +183,7 @@ const SignIn = ({ navigation }) => {
                       if (values.username === userCreds.username
                         && values.password === userCreds.password) {
                         // need some pincode verification
-                        navigation.navigate('Root');
+                        handleSignIn();
                       } else {
                         // cannot log in offline without saved credentials, connect to internet
                       }
