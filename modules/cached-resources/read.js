@@ -18,19 +18,18 @@ function customFormsQuery(surveyingOrganization) {
           resolve(JSON.parse(JSON.stringify(forms)));
         }, (error) => {
           reject(error);
-        })
-      }
-      else {
+        });
+      } else {
         getData('customForms').then((forms) => {
           resolve(forms);
         }, (error) => {
           reject(error);
-        })
+        });
       }
     }, (error) => {
       reject(error);
-    })
-  })
+    });
+  });
 }
 
 function getTasksAsync() {
@@ -42,23 +41,22 @@ function getTasksAsync() {
           resolve(result);
         }, (error) => {
           reject(error);
-        })
-      }
-      else {
+        });
+      } else {
         getData('tasks').then((tasks) => {
           resolve(tasks);
         }, (error) => {
           reject(error);
-        })
+        });
       }
     }, (error) => {
       reject(error);
-    })
-  })
+    });
+  });
 }
 
 export {
   residentQuery,
   customFormsQuery,
   getTasksAsync
-}
+};

@@ -19,7 +19,6 @@ import { deleteData, getData } from '../../modules/async-storage';
 import { layout } from '../../modules/theme';
 import I18n from '../../modules/i18n';
 
-import { customQueryService } from '../../services/parse/crud';
 import { customFormsQuery } from '../../modules/cached-resources';
 import { retrieveSignOutFunction } from '../../services/parse/auth';
 
