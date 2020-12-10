@@ -5,9 +5,10 @@ import {
 } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
 
-import retrievePuenteAutofillData from '../../../../services/aws';
+import { cacheAutofillData } from '../../../../modules/cached-resources';
 
 import I18n from '../../../../modules/i18n';
+import { getData } from '../../../../modules/async-storage';
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
@@ -22,9 +23,13 @@ export default class AutoFill extends Component {
 
   componentDidMount() {
     const { parameter } = this.props;
-    retrievePuenteAutofillData(parameter)
-      .then((data) => {
-        this.state.fields = data;
+    cacheAutofillData(parameter)
+      .then(async () => {
+        const data = await getData('autofill_information');
+        const result = data[parameter];
+        this.setState({
+          fields: result
+        });
       });
   }
 

@@ -1,5 +1,6 @@
 import {
   residentQuery,
+  cacheAutofillData,
   customFormsQuery,
   getTasksAsync
 } from './read';
@@ -12,6 +13,7 @@ import {
 
 export {
   residentQuery,
+  cacheAutofillData,
   customFormsQuery,
   getTasksAsync,
   postIdentificationForm,
