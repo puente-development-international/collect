@@ -27,7 +27,9 @@ export default class AutoFill extends Component {
       .then(async () => {
         const data = await getData('autofill_information');
         const result = data[parameter];
-        this.state.fields = result;
+        this.setState({
+          fields: result
+        })
       });
   }
 
@@ -100,8 +102,8 @@ export default class AutoFill extends Component {
           {fields.length > 0 ? (
             <Text style={styles.infoText}>{query}</Text>
           ) : (
-            <Text style={styles.infoText}>{placeholder}</Text>
-          )}
+              <Text style={styles.infoText}>{placeholder}</Text>
+            )}
         </View>
       </View>
     );

@@ -9,15 +9,15 @@ async function residentQuery(queryParams) {
   return records;
 }
 
-async function cacheAutofillData(paramter) {
+async function cacheAutofillData(parameter) {
   checkOnlineStatus().then((connected) => {
     if (connected) {
       retrievePuenteAutofillData('all').then((result) => {
         storeData(result, 'autofill_information');
-        return result[paramter];
+        return result[parameter];
       });
     } else {
-      return getData('autofill_information')[paramter];
+      return getData('autofill_information')[parameter];
     }
   });
 }
