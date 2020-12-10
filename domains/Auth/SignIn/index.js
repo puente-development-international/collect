@@ -130,12 +130,9 @@ const SignIn = ({ navigation }) => {
   };
 
   const storeUserInformation = async () => {
-    const currentUser = await retrieveCurrentUserAsyncFunction();
-    getData('organization').then((asyncOrg) => {
-      if (asyncOrg !== currentUser.organization) {
-        storeData(currentUser.organization, 'organization');
-        storeData(currentUser, 'currentUser');
-      }
+    await retrieveCurrentUserAsyncFunction().then((currentUser) => {
+      storeData(currentUser.organization, 'organization');
+      storeData(currentUser, 'currentUser');
     });
   };
 
