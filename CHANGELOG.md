@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.9.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.9.0...v8.9.1) (2020-12-10)
+
+
+### Bug fixes
+
+* add surveyingUser fix to supplementary forms ([062a3a5](https://github.com/hopetambala/puente-reactnative-collect/commit/062a3a5331499bd042aa7d977529471998942d89))
+
 ## [8.9.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.8.2...v8.9.0) (2020-12-10)
 
 
