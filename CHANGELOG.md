@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.9.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.8.2...v8.9.0) (2020-12-10)
+
+
+### Housekeeping Tasks
+
+* fix setView on find records page ([0520b1e](https://github.com/hopetambala/puente-reactnative-collect/commit/0520b1ef40b224087aefacc1092ef7b044770586))
+* fix validation on supplementary forms ([09ccc19](https://github.com/hopetambala/puente-reactnative-collect/commit/09ccc19d7111cd5a8ee9d9a1df4c55b2a3fec3f6))
+
+
+### New Features
+
+* hotfix for not populating surveyor names ([ae0103b](https://github.com/hopetambala/puente-reactnative-collect/commit/ae0103be414cd752e85a54985b37d3e3b1cbe9e2))
+
 ### [8.8.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.8.1...v8.8.2) (2020-12-03)
 
 
