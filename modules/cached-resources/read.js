@@ -2,7 +2,6 @@ import { residentIDQuery, customQueryService } from '../../services/parse/crud';
 import retrievePuenteAutofillData from '../../services/aws';
 import checkOnlineStatus from '../offline';
 import { getData, storeData } from '../async-storage';
-import checkOnlineStatus from '../offline';
 import getTasks from '../../services/tasky';
 
 async function residentQuery(queryParams) {
@@ -12,16 +11,22 @@ async function residentQuery(queryParams) {
 }
 
 async function cacheAutofillData(parameter) {
-  checkOnlineStatus().then((connected) => {
-    if (connected) {
-      retrievePuenteAutofillData('all').then((result) => {
-        storeData(result, 'autofill_information');
-        return result[parameter];
-      });
-    } else {
-      return getData('autofill_information')[parameter];
-    }
-  })
+  return new Promise((resolve, reject) => {
+    checkOnlineStatus().then((connected) => {
+      if (connected) {
+        retrievePuenteAutofillData('all').then((result) => {
+          storeData(result, 'autofill_information');
+          resolve(result[parameter]);
+        }, (error) => {
+          reject(error);
+        });
+      } else {
+        resolve(getData('autofill_information')[parameter]);
+      }
+    }, (error) => {
+      reject(error);
+    });
+  });
 }
 
 function customFormsQuery(surveyingOrganization) {

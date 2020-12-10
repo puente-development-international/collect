@@ -29,7 +29,7 @@ export default class AutoFill extends Component {
         const result = data[parameter];
         this.setState({
           fields: result
-        })
+        });
       });
   }
 
@@ -102,8 +102,8 @@ export default class AutoFill extends Component {
           {fields.length > 0 ? (
             <Text style={styles.infoText}>{query}</Text>
           ) : (
-              <Text style={styles.infoText}>{placeholder}</Text>
-            )}
+            <Text style={styles.infoText}>{placeholder}</Text>
+          )}
         </View>
       </View>
     );
