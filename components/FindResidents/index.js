@@ -23,17 +23,28 @@ const FindResidents = ({
   const [query, setQuery] = useState('');
   const [residents, setResidents] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [offlineData, setOfflineData] = useState(getData('offlineIDForms'));
+  const [didMount, setDidMount] = useState(false);
   useEffect(() => {
     fetchAsyncData();
-  }, [organization]);
+  }, [organization, didMount]);
 
   const fetchAsyncData = () => {
     setLoading(true);
     getData('residentData').then((residentData) => {
+      // console.log(residentData);
       if (residentData) {
-        setData(residentData || []);
-        setResidents(residentData.slice() || [].slice());
+        let offlineData = [];
+        getData('offlineIDForms').then((offlineResidentData) => {
+          Object.entries(offlineResidentData).forEach(([key, value]) => {
+            offlineData = offlineData.concat(value.localObject);
+          })
+          console.log("OFFLINE", offlineData)
+          const allData = residentData.concat(offlineData);
+          console.log("ALL", allData);
+          setData(allData || []);
+          setResidents(allData.slice() || [].slice());
+        })
       }
       setLoading(false);
     });

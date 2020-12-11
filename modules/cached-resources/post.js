@@ -2,6 +2,7 @@ import { postObjectsToClass, postObjectsToClassWithRelation } from '../../servic
 import checkOnlineStatus from '../offline';
 import generateRandomID from '../utils';
 import {
+  getData,
   storeData
 } from '../async-storage';
 
@@ -16,9 +17,25 @@ function postIdentificationForm(postParams) {
           reject(error);
         });
       } else {
-        const id = `PatientID-${generateRandomID()}`;
-        storeData(postParams, id);
-        resolve('success');
+        getData('offlineIDForms').then(async (idForms) => {
+          const id = `PatientID-${generateRandomID()}`;
+          if (idForms !== null) {
+            console.log(idForms);
+            idForms[id] = postParams;
+            await storeData(idForms, 'offlineIDForms');
+            resolve('success')
+          }
+          else {
+            console.log('No data yet...')
+            let idData = {};
+            idData[id] = postParams;
+            await storeData(idData, 'offlineIDForms');
+            resolve('success');
+          }
+          console.log(idForms);
+        })
+        // storeData(postParams, id);
+        // resolve('success');
       }
     });
   });
