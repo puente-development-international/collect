@@ -1,4 +1,5 @@
 import { residentIDQuery, customQueryService } from '../../services/parse/crud';
+import retrievePuenteAutofillData from '../../services/aws';
 import checkOnlineStatus from '../offline';
 import { getData, storeData } from '../async-storage';
 import getTasks from '../../services/tasky';
@@ -7,6 +8,25 @@ async function residentQuery(queryParams) {
   let records = await residentIDQuery(queryParams);
   records = JSON.parse(JSON.stringify(records));
   return records;
+}
+
+async function cacheAutofillData(parameter) {
+  return new Promise((resolve, reject) => {
+    checkOnlineStatus().then((connected) => {
+      if (connected) {
+        retrievePuenteAutofillData('all').then((result) => {
+          storeData(result, 'autofill_information');
+          resolve(result[parameter]);
+        }, (error) => {
+          reject(error);
+        });
+      } else {
+        resolve(getData('autofill_information')[parameter]);
+      }
+    }, (error) => {
+      reject(error);
+    });
+  });
 }
 
 function customFormsQuery(surveyingOrganization) {
@@ -57,6 +77,7 @@ function getTasksAsync() {
 
 export {
   residentQuery,
+  cacheAutofillData,
   customFormsQuery,
   getTasksAsync
 };
