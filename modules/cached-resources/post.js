@@ -1,7 +1,8 @@
 import { postObjectsToClass, postObjectsToClassWithRelation } from '../../services/parse/crud';
 import checkOnlineStatus from '../offline';
-import generateRandomID from '../utils';
+import { generateRandomID } from '../utils';
 import {
+  deleteData,
   getData,
   storeData
 } from '../async-storage';
@@ -18,21 +19,26 @@ function postIdentificationForm(postParams) {
           reject(error);
         });
       } else {
+        console.log("ELSE")
         getData('offlineIDForms').then(async (idForms) => {
+          console.log("TTEST")
           const id = `PatientID-${generateRandomID()}`;
-          if (idForms !== null) {
+          postParams.localObject['objectId'] = id;
+          console.log(idForms)
+          if (idForms !== null || idForms === []) {
             console.log(idForms);
-            postParams.localObject['objectId'] = id;
+            console.log(idForms);
+            // postParams.localObject['objectId'] = id;
             idForms = idForms.concat(postParams);
             await storeData(idForms, 'offlineIDForms');
-            resolve('success')
+            resolve(postParams.localObject)
           }
           else {
             console.log('No data yet...')
             let idData = [postParams];
             // idData[id] = postParams;
             await storeData(idData, 'offlineIDForms');
-            resolve('success');
+            resolve(postParams.localObject);
           }
           console.log(idForms);
         })
@@ -113,6 +119,8 @@ function postOfflineForms() {
         });
       }
     })
+    await deleteData('offlineIDForms');
+    await deleteData('offlineSupforms');
     resolve('success');
   })
 }

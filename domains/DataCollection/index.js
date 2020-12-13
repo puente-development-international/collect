@@ -19,7 +19,7 @@ import { deleteData, getData } from '../../modules/async-storage';
 import { layout } from '../../modules/theme';
 import I18n from '../../modules/i18n';
 
-import { customFormsQuery } from '../../modules/cached-resources';
+import { customFormsQuery, postOfflineForms } from '../../modules/cached-resources';
 import { retrieveSignOutFunction } from '../../services/parse/auth';
 
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
@@ -159,6 +159,7 @@ const DataCollection = ({ navigation }) => {
                 </View>
                 <View>
                 <Button onPress={() => deleteOfflineForms()}>Delete all offline forms</Button>
+                <Button onPress={() => postOfflineForms()}>Submit all offline forms</Button>
                 </View>
               </View>
             )}
