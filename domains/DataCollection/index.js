@@ -113,6 +113,14 @@ const DataCollection = ({ navigation }) => {
     });
   };
 
+  const deleteOfflineForms = async  () => {
+    console.log('deete')
+    await deleteData('offlineIDForms');
+    await getData('offlineIDForms').then((data) => {
+      console.log(data)
+    })
+  }
+
   return (
     <View
       style={layout.screenContainer}
@@ -150,6 +158,9 @@ const DataCollection = ({ navigation }) => {
                     <ComingSoonSVG height={65} style={styles.svg} />
                     <Text style={styles.text}>{I18n.t('dataCollection.viewAll')}</Text>
                   </Card>
+                </View>
+                <View>
+                <Button onPress={() => deleteOfflineForms()}>Delete all offline forms</Button>
                 </View>
               </View>
             )}
