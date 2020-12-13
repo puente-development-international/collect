@@ -30,5 +30,9 @@ const backgroundPostPatient = () => {
     });
 };
 
-export default backgroundPostPatient;
+const surveyingUserFailsafe = async () => {
+  const user = await getData('currentUser');
+  return user.username || user.email || user.id || user.firstname || user.lastname;
+};
 
+export { backgroundPostPatient, surveyingUserFailsafe };

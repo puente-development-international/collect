@@ -52,8 +52,6 @@ const DataCollection = ({ navigation }) => {
   useEffect(() => {
     getData('currentUser').then((user) => {
       setSurveyingUser(`${user.firstname || ''} ${user.lastname || ''}`);
-    }).catch(() => {
-      setSurveyingUser(`${''} ${''}`);
     });
 
     getData('organization').then((org) => {
@@ -220,6 +218,7 @@ const DataCollection = ({ navigation }) => {
                   surveyee={surveyee}
                   setSurveyee={setSurveyee}
                   navigateToRoot={navigateToRoot}
+                  setView={setView}
                 />
               </View>
             )}

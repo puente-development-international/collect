@@ -61,6 +61,9 @@ function retrieveForgotPasswordFunction(params) {
   });
 }
 
+/**
+ * Deprecated
+ */
 function retrieveCurrentUserFunction() {
   const u = Parse.User.current();
   if (u) {
@@ -76,7 +79,17 @@ function retrieveCurrentUserFunction() {
 }
 
 function retrieveCurrentUserAsyncFunction() {
-  return Parse.User.currentAsync().then((user) => user);
+  return Parse.User.currentAsync().then((u) => {
+    const user = {};
+    user.id = u.id;
+    user.username = u.get('username');
+    user.firstname = u.get('firstname');
+    user.lastname = u.get('lastname');
+    user.email = u.get('email');
+    user.organization = u.get('organization');
+    user.role = u.get('role');
+    return user;
+  });
 }
 
 function retrieveDeleteUserFunction(params) {
