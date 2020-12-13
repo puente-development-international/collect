@@ -23,11 +23,10 @@ const FindResidents = ({
   const [query, setQuery] = useState('');
   const [residents, setResidents] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [offlineData, setOfflineData] = useState(getData('offlineIDForms'));
-  const [didMount, setDidMount] = useState(false);
+  const [offline, setOffline] = useState(false);
   useEffect(() => {
     fetchAsyncData();
-  }, [organization, didMount]);
+  }, [organization, offline]);
 
   const fetchAsyncData = () => {
     setLoading(true);
@@ -36,10 +35,13 @@ const FindResidents = ({
       if (residentData) {
         let offlineData = [];
         getData('offlineIDForms').then((offlineResidentData) => {
-          Object.entries(offlineResidentData).forEach(([key, value]) => {
-            offlineData = offlineData.concat(value.localObject);
-          })
-          console.log("OFFLINE", offlineData)
+          console.log(offlineResidentData);
+          if (offlineResidentData !== null) {
+            Object.entries(offlineResidentData).forEach(([key, value]) => {
+              offlineData = offlineData.concat(value.localObject);
+            })
+            console.log("OFFLINE", offlineData)
+          }
           const allData = residentData.concat(offlineData);
           console.log("ALL", allData);
           setData(allData || []);
@@ -63,9 +65,18 @@ const FindResidents = ({
     const records = await residentQuery(queryParams);
 
     storeData(records, 'residentData');
-
-    setData(records);
-    setResidents(records.slice());
+    
+    let offlineData = [];
+    await getData('offlineIDForms').then((offlineResidentData) => {
+      if (offlineResidentData !== null) {
+        Object.entries(offlineResidentData).forEach(([key, value]) => {
+          offlineData = offlineData.concat(value.localObject);
+        })
+      }
+    })
+    const allData = records.concat(offlineData);
+    setData(allData);
+    setResidents(allData.slice());
     setLoading(false);
   };
 

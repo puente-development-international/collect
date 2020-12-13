@@ -15,7 +15,7 @@ const ResidentCard = ({
   resident, onSelectPerson
 }) => {
   const {
-    fname, lname, nickname, city, picture, communityname
+    fname, lname, nickname, city, picture, communityname, objectId
   } = resident;
   const [pictureUrl, setPictureUrl] = useState();
   useEffect(() => {
@@ -35,6 +35,9 @@ const ResidentCard = ({
       >
         <View style={styles.nameConatiner}>
           <Title style={styles.name}>{`${fname} ${lname}`}</Title>
+          {objectId.includes('PatientID-') && (
+            <View style={styles.redCircle}></View>
+          )}
         </View>
         <Text style={styles.nickname}>{`"${nickname}"`}</Text>
         <Image
@@ -66,7 +69,8 @@ const styles = StyleSheet.create({
   nameConatiner: {
     backgroundColor: theme.colors.primary,
     marginTop: 15,
-    height: 30
+    height: 30,
+    flexDirection: 'row'
   },
   name: {
     color: '#FFFFFF',
@@ -113,6 +117,15 @@ const styles = StyleSheet.create({
     color: '#606060',
     fontSize: 15
   },
+  redCircle: {
+    backgroundColor: '#f8380e',
+    width: 15,
+    height: 15,
+    marginLeft: 10,
+    marginTop: 'auto',
+    marginBottom: 'auto',
+    borderRadius: 20
+  }
 
 });
 

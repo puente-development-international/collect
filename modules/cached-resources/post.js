@@ -79,22 +79,40 @@ function postSupplementaryForm(postParams) {
 }
 
 function postOfflineForms() {
-  return new Promise(async (resolve, reject) => {
-    let idForms = await getData('offlineIDForms');
-    let supForms = await getData('offlineSupForms');
+  return new Promise((resolve, reject) => {
+    checkOnlineStatus().then(async (connected) => {
+      if (connected) {
+        let idForms = await getData('offlineIDForms');
+        let supForms = await getData('offlineSupForms');
 
-    idForms.forEach((postParams) => {
-      const offlineObjectID = postParams.localObject.objectId;
-      console.log("Offline O ID", offlineObjectID);
-      delete postParams.localObject['objectId']
-      console.log('postparmas after objectId deleted', postParams)
-      postObjectsToClass(postParams).then((surveyee) => {
-        console.log("Posted ID Form")
-        const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
-        const parseObjectID = surveyeeSanitized.objectId;
+        idForms.forEach((postParams) => {
+          const offlineObjectID = postParams.localObject.objectId;
+          console.log("Offline O ID", offlineObjectID);
+          delete postParams.localObject['objectId']
+          console.log('postparmas after objectId deleted', postParams)
+          postObjectsToClass(postParams).then((surveyee) => {
+            console.log("Posted ID Form")
+            const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
+            const parseObjectID = surveyeeSanitized.objectId;
+            supForms.forEach((supForm) => {
+              if (supForm.parseParentClassID === offlineObjectID) {
+                supForm.parseParentClassID = parseObjectID;
+                postObjectsToClassWithRelation(supForm).then(() => {
+                  console.log("Posted Supplementary Form")
+                }, (error) => {
+                  console.log("Failed to post supp form");
+                  reject(error);
+                });
+              }
+            })
+          }, (error) => {
+            reject(error);
+          });
+        });
+
         supForms.forEach((supForm) => {
-          if (supForm.parseParentClassID === offlineObjectID) {
-            supForm.parseParentClassID = parseObjectID;
+          // supplementary forms not tied to an offline ID form
+          if (!supForm.parseParentClassID.includes('PatientID-')) {
             postObjectsToClassWithRelation(supForm).then(() => {
               console.log("Posted Supplementary Form")
             }, (error) => {
@@ -103,25 +121,16 @@ function postOfflineForms() {
             });
           }
         })
-      }, (error) => {
-        reject(error);
-      });
-    });
-
-    supForms.forEach((supForm) => {
-      // supplementary forms not tied to an offline ID form
-      if (!supForm.parseParentClassID.includes('PatientID-')) {
-        postObjectsToClassWithRelation(supForm).then(() => {
-          console.log("Posted Supplementary Form")
-        }, (error) => {
-          console.log("Failed to post supp form");
-          reject(error);
-        });
+        await deleteData('offlineIDForms');
+        await deleteData('offlineSupforms');
+        resolve('success');
       }
+      else {
+        reject('No connection');
+      }
+    }, (error) => {
+      reject(error);
     })
-    await deleteData('offlineIDForms');
-    await deleteData('offlineSupforms');
-    resolve('success');
   })
 }
 
