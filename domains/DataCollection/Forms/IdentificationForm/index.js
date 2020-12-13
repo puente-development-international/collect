@@ -4,33 +4,22 @@ import {
   View, TouchableWithoutFeedback, Keyboard
 } from 'react-native';
 import { Formik } from 'formik';
-// import * as yup from 'yup';
 
 import { postIdentificationForm } from '../../../../modules/cached-resources';
+
 import { layout } from '../../../../modules/theme';
-import PaperButton from '../../../../components/Button';
-
-import backgroundPostPatient from './utils';
-import configArray from './config/config';
-
 import I18n from '../../../../modules/i18n';
+
+import PaperButton from '../../../../components/Button';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
 
-// const validationSchema = yup.object().shape({
-//   fname: yup
-//     .string()
-//     .label('First Name')
-//     .required(),
-//   lname: yup
-//     .string()
-//     .label('Last Name')
-//     .required()
-// });
+import { backgroundPostPatient, surveyingUserFailsafe } from './utils';
+import configArray from './config/config';
 
 const IdentificationForm = ({
   scrollViewScroll, setScrollViewScroll,
-  setSelectedForm, setSurveyee, surveyingOrganization, surveyingUser
+  setSelectedForm, setSurveyee, surveyingOrganization
 }) => {
   useEffect(() => {
     const interval = setInterval(() => {
@@ -57,12 +46,13 @@ const IdentificationForm = ({
       <TouchableWithoutFeedback onPress={Keyboard.dismiss()} accessible={false}>
         <Formik
           initialValues={{}}
-          onSubmit={(values, actions) => {
+          onSubmit={async (values, actions) => {
             setPhotoFile('Submitted Photo String');
 
             const formObject = values;
             formObject.surveyingOrganization = surveyingOrganization;
-            formObject.surveyingUser = surveyingUser;
+            formObject.surveyingUser = await surveyingUserFailsafe();
+
             formObject.latitude = values.location?.latitude || 0;
             formObject.longitude = values.location?.longitude || 0;
             formObject.altitude = values.location?.altitude || 0;

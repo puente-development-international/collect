@@ -3,8 +3,9 @@ import {
   View, Text
 } from 'react-native';
 import {
-  TextInput, Button, Headline
+  TextInput, Button, Headline,
 } from 'react-native-paper';
+import { Spinner } from 'native-base';
 
 import getLocation from '../../../modules/geolocation';
 import I18n from '../../../modules/i18n';
@@ -28,14 +29,19 @@ const PaperInputPicker = ({
     handleChange, handleBlur, errors, setFieldValue, values
   } = formikProps;
 
-  const [location, setLocation] = React.useState({ latitude: 5, longitude: 10, altitude: 0 });
+  const [location, setLocation] = React.useState({ latitude: 0, longitude: 0, altitude: 0 });
+  const [locationLoading, setLocationLoading] = React.useState(false);
 
   const handleLocation = async () => {
-    const currentLocation = await getLocation();
+    setLocationLoading(true);
+    const currentLocation = await getLocation().catch((e) => e);
     const { latitude, longitude, altitude } = currentLocation.coords;
 
     setFieldValue('location', { latitude, longitude, altitude });
     setLocation({ latitude, longitude, altitude });
+    setTimeout(() => {
+      setLocationLoading(false);
+    }, 1000);
   };
 
   const translatedLabel = customForm ? label : I18n.t(label);
@@ -340,14 +346,18 @@ const PaperInputPicker = ({
                 buttonText="Get Location Again"
               />
               <View style={{ marginLeft: 'auto', marginRight: 'auto', flexDirection: 'row' }}>
-                <Text style={{ paddingRight: 5, fontWeight: 'bold' }}>
-                  Latitude:
-                  {location.latitude}
-                </Text>
-                <Text style={{ paddingLeft: 5, fontWeight: 'bold' }}>
-                  Longitude:
-                  {location.longitude}
-                </Text>
+                {
+                  locationLoading === true
+                  && <Spinner color={theme.colors.primary} />
+                }
+                {locationLoading === false
+                  && (
+                  <View>
+                    <Headline>
+                      {`(${location.latitude.toFixed(2)}, ${location.longitude.toFixed(2)})`}
+                    </Headline>
+                  </View>
+                  )}
               </View>
               <Text style={{ color: 'red' }}>
                 {errors[formikKey]}

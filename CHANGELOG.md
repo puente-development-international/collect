@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.9.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.9.0...v8.9.1) (2020-12-10)
+
+
+### Bug fixes
+
+* add surveyingUser fix to supplementary forms ([062a3a5](https://github.com/hopetambala/puente-reactnative-collect/commit/062a3a5331499bd042aa7d977529471998942d89))
+
+## [8.9.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.8.2...v8.9.0) (2020-12-10)
+
+
+### Housekeeping Tasks
+
+* fix setView on find records page ([0520b1e](https://github.com/hopetambala/puente-reactnative-collect/commit/0520b1ef40b224087aefacc1092ef7b044770586))
+* fix validation on supplementary forms ([09ccc19](https://github.com/hopetambala/puente-reactnative-collect/commit/09ccc19d7111cd5a8ee9d9a1df4c55b2a3fec3f6))
+
+
+### New Features
+
+* hotfix for not populating surveyor names ([ae0103b](https://github.com/hopetambala/puente-reactnative-collect/commit/ae0103be414cd752e85a54985b37d3e3b1cbe9e2))
+
+### [8.8.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.8.1...v8.8.2) (2020-12-03)
+
+
+### Bug fixes
+
+* incorrect usage of current async function ([4739d74](https://github.com/hopetambala/puente-reactnative-collect/commit/4739d74078fd799003e461e2364552e3fd5bf417))
+* keyboard not hiding when signning in ([f2d631b](https://github.com/hopetambala/puente-reactnative-collect/commit/f2d631bb8a6a21ba0153f5f8c96abb428e5c6e5e))
+
+
+### New Features
+
+* add loading indicator for location ([e55ce97](https://github.com/hopetambala/puente-reactnative-collect/commit/e55ce97ebaec4d5cddd6afb9cae05cac24cf8e40))
+
+
+### Housekeeping Tasks
+
+* reformat findResident page ([a7d780f](https://github.com/hopetambala/puente-reactnative-collect/commit/a7d780f79e54948133055f767311f7762ef62a47))
+
 ### [8.8.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.8.0...v8.8.1) (2020-11-27)
 
 ## [8.8.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.7.0...v8.8.0) (2020-11-26)
