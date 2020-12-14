@@ -77,7 +77,6 @@ const IdentificationForm = ({
               photoFile,
               localObject: formObject
             };
-            console.log(postParams);
 
             postIdentificationForm(postParams).then((surveyee) => {
               setSurveyee(surveyee);
@@ -107,14 +106,14 @@ const IdentificationForm = ({
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                  <PaperButton
-                    onPressEvent={formikProps.handleSubmit}
-                    buttonText={I18n.t('global.submit')}
-                  />
-                  // <Button icon="human" onPress={formikProps.handleSubmit}>
-                  //   <Text>Submit</Text>
-                  // </Button>
-                )}
+                <PaperButton
+                  onPressEvent={formikProps.handleSubmit}
+                  buttonText={I18n.t('global.submit')}
+                />
+              // <Button icon="human" onPress={formikProps.handleSubmit}>
+              //   <Text>Submit</Text>
+              // </Button>
+              )}
             </View>
           )}
         </Formik>

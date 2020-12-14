@@ -36,7 +36,7 @@ const ResidentCard = ({
         <View style={styles.nameConatiner}>
           <Title style={styles.name}>{`${fname} ${lname}`}</Title>
           {objectId.includes('PatientID-') && (
-            <View style={styles.redCircle}></View>
+            <View style={styles.redCircle} />
           )}
         </View>
         <Text style={styles.nickname}>{`"${nickname}"`}</Text>

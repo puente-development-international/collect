@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Headline, Text, IconButton, Button, Modal } from 'react-native-paper';
+import {
+  Headline, Text, IconButton, Button,
+} from 'react-native-paper';
 import Emoji from 'react-native-emoji';
 
 import countService from '../../services/parse/calculate';
 
-import { getData } from '../../modules/async-storage';
+import { deleteData, getData } from '../../modules/async-storage';
 import { postOfflineForms } from '../../modules/cached-resources';
 
 import styles from './index.styles';
@@ -56,7 +58,6 @@ const Header = ({ logOut }) => {
     getData('offlineIDForms').then((idForms) => {
       if (idForms) {
         setOfflineForms(true);
-        console.log(idForms.length)
         return idForms.length;
       }
       return 0;
@@ -64,24 +65,27 @@ const Header = ({ logOut }) => {
       .then((idFormCount) => {
         getData('offlineSupForms').then((supForms) => {
           if (supForms) {
-            console.log(supForms.length);
             setOfflineForms(true);
-            setOfflineFormCount(idFormCount + supForms.length)
-          }
-          else {
+            setOfflineFormCount(idFormCount + supForms.length);
+          } else {
             setOfflineFormCount(idFormCount);
+            if (idFormCount === 0) {
+              setOfflineForms(false);
+            } else {
+              setOfflineForms(true);
+            }
           }
-          idFormCount === 0 ? setOfflineForms(false) : setOfflineForms(true);
-
-        })
-      })
+        });
+      });
 
     setDrawerOpen(!drawerOpen);
   };
 
   const postOffline = () => {
-    postOfflineForms().then((result) => {
+    postOfflineForms().then(async (result) => {
       if (result) {
+        await deleteData('offlineIDForms');
+        await deleteData('offlineSupForms');
         setOfflineForms(false);
         setFailedSubmission(false);
         setSuccessfullSubmission(true);
@@ -89,8 +93,8 @@ const Header = ({ logOut }) => {
     })
       .catch(() => {
         setFailedSubmission(true);
-      })
-  }
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -127,9 +131,8 @@ const Header = ({ logOut }) => {
             {offlineForms ? (
               <Button onPress={postOffline}>Submit Offline Forms</Button>
             ) : (
-                <Button disabled={true}>Submit Offline Forms</Button>
-              )
-            }
+              <Button disabled>Submit Offline Forms</Button>
+            )}
             {failedSubmission && (
               <View>
                 <Text style={styles.calculationText}>Failed Attempt Submitting Offline Forms.</Text>
@@ -140,7 +143,13 @@ const Header = ({ logOut }) => {
             {successfullSubmission && (
               <View>
                 <Text style={styles.calculationText}>Success!</Text>
-                <Text style={{ alignSelf: 'center' }}>You have just submitted {offlineFormCount} forms!</Text>
+                <Text style={{ alignSelf: 'center' }}>
+                  You have just submitted
+                  {' '}
+                  {offlineFormCount}
+                  {' '}
+                  forms!
+                </Text>
                 <Button onPress={() => setSuccessfullSubmission(false)}>Ok</Button>
               </View>
             )}

@@ -29,15 +29,14 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
         let offlineData = [];
         getData('offlineIDForms').then((offlineResidentData) => {
           if (offlineResidentData !== null) {
-            Object.entries(offlineResidentData).forEach(([key, value]) => {
+            Object.entries(offlineResidentData).forEach(([key, value]) => { //eslint-disable-line
               offlineData = offlineData.concat(value.localObject);
-            })
+            });
           }
-          console.log("OFFLINE", offlineData)
           const allData = residentData.concat(offlineData);
           setData(allData || []);
           setResidents(allData.slice() || [].slice());
-        })
+        });
       }
       setLoading(false);
     });
@@ -56,11 +55,11 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
     let offlineData = [];
     await getData('offlineIDForms').then((offlineResidentData) => {
       if (offlineResidentData !== null) {
-        Object.entries(offlineResidentData).forEach(([key, value]) => {
+        Object.entries(offlineResidentData).forEach(([key, value]) => { //eslint-disable-line
           offlineData = offlineData.concat(value.localObject);
-        })
+        });
       }
-    })
+    });
     const allData = records.concat(offlineData);
     setData(allData);
     setResidents(allData.slice());
@@ -106,7 +105,8 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
             marginTop: 'auto',
             marginBottom: 'auto',
             borderRadius: 20
-          }}></View>
+          }}
+          />
         )}
       </Button>
     </View>

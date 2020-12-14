@@ -19,7 +19,7 @@ import { deleteData, getData } from '../../modules/async-storage';
 import { layout } from '../../modules/theme';
 import I18n from '../../modules/i18n';
 
-import { customFormsQuery, postOfflineForms } from '../../modules/cached-resources';
+import { customFormsQuery } from '../../modules/cached-resources';
 import { retrieveSignOutFunction } from '../../services/parse/auth';
 
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
@@ -111,15 +111,6 @@ const DataCollection = ({ navigation }) => {
     });
   };
 
-  const deleteOfflineForms = async () => {
-    console.log('deete')
-    await deleteData('offlineIDForms');
-    await deleteData('offlineSupForms');
-    await getData('offlineIDForms').then((data) => {
-      console.log(data)
-    })
-  }
-
   return (
     <View
       style={layout.screenContainer}
@@ -157,10 +148,6 @@ const DataCollection = ({ navigation }) => {
                     <ComingSoonSVG height={65} style={styles.svg} />
                     <Text style={styles.text}>{I18n.t('dataCollection.viewAll')}</Text>
                   </Card>
-                </View>
-                <View>
-                  <Button onPress={() => deleteOfflineForms()}>Delete all offline forms</Button>
-                  <Button onPress={() => postOfflineForms()}>Submit all offline forms</Button>
                 </View>
               </View>
             )}
