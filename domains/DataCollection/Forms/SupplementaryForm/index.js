@@ -10,13 +10,17 @@ import { Formik } from 'formik';
 import { postSupplementaryForm } from '../../../../modules/cached-resources';
 
 import { layout } from '../../../../modules/theme';
+import I18n from '../../../../modules/i18n';
+import { isEmpty } from '../../../../modules/utils';
+
+import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
+import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
 
 import envConfig from './configs/envhealth.config';
 import medConfig from './configs/medical-evaluation.config';
 import vitalsConfig from './configs/vitals.config';
-import I18n from '../../../../modules/i18n';
-import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
-import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
+
+import surveyingUserFailsafe from '../utils';
 import { addSelectTextInputs, vitalsBloodPressue } from './utils';
 
 const SupplementaryForm = ({
@@ -43,7 +47,6 @@ const SupplementaryForm = ({
     }
     if (selectedForm === 'vitals') {
       setConfig(vitalsConfig);
-      // setValidationSchema(yupValidationPicker(medConfig.fields));
     }
     if (selectedForm === 'custom') setConfig(customForm);
   }, [selectedForm, config]);
@@ -51,11 +54,11 @@ const SupplementaryForm = ({
   return (
     <Formik
       initialValues={{}}
-      onSubmit={(values, actions) => {
+      onSubmit={async (values, actions) => {
         setPhotoFile('Submitted Photo String');
 
         const formObject = values;
-        formObject.surveyingUser = surveyingUser;
+        formObject.surveyingUser = await surveyingUserFailsafe(surveyingUser, isEmpty);
         formObject.surveyingOrganization = surveyingOrganization;
 
         let formObjectUpdated = addSelectTextInputs(values, formObject);
@@ -94,6 +97,9 @@ const SupplementaryForm = ({
         });
       }}
       validationSchema={validationSchema}
+      // only validate on submit, errors persist after fixing
+      validateOnBlur={false}
+      validateOnChange={false}
     >
       {(formikProps) => (
         <View style={layout.formContainer}>

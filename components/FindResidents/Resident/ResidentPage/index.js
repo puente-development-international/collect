@@ -3,7 +3,7 @@ import {
   View, StyleSheet, Image
 } from 'react-native';
 import {
-  Text, Button, Title
+  Text, Button
 } from 'react-native-paper';
 
 import Demographics from './Demographics';
@@ -41,11 +41,11 @@ const ResidentPage = ({
     setForms(true);
   };
 
-  const showHousehold = () => {
-    setForms(false);
-    setDemographics(false);
-    setHousehold(true);
-  };
+  // const showHousehold = () => {
+  //   setForms(false);
+  //   setDemographics(false);
+  //   setHousehold(true);
+  // };
   return (
     <View>
       <Button icon="arrow-left" width={100} onPress={() => setSelectPerson()}>
@@ -56,50 +56,63 @@ const ResidentPage = ({
           style={styles.profPic}
           source={pictureUrl}
         />
-        <View style={styles.nameContainer}>
-          <Title>{`${fname} ${lname}`}</Title>
+        <View style={{ margin: 7 }}>
+          <View style={styles.nameContainer}>
+            <Text style={[styles.name, { fontWeight: 'bold' }]}>{`${fname} ${lname}`}</Text>
+          </View>
           <Text style={styles.name}>{`"${nickname}"`}</Text>
-          <Button
+
+          {/* <Button
             style={styles.button}
             contentStyle={styles.buttonContent}
           >
             {I18n.t('findResident.residentPage.household.editProfile')}
-          </Button>
+          </Button> */}
         </View>
       </View>
       <View
         style={styles.horizontalLine}
       />
-      <View style={styles.navigationButtons}>
-        <Button onPress={() => showDemographics()}>{I18n.t('findResident.residentPage.household.demographics')}</Button>
-        <Button onPress={() => showForms(true)}>{I18n.t('findResident.residentPage.household.forms')}</Button>
-        <Button onPress={() => showHousehold(true)}>{I18n.t('findResident.residentPage.household.household')}</Button>
+      <View style={styles.navigationButtonsContainer}>
+        <Button style={styles.navigationButton} labelStyle={styles.navigationButtonText} onPress={() => showDemographics()}>{I18n.t('findResident.residentPage.household.demographics')}</Button>
+        <Button style={styles.navigationButton} labelStyle={styles.navigationButtonText} onPress={() => showForms(true)}>{I18n.t('findResident.residentPage.household.forms')}</Button>
+        {/* <Button style={styles.navigationButton}
+        labelStyle={styles.navigationButtonText}
+        onPress={() => showHousehold(true)}>
+          {I18n.t('findResident.residentPage.household.household')}
+          </Button> */}
       </View>
       <View
         style={styles.horizontalLine}
       />
-      {demographics && (
-        <Demographics
-          dob={selectPerson.dob}
-          city={city}
-          community={selectPerson.communityname}
-          province={selectPerson.province}
-          license={selectPerson.license}
-          selectPerson={selectPerson}
-        />
-      )}
-      {forms && (
-        <Forms
-          puenteForms={puenteForms}
-          navigateToNewRecord={navigateToNewRecord}
-          surveyee={selectPerson}
-          setSurveyee={setSurveyee}
-          setView={setView}
-        />
-      )}
-      {household && (
-        <Household />
-      )}
+      {
+        demographics && (
+          <Demographics
+            dob={selectPerson.dob}
+            city={city}
+            community={selectPerson.communityname}
+            province={selectPerson.province}
+            license={selectPerson.license}
+            selectPerson={selectPerson}
+          />
+        )
+      }
+      {
+        forms && (
+          <Forms
+            puenteForms={puenteForms}
+            navigateToNewRecord={navigateToNewRecord}
+            surveyee={selectPerson}
+            setSurveyee={setSurveyee}
+            setView={setView}
+          />
+        )
+      }
+      {
+        household && (
+          <Household />
+        )
+      }
       <Button onPress={() => setSelectPerson()}>{I18n.t('findResident.residentPage.household.goBack')}</Button>
     </View>
   );
@@ -115,14 +128,15 @@ const styles = StyleSheet.create({
   },
   picNameContainer: {
     flexDirection: 'row',
-    margin: 20
+    margin: 14
   },
   nameContainer: {
-    flexDirection: 'column',
-    marginLeft: 20,
+    flexDirection: 'row',
   },
   name: {
-    color: '#696969'
+    color: '#696969',
+    flexShrink: 1,
+    marginVertical: 7,
   },
   button: {
     width: 120,
@@ -135,13 +149,15 @@ const styles = StyleSheet.create({
     borderBottomColor: theme.colors.primary,
     borderBottomWidth: 1,
   },
-  navigationButtons: {
+  navigationButtonsContainer: {
     flexDirection: 'row',
-    marginLeft: 15,
-    marginRight: 15,
-    marginTop: 5,
-    marginBottom: 5
-
+    alignItems: 'flex-start',
+  },
+  navigationButton: {
+    flex: 1,
+  },
+  navigationButtonText: {
+    fontWeight: 'bold'
   }
 });
 
