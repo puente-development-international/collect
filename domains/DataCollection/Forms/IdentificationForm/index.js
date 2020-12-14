@@ -9,7 +9,7 @@ import { postObjectsToClass } from '../../../../services/parse/crud';
 
 import { storeData } from '../../../../modules/async-storage';
 import checkOnlineStatus from '../../../../modules/offline';
-import { generateRandomID } from '../../../../modules/utils';
+import { generateRandomID, isEmpty } from '../../../../modules/utils';
 import { layout } from '../../../../modules/theme';
 import I18n from '../../../../modules/i18n';
 
@@ -17,12 +17,14 @@ import PaperButton from '../../../../components/Button';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
 
-import { backgroundPostPatient, surveyingUserFailsafe } from './utils';
+import backgroundPostPatient from './utils';
+import surveyingUserFailsafe from '../utils';
+
 import configArray from './config/config';
 
 const IdentificationForm = ({
   scrollViewScroll, setScrollViewScroll,
-  setSelectedForm, setSurveyee, surveyingOrganization
+  setSelectedForm, setSurveyee, surveyingUser, surveyingOrganization
 }) => {
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,7 +56,7 @@ const IdentificationForm = ({
 
             const formObject = values;
             formObject.surveyingOrganization = surveyingOrganization;
-            formObject.surveyingUser = await surveyingUserFailsafe();
+            formObject.surveyingUser = await surveyingUserFailsafe(surveyingUser, isEmpty);
 
             formObject.latitude = values.location?.latitude || 0;
             formObject.longitude = values.location?.longitude || 0;
