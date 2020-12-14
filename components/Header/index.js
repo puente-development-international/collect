@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Headline, Text, IconButton } from 'react-native-paper';
+import { Headline, Text, IconButton, Button, Modal } from 'react-native-paper';
 import Emoji from 'react-native-emoji';
 
 import countService from '../../services/parse/calculate';
 
 import { getData } from '../../modules/async-storage';
+import { postOfflineForms } from '../../modules/cached-resources';
 
 import styles from './index.styles';
 
@@ -18,6 +19,10 @@ const Header = ({ logOut }) => {
   const [surveyCount, setSurveyCount] = useState(0);
   const [volunteerDate, setVolunteerDate] = useState('');
   const [volunteerGreeting, setVolunteerGreeting] = useState('');
+  const [offlineForms, setOfflineForms] = useState(false);
+  const [offlineFormCount, setOfflineFormCount] = useState(0);
+  const [failedSubmission, setFailedSubmission] = useState(false);
+  const [successfullSubmission, setSuccessfullSubmission] = useState(false);
 
   const volunteerLength = (object) => {
     const date = new Date(object.createdAt);
@@ -48,8 +53,44 @@ const Header = ({ logOut }) => {
       });
     });
 
+    getData('offlineIDForms').then((idForms) => {
+      if (idForms) {
+        setOfflineForms(true);
+        console.log(idForms.length)
+        return idForms.length;
+      }
+      return 0;
+    })
+      .then((idFormCount) => {
+        getData('offlineSupForms').then((supForms) => {
+          if (supForms) {
+            console.log(supForms.length);
+            setOfflineForms(true);
+            setOfflineFormCount(idFormCount + supForms.length)
+          }
+          else {
+            setOfflineFormCount(idFormCount);
+          }
+          idFormCount === 0 ? setOfflineForms(false) : setOfflineForms(true);
+
+        })
+      })
+
     setDrawerOpen(!drawerOpen);
   };
+
+  const postOffline = () => {
+    postOfflineForms().then((result) => {
+      if (result) {
+        setOfflineForms(false);
+        setFailedSubmission(false);
+        setSuccessfullSubmission(true);
+      }
+    })
+      .catch(() => {
+        setFailedSubmission(true);
+      })
+  }
 
   return (
     <View style={styles.container}>
@@ -83,6 +124,26 @@ const Header = ({ logOut }) => {
               <Text style={styles.calculationText}>{`${I18n.t('header.volunteerSince')}\n${volunteerDate}`}</Text>
               <Text style={styles.calculationText}>{`${I18n.t('header.surveysCollected')}\n${surveyCount}`}</Text>
             </View>
+            {offlineForms ? (
+              <Button onPress={postOffline}>Submit Offline Forms</Button>
+            ) : (
+                <Button disabled={true}>Submit Offline Forms</Button>
+              )
+            }
+            {failedSubmission && (
+              <View>
+                <Text style={styles.calculationText}>Failed Attempt Submitting Offline Forms.</Text>
+                <Text style={{ alignSelf: 'center' }}>Please ensure that you are connected to the internet and try again.</Text>
+                <Button onPress={() => setFailedSubmission(false)}>Ok</Button>
+              </View>
+            )}
+            {successfullSubmission && (
+              <View>
+                <Text style={styles.calculationText}>Success!</Text>
+                <Text style={{ alignSelf: 'center' }}>You have just submitted {offlineFormCount} forms!</Text>
+                <Button onPress={() => setSuccessfullSubmission(false)}>Ok</Button>
+              </View>
+            )}
           </View>
         )}
       <IconButton

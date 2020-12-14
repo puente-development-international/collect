@@ -111,9 +111,10 @@ const DataCollection = ({ navigation }) => {
     });
   };
 
-  const deleteOfflineForms = async  () => {
+  const deleteOfflineForms = async () => {
     console.log('deete')
     await deleteData('offlineIDForms');
+    await deleteData('offlineSupForms');
     await getData('offlineIDForms').then((data) => {
       console.log(data)
     })
@@ -158,8 +159,8 @@ const DataCollection = ({ navigation }) => {
                   </Card>
                 </View>
                 <View>
-                <Button onPress={() => deleteOfflineForms()}>Delete all offline forms</Button>
-                <Button onPress={() => postOfflineForms()}>Submit all offline forms</Button>
+                  <Button onPress={() => deleteOfflineForms()}>Delete all offline forms</Button>
+                  <Button onPress={() => postOfflineForms()}>Submit all offline forms</Button>
                 </View>
               </View>
             )}

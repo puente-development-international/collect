@@ -123,7 +123,7 @@ function postOfflineForms() {
         })
         await deleteData('offlineIDForms');
         await deleteData('offlineSupforms');
-        resolve('success');
+        resolve(true);
       }
       else {
         reject('No connection');
