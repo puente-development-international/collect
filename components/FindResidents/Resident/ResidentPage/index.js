@@ -41,11 +41,11 @@ const ResidentPage = ({
     setForms(true);
   };
 
-  // const showHousehold = () => {
-  //   setForms(false);
-  //   setDemographics(false);
-  //   setHousehold(true);
-  // };
+  const showHousehold = () => {
+    setForms(false);
+    setDemographics(false);
+    setHousehold(true);
+  };
   return (
     <View>
       <Button icon="arrow-left" width={100} onPress={() => setSelectPerson()}>
@@ -76,11 +76,11 @@ const ResidentPage = ({
       <View style={styles.navigationButtonsContainer}>
         <Button style={styles.navigationButton} labelStyle={styles.navigationButtonText} onPress={() => showDemographics()}>{I18n.t('findResident.residentPage.household.demographics')}</Button>
         <Button style={styles.navigationButton} labelStyle={styles.navigationButtonText} onPress={() => showForms(true)}>{I18n.t('findResident.residentPage.household.forms')}</Button>
-        {/* <Button style={styles.navigationButton}
+        <Button style={styles.navigationButton}
         labelStyle={styles.navigationButtonText}
         onPress={() => showHousehold(true)}>
           {I18n.t('findResident.residentPage.household.household')}
-          </Button> */}
+          </Button>
       </View>
       <View
         style={styles.horizontalLine}
