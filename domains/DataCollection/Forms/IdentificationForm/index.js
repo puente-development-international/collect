@@ -14,12 +14,14 @@ import PaperButton from '../../../../components/Button';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
 
-import { backgroundPostPatient, surveyingUserFailsafe } from './utils';
+import backgroundPostPatient from './utils';
+import surveyingUserFailsafe from '../utils';
+
 import configArray from './config/config';
 
 const IdentificationForm = ({
   scrollViewScroll, setScrollViewScroll,
-  setSelectedForm, setSurveyee, surveyingOrganization
+  setSelectedForm, setSurveyee, surveyingUser, surveyingOrganization
 }) => {
   useEffect(() => {
     const interval = setInterval(() => {
@@ -51,7 +53,7 @@ const IdentificationForm = ({
 
             const formObject = values;
             formObject.surveyingOrganization = surveyingOrganization;
-            formObject.surveyingUser = await surveyingUserFailsafe();
+            formObject.surveyingUser = await surveyingUserFailsafe(surveyingUser, isEmpty);
 
             formObject.latitude = values.location?.latitude || 0;
             formObject.longitude = values.location?.longitude || 0;
@@ -106,14 +108,14 @@ const IdentificationForm = ({
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                <PaperButton
-                  onPressEvent={formikProps.handleSubmit}
-                  buttonText={I18n.t('global.submit')}
-                />
-              // <Button icon="human" onPress={formikProps.handleSubmit}>
-              //   <Text>Submit</Text>
-              // </Button>
-              )}
+                  <PaperButton
+                    onPressEvent={formikProps.handleSubmit}
+                    buttonText={I18n.t('global.submit')}
+                  />
+                  // <Button icon="human" onPress={formikProps.handleSubmit}>
+                  //   <Text>Submit</Text>
+                  // </Button>
+                )}
             </View>
           )}
         </Formik>
