@@ -85,6 +85,8 @@ const Header = ({ logOut }) => {
       if (result) {
         await deleteData('offlineIDForms');
         await deleteData('offlineSupForms');
+        await deleteData('offlineHouseholds')
+        await deleteData('offlineHouseholdsRelation')
         setOfflineForms(false);
         setSubmission(true);
       }
@@ -147,7 +149,7 @@ const Header = ({ logOut }) => {
                   {offlineFormCount}
                   {' '}
                   {offlineFormCount > 1 && (
-                      <Text>{I18n.t('header.forms')}</Text>)}
+                    <Text>{I18n.t('header.forms')}</Text>)}
                   {offlineFormCount === 1 && (
                     <Text>{I18n.t('header.form')}</Text>)}
                 </Text>
