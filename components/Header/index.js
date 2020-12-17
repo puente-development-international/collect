@@ -23,8 +23,7 @@ const Header = ({ logOut }) => {
   const [volunteerGreeting, setVolunteerGreeting] = useState('');
   const [offlineForms, setOfflineForms] = useState(false);
   const [offlineFormCount, setOfflineFormCount] = useState(0);
-  const [failedSubmission, setFailedSubmission] = useState(false);
-  const [successfullSubmission, setSuccessfullSubmission] = useState(false);
+  const [submission, setSubmission] = useState(null);
 
   const volunteerLength = (object) => {
     const date = new Date(object.createdAt);
@@ -87,12 +86,11 @@ const Header = ({ logOut }) => {
         await deleteData('offlineIDForms');
         await deleteData('offlineSupForms');
         setOfflineForms(false);
-        setFailedSubmission(false);
-        setSuccessfullSubmission(true);
+        setSubmission(true);
       }
     })
       .catch(() => {
-        setFailedSubmission(true);
+        setSubmission(false);
       });
   };
 
@@ -129,28 +127,31 @@ const Header = ({ logOut }) => {
               <Text style={styles.calculationText}>{`${I18n.t('header.surveysCollected')}\n${surveyCount}`}</Text>
             </View>
             {offlineForms ? (
-              <Button onPress={postOffline}>Submit Offline Forms</Button>
+              <Button onPress={postOffline}>{I18n.t('header.submitOffline')}s</Button>
             ) : (
-              <Button disabled>Submit Offline Forms</Button>
-            )}
-            {failedSubmission && (
+                <Button disabled>{I18n.t('header.submitOffline')}</Button>
+              )}
+            {submission === false && (
               <View>
-                <Text style={styles.calculationText}>Failed Attempt Submitting Offline Forms.</Text>
-                <Text style={{ alignSelf: 'center' }}>Please ensure that you are connected to the internet and try again.</Text>
-                <Button onPress={() => setFailedSubmission(false)}>Ok</Button>
+                <Text style={styles.calculationText}>{I18n.t('header.failedAttempt')}</Text>
+                <Text style={{ alignSelf: 'center' }}>{I18n.t('header.tryAgain')}</Text>
+                <Button onPress={() => setSubmission(null)}>{I18n.t('header.ok')}</Button>
               </View>
             )}
-            {successfullSubmission && (
+            {submission === true && (
               <View>
-                <Text style={styles.calculationText}>Success!</Text>
+                <Text style={styles.calculationText}>{I18n.t('header.success')}</Text>
                 <Text style={{ alignSelf: 'center' }}>
-                  You have just submitted
+                  {I18n.t('header.justSubmitted')}
                   {' '}
                   {offlineFormCount}
                   {' '}
-                  forms!
+                  {offlineFormCount > 1 && (
+                      <Text>{I18n.t('header.forms')}</Text>)}
+                  {offlineFormCount === 1 && (
+                    <Text>{I18n.t('header.form')}</Text>)}
                 </Text>
-                <Button onPress={() => setSuccessfullSubmission(false)}>Ok</Button>
+                <Button onPress={() => setSubmission(null)}>{I18n.t('header.ok')}</Button>
               </View>
             )}
           </View>
