@@ -69,73 +69,71 @@ function postOfflineForms() {
       if (connected) {
         const idForms = await getData('offlineIDForms');
         const supForms = await getData('offlineSupForms');
-        const households = await getData('offlineHouseholds')
-        const householdsRelation = await getData('offlineHouseholdsRelation')
-        console.log(households);
+        const households = await getData('offlineHouseholds');
+        const householdsRelation = await getData('offlineHouseholdsRelation');
 
         if (households !== null && households !== []) {
           // post new households
           households.forEach((household) => {
             const offlineHouseholdID = household.localObject.objectId;
             const householdParams = household;
-            delete householdParams.localObject.objectId
+            delete householdParams.localObject.objectId;
             postObjectsToClass(householdParams).then((result) => {
-              const parseHouseholdID = result.id
+              const parseHouseholdID = result.id;
               if (householdsRelation !== null && householdsRelation !== []) {
                 // post new households with relations to newly created households
                 householdsRelation.forEach((householdRelation) => {
                   if (householdRelation.parseParentClassID === offlineHouseholdID) {
                     const householdRelationParams = householdRelation;
                     householdRelationParams.parseParentClassID = parseHouseholdID;
-                    const offlineHouseholdRelationID = householdRelationParams.localObject.objectId
-                    delete householdRelationParams.localObject.objectId
-                    postObjectsToClassWithRelation(householdRelationParams).then((relationResult) => {
-                      const parseHouseholdRelationID = relationResult.id;
-                      // post id/sup forms with newly created related households
-                      if (idForms !== null && idForms !== []) {
-                        idForms.forEach((postParams) => {
-                          if ("householdId" in postParams.localObject && postParams.localObject.householdId === offlineHouseholdRelationID) {
-                            const offlineObjectID = postParams.localObject.objectId;
-                            let idParams = postParams;
-                            idParams.localObject.householdId = parseHouseholdRelationID;
-                            delete idParams.localObject.objectId;
-                            postObjectsToClass(idParams).then((surveyee) => {
-                              const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
-                              const parseObjectID = surveyeeSanitized.objectId;
-                              console.log("POSTED 2 - ", surveyeeSanitized)
-                              if (supForms !== null && supForms !== []) {
-                                supForms.forEach((supForm) => {
-                                  if (supForm.parseParentClassID === offlineObjectID) {
-                                    const supParams = supForm;
-                                    supParams.parseParentClassID = parseObjectID;
-                                    postObjectsToClassWithRelation(supParams).then(() => {
-                                    }, (error) => {
-                                      reject(error);
-                                    });
-                                  }
-                                });
-                              }
-                            }, (error) => {
-                              reject(error);
-                            });
-                          }
-                        })
-                      }
-                    })
+                    const offlineHouseholdRelationID = householdRelationParams.localObject.objectId;
+                    delete householdRelationParams.localObject.objectId;
+                    postObjectsToClassWithRelation(householdRelationParams)
+                      .then((relationResult) => {
+                        const parseHouseholdRelationID = relationResult.id;
+                        // post id/sup forms with newly created related households
+                        if (idForms !== null && idForms !== []) {
+                          idForms.forEach((postParams) => {
+                            if ('householdId' in postParams.localObject && postParams.localObject.householdId === offlineHouseholdRelationID) {
+                              const offlineObjectID = postParams.localObject.objectId;
+                              const idParams = postParams;
+                              idParams.localObject.householdId = parseHouseholdRelationID;
+                              delete idParams.localObject.objectId;
+                              postObjectsToClass(idParams).then((surveyee) => {
+                                const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
+                                const parseObjectID = surveyeeSanitized.objectId;
+                                if (supForms !== null && supForms !== []) {
+                                  supForms.forEach((supForm) => {
+                                    if (supForm.parseParentClassID === offlineObjectID) {
+                                      const supParams = supForm;
+                                      supParams.parseParentClassID = parseObjectID;
+                                      postObjectsToClassWithRelation(supParams).then(() => {
+                                      }, (error) => {
+                                        reject(error);
+                                      });
+                                    }
+                                  });
+                                }
+                              }, (error) => {
+                                reject(error);
+                              });
+                            }
+                          });
+                        }
+                      });
                   }
-                })
+                });
               }
               // post id/sup with newly created households
               if (idForms !== null && idForms !== []) {
                 idForms.forEach((postParams) => {
-                  if ("householdId" in postParams.localObject && postParams.localObject.householdId === offlineHouseholdID) {
+                  if ('householdId' in postParams.localObject && postParams.localObject.householdId === offlineHouseholdID) {
                     const offlineObjectID = postParams.localObject.objectId;
-                    let idParams = postParams;
+                    const idParams = postParams;
                     idParams.localObject.householdId = parseHouseholdID;
                     delete idParams.localObject.objectId;
                     postObjectsToClass(idParams).then((surveyee) => {
                       const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
-                      console.log("POSTED 1 - ", surveyeeSanitized)
                       const parseObjectID = surveyeeSanitized.objectId;
                       if (supForms !== null && supForms !== []) {
                         supForms.forEach((supForm) => {
@@ -153,10 +151,10 @@ function postOfflineForms() {
                       reject(error);
                     });
                   }
-                })
+                });
               }
-            })
-          })
+            });
+          });
         }
 
         if (householdsRelation !== null && householdsRelation !== []) {
@@ -164,22 +162,22 @@ function postOfflineForms() {
           householdsRelation.forEach((householdRelation) => {
             if (!householdRelation.parseParentClassID.includes('Household-')) {
               const householdRelationParams = householdRelation;
-              const offlineHouseholdRelationID = householdRelationParams.localObject.objectId
-              delete householdRelationParams.localObject.objectId
+              const offlineHouseholdRelationID = householdRelationParams.localObject.objectId;
+              delete householdRelationParams.localObject.objectId;
               postObjectsToClassWithRelation(householdRelationParams).then((relationResult) => {
                 const parseHouseholdRelationID = relationResult.id;
-                // post id/sup forms with newly created households with relation tied to existing households
+                // post id/sup forms with newly created households with relation
+                // tied to existing households
                 if (idForms !== null && idForms !== []) {
                   idForms.forEach((postParams) => {
                     if (postParams.localObject.householdId === offlineHouseholdRelationID) {
                       const offlineObjectID = postParams.localObject.objectId;
-                      let idParams = postParams;
+                      const idParams = postParams;
                       idParams.localObject.householdId = parseHouseholdRelationID;
                       delete idParams.localObject.objectId;
                       postObjectsToClass(idParams).then((surveyee) => {
                         const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
                         const parseObjectID = surveyeeSanitized.objectId;
-                        console.log("POSTED 3 - ", surveyeeSanitized)
                         if (supForms !== null && supForms !== []) {
                           supForms.forEach((supForm) => {
                             if (supForm.parseParentClassID === offlineObjectID) {
@@ -196,25 +194,23 @@ function postOfflineForms() {
                         reject(error);
                       });
                     }
-                  })
+                  });
                 }
-              })
+              });
             }
-          })
+          });
         }
 
         // post Id/sup forms without a houshold
         if (idForms !== null && idForms !== []) {
           idForms.forEach((postParams) => {
-            console.log(postParams)
-            if (!("householdId" in postParams.localObject)) {
+            if (!('householdId' in postParams.localObject)) {
               const offlineObjectID = postParams.localObject.objectId;
               const idParams = postParams;
               delete idParams.localObject.objectId;
               postObjectsToClass(idParams).then((surveyee) => {
                 const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
                 const parseObjectID = surveyeeSanitized.objectId;
-                console.log("POSTED 4 - ", surveyeeSanitized)
                 if (supForms !== null && supForms !== []) {
                   supForms.forEach((supForm) => {
                     if (supForm.parseParentClassID === offlineObjectID) {
@@ -247,8 +243,7 @@ function postOfflineForms() {
           });
         }
         resolve(true);
-      }
-      else {
+      } else {
         reject();
       }
     }, (error) => {
@@ -266,8 +261,7 @@ function postHousehold(postParams) {
         }, (error) => {
           reject(error);
         });
-      }
-      else {
+      } else {
         getData('offlineHouseholds').then(async (households) => {
           const id = `Household-${generateRandomID()}`;
           const householdParams = postParams;
@@ -285,7 +279,7 @@ function postHousehold(postParams) {
         });
       }
     });
-  })
+  });
 }
 
 function postHouseholdWithRelation(postParams) {
@@ -297,14 +291,13 @@ function postHouseholdWithRelation(postParams) {
         }, (error) => {
           reject(error);
         });
-      }
-      else {
+      } else {
         getData('offlineHouseholdsRelation').then(async (householdsRelation) => {
           const id = `Household-${generateRandomID()}`;
           const householdParams = postParams;
           householdParams.localObject.objectId = id;
           if (householdsRelation !== null || householdsRelation === []) {
-            const forms = households.concat(householdParams);
+            const forms = householdsRelation.concat(householdParams);
             await storeData(forms, 'offlineHouseholdsRelation');
             resolve(id);
           } else {
@@ -315,7 +308,7 @@ function postHouseholdWithRelation(postParams) {
           }
         });
       }
-    })
+    });
   });
 }
 

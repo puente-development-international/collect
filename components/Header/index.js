@@ -85,8 +85,8 @@ const Header = ({ logOut }) => {
       if (result) {
         await deleteData('offlineIDForms');
         await deleteData('offlineSupForms');
-        await deleteData('offlineHouseholds')
-        await deleteData('offlineHouseholdsRelation')
+        await deleteData('offlineHouseholds');
+        await deleteData('offlineHouseholdsRelation');
         setOfflineForms(false);
         setSubmission(true);
       }
@@ -129,10 +129,13 @@ const Header = ({ logOut }) => {
               <Text style={styles.calculationText}>{`${I18n.t('header.surveysCollected')}\n${surveyCount}`}</Text>
             </View>
             {offlineForms ? (
-              <Button onPress={postOffline}>{I18n.t('header.submitOffline')}s</Button>
+              <Button onPress={postOffline}>
+                {I18n.t('header.submitOffline')}
+                s
+              </Button>
             ) : (
-                <Button disabled>{I18n.t('header.submitOffline')}</Button>
-              )}
+              <Button disabled>{I18n.t('header.submitOffline')}</Button>
+            )}
             {submission === false && (
               <View>
                 <Text style={styles.calculationText}>{I18n.t('header.failedAttempt')}</Text>
