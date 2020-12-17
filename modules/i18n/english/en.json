@@ -379,7 +379,15 @@
     "goodEvening!": "Good evening!",
     "puente": "PUENTE",
     "volunteerSince": "Volunteer Since",
-    "surveysCollected": "Surveys Collected"
+    "surveysCollected": "Surveys Collected",
+    "submitOffline":"Submit Offline Forms",
+    "failedAttempt":"Failed Attempt Submitting Offline Forms.",
+    "tryAgain":"Please ensure that you are connected to the internet and try again.",
+    "ok":"Ok",
+    "success":"Success!",
+    "justSubmitted":"You have juust submitted",
+    "form":"form!",
+    "forms":"forms!"
   },
   "languagePicker": {
     "english": "English",

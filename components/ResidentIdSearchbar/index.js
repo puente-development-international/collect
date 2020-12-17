@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import { Headline, Button, Searchbar } from 'react-native-paper';
 import { Spinner } from 'native-base';
 
@@ -26,8 +26,18 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
     setLoading(true);
     getData('residentData').then((residentData) => {
       if (residentData) {
-        setData(residentData || []);
-        setResidents(residentData.slice() || [].slice());
+        let offlineData = [];
+        getData('offlineIDForms').then((offlineResidentData) => {
+          if (offlineResidentData !== null) {
+            Object.entries(offlineResidentData).forEach(([key, value]) => { //eslint-disable-line
+              offlineData = offlineData.concat(value.localObject);
+            });
+          }
+          const allData = residentData.concat(offlineData);
+          // console.log(allData)
+          setData(allData || []);
+          setResidents(allData.slice() || [].slice());
+        });
       }
       setLoading(false);
     });
@@ -43,9 +53,18 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
       parseParam: surveyingOrganization,
     };
     const records = await residentQuery(queryParams);
-
-    setData(records);
-    setResidents(records.slice());
+    let offlineData = [];
+    await getData('offlineIDForms').then((offlineResidentData) => {
+      if (offlineResidentData !== null) {
+        Object.entries(offlineResidentData).forEach(([key, value]) => { //eslint-disable-line
+          offlineData = offlineData.concat(value.localObject);
+        });
+      }
+    });
+    // console.log(allData)
+    const allData = records.concat(offlineData);
+    setData(allData);
+    setResidents(allData.slice());
     setLoading(false);
   };
 
@@ -70,12 +89,30 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
   };
 
   const onSelectSurveyee = (listItem) => {
+    // console.log(listItem)
     setSurveyee(listItem);
     setQuery('');
   };
 
   const renderItem = ({ item }) => (
-    <Button onPress={() => onSelectSurveyee(item)}>{`${item?.fname} ${item?.lname}`}</Button>
+    <View>
+      <Button onPress={() => onSelectSurveyee(item)} contentStyle={{ marginRight: 5 }}>
+        <Text style={{ marginRight: 10 }}>{`${item?.fname} ${item?.lname}`}</Text>
+        {/* offline IDform */}
+        {item.objectId.includes('PatientID-') && (
+          <View style={{
+            backgroundColor: '#f8380e',
+            width: 1,
+            height: 10,
+            paddingLeft: 10,
+            marginTop: 'auto',
+            marginBottom: 'auto',
+            borderRadius: 20
+          }}
+          />
+        )}
+      </Button>
+    </View>
   );
 
   return (

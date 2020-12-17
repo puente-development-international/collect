@@ -11,6 +11,7 @@ import { postSupplementaryForm } from '../../../../modules/cached-resources';
 
 import { layout } from '../../../../modules/theme';
 import I18n from '../../../../modules/i18n';
+import { isEmpty } from '../../../../modules/utils';
 
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
@@ -23,7 +24,7 @@ import surveyingUserFailsafe from '../utils';
 import { addSelectTextInputs, vitalsBloodPressue } from './utils';
 
 const SupplementaryForm = ({
-  navigation, selectedForm, setSelectedForm, surveyee, surveyingOrganization,
+  navigation, selectedForm, setSelectedForm, surveyee, surveyingUser, surveyingOrganization,
   customForm
 }) => {
   const [config, setConfig] = useState({});
@@ -57,7 +58,7 @@ const SupplementaryForm = ({
         setPhotoFile('Submitted Photo String');
 
         const formObject = values;
-        formObject.surveyingUser = await surveyingUserFailsafe();
+        formObject.surveyingUser = await surveyingUserFailsafe(surveyingUser, isEmpty);
         formObject.surveyingOrganization = surveyingOrganization;
 
         let formObjectUpdated = addSelectTextInputs(values, formObject);
