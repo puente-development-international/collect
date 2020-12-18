@@ -5,6 +5,19 @@ import {
 } from 'react-native';
 import I18n from '../../../modules/i18n';
 
+/**
+
+    Display Errors for ID, Supplementary and custom forms i.e.
+    @name ErrorPicker
+    @example
+    <ErrorPicker
+    />
+    @param {Object} formikProps Props containing errors and submission info from the Formik Componenet for the form
+    @param {Array} inputs Array of all the fields in the form
+    @returns
+
+**/
+
 const ErrorPicker = ({ formikProps, inputs }) => {
   const { errors, isSubmitting } = formikProps;
   const [formErrors, setFormErrors] = useState([]);
@@ -51,7 +64,7 @@ const ErrorPicker = ({ formikProps, inputs }) => {
         }}
       >
         <Text style={{ fontSize: 16, fontWeight: 'bold' }}>
-          Inavlid Fields:
+          {I18n.t('errorPicker.invalidFields')}
           {'\n\n'}
           {formErrors}
         </Text>
