@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.0...v9.0.1) (2020-12-20)
+
+
+### New Features
+
+* android offline ([eb5987e](https://github.com/hopetambala/puente-reactnative-collect/commit/eb5987eee92d651fd16fe259bebffe11372df493))
+* error alert for user displays 🎉 ([6002a45](https://github.com/hopetambala/puente-reactnative-collect/commit/6002a451615d89ee113e0e82f8c70cb8646a01d4))
+
 ## [9.0.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.9.2...v9.0.0) (2020-12-17)
 
 
