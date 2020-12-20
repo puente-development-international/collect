@@ -4,11 +4,14 @@ import {
   YellowBox
 } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
+import { TextInput } from 'react-native-paper';
 
 import { cacheAutofillData } from '../../../../modules/cached-resources';
 
 import I18n from '../../../../modules/i18n';
 import { getData } from '../../../../modules/async-storage';
+
+import { stylesDefault, stylesPaper } from '../index.style';
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
@@ -57,54 +60,68 @@ export default class AutoFill extends Component {
 
     return (
       <View style={styles.container}>
-        <Autocomplete
-          autoCapitalize="none"
-          autoCorrect={false}
-          containerStyle={styles.autocompleteContainer}
-          // data to show in suggestion
-          data={fields.length === 1 && comp(query, fields[0]) ? [] : fields}
-          // default value if you want to set something in input
-          defaultValue={query}
-          /* onchange of the text changing the state of the query which will trigger
-          the findFilm method to show the suggestions */
-          onChangeText={(text) => {
-            this.setState({ query: text });
-            formikProps.setFieldValue(formikKey, text);
-          }}
-          placeholder={placeholder}
-          listStyle={styles.listContainer}
-          keyExtractor={(item,) => item.key}
-          onStartShouldSetResponderCapture={() => {
-            // this allows for us to scroll within the result list when the user is toouching it
-            // and on the screen when they are not
-            setScrollViewScroll(false);
-            if (fields.length === 0
-              && scrollViewScroll === false) {
-              setScrollViewScroll(true);
-            }
-          }}
-          renderItem={({ item }) => (
-            // you can change the view you want to show in suggestion from here
-            <TouchableOpacity
-              key={`${item}`}
-              onPress={() => {
-                this.setState({ query: item });
-                formikProps.setFieldValue(formikKey, item);
-              }}
-            >
-              <Text style={styles.itemText} key={item}>
-                {item}
-              </Text>
-            </TouchableOpacity>
+        {/* handle issues where autofil does not populate any data */}
+        {this.state.fields.length === 0 ? (
+          <TextInput
+            label={label.length > 40 ? '' : label}
+            onChangeText={formikProps.handleChange(formikKey)}
+            onBlur={formikProps.handleBlur(formikKey)}
+            mode="outlined"
+            theme={stylesPaper}
+            style={stylesDefault.label}
+          />
+        ) : (
+            <View>
+              <Autocomplete
+                autoCapitalize="none"
+                autoCorrect={false}
+                containerStyle={styles.autocompleteContainer}
+                // data to show in suggestion
+                data={fields.length === 1 && comp(query, fields[0]) ? [] : fields}
+                // default value if you want to set something in input
+                defaultValue={query}
+                /* onchange of the text changing the state of the query which will trigger
+                the findFilm method to show the suggestions */
+                onChangeText={(text) => {
+                  this.setState({ query: text });
+                  formikProps.setFieldValue(formikKey, text);
+                }}
+                placeholder={placeholder}
+                listStyle={styles.listContainer}
+                keyExtractor={(item,) => item.key}
+                onStartShouldSetResponderCapture={() => {
+                  // this allows for us to scroll within the result list when the user is toouching it
+                  // and on the screen when they are not
+                  setScrollViewScroll(false);
+                  if (fields.length === 0
+                    && scrollViewScroll === false) {
+                    setScrollViewScroll(true);
+                  }
+                }}
+                renderItem={({ item }) => (
+                  // you can change the view you want to show in suggestion from here
+                  <TouchableOpacity
+                    key={`${item}`}
+                    onPress={() => {
+                      this.setState({ query: item });
+                      formikProps.setFieldValue(formikKey, item);
+                    }}
+                  >
+                    <Text style={styles.itemText} key={item}>
+                      {item}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              />
+              <View style={styles.descriptionContainer}>
+                {fields.length > 0 ? (
+                  <Text style={styles.infoText}>{query}</Text>
+                ) : (
+                    <Text style={styles.infoText}>{placeholder}</Text>
+                  )}
+              </View>
+            </View>
           )}
-        />
-        <View style={styles.descriptionContainer}>
-          {fields.length > 0 ? (
-            <Text style={styles.infoText}>{query}</Text>
-          ) : (
-            <Text style={styles.infoText}>{placeholder}</Text>
-          )}
-        </View>
       </View>
     );
   }
