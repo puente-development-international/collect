@@ -1,6 +1,6 @@
 {
   "name": "puente-reactnative",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
