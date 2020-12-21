@@ -18,12 +18,10 @@ import {
   Checkbox, Button, Text
 } from 'react-native-paper';
 
-import * as Network from 'expo-network';
-
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import { retrieveSignInFunction, retrieveCurrentUserAsyncFunction } from '../../../services/parse/auth';
+import { retrieveSignInFunction } from '../../../services/parse/auth';
 
 import { storeData, getData, deleteData } from '../../../modules/async-storage';
 import I18n from '../../../modules/i18n';
@@ -75,8 +73,8 @@ const SignIn = ({ navigation }) => {
     Alert.alert(
       I18n.t('signIn.unableLogin'),
       I18n.t('signIn.usernamePasswordIncorrect'), [
-      { text: 'OK' }
-    ],
+        { text: 'OK' }
+      ],
       { cancelable: true }
     );
   };
@@ -126,8 +124,8 @@ const SignIn = ({ navigation }) => {
     deleteData('credentials');
   };
 
-  const storeUserInformation = (user) => {
-    populateCache(user);
+  const storeUserInformation = (userData) => {
+    populateCache(userData);
   };
 
   return (
@@ -145,21 +143,21 @@ const SignIn = ({ navigation }) => {
               onSubmit={(values, actions) => {
                 checkOnlineStatus().then((connected) => {
                   if (connected) {
-                    retrieveSignInFunction(values.username, values.password).then((user) => {
+                    retrieveSignInFunction(values.username, values.password).then((userData) => {
                       getData('credentials').then((userCreds) => {
                         // credentials saved do not match those entered, overwrite saved
                         // credentials
                         if (userCreds === null || values.username !== userCreds.username
                           || values.password !== userCreds.password) {
                           // Store user organization
-                          storeUserInformation(user);
+                          storeUserInformation(userData);
                           handleSaveCredentials(values);
                         } else {
-                          storeUserInformation(user);
+                          storeUserInformation(userData);
                         }
                       }, () => {
                         // Store user organization
-                        storeUserInformation(user);
+                        storeUserInformation(userData);
                         // no credentials saved, give option to save
                         handleSaveCredentials(values);
                       });
@@ -227,8 +225,8 @@ const SignIn = ({ navigation }) => {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
-                    )}
+                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                  )}
                   <CredentialsModal
                     modalVisible={modalVisible}
                     formikProps={formikProps}
