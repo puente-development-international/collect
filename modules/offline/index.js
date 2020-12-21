@@ -3,7 +3,6 @@ import * as Network from 'expo-network';
 import NetInfo from '@react-native-community/netinfo';
 
 // checks whether user is connected to internet, return true if connected, false otherwise
-// this definitely works for ios, not tested with android
 const checkOnlineStatus = () => new Promise((resolve, reject) => {
   if (Platform.OS === 'ios') {
     Network.getNetworkStateAsync().then((status) => {
