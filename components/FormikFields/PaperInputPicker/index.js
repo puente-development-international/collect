@@ -308,7 +308,7 @@ const PaperInputPicker = ({
                       {errors[result.textKey]}
                     </Text>
                   </View>
-                )}
+              )}
             </View>
           ))}
           <Text style={{ color: 'red' }}>
@@ -322,7 +322,8 @@ const PaperInputPicker = ({
             parameter={data.parameter}
             formikProps={formikProps}
             formikKey={formikKey}
-            label={translatedLabel}
+            label={label}
+            translatedLabel={translatedLabel}
             scrollViewScroll={scrollViewScroll}
             setScrollViewScroll={setScrollViewScroll}
           />
@@ -393,20 +394,20 @@ const PaperInputPicker = ({
                 <Text style={styleX.textSplit}>{result.label}</Text>
               </View>
             ) : (
-                <View key={result.value} style={stylesDefault.inputItem}>
-                  <TextInput
-                    label={customForm ? result.label : I18n.t(result.label)}
-                    onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
-                    onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
+              <View key={result.value} style={stylesDefault.inputItem}>
+                <TextInput
+                  label={customForm ? result.label : I18n.t(result.label)}
+                  onChangeText={handleChange(customForm ? result.label : I18n.t(result.label))}
+                  onBlur={handleBlur(customForm ? result.label : I18n.t(result.label))}
                     {...rest} //eslint-disable-line
-                    mode="outlined"
-                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                  />
-                  <Text style={{ color: 'red' }}>
-                    {errors[customForm ? result.label : I18n.t(result.label)]}
-                  </Text>
-                </View>
-              )))}
+                  mode="outlined"
+                  theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                />
+                <Text style={{ color: 'red' }}>
+                  {errors[customForm ? result.label : I18n.t(result.label)]}
+                </Text>
+              </View>
+            )))}
           </View>
         </View>
       )}
@@ -420,22 +421,22 @@ const PaperInputPicker = ({
                   <Text style={styleX.textSplit}>{result.label}</Text>
                 </View>
               ) : (
-                  <View key={result.value} style={stylesDefault.inputItem}>
-                    <TextInput
-                      label={customForm ? result.label : I18n.t(result.label)}
-                      onChangeText={handleChange(result.value)}
-                      onBlur={handleBlur(result.value)}
+                <View key={result.value} style={stylesDefault.inputItem}>
+                  <TextInput
+                    label={customForm ? result.label : I18n.t(result.label)}
+                    onChangeText={handleChange(result.value)}
+                    onBlur={handleBlur(result.value)}
                       {...rest} //eslint-disable-line
-                      mode="outlined"
-                      keyboardType="numeric"
-                      maxLength={result.maxLength ? result.maxLength : null}
-                      theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
-                    />
-                    <Text style={{ color: 'red' }}>
-                      {errors[result.value]}
-                    </Text>
-                  </View>
-                )))}
+                    mode="outlined"
+                    keyboardType="numeric"
+                    maxLength={result.maxLength ? result.maxLength : null}
+                    theme={{ colors: { placeholder: theme.colors.primary }, text: 'black' }}
+                  />
+                  <Text style={{ color: 'red' }}>
+                    {errors[result.value]}
+                  </Text>
+                </View>
+              )))}
             </View>
           </View>
         )
