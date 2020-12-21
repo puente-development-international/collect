@@ -131,7 +131,6 @@ const Header = ({ logOut }) => {
             {offlineForms ? (
               <Button onPress={postOffline}>
                 {I18n.t('header.submitOffline')}
-                s
               </Button>
             ) : (
               <Button disabled>{I18n.t('header.submitOffline')}</Button>
