@@ -35,6 +35,8 @@ import CredentialsModal from './CredentialsModal';
 import TermsModal from '../../../components/TermsModal';
 import BlackLogo from '../../../assets/graphics/static/Logo-Black.svg';
 import ForgotPassword from './ForgotPassword';
+import checkOnlineStatus from '../../../modules/offline';
+import { populateCache } from '../../../modules/cached-resources';
 
 // components/FormikFields/PaperInputPicker';
 const validationSchema = yup.object().shape({
@@ -73,8 +75,8 @@ const SignIn = ({ navigation }) => {
     Alert.alert(
       I18n.t('signIn.unableLogin'),
       I18n.t('signIn.usernamePasswordIncorrect'), [
-        { text: 'OK' }
-      ],
+      { text: 'OK' }
+    ],
       { cancelable: true }
     );
   };
@@ -120,20 +122,12 @@ const SignIn = ({ navigation }) => {
     setForgotPassword(true);
   };
 
-  async function checkOnlineStatus() {
-    const status = await Network.getNetworkStateAsync();
-    const { isConnected } = status;
-    return isConnected;
-  }
   const deleteCreds = () => {
     deleteData('credentials');
   };
 
-  const storeUserInformation = async () => {
-    await retrieveCurrentUserAsyncFunction().then((currentUser) => {
-      storeData(currentUser.organization, 'organization');
-      storeData(currentUser, 'currentUser');
-    });
+  const storeUserInformation = (user) => {
+    populateCache(user);
   };
 
   return (
@@ -151,21 +145,21 @@ const SignIn = ({ navigation }) => {
               onSubmit={(values, actions) => {
                 checkOnlineStatus().then((connected) => {
                   if (connected) {
-                    retrieveSignInFunction(values.username, values.password).then(() => {
+                    retrieveSignInFunction(values.username, values.password).then((user) => {
                       getData('credentials').then((userCreds) => {
                         // credentials saved do not match those entered, overwrite saved
                         // credentials
                         if (userCreds === null || values.username !== userCreds.username
                           || values.password !== userCreds.password) {
                           // Store user organization
-                          storeUserInformation();
+                          storeUserInformation(user);
                           handleSaveCredentials(values);
                         } else {
-                          storeUserInformation();
+                          storeUserInformation(user);
                         }
                       }, () => {
                         // Store user organization
-                        storeUserInformation();
+                        storeUserInformation(user);
                         // no credentials saved, give option to save
                         handleSaveCredentials(values);
                       });
@@ -233,8 +227,8 @@ const SignIn = ({ navigation }) => {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
-                  )}
+                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                    )}
                   <CredentialsModal
                     modalVisible={modalVisible}
                     formikProps={formikProps}

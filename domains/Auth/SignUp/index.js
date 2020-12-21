@@ -21,6 +21,8 @@ import TermsModal from '../../../components/TermsModal';
 import { theme } from '../../../modules/theme';
 import { storeData, getData } from '../../../modules/async-storage';
 
+import { populateCache } from '../../../modules/cached-resources';
+
 import I18n from '../../../modules/i18n';
 
 const validationSchema = yup.object().shape({
@@ -88,12 +90,8 @@ export default function SignUp({ navigation }) {
                 } else {
                   retrieveSignUpFunction(values)
                     .then((user) => {
-                      getData('organization').then((organization) => {
-                        if (organization !== user.get('organization')) {
-                          storeData(user.get('organization'), 'organization');
-                        }
-                        navigation.navigate('Root');
-                      });
+                      populateCache(user);
+                      navigation.navigate('Root');
                     }).catch((error) => {
                       // sign up failed alert user
                       console.log(`Error: ${error.code} ${error.message}`); // eslint-disable-line
@@ -173,8 +171,8 @@ export default function SignUp({ navigation }) {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
-                  )}
+                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signUp.submit')}</Button>
+                    )}
 
                   <TermsModal visible={visible} setVisible={setVisible} />
                 </>
