@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.3](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.2...v9.0.3) (2020-12-21)
+
+### [9.0.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.1...v9.0.2) (2020-12-21)
+
+
+### New Features
+
+* cache autofill, user info on sign in/sign up ([282e553](https://github.com/hopetambala/puente-reactnative-collect/commit/282e553acd772fa34945a37b4f68eede1ff1541c))
+
+
+### Bug fixes
+
+* autofill handle no data ([e368789](https://github.com/hopetambala/puente-reactnative-collect/commit/e368789b408b5e8ad539a8e386886485fc09e9df))
+* translations for autofill ([189ad7a](https://github.com/hopetambala/puente-reactnative-collect/commit/189ad7a0c66e2a831157bdcb9f1030177ef7b930))
+
 ### [9.0.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.0...v9.0.1) (2020-12-20)
 
 
