@@ -10,7 +10,7 @@ import {
   postOfflineForms,
   postHousehold,
   postHouseholdWithRelation
-} from './post';
+} from './Post/post';
 import populateCache from './populate-cache';
 
 export {

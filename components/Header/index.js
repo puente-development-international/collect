@@ -14,6 +14,8 @@ import styles from './index.styles';
 
 import I18n from '../../modules/i18n';
 
+import handleParseError from '../../modules/cached-resources/error-handling';
+
 const Header = ({ logOut }) => {
   const { header, headerText, headerIcon } = styles;
 
@@ -82,7 +84,9 @@ const Header = ({ logOut }) => {
 
   const postOffline = () => {
     postOfflineForms().then(async (result) => {
+      console.log("initial success")
       if (result) {
+        console.log("result true")
         await deleteData('offlineIDForms');
         await deleteData('offlineSupForms');
         await deleteData('offlineHouseholds');
@@ -90,10 +94,24 @@ const Header = ({ logOut }) => {
         setOfflineForms(false);
         setSubmission(true);
       }
-    })
-      .catch(() => {
+    }, (error) => {
+      // handle session token error
+      handleParseError(error, postOfflineForms).then(async (result) => {
+        if (result) {
+          await deleteData('offlineIDForms');
+          await deleteData('offlineSupForms');
+          await deleteData('offlineHouseholds');
+          await deleteData('offlineHouseholdsRelation');
+          setOfflineForms(false);
+          setSubmission(true);
+        }
+      }, () => {
         setSubmission(false);
-      });
+      })
+    })
+    // .catch(() => {
+    //   setSubmission(false);
+    // });
   };
 
   return (
@@ -133,8 +151,8 @@ const Header = ({ logOut }) => {
                 {I18n.t('header.submitOffline')}
               </Button>
             ) : (
-              <Button disabled>{I18n.t('header.submitOffline')}</Button>
-            )}
+                <Button disabled>{I18n.t('header.submitOffline')}</Button>
+              )}
             {submission === false && (
               <View>
                 <Text style={styles.calculationText}>{I18n.t('header.failedAttempt')}</Text>
