@@ -18,15 +18,12 @@ function postIdentificationForm(postParams) {
       if (connected) {
         postObjectsToClass(postParams).then((surveyee) => {
           const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
-          console.log("POSTED NORMALLY")
           resolve(surveyeeSanitized);
         }, (error) => {
           reject(error);
         });
       } else {
         getData('offlineIDForms').then(async (idForms) => {
-
-          console.log("POSTED abnormally")
           const id = `PatientID-${generateRandomID()}`;
           const idParams = postParams;
           idParams.localObject.objectId = id;
@@ -89,17 +86,16 @@ function postOfflineForms() {
                 resolve(true);
               }, (error) => {
                 reject(error);
-              })
+              });
             }, (error) => {
               reject(error);
-            })
+            });
           }, (error) => {
             reject(error);
-          })
+          });
         }, (error) => {
           reject(error);
-        })
-
+        });
       } else {
         reject();
       }

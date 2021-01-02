@@ -1,16 +1,17 @@
 import { postObjectsToClass, postObjectsToClassWithRelation } from '../../../../services/parse/crud';
-/*************************************************
- * Function to post offline forms and households that are related to households 
+/** ***********************************************
+ * Function to post offline forms and households that are related to households
  * new households and households with relation
  * @name postHouseholdRelations
  * @example
  * postHouseholdRelations(householdsRelation, idForms, supForms);
- * 
- * @param {Array} householdsRelation Array of households created w relationship to previosuly created households
+ *
+ * @param {Array} householdsRelation Array of households created w relationship to
+ *  previosuly created households
  * @param {Array} idForms Array of id forms created offline
  * @param {Array} supForms Array of all supplementary forms created offline
- * 
- ************************************************/
+ *
+ *********************************************** */
 
 export default function postHouseholdRelations(householdsRelation, idForms, supForms) {
   return new Promise((resolve, reject) => {
@@ -42,33 +43,25 @@ export default function postHouseholdRelations(householdsRelation, idForms, supF
                           supParams.parseParentClassID = parseObjectID;
                           postObjectsToClassWithRelation(supParams).then(() => {
                           }, (error) => {
-                            // handleParseError(error, postOfflineForms);
                             reject(error);
-                            // return false;
                           });
                         }
                       });
                     }
                   }, (error) => {
-                    // handleParseError(error, postOfflineForms);
                     reject(error);
-                    // return false;
                   });
                 }
               });
             }
           }, (error) => {
-            // handleParseError(error, postOfflineForms);
             reject(error);
-            // return false;
           });
         }
         if (index === array.length - 1) resolve(true);
       });
-      // resolve(true);
-    }
-    else {
+    } else {
       resolve(true);
     }
-  })
+  });
 }

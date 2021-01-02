@@ -84,9 +84,7 @@ const Header = ({ logOut }) => {
 
   const postOffline = () => {
     postOfflineForms().then(async (result) => {
-      console.log("initial success")
       if (result) {
-        console.log("result true")
         await deleteData('offlineIDForms');
         await deleteData('offlineSupForms');
         await deleteData('offlineHouseholds');
@@ -107,8 +105,8 @@ const Header = ({ logOut }) => {
         }
       }, () => {
         setSubmission(false);
-      })
-    })
+      });
+    });
     // .catch(() => {
     //   setSubmission(false);
     // });
@@ -151,8 +149,8 @@ const Header = ({ logOut }) => {
                 {I18n.t('header.submitOffline')}
               </Button>
             ) : (
-                <Button disabled>{I18n.t('header.submitOffline')}</Button>
-              )}
+              <Button disabled>{I18n.t('header.submitOffline')}</Button>
+            )}
             {submission === false && (
               <View>
                 <Text style={styles.calculationText}>{I18n.t('header.failedAttempt')}</Text>

@@ -1,18 +1,19 @@
 import { postObjectsToClass, postObjectsToClassWithRelation } from '../../../../services/parse/crud';
 
-/*************************************************
- * Function to post offline forms and households that are related to households 
+/** ***********************************************
+ * Function to post offline forms and households that are related to households
  * new households and households with relation
  * @name postHouseholds
  * @example
  * postHouseholds(households, householdsRelation, idForms, supForms);
- * 
+ *
  * @param {Array} households Array of new households created offline
- * @param {Array} householdsRelation Array of households created w relationship to other household created offline
+ * @param {Array} householdsRelation Array of households created w relationship to
+ * other household created offline
  * @param {Array} idForms Array of id forms created offline
  * @param {Array} supForms Array of all supplementary forms created offline
- * 
- ************************************************/
+ *
+ *********************************************** */
 export default function postHouseholds(households, householdsRelation, idForms, supForms) {
   return new Promise((resolve, reject) => {
     if (households !== null && households !== []) {
@@ -102,9 +103,8 @@ export default function postHouseholds(households, householdsRelation, idForms, 
         });
         if (index === array.length - 1) resolve(true);
       });
-    }
-    else {
+    } else {
       resolve(true);
     }
-  })
+  });
 }
