@@ -10,7 +10,8 @@ import {
   postOfflineForms,
   postHousehold,
   postHouseholdWithRelation
-} from './post';
+} from './Post/post';
+import populateCache from './populate-cache';
 
 export {
   residentQuery,
@@ -21,5 +22,6 @@ export {
   postSupplementaryForm,
   postOfflineForms,
   postHousehold,
-  postHouseholdWithRelation
+  postHouseholdWithRelation,
+  populateCache
 };

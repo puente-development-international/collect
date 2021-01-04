@@ -22,6 +22,7 @@ import vitalsConfig from './configs/vitals.config';
 
 import surveyingUserFailsafe from '../utils';
 import { addSelectTextInputs, vitalsBloodPressue } from './utils';
+import ErrorPicker from '../../../../components/FormikFields/ErrorPicker';
 
 const SupplementaryForm = ({
   navigation, selectedForm, setSelectedForm, surveyee, surveyingUser, surveyingOrganization,
@@ -112,6 +113,12 @@ const SupplementaryForm = ({
               />
             </View>
           ))}
+
+          <ErrorPicker
+            // data={result}
+            formikProps={formikProps}
+            inputs={config.fields}
+          />
 
           {formikProps.isSubmitting ? (
             <ActivityIndicator />

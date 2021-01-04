@@ -34,6 +34,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
             });
           }
           const allData = residentData.concat(offlineData);
+          // console.log(allData)
           setData(allData || []);
           setResidents(allData.slice() || [].slice());
         });
@@ -60,6 +61,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
         });
       }
     });
+    // console.log(allData)
     const allData = records.concat(offlineData);
     setData(allData);
     setResidents(allData.slice());
@@ -87,6 +89,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
   };
 
   const onSelectSurveyee = (listItem) => {
+    // console.log(listItem)
     setSurveyee(listItem);
     setQuery('');
   };

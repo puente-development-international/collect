@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "puente-reactnative-collect",
+    "name": "Collect",
     "slug": "puente-reactnative-collect",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "8.9.2",
+    "version": "9.0.3",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -23,7 +23,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "8.9.2",
+      "buildNumber": "9.0.3",
       "bundleIdentifier": "io.ionic.starter1270348",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app uses your location to geo-tag surveys accurately."
@@ -33,7 +33,7 @@
       "favicon": "./assets/images/favicon.png"
     },
     "android": {
-      "versionCode": 380080902,
+      "versionCode": 380090003,
       "package": "io.ionic.starter1270348",
       "softwareKeyboardLayoutMode": "pan"
     },

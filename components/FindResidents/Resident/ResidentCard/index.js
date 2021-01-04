@@ -33,7 +33,7 @@ const ResidentCard = ({
           if (onSelectPerson) onSelectPerson(resident);
         }}
       >
-        <View style={styles.nameConatiner}>
+        <View style={styles.nameContainer}>
           <Title style={styles.name}>{`${fname} ${lname}`}</Title>
           {objectId.includes('PatientID-') && (
             <View style={styles.redCircle} />
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: theme.colors.primary
   },
-  nameConatiner: {
+  nameContainer: {
     backgroundColor: theme.colors.primary,
     marginTop: 15,
     height: 30,

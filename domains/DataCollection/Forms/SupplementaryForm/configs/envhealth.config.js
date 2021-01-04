@@ -50,7 +50,7 @@ const configArray = {
         value: '3_4'
       },
       {
-        label: 'environmentalHealth.yearsLived.3_4',
+        label: 'environmentalHealth.yearsLived.5_10',
         value: '5_10'
       },
       {

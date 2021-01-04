@@ -2,6 +2,72 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [9.0.3](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.2...v9.0.3) (2020-12-21)
+
+### [9.0.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.1...v9.0.2) (2020-12-21)
+
+
+### New Features
+
+* cache autofill, user info on sign in/sign up ([282e553](https://github.com/hopetambala/puente-reactnative-collect/commit/282e553acd772fa34945a37b4f68eede1ff1541c))
+
+
+### Bug fixes
+
+* autofill handle no data ([e368789](https://github.com/hopetambala/puente-reactnative-collect/commit/e368789b408b5e8ad539a8e386886485fc09e9df))
+* translations for autofill ([189ad7a](https://github.com/hopetambala/puente-reactnative-collect/commit/189ad7a0c66e2a831157bdcb9f1030177ef7b930))
+
+### [9.0.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.0...v9.0.1) (2020-12-20)
+
+
+### New Features
+
+* android offline ([eb5987e](https://github.com/hopetambala/puente-reactnative-collect/commit/eb5987eee92d651fd16fe259bebffe11372df493))
+* error alert for user displays 🎉 ([6002a45](https://github.com/hopetambala/puente-reactnative-collect/commit/6002a451615d89ee113e0e82f8c70cb8646a01d4))
+
+## [9.0.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.9.2...v9.0.0) (2020-12-17)
+
+
+### New Features
+
+* add offline submission to header ([107f11f](https://github.com/hopetambala/puente-reactnative-collect/commit/107f11f4950a4b11c57a06bd0edf02b8f5f984d2))
+* api request cached ([42a415d](https://github.com/hopetambala/puente-reactnative-collect/commit/42a415d505ecefdf5bb53ced3a593530a6932d1c))
+* cache autofill workinggit add . 🎉 ([c51e8ce](https://github.com/hopetambala/puente-reactnative-collect/commit/c51e8ce740525c7454b2b18f889e42e27f77a9c4))
+* cached autofill information ([49defe4](https://github.com/hopetambala/puente-reactnative-collect/commit/49defe4fc103b222e3806c594556b399ddd9de64))
+* households work offline~~ ([8407120](https://github.com/hopetambala/puente-reactnative-collect/commit/8407120bfaeeec1223112f55ff245868b8a59886))
+* offline forms have identifier in list views ([c68bf31](https://github.com/hopetambala/puente-reactnative-collect/commit/c68bf3187fe822a94e13abdba61e2348c55dcf0d))
+* offline submission of sup/id forms working ([ac6abbb](https://github.com/hopetambala/puente-reactnative-collect/commit/ac6abbb7bb0fba90c2cb57634576a8bb0426bc17))
+* submit supplementary/id forms initial ([a832613](https://github.com/hopetambala/puente-reactnative-collect/commit/a8326134bd2241cb6896692e673795a61503c10c))
+
+
+### Bug fixes
+
+* class spelling ([2337a80](https://github.com/hopetambala/puente-reactnative-collect/commit/2337a8046c98ddf3340fa960bb8889d5dc1c6cf3))
+* update name of application ([876eb21](https://github.com/hopetambala/puente-reactnative-collect/commit/876eb21c91a664578491b226439ace61221c312a))
+
+
+### Housekeeping Tasks
+
+* add autofill for region, subcounty, country ([e60f2cb](https://github.com/hopetambala/puente-reactnative-collect/commit/e60f2cb9560bfc8d517e6dc4e58ea0532e75f350))
+* convert post functions to promises ([164d2b2](https://github.com/hopetambala/puente-reactnative-collect/commit/164d2b293cae1183f733b67d13fa8fcae6b9200c))
+* hook update and i18n translations ([21ecc2c](https://github.com/hopetambala/puente-reactnative-collect/commit/21ecc2cef99f6ee817b74df058b4cb88513449f2))
+* initial commit, not complete ([536b20e](https://github.com/hopetambala/puente-reactnative-collect/commit/536b20eef93a6b10c11202e323c325a3e195e5ee))
+* lining ([b975a71](https://github.com/hopetambala/puente-reactnative-collect/commit/b975a71f84feeb5b261479fc8feea31f8da9da37))
+* linting ([abfc4a3](https://github.com/hopetambala/puente-reactnative-collect/commit/abfc4a3037778e754e2fddebfad58a4cd4a62213))
+* linting ([8f35e3e](https://github.com/hopetambala/puente-reactnative-collect/commit/8f35e3e5303d5b6b7797ab3947f3001d8ceb52ae))
+* linting ([b8bc3a9](https://github.com/hopetambala/puente-reactnative-collect/commit/b8bc3a9ecc1e49aaea5c286912879278a795c82b))
+* linting ([7873265](https://github.com/hopetambala/puente-reactnative-collect/commit/7873265e1c9ad1eaf79d3cfee6bddb547d1255f4))
+* linting ([e8c3819](https://github.com/hopetambala/puente-reactnative-collect/commit/e8c3819aa76c184aabd452077f48eb70cd011298))
+* linting ([13abdb5](https://github.com/hopetambala/puente-reactnative-collect/commit/13abdb5965ba492bbc80751e6cc9264a3eaab6fe))
+* linting ([cb32a6a](https://github.com/hopetambala/puente-reactnative-collect/commit/cb32a6a2a18283ec3e9626f92ce29a10070046ca))
+* linting and fix to delete offline data ([af1f370](https://github.com/hopetambala/puente-reactnative-collect/commit/af1f370ae8dfef19fc9058a8a2c725d74114d257))
+* merge master ([1812733](https://github.com/hopetambala/puente-reactnative-collect/commit/181273386f5b7fb88321e36a93173a864fc7f6e4))
+* merge master ([2c0bee4](https://github.com/hopetambala/puente-reactnative-collect/commit/2c0bee49da8ea54b83806f385fee42575ed80059))
+* merge offline funcitonality ([d7db36c](https://github.com/hopetambala/puente-reactnative-collect/commit/d7db36c0a6b5de460501fef97df20f29d174e331))
+* refactor post/read ([8cf742e](https://github.com/hopetambala/puente-reactnative-collect/commit/8cf742e9fbddc516183874eac7794eaab95637b7))
+* resolve antipatttern and variable sp. ([61d2441](https://github.com/hopetambala/puente-reactnative-collect/commit/61d244123c3fe71e8888dfcf5687c31482282264))
+* uncomment household ([d52d47e](https://github.com/hopetambala/puente-reactnative-collect/commit/d52d47e0a3703ed761efa1ac52a03bc61e42a0b0))
+
 ### [8.9.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v8.9.1...v8.9.2) (2020-12-14)
 
 

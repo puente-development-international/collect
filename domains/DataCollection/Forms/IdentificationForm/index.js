@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {
   ActivityIndicator,
-  View, TouchableWithoutFeedback, Keyboard
+  View, TouchableWithoutFeedback, Keyboard,
 } from 'react-native';
 import { Formik } from 'formik';
 
 import { postIdentificationForm } from '../../../../modules/cached-resources';
-
+import { isEmpty } from '../../../../modules/utils';
 import { layout } from '../../../../modules/theme';
 import I18n from '../../../../modules/i18n';
 
 import PaperButton from '../../../../components/Button';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
-
+import ErrorPicker from '../../../../components/FormikFields/ErrorPicker';
 import backgroundPostPatient from './utils';
 import surveyingUserFailsafe from '../utils';
 
@@ -105,17 +105,22 @@ const IdentificationForm = ({
                   />
                 </View>
               ))}
+              <ErrorPicker
+                // data={result}
+                formikProps={formikProps}
+                inputs={inputs}
+              />
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
-                  <PaperButton
-                    onPressEvent={formikProps.handleSubmit}
-                    buttonText={I18n.t('global.submit')}
-                  />
-                  // <Button icon="human" onPress={formikProps.handleSubmit}>
-                  //   <Text>Submit</Text>
-                  // </Button>
-                )}
+                <PaperButton
+                  onPressEvent={formikProps.handleSubmit}
+                  buttonText={I18n.t('global.submit')}
+                />
+              // <Button icon="human" onPress={formikProps.handleSubmit}>
+              //   <Text>Submit</Text>
+              // </Button>
+              )}
             </View>
           )}
         </Formik>
