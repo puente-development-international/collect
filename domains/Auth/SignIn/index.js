@@ -73,8 +73,8 @@ const SignIn = ({ navigation }) => {
     Alert.alert(
       I18n.t('signIn.unableLogin'),
       I18n.t('signIn.usernamePasswordIncorrect'), [
-      { text: 'OK' }
-    ],
+        { text: 'OK' }
+      ],
       { cancelable: true }
     );
   };
@@ -237,9 +237,8 @@ const SignIn = ({ navigation }) => {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
-                    )}
-                  <Button onPress={() => logTheValues(formikProps.values)}>Log values</Button>
+                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                  )}
                   <CredentialsModal
                     modalVisible={modalVisible}
                     formikProps={formikProps}
@@ -256,8 +255,7 @@ const SignIn = ({ navigation }) => {
 
           <TermsModal visible={visible} setVisible={setVisible} />
         </SafeAreaView>
-      )
-      }
+      )}
       {
         forgotPassword && (
           <ForgotPassword
@@ -275,7 +273,7 @@ const SignIn = ({ navigation }) => {
               <Text style={styles.accountText}>{I18n.t('signIn.noAccount')}</Text>
               <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp} labelStyle={{ marginLeft: 5 }}>
                 Sign up!
-            </Button>
+              </Button>
             </View>
             <View style={styles.termsContainer}>
               <Text style={styles.puenteText}>{I18n.t('signIn.puente2020')}</Text>
@@ -285,7 +283,7 @@ const SignIn = ({ navigation }) => {
         )
       }
 
-    </KeyboardAvoidingView >
+    </KeyboardAvoidingView>
   );
 };
 

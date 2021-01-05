@@ -12,11 +12,12 @@ import I18n from '../../../modules/i18n';
     @example
     <ErrorPicker
     />
-    @param {Object} formikProps Props containing errors and submission info from the Formik Componenet for the form
+    @param {Object} formikProps Props containing errors and submission
+    info from the Formik Componenet for the form
     @param {Array} inputs Array of all the fields in the form
     @returns
 
-**/
+* */
 
 const ErrorPicker = ({ formikProps, inputs }) => {
   const { errors, isSubmitting } = formikProps;
