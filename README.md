@@ -18,6 +18,8 @@ Here are some quick npm commands to get started:
 |----------------|-----------------------------------------------------------------------------------|
 | `organization` | Name of the surveying users surveyingOrganization                                 |
 | `residentData` | All `SurveyData` parse model data stored based on the users surveyingOrganization |
+| `offlineIDForms`| All `SurveyData` forms collected when user is not connected to internet          |
+| `offlineSupForms`| All Supplementary/Custom forms collected when user is not connected to the internet|
 
 ## Select Values with Text Input
 Select and MultiSelect PaperInputPicker fieldTypes have the option to have a text associated with a given select option.

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   ActivityIndicator,
-  View, TouchableWithoutFeedback, Keyboard
+  View, TouchableWithoutFeedback, Keyboard,
 } from 'react-native';
 import { Formik } from 'formik';
 
@@ -16,7 +16,7 @@ import I18n from '../../../../modules/i18n';
 import PaperButton from '../../../../components/Button';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
-
+import ErrorPicker from '../../../../components/FormikFields/ErrorPicker';
 import backgroundPostPatient from './utils';
 import surveyingUserFailsafe from '../utils';
 
@@ -117,6 +117,11 @@ const IdentificationForm = ({
                   />
                 </View>
               ))}
+              <ErrorPicker
+                // data={result}
+                formikProps={formikProps}
+                inputs={inputs}
+              />
               {formikProps.isSubmitting ? (
                 <ActivityIndicator />
               ) : (
