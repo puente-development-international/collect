@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.1.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.3...v9.1.0) (2021-01-05)
+
+
+### Bug fixes
+
+* duplicated environment health option (5-7 years) ([4fc4e52](https://github.com/hopetambala/puente-reactnative-collect/commit/4fc4e52577e3bc65ec98a8860a77aad73af0be27))
+
+
+### New Features
+
+* resolved session token issue for offline submission 🎉 ([5cd9b5a](https://github.com/hopetambala/puente-reactnative-collect/commit/5cd9b5ae58ec07b1c2f2b69f9dbd8171dd2efa41))
+
 ### [9.0.3](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.2...v9.0.3) (2020-12-21)
 
 ### [9.0.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.1...v9.0.2) (2020-12-21)
