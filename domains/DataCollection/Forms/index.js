@@ -94,7 +94,7 @@ const Forms = (props) => {
               <Text style={{ color: 'white' }}>{I18n.t('forms.viewGallery')}</Text>
             </Button>
             <Button mode="text" onPress={navigateToRoot} style={{ marginTop: 5 }}>
-              <Text style={{ color:theme.colors.primary }}>{I18n.t('forms.returnHome')}</Text>
+              <Text style={{ color: theme.colors.primary }}>{I18n.t('forms.returnHome')}</Text>
             </Button>
           </View>
         </View>
