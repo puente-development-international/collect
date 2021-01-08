@@ -11,7 +11,10 @@ import ResidentIdSearchbar from '../../../ResidentIdSearchbar';
 import { theme, layout } from '../../../../modules/theme';
 import I18n from '../../../../modules/i18n';
 
-import { postObjectsToClass, postObjectsToClassWithRelation } from '../../../../services/parse/crud';
+import {
+  postHousehold,
+  postHouseholdWithRelation
+} from '../../../../modules/cached-resources';
 
 import styles from './index.style';
 
@@ -63,8 +66,8 @@ const HouseholdManager = (props) => {
         longitude: 0
       }
     };
-    postObjectsToClassWithRelation(postParams).then((result) => {
-      setFieldValue(formikKey, result.id);
+    postHouseholdWithRelation(postParams).then((id) => {
+      setFieldValue(formikKey, id);
     });
   };
 
@@ -77,8 +80,8 @@ const HouseholdManager = (props) => {
         longitude: 0
       }
     };
-    postObjectsToClass(postParams).then((result) => {
-      setFieldValue(formikKey, result.id);
+    postHousehold(postParams).then((id) => {
+      setFieldValue(formikKey, id);
     });
     setHouseholdSet(true);
   };

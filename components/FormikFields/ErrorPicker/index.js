@@ -6,7 +6,6 @@ import {
 import I18n from '../../../modules/i18n';
 
 /**
-
     Display Errors for ID, Supplementary and custom forms i.e.
     @name ErrorPicker
     @example
@@ -16,7 +15,6 @@ import I18n from '../../../modules/i18n';
     from the Formik Component for the form
     @param {Array} inputs Array of all the fields in the form
     @returns
-
 * */
 
 const ErrorPicker = ({ formikProps, inputs }) => {

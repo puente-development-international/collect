@@ -323,6 +323,7 @@ const PaperInputPicker = ({
             formikProps={formikProps}
             formikKey={formikKey}
             label={label}
+            translatedLabel={translatedLabel}
             scrollViewScroll={scrollViewScroll}
             setScrollViewScroll={setScrollViewScroll}
           />
@@ -352,11 +353,11 @@ const PaperInputPicker = ({
                 }
                 {locationLoading === false
                   && (
-                  <View>
-                    <Headline>
-                      {`(${location.latitude.toFixed(2)}, ${location.longitude.toFixed(2)})`}
-                    </Headline>
-                  </View>
+                    <View>
+                      <Headline>
+                        {`(${location.latitude.toFixed(2)}, ${location.longitude.toFixed(2)})`}
+                      </Headline>
+                    </View>
                   )}
               </View>
               <Text style={{ color: 'red' }}>

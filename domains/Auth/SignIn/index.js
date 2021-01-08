@@ -18,12 +18,10 @@ import {
   Checkbox, Button, Text
 } from 'react-native-paper';
 
-import * as Network from 'expo-network';
-
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import { retrieveSignInFunction, retrieveCurrentUserAsyncFunction } from '../../../services/parse/auth';
+import { retrieveSignInFunction } from '../../../services/parse/auth';
 
 import { storeData, getData, deleteData } from '../../../modules/async-storage';
 import I18n from '../../../modules/i18n';
@@ -35,6 +33,8 @@ import CredentialsModal from './CredentialsModal';
 import TermsModal from '../../../components/TermsModal';
 import BlackLogo from '../../../assets/graphics/static/Logo-Black.svg';
 import ForgotPassword from './ForgotPassword';
+import checkOnlineStatus from '../../../modules/offline';
+import { populateCache } from '../../../modules/cached-resources';
 
 // components/FormikFields/PaperInputPicker';
 const validationSchema = yup.object().shape({
@@ -120,20 +120,12 @@ const SignIn = ({ navigation }) => {
     setForgotPassword(true);
   };
 
-  async function checkOnlineStatus() {
-    const status = await Network.getNetworkStateAsync();
-    const { isConnected } = status;
-    return isConnected;
-  }
   const deleteCreds = () => {
     deleteData('credentials');
   };
 
-  const storeUserInformation = async () => {
-    await retrieveCurrentUserAsyncFunction().then((currentUser) => {
-      storeData(currentUser.organization, 'organization');
-      storeData(currentUser, 'currentUser');
-    });
+  const storeUserInformation = (userData) => {
+    populateCache(userData);
   };
 
   return (
@@ -151,21 +143,21 @@ const SignIn = ({ navigation }) => {
               onSubmit={(values, actions) => {
                 checkOnlineStatus().then((connected) => {
                   if (connected) {
-                    retrieveSignInFunction(values.username, values.password).then(() => {
+                    retrieveSignInFunction(values.username, values.password).then((userData) => {
                       getData('credentials').then((userCreds) => {
                         // credentials saved do not match those entered, overwrite saved
                         // credentials
                         if (userCreds === null || values.username !== userCreds.username
                           || values.password !== userCreds.password) {
                           // Store user organization
-                          storeUserInformation();
+                          storeUserInformation(userData);
                           handleSaveCredentials(values);
                         } else {
-                          storeUserInformation();
+                          storeUserInformation(userData);
                         }
                       }, () => {
                         // Store user organization
-                        storeUserInformation();
+                        storeUserInformation(userData);
                         // no credentials saved, give option to save
                         handleSaveCredentials(values);
                       });

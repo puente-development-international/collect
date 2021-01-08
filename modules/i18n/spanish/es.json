@@ -122,7 +122,10 @@
     "clinicProvider": "Proveedor de la clínica",
     "latitude": "Latitud",
     "longitude": "Longitud",
-    "household": "Casa"
+    "household": "Casa",
+    "subcounty": "Sub-condado",
+    "region": "Región",
+    "country": "País"
   },
   "environmentalHealth": {
     "name": "Formulario de salud ambiental",
@@ -378,7 +381,15 @@
     "goodEvening!": "¡Buena noches!",
     "puente": "PUENTE",
     "volunteerSince": "Voluntaria desde",
-    "surveysCollected": "Encuestas recopiladas"
+    "surveysCollected": "Encuestas recopiladas",
+    "submitOffline":"Enviar formularios sin conexión",
+    "failedAttempt":"Intento fallido de envío de formularios sin conexión.",
+    "tryAgain":"Asegúrese de estar conectado a Internet y vuelva a intentarlo.",
+    "ok":"Okay",
+    "success":"¡Éxito!",
+    "justSubmitted":"Usted acaba de enviar",
+    "form":"formar!",
+    "forms":"formas!"
   },
   "languagePicker": {
     "english": "Ingles",

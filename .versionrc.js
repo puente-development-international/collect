@@ -17,7 +17,7 @@ module.exports = {
     }
   ],
   types: [
-    { type: 'chore', section: 'Housekeeping Tasks' },
+    { type: 'chore', section: 'Housekeeping Tasks', hidden: true },
     { type: 'ci', section: 'Pipeline Changes' },
     { type: 'docs', section: 'Documentation Changes' },
     { type: 'feat', section: 'New Features' },

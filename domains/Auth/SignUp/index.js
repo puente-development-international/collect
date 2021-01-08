@@ -19,7 +19,8 @@ import FormInput from '../../../components/FormikFields/FormInput';
 import TermsModal from '../../../components/TermsModal';
 // STYLING
 import { theme } from '../../../modules/theme';
-import { storeData, getData } from '../../../modules/async-storage';
+
+import { populateCache } from '../../../modules/cached-resources';
 
 import I18n from '../../../modules/i18n';
 
@@ -88,12 +89,8 @@ export default function SignUp({ navigation }) {
                 } else {
                   retrieveSignUpFunction(values)
                     .then((user) => {
-                      getData('organization').then((organization) => {
-                        if (organization !== user.get('organization')) {
-                          storeData(user.get('organization'), 'organization');
-                        }
-                        navigation.navigate('Root');
-                      });
+                      populateCache(user);
+                      navigation.navigate('Root');
                     }).catch((error) => {
                       // sign up failed alert user
                       console.log(`Error: ${error.code} ${error.message}`); // eslint-disable-line
