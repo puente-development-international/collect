@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.0.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.1.0...v10.0.0) (2021-01-08)
+
+
+### Bug fixes
+
+* return home button working ([bb7e0db](https://github.com/hopetambala/puente-reactnative-collect/commit/bb7e0dbbf29a293e9905c8cd6dcfc656cf441c1f))
+* saved credential bug resolved ([98dcf65](https://github.com/hopetambala/puente-reactnative-collect/commit/98dcf65d14c4c3d323f6540de4697a6d031e8c4c))
+
 ## [9.1.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.3...v9.1.0) (2021-01-05)
 
 
