@@ -161,7 +161,7 @@ const SignIn = ({ navigation }) => {
                         // no credentials saved, give option to save
                         handleSaveCredentials(values);
                       });
-                      handleSignIn();
+                      handleSignIn(values, actions.resetForm());
                     }, (err) => {
                       handleFailedAttempt(err);
                     });
@@ -172,7 +172,7 @@ const SignIn = ({ navigation }) => {
                       if (values.username === userCreds.username
                         && values.password === userCreds.password) {
                         // need some pincode verification
-                        handleSignIn();
+                        handleSignIn(values, actions.resetForm());
                       } else {
                         // cannot log in offline without saved credentials, connect to internet
                       }
@@ -184,6 +184,8 @@ const SignIn = ({ navigation }) => {
                 }, 1000);
               }}
               validationSchema={validationSchema}
+              validateOnBlur={false}
+              validateOnChange={false}
             >
               {(formikProps) => (
                 <View>
@@ -195,6 +197,7 @@ const SignIn = ({ navigation }) => {
                     formikProps={formikProps}
                     formikKey="username"
                     placeholder="johndoe@example.com"
+                    value={formikProps.values.username}
                   />
                   <FormInput
                     label={I18n.t('signIn.password')}
@@ -202,6 +205,7 @@ const SignIn = ({ navigation }) => {
                     formikKey="password"
                     placeholder="Password"
                     secureTextEntry={!checked}
+                    value={formikProps.values.password}
                   />
                   <View style={{ flexDirection: 'row' }}>
                     <View style={styles.container}>
@@ -244,28 +248,32 @@ const SignIn = ({ navigation }) => {
           <TermsModal visible={visible} setVisible={setVisible} />
         </SafeAreaView>
       )}
-      {forgotPassword && (
-        <ForgotPassword
-          navigation={navigation}
-          forgotPassword={forgotPassword}
-          setForgotPassword={setForgotPassword}
-        />
-      )}
+      {
+        forgotPassword && (
+          <ForgotPassword
+            navigation={navigation}
+            forgotPassword={forgotPassword}
+            setForgotPassword={setForgotPassword}
+          />
+        )
+      }
 
-      {!forgotPassword && (
-        <View style={styles.footer}>
-          <View style={styles.termsContainer}>
-            <Text style={styles.accountText}>{I18n.t('signIn.noAccount')}</Text>
-            <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp} labelStyle={{ marginLeft: 5 }}>
-              Sign up!
-            </Button>
+      {
+        !forgotPassword && (
+          <View style={styles.footer}>
+            <View style={styles.termsContainer}>
+              <Text style={styles.accountText}>{I18n.t('signIn.noAccount')}</Text>
+              <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp} labelStyle={{ marginLeft: 5 }}>
+                Sign up!
+              </Button>
+            </View>
+            <View style={styles.termsContainer}>
+              <Text style={styles.puenteText}>{I18n.t('signIn.puente2020')}</Text>
+              <Button mode="text" theme={theme} onPress={handleTermsModal} labelStyle={{ marginLeft: 5 }}>{I18n.t('signIn.termsConditions')}</Button>
+            </View>
           </View>
-          <View style={styles.termsContainer}>
-            <Text style={styles.puenteText}>{I18n.t('signIn.puente2020')}</Text>
-            <Button mode="text" theme={theme} onPress={handleTermsModal} labelStyle={{ marginLeft: 5 }}>{I18n.t('signIn.termsConditions')}</Button>
-          </View>
-        </View>
-      )}
+        )
+      }
 
     </KeyboardAvoidingView>
   );
