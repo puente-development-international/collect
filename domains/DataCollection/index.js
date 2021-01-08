@@ -164,6 +164,7 @@ const DataCollection = ({ navigation }) => {
                   setScrollViewScroll={setScrollViewScroll}
                   navigateToGallery={navigateToGallery}
                   navigateToNewRecord={navigateToNewRecord}
+                  navigateToRoot={navigateToRoot}
                   selectedForm={selectedForm}
                   setSelectedForm={setSelectedForm}
                   puenteForms={puenteForms}
