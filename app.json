@@ -24,7 +24,6 @@
     "ios": {
       "supportsTablet": true,
       "buildNumber": "10.3.0",
-      "bundleIdentifier": "io.ionic.starter1270348",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app uses your location to geo-tag surveys accurately."
       }
@@ -34,12 +33,6 @@
     },
     "android": {
       "versionCode": 380100300,
-      "package": "io.ionic.starter1270348",
-      "config": {
-        "googleMaps": {
-          "apiKey": "AIzaSyD_vRnyXGdu1zFcivOt2VMwhstAqZnxcNw"
-        }
-      },
       "permissions": [
         "ACCESS_FINE_LOCATION"
       ],
