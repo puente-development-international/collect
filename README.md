@@ -57,6 +57,24 @@ Important notes:
   - OTHER: This portion of the key is a direct match to the value of the select option. This is required to append the text input value to the original value in the array
   - none of these values need to be capitalized
 
+## Deployment
+### Secrets
+This project dynamically creates the required `app.json` in order to avoid commit secret keys in the project. The related commands are: 
+- `npm run prepublish`: Generates an `app.generated.json` that we use for the rest of the deployment process. It runs a script in `scripts/dynamic-env` that does a deep merge of our `app.secrets.json` file with all our application keys and `app.json` to create `app.generated.json`. This will have to be run before publishing to the store
+
+### Standalone apps
+For releases and bumping versions of `app.json`, we have:
+- `npm run release-patch`: Does a patch bump i.e. `1.0.0` to `1.0.1`
+- `npm run release-minor`: Does a minor bump i.e. `1.0.0` to `1.1.0`
+- `npm run release-major`: Does a major bump i.e. `1.0.0` to `2.0.0`
+
+*NOTE* it is REQUIRED to do some sort of bump in order for the app to be upload to its respective stores. Google Play and Itunes Connect disallows applications with the same bundleIdentifier or packageNumber in the store.
+
+Lastly for actual deployment, we have:
+- `npm run publish-staging`: Runs `npm run prepublish` which generates our `app.generated.json` and publishes a staging application to Exp
+- `npm run publish-prod`: Runs `npm run prepublish` which generates our `app.generated.json` and publishes a production application to Expo
+- `npm run upload`: Uploads the lates staging or production application (uploaded in Expo) to both Google Play and iTunes Connect
+
 ## Resources
 
 - [React Native Paper](https://callstack.github.io/react-native-paper/index.html)
