@@ -4,12 +4,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ## [10.3.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.1.4...v10.3.0) (2021-01-09)
 
-## [10.2.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.1.4...v10.2.0) (2021-01-09)
-
-### [10.1.4](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.1.3...v10.1.4) (2021-01-09)
-
-## [10.1.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.0.0...v10.1.0) (2021-01-09)
-
 
 ### New Features
 

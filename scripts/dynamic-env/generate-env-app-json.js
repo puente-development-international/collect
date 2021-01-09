@@ -1,0 +1,5 @@
+const merge = require("deepmerge")
+const baseAppJson = require("../../app.json")
+const override = require("./app.secrets.json")
+const merged = merge.all([baseAppJson, override])
+console.log(JSON.stringify(merged, null, 2))
