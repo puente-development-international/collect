@@ -1,4 +1,4 @@
-{
+export default {
   "expo": {
     "name": "Collect",
     "slug": "puente-reactnative-collect",
@@ -37,9 +37,12 @@
       "package": "io.ionic.starter1270348",
       "config": {
         "googleMaps": {
-          "apiKey": "PUT_YOUR_GOOGLEMAPS_API_KEY_HERE"
+          "apiKey": "AIzaSyD_vRnyXGdu1zFcivOt2VMwhstAqZnxcNw"
         }
       },
+      "permissions": [
+        "ACCESS_FINE_LOCATION"
+      ],
       "softwareKeyboardLayoutMode": "pan"
     },
     "packagerOpts": {

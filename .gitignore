@@ -16,4 +16,3 @@ web-build/
 .DS_Store*
 .env*
 environment.js
-app.json
