@@ -4,8 +4,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [10.1.4](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.1.3...v10.1.4) (2021-01-09)
 
-### [10.1.3](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.1.2...v10.1.3) (2021-01-09)
-
 ## [10.1.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.0.0...v10.1.0) (2021-01-09)
 
 
@@ -33,7 +31,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * resolved session token issue for offline submission 🎉 ([5cd9b5a](https://github.com/hopetambala/puente-reactnative-collect/commit/5cd9b5ae58ec07b1c2f2b69f9dbd8171dd2efa41))
 
-### [9.0.3](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.2...v9.0.3) (2020-12-21)
 
 ### [9.0.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.1...v9.0.2) (2020-12-21)
 
