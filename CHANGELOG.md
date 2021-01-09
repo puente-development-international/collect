@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.1.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.0.0...v10.1.0) (2021-01-09)
+
+
+### New Features
+
+* add google maps to android ([c890248](https://github.com/hopetambala/puente-reactnative-collect/commit/c890248379a8ed1afac67a04913af10189943259))
+
 ## [10.0.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.1.0...v10.0.0) (2021-01-08)
 
 
