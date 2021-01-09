@@ -35,6 +35,11 @@
     "android": {
       "versionCode": 380100000,
       "package": "io.ionic.starter1270348",
+      "config": {
+        "googleMaps": {
+          "apiKey": "PUT_YOUR_GOOGLEMAPS_API_KEY_HERE"
+        }
+      },
       "softwareKeyboardLayoutMode": "pan"
     },
     "packagerOpts": {
