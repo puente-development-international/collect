@@ -6,6 +6,8 @@ export default async function getLocation() {
     return 'Permission to access location was denied';
   }
 
-  const currentLocation = await Location.getCurrentPositionAsync({}).catch((err) => console.log(err)); //eslint-disable-line
+  // const currentLocation = await Location.getCurrentPositionAsync({ enableHighAccuracy: true }).catch((err) => console.log(err)); //eslint-disable-line
+  const currentLocation = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High }).catch((err) => console.log(err)); //eslint-disable-line
+
   return currentLocation;
 }
