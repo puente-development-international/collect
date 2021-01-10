@@ -85,6 +85,7 @@ Lastly for actual deployment, we have:
 
 ## Troubleshooting
 - [React-Native Navigation Crash in Android](https://github.com/react-navigation/react-navigation/issues/6919#issuecomment-592093015)
+- [Getting Google Maps to work on Android](https://forums.expo.io/t/blank-mapview-on-android-for-standalone-after-publishing/2376/10)
 
 
 ## Standards
