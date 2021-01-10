@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.3.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.3.0...v10.3.1) (2021-01-10)
+
+
+### Bug fixes
+
+* remove project secrets from app.json ([55636fe](https://github.com/hopetambala/puente-reactnative-collect/commit/55636fe34dd123a4041f929e6cedfb1e95ac1c79))
+
+
+### New Features
+
+* create script to do a deep merge of secrets.json and the main app.json ([ef43b11](https://github.com/hopetambala/puente-reactnative-collect/commit/ef43b11ee865f5c74f4d91d8e59515a118773aeb))
+
+
+### Documentation Changes
+
+* add documentation on deployment ([5f3e4c7](https://github.com/hopetambala/puente-reactnative-collect/commit/5f3e4c75414392fcc52e492610215fe5853f4420))
+* add link to troubleshoot google maps ([79c95f5](https://github.com/hopetambala/puente-reactnative-collect/commit/79c95f5b63279c8842288ca9134b0c2be7c99f71))
+
 ## [10.3.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.1.4...v10.3.0) (2021-01-09)
 
 
