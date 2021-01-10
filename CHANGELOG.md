@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.3.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.3.1...v10.3.2) (2021-01-10)
+
+
+### Bug fixes
+
+* add High Accuracy to enable offline GPS ([0e06c9c](https://github.com/hopetambala/puente-reactnative-collect/commit/0e06c9c3fac25496856e74973bc8701232074371))
+
 ### [10.3.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.3.0...v10.3.1) (2021-01-10)
 
 
