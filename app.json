@@ -1,20 +1,19 @@
 {
   "expo": {
-    "name": "puente-reactnative-collect",
+    "name": "Collect",
     "slug": "puente-reactnative-collect",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "0.1.0",
+    "version": "10.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3d80fc"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,15 +23,35 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "0.1.0",
-      "bundleIdentifier": "com.puente.collect"
+      "buildNumber": "10.0.0",
+      "bundleIdentifier": "io.ionic.starter1270348",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to geo-tag surveys accurately."
+      }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
     "android": {
-      "versionCode": 370000100,
-      "package": "com.puente.collect"
+      "versionCode": 380100000,
+      "package": "io.ionic.starter1270348",
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "expo.ts",
+        "expo.tsx",
+        "expo.js",
+        "expo.jsx",
+        "ts",
+        "tsx",
+        "js",
+        "jsx",
+        "json",
+        "wasm",
+        "svg"
+      ]
     }
   }
 }

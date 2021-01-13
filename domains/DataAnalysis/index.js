@@ -1,24 +1,17 @@
 import * as React from 'react';
 import {
-  StyleSheet, Text, View
+  Text, View
 } from 'react-native';
+
+import { layout } from '../../modules/theme';
+
+import Header from '../../components/Header';
 
 export default function DataAnalysis() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Welcome to the data analysis page.</Text>
+    <View style={layout.screenContainer}>
+      <Header />
+      <Text>Welcome to the data analysis page.</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  text: {
-    flex: 1,
-    color: '#000',
-    padding: 10
-  }
-});

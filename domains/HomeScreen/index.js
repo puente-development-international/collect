@@ -1,97 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Platform, StyleSheet, Text, View
+  Text, View
 } from 'react-native';
+import {
+  Card, Button, Paragraph, Title
+} from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Button } from 'react-native-paper';
-// import retrievePuenteAutofillData from '../../services/aws';
-import AutoFill from '../../components/AutoFill';
-import getTasks from '../../services/tasky';
 
-export default class HomeScreen extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      tasks: null
-    };
-  }
+import { getTasksAsync } from '../../modules/cached-resources';
+import { retrieveSignOutFunction } from '../../services/parse/auth';
 
-  showTasks = async () => {
-    await getTasks().then((result) => {
-      this.setState({
-        tasks: result
-      });
+import { deleteData } from '../../modules/async-storage';
+import { layout } from '../../modules/theme';
+
+import Header from '../../components/Header';
+import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
+
+import I18n from '../../modules/i18n';
+
+const HomeScreen = (props) => {
+  const [tasks, setTasks] = useState(null);
+  const { navigation } = props;
+
+  const showTasks = async () => {
+    await getTasksAsync().then((result) => {
+      setTasks(result);
     });
-  }
+  };
 
-  render() {
-    const { tasks } = this.state;
-    return (
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+  const logOut = () => {
+    retrieveSignOutFunction().then(() => {
+      deleteData('credentials');
+      deleteData('pincode');
+      deleteData('organization');
+      deleteData('currentUser');
+      navigation.navigate('Sign In');
+    });
+  };
 
-        <View style={styles.row}>
-          <View>
-            <Button onPress={this.showTasks} mode="contained">
-              <Text style={styles.text}>Tasks</Text>
-            </Button>
-
-            {tasks != null
-              && tasks.map((task) => (
-                <View key={task.task_id}>
-                  <Text>{task.name}</Text>
-                </View>
-              ))}
-          </View>
+  return (
+    <View style={layout.screenContainer}>
+      <Header logOut={logOut} />
+      <ScrollView>
+        <View style={layout.screenRow}>
+          <Title>{I18n.t('home.myTasks')}</Title>
+          <Card>
+            <Card.Content>
+              <ComingSoonSVG width={200} height={200} />
+              <Paragraph>{I18n.t('home.comingSoon')}</Paragraph>
+              <Button onPress={showTasks} mode="contained">
+                <Text>{I18n.t('home.tasks')}</Text>
+              </Button>
+              {tasks != null
+                && tasks.map((task) => (
+                  <View key={task.task_id}>
+                    <Text>{task.name}</Text>
+                  </View>
+                ))}
+            </Card.Content>
+          </Card>
         </View>
-        {/* <View style={styles.clickText}>
-          <Button onPress={handleAutoFillClick} style={styles.helpLink}>
-            <Text style={styles.text}>Autofill GET</Text>
-          </Button>
+        {/* <View style={layout.screenRow}>
+          <Text>My Pinned Forms</Text>
         </View> */}
-        <AutoFill parameter="City" />
-        <AutoFill parameter="Province" />
-        <AutoFill parameter="Communities" />
-      </ScrollView>
-    );
-  }
-}
+        {/* <View style={layout.screenRow}>
+          <Title>My Community Board</Title>
+          <Card>
+            <Card.Content>
+              <ComingSoonSVG width={200} height={200} />
 
-HomeScreen.navigationOptions = {
-  header: null,
+              <Paragraph>Coming Soon</Paragraph>
+            </Card.Content>
+          </Card>
+        </View> */}
+        <Button onPress={logOut} mode="contained">
+          <Text>{I18n.t('home.logOut')}</Text>
+        </Button>
+      </ScrollView>
+    </View>
+  );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  contentContainer: {
-    paddingTop: 30,
-  },
-  tabBarInfoContainer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
-      android: {
-        elevation: 20,
-      },
-    }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'stretch'
-  }
-});
+export default HomeScreen;
