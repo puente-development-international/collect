@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.3.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.3.1...v10.3.2) (2021-01-10)
+
+
+### Bug fixes
+
+* add High Accuracy to enable offline GPS ([0e06c9c](https://github.com/hopetambala/puente-reactnative-collect/commit/0e06c9c3fac25496856e74973bc8701232074371))
+
+### [10.3.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.3.0...v10.3.1) (2021-01-10)
+
+
+### Bug fixes
+
+* remove project secrets from app.json ([55636fe](https://github.com/hopetambala/puente-reactnative-collect/commit/55636fe34dd123a4041f929e6cedfb1e95ac1c79))
+
+
+### New Features
+
+* create script to do a deep merge of secrets.json and the main app.json ([ef43b11](https://github.com/hopetambala/puente-reactnative-collect/commit/ef43b11ee865f5c74f4d91d8e59515a118773aeb))
+
+
+### Documentation Changes
+
+* add documentation on deployment ([5f3e4c7](https://github.com/hopetambala/puente-reactnative-collect/commit/5f3e4c75414392fcc52e492610215fe5853f4420))
+* add link to troubleshoot google maps ([79c95f5](https://github.com/hopetambala/puente-reactnative-collect/commit/79c95f5b63279c8842288ca9134b0c2be7c99f71))
+
+## [10.3.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.1.4...v10.3.0) (2021-01-09)
+
+
+### New Features
+
+* add google maps to android ([c890248](https://github.com/hopetambala/puente-reactnative-collect/commit/c890248379a8ed1afac67a04913af10189943259))
+
 ## [10.0.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.1.0...v10.0.0) (2021-01-08)
 
 
@@ -22,7 +54,6 @@ All notable changes to this project will be documented in this file. See [standa
 
 * resolved session token issue for offline submission 🎉 ([5cd9b5a](https://github.com/hopetambala/puente-reactnative-collect/commit/5cd9b5ae58ec07b1c2f2b69f9dbd8171dd2efa41))
 
-### [9.0.3](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.2...v9.0.3) (2020-12-21)
 
 ### [9.0.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v9.0.1...v9.0.2) (2020-12-21)
 
