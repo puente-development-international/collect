@@ -275,9 +275,10 @@
     },
     "bloodOxygen": "Blood Oxygen",
     "mmHg": "mm Hg",
-    "bloodSugar": "Blood Sugar",
+    "bloodSugar": "Fasting Blood Glucose",
     "mgdL": "mg/dL",
-    "hemoglobinLevels": "Hemoglobin Levels",
+    "hemoglobinLevels": "Hemoglobin Levels (Hb)",
+    "hemoglobinA1c": "Hemoglobin A1c (HbA1c)",
     "gdL": "g/dL",
     "pain": "Pain"
   },
@@ -380,14 +381,14 @@
     "puente": "PUENTE",
     "volunteerSince": "Volunteer Since",
     "surveysCollected": "Surveys Collected",
-    "submitOffline":"Submit Offline Forms",
-    "failedAttempt":"Failed Attempt Submitting Offline Forms.",
-    "tryAgain":"Please ensure that you are connected to the internet and try again.",
-    "ok":"Ok",
-    "success":"Success!",
-    "justSubmitted":"You have just submitted",
-    "form":"form!",
-    "forms":"forms!"
+    "submitOffline": "Submit Offline Forms",
+    "failedAttempt": "Failed Attempt Submitting Offline Forms.",
+    "tryAgain": "Please ensure that you are connected to the internet and try again.",
+    "ok": "Ok",
+    "success": "Success!",
+    "justSubmitted": "You have just submitted",
+    "form": "form!",
+    "forms": "forms!"
   },
   "languagePicker": {
     "english": "English",
@@ -402,6 +403,6 @@
     "ok": "Ok"
   },
   "errorPicker": {
-    "invalidFields":"Invalid Fields:"
+    "invalidFields": "Invalid Fields:"
   }
 }
