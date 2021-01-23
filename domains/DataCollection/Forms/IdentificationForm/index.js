@@ -14,7 +14,6 @@ import PaperButton from '../../../../components/Button';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
 import ErrorPicker from '../../../../components/FormikFields/ErrorPicker';
-import backgroundPostPatient from './utils';
 import surveyingUserFailsafe from '../utils';
 
 import configArray from './config/config';
@@ -24,16 +23,8 @@ const IdentificationForm = ({
   setSelectedForm, setSurveyee, surveyingUser, surveyingOrganization
 }) => {
   useEffect(() => {
-    const interval = setInterval(() => {
-      backgroundPostPatient();
-    }, 10000);
-
     setValidationSchema(yupValidationPicker(configArray));
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [clearInterval]);
+  }, []);
 
   const [inputs, setInputs] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
@@ -67,10 +58,11 @@ const IdentificationForm = ({
             });
 
             const submitAction = () => {
+              actions.setSubmitting(true);
               setTimeout(() => {
-                setSelectedForm('');
                 actions.setSubmitting(false);
-              }, 1000);
+                setSelectedForm('');
+              }, 2000);
             };
 
             const postParams = {
@@ -101,12 +93,10 @@ const IdentificationForm = ({
                     scrollViewScroll={scrollViewScroll}
                     setScrollViewScroll={setScrollViewScroll}
                     customForm={false}
-                  // placeholder="Ana"
                   />
                 </View>
               ))}
               <ErrorPicker
-                // data={result}
                 formikProps={formikProps}
                 inputs={inputs}
               />
@@ -117,9 +107,6 @@ const IdentificationForm = ({
                   onPressEvent={formikProps.handleSubmit}
                   buttonText={I18n.t('global.submit')}
                 />
-              // <Button icon="human" onPress={formikProps.handleSubmit}>
-              //   <Text>Submit</Text>
-              // </Button>
               )}
             </View>
           )}
