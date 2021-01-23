@@ -18,8 +18,10 @@ Here are some quick npm commands to get started:
 |----------------|-----------------------------------------------------------------------------------|
 | `organization` | Name of the surveying users surveyingOrganization                                 |
 | `residentData` | All `SurveyData` parse model data stored based on the users surveyingOrganization |
-| `offlineIDForms`| All `SurveyData` forms collected when user is not connected to internet          |
-| `offlineSupForms`| All Supplementary/Custom forms collected when user is not connected to the internet|
+| `offlineIDForms`| All `SurveyData` forms collected when user is offline                            |
+| `offlineSupForms`| All Supplementary/Custom forms collected when user is offline                   |
+| `offlineHouseholds`| All `Household` parse model created when user is offline                      |
+| `offlineHouseholdsRelation`| All `Household` parse model with relation to other households created when user is offline |
 
 ## Select Values with Text Input
 Select and MultiSelect PaperInputPicker fieldTypes have the option to have a text associated with a given select option.
@@ -55,6 +57,24 @@ Important notes:
   - OTHER: This portion of the key is a direct match to the value of the select option. This is required to append the text input value to the original value in the array
   - none of these values need to be capitalized
 
+## Deployment
+### Secrets
+This project dynamically creates the required `app.json` in order to avoid commit secret keys in the project. The related commands are: 
+- `npm run prepublish`: Generates an `app.generated.json` that we use for the rest of the deployment process. It runs a script in `scripts/dynamic-env` that does a deep merge of our `app.secrets.json` file with all our application keys and `app.json` to create `app.generated.json`. This will have to be run before publishing to the store
+
+### Standalone apps
+For releases and bumping versions of `app.json`, we have:
+- `npm run release-patch`: Does a patch bump i.e. `1.0.0` to `1.0.1`
+- `npm run release-minor`: Does a minor bump i.e. `1.0.0` to `1.1.0`
+- `npm run release-major`: Does a major bump i.e. `1.0.0` to `2.0.0`
+
+*NOTE* it is REQUIRED to do some sort of bump in order for the app to be upload to its respective stores. Google Play and Itunes Connect disallows applications with the same bundleIdentifier or packageNumber in the store.
+
+Lastly for actual deployment, we have:
+- `npm run publish-staging`: Runs `npm run prepublish` which generates our `app.generated.json` and publishes a staging application to Exp
+- `npm run publish-prod`: Runs `npm run prepublish` which generates our `app.generated.json` and publishes a production application to Expo
+- `npm run upload`: Uploads the lates staging or production application (uploaded in Expo) to both Google Play and iTunes Connect
+
 ## Resources
 
 - [React Native Paper](https://callstack.github.io/react-native-paper/index.html)
@@ -65,6 +85,7 @@ Important notes:
 
 ## Troubleshooting
 - [React-Native Navigation Crash in Android](https://github.com/react-navigation/react-navigation/issues/6919#issuecomment-592093015)
+- [Getting Google Maps to work on Android](https://forums.expo.io/t/blank-mapview-on-android-for-standalone-after-publishing/2376/10)
 
 
 ## Standards

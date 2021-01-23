@@ -120,7 +120,10 @@
     "clinicProvider": "Clinic Provider",
     "latitude": "Latitude",
     "longitude": "Longitude",
-    "household": "Household"
+    "household": "Household",
+    "subcounty": "Sub-county",
+    "region": "Region",
+    "country": "Country"
   },
   "environmentalHealth": {
     "name": "Environmental Health Form",
@@ -272,9 +275,10 @@
     },
     "bloodOxygen": "Blood Oxygen",
     "mmHg": "mm Hg",
-    "bloodSugar": "Blood Sugar",
+    "bloodSugar": "Fasting Blood Glucose",
     "mgdL": "mg/dL",
-    "hemoglobinLevels": "Hemoglobin Levels",
+    "hemoglobinLevels": "Hemoglobin Levels (Hb)",
+    "hemoglobinA1c": "Hemoglobin A1c (HbA1c)",
     "gdL": "g/dL",
     "pain": "Pain"
   },
@@ -376,7 +380,15 @@
     "goodEvening!": "Good evening!",
     "puente": "PUENTE",
     "volunteerSince": "Volunteer Since",
-    "surveysCollected": "Surveys Collected"
+    "surveysCollected": "Surveys Collected",
+    "submitOffline": "Submit Offline Forms",
+    "failedAttempt": "Failed Attempt Submitting Offline Forms.",
+    "tryAgain": "Please ensure that you are connected to the internet and try again.",
+    "ok": "Ok",
+    "success": "Success!",
+    "justSubmitted": "You have just submitted",
+    "form": "form!",
+    "forms": "forms!"
   },
   "languagePicker": {
     "english": "English",
@@ -391,6 +403,6 @@
     "ok": "Ok"
   },
   "errorPicker": {
-    "invalidFields":"Invalid Fields:"
+    "invalidFields": "Invalid Fields:"
   }
 }

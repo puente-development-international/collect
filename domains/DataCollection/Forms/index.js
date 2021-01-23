@@ -93,8 +93,8 @@ const Forms = (props) => {
             <Button mode="contained" onPress={navigateToGallery}>
               <Text style={{ color: 'white' }}>{I18n.t('forms.viewGallery')}</Text>
             </Button>
-            <Button mode="text" onPress={navigateToRoot} theme={theme} style={{ marginTop: 5 }}>
-              {I18n.t('forms.returnHome')}
+            <Button mode="text" onPress={navigateToRoot} style={{ marginTop: 5 }}>
+              <Text style={{ color: theme.colors.primary }}>{I18n.t('forms.returnHome')}</Text>
             </Button>
           </View>
         </View>

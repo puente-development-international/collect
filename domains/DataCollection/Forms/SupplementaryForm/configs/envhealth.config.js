@@ -50,7 +50,7 @@ const configArray = {
         value: '3_4'
       },
       {
-        label: 'environmentalHealth.yearsLived.3_4',
+        label: 'environmentalHealth.yearsLived.5_10',
         value: '5_10'
       },
       {
@@ -309,6 +309,12 @@ const configArray = {
       {
         label: 'environmentalHealth.houseMaterials.clay',
         value: 'clay'
+      },
+      {
+        label: 'global.other',
+        value: 'other',
+        text: true,
+        textKey: '__houseMaterial__other'
       }
     ],
     validation: false

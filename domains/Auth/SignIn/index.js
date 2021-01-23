@@ -18,12 +18,10 @@ import {
   Checkbox, Button, Text
 } from 'react-native-paper';
 
-import * as Network from 'expo-network';
-
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import { retrieveSignInFunction, retrieveCurrentUserAsyncFunction } from '../../../services/parse/auth';
+import { retrieveSignInFunction } from '../../../services/parse/auth';
 
 import { storeData, getData, deleteData } from '../../../modules/async-storage';
 import I18n from '../../../modules/i18n';
@@ -35,6 +33,8 @@ import CredentialsModal from './CredentialsModal';
 import TermsModal from '../../../components/TermsModal';
 import BlackLogo from '../../../assets/graphics/static/Logo-Black.svg';
 import ForgotPassword from './ForgotPassword';
+import checkOnlineStatus from '../../../modules/offline';
+import { populateCache } from '../../../modules/cached-resources';
 
 // components/FormikFields/PaperInputPicker';
 const validationSchema = yup.object().shape({
@@ -120,20 +120,12 @@ const SignIn = ({ navigation }) => {
     setForgotPassword(true);
   };
 
-  async function checkOnlineStatus() {
-    const status = await Network.getNetworkStateAsync();
-    const { isConnected } = status;
-    return isConnected;
-  }
   const deleteCreds = () => {
     deleteData('credentials');
   };
 
-  const storeUserInformation = async () => {
-    await retrieveCurrentUserAsyncFunction().then((currentUser) => {
-      storeData(currentUser.organization, 'organization');
-      storeData(currentUser, 'currentUser');
-    });
+  const storeUserInformation = (userData) => {
+    populateCache(userData);
   };
 
   return (
@@ -151,25 +143,25 @@ const SignIn = ({ navigation }) => {
               onSubmit={(values, actions) => {
                 checkOnlineStatus().then((connected) => {
                   if (connected) {
-                    retrieveSignInFunction(values.username, values.password).then(() => {
+                    retrieveSignInFunction(values.username, values.password).then((userData) => {
                       getData('credentials').then((userCreds) => {
                         // credentials saved do not match those entered, overwrite saved
                         // credentials
                         if (userCreds === null || values.username !== userCreds.username
                           || values.password !== userCreds.password) {
                           // Store user organization
-                          storeUserInformation();
+                          storeUserInformation(userData);
                           handleSaveCredentials(values);
                         } else {
-                          storeUserInformation();
+                          storeUserInformation(userData);
                         }
                       }, () => {
                         // Store user organization
-                        storeUserInformation();
+                        storeUserInformation(userData);
                         // no credentials saved, give option to save
                         handleSaveCredentials(values);
                       });
-                      handleSignIn();
+                      handleSignIn(values, actions.resetForm());
                     }, (err) => {
                       handleFailedAttempt(err);
                     });
@@ -180,7 +172,7 @@ const SignIn = ({ navigation }) => {
                       if (values.username === userCreds.username
                         && values.password === userCreds.password) {
                         // need some pincode verification
-                        handleSignIn();
+                        handleSignIn(values, actions.resetForm());
                       } else {
                         // cannot log in offline without saved credentials, connect to internet
                       }
@@ -192,6 +184,8 @@ const SignIn = ({ navigation }) => {
                 }, 1000);
               }}
               validationSchema={validationSchema}
+              validateOnBlur={false}
+              validateOnChange={false}
             >
               {(formikProps) => (
                 <View>
@@ -203,6 +197,7 @@ const SignIn = ({ navigation }) => {
                     formikProps={formikProps}
                     formikKey="username"
                     placeholder="johndoe@example.com"
+                    value={formikProps.values.username}
                   />
                   <FormInput
                     label={I18n.t('signIn.password')}
@@ -210,6 +205,7 @@ const SignIn = ({ navigation }) => {
                     formikKey="password"
                     placeholder="Password"
                     secureTextEntry={!checked}
+                    value={formikProps.values.password}
                   />
                   <View style={{ flexDirection: 'row' }}>
                     <View style={styles.container}>
@@ -252,28 +248,32 @@ const SignIn = ({ navigation }) => {
           <TermsModal visible={visible} setVisible={setVisible} />
         </SafeAreaView>
       )}
-      {forgotPassword && (
-        <ForgotPassword
-          navigation={navigation}
-          forgotPassword={forgotPassword}
-          setForgotPassword={setForgotPassword}
-        />
-      )}
+      {
+        forgotPassword && (
+          <ForgotPassword
+            navigation={navigation}
+            forgotPassword={forgotPassword}
+            setForgotPassword={setForgotPassword}
+          />
+        )
+      }
 
-      {!forgotPassword && (
-        <View style={styles.footer}>
-          <View style={styles.termsContainer}>
-            <Text style={styles.accountText}>{I18n.t('signIn.noAccount')}</Text>
-            <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp} labelStyle={{ marginLeft: 5 }}>
-              Sign up!
-            </Button>
+      {
+        !forgotPassword && (
+          <View style={styles.footer}>
+            <View style={styles.termsContainer}>
+              <Text style={styles.accountText}>{I18n.t('signIn.noAccount')}</Text>
+              <Button mode="text" theme={theme} color="#3E81FD" onPress={handleSignUp} labelStyle={{ marginLeft: 5 }}>
+                Sign up!
+              </Button>
+            </View>
+            <View style={styles.termsContainer}>
+              <Text style={styles.puenteText}>{I18n.t('signIn.puente2020')}</Text>
+              <Button mode="text" theme={theme} onPress={handleTermsModal} labelStyle={{ marginLeft: 5 }}>{I18n.t('signIn.termsConditions')}</Button>
+            </View>
           </View>
-          <View style={styles.termsContainer}>
-            <Text style={styles.puenteText}>{I18n.t('signIn.puente2020')}</Text>
-            <Button mode="text" theme={theme} onPress={handleTermsModal} labelStyle={{ marginLeft: 5 }}>{I18n.t('signIn.termsConditions')}</Button>
-          </View>
-        </View>
-      )}
+        )
+      }
 
     </KeyboardAvoidingView>
   );

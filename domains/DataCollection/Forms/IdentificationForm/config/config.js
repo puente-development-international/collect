@@ -164,6 +164,14 @@ const configArray = [
     validation: false
   },
   {
+    label: 'identificationForm.subcounty',
+    formikKey: 'subcounty',
+    value: '',
+    fieldType: 'autofill',
+    parameter: 'Sub-county',
+    validation: false
+  },
+  {
     label: 'global.city',
     formikKey: 'city',
     value: '',
@@ -175,7 +183,24 @@ const configArray = [
     label: 'identificationForm.province',
     formikKey: 'province',
     value: '',
-    fieldType: 'input',
+    fieldType: 'autofill',
+    parameter: 'Province',
+    validation: false
+  },
+  {
+    label: 'identificationForm.region',
+    formikKey: 'region',
+    value: '',
+    fieldType: 'autofill',
+    parameter: 'Region',
+    validation: false
+  },
+  {
+    label: 'identificationForm.country',
+    formikKey: 'country',
+    value: '',
+    fieldType: 'autofill',
+    parameter: 'Country',
     validation: false
   },
   {

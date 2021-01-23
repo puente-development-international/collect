@@ -5,11 +5,8 @@ import {
 } from 'react-native';
 import { Formik } from 'formik';
 
-import { postObjectsToClass } from '../../../../services/parse/crud';
-
-import { storeData } from '../../../../modules/async-storage';
-import checkOnlineStatus from '../../../../modules/offline';
-import { generateRandomID, isEmpty } from '../../../../modules/utils';
+import { postIdentificationForm } from '../../../../modules/cached-resources';
+import { isEmpty } from '../../../../modules/utils';
 import { layout } from '../../../../modules/theme';
 import I18n from '../../../../modules/i18n';
 
@@ -83,18 +80,9 @@ const IdentificationForm = ({
               localObject: formObject
             };
 
-            checkOnlineStatus().then((connected) => {
-              if (connected) {
-                postObjectsToClass(postParams).then((surveyee) => {
-                  const surveyeeSanitized = JSON.parse(JSON.stringify(surveyee));
-                  setSurveyee(surveyeeSanitized);
-                  submitAction();
-                });
-              } else {
-                const id = `PatientID-${generateRandomID()}`;
-                storeData(postParams, id);
-                submitAction();
-              }
+            postIdentificationForm(postParams).then((surveyee) => {
+              setSurveyee(surveyee);
+              submitAction();
             });
           }}
           validationSchema={validationSchema}

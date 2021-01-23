@@ -5,7 +5,7 @@ import { Headline, Searchbar, Button } from 'react-native-paper';
 
 import { Spinner } from 'native-base';
 
-import { residentIDQuery } from '../../services/parse/crud';
+import { residentQuery } from '../../modules/cached-resources';
 
 import { getData, storeData } from '../../modules/async-storage';
 import I18n from '../../modules/i18n';
@@ -23,17 +23,27 @@ const FindResidents = ({
   const [query, setQuery] = useState('');
   const [residents, setResidents] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [offline, setOffline] = useState(false);
   useEffect(() => {
+    setOffline(true);
     fetchAsyncData();
-  }, [organization]);
+  }, [organization, offline]);
 
   const fetchAsyncData = () => {
     setLoading(true);
     getData('residentData').then((residentData) => {
       if (residentData) {
-        setData(residentData || []);
-        setResidents(residentData.slice() || [].slice());
+        let offlineData = [];
+        getData('offlineIDForms').then((offlineResidentData) => {
+          if (offlineResidentData !== null) {
+            Object.entries(offlineResidentData).forEach(([key, value]) => { // eslint-disable-line
+              offlineData = offlineData.concat(value.localObject);
+            });
+          }
+          const allData = residentData.concat(offlineData);
+          setData(allData || []);
+          setResidents(allData.slice() || [].slice());
+        });
       }
       setLoading(false);
     });
@@ -49,13 +59,21 @@ const FindResidents = ({
       parseParam: organization,
     };
 
-    let records = await residentIDQuery(queryParams);
-    records = JSON.parse(JSON.stringify(records));
+    const records = await residentQuery(queryParams);
 
     storeData(records, 'residentData');
 
-    setData(records);
-    setResidents(records.slice());
+    let offlineData = [];
+    await getData('offlineIDForms').then((offlineResidentData) => {
+      if (offlineResidentData !== null) {
+        Object.entries(offlineResidentData).forEach(([key, value]) => { // eslint-disable-line
+          offlineData = offlineData.concat(value.localObject);
+        });
+      }
+    });
+    const allData = records.concat(offlineData);
+    setData(allData);
+    setResidents(allData.slice());
     setLoading(false);
   };
 
