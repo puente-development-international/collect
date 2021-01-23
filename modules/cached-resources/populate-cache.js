@@ -11,7 +11,7 @@ export default function populateCache(user) {
     })
     .then(async () => {
       const currentUserAsync = await getData('currentUser');
-      const currentOrgAsync = await getData('organization')
+      const currentOrgAsync = await getData('organization');
       // store information after sign up/sign in
       if (user) {
         if (user !== currentUserAsync) {
@@ -26,7 +26,6 @@ export default function populateCache(user) {
           .then(async (currentUser) => {
             if (currentUser !== null && currentUser !== undefined) {
               if (currentUser !== currentUserAsync) {
-                console.log("stored yser")
                 await storeData(currentUser, 'currentUser');
               }
               if (currentUser.organization !== currentOrgAsync) {
