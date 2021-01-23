@@ -87,6 +87,9 @@ const SupplementaryForm = ({
             description: customForm.description || '',
             formSpecificationsId: customForm.objectId,
             fields: fieldsArray,
+            surveyingUser: formObject.surveyingUser,
+            surveyingOrganization: formObject.surveyingOrganization
+
           };
         }
 
