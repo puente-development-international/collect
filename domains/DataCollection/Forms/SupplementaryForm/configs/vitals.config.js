@@ -100,6 +100,14 @@ const configArray = {
       validation: false
     },
     {
+      label: 'vitals.hemoglobinA1c',
+      sideLabel: 'vitals.gdL',
+      formikKey: 'hemoglobinA1c',
+      value: '',
+      fieldType: 'inputSideLabelNum',
+      validation: false
+    },
+    {
       label: 'vitals.pain',
       formikKey: 'painLevels',
       value: '',
