@@ -1,20 +1,20 @@
+import { Spinner } from 'native-base';
 import * as React from 'react';
 import {
-  View, Text
+  Text,
+  View
 } from 'react-native';
 import {
-  TextInput, Button, Headline,
+  Button, Headline,
+  TextInput,
 } from 'react-native-paper';
-import { Spinner } from 'native-base';
 
 import getLocation from '../../../modules/geolocation';
 import I18n from '../../../modules/i18n';
-import { theme, layout } from '../../../modules/theme';
-
+import { layout, theme } from '../../../modules/theme';
 import PaperButton from '../../Button';
 import AutoFill from './AutoFill';
 import HouseholdManager from './HouseholdManager';
-
 import { stylesDefault, stylesPaper, styleX } from './index.style';
 
 const PaperInputPicker = ({

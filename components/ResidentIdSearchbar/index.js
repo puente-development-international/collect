@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { View, FlatList, Text } from 'react-native';
-import { Headline, Button, Searchbar } from 'react-native-paper';
 import { Spinner } from 'native-base';
-
-import { residentQuery } from '../../modules/cached-resources';
+import React, { useEffect, useState } from 'react';
+import { FlatList, Text, View } from 'react-native';
+import { Button, Headline, Searchbar } from 'react-native-paper';
 
 import { getData } from '../../modules/async-storage';
+import { residentQuery } from '../../modules/cached-resources';
 import I18n from '../../modules/i18n';
-
 import ResidentCard from '../FindResidents/Resident/ResidentCard';
-
 import styles from './index.styles';
 
 const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) => {

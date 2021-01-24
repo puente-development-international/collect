@@ -1,8 +1,8 @@
-import { residentIDQuery, customQueryService } from '../../services/parse/crud';
 import retrievePuenteAutofillData from '../../services/aws';
-import checkOnlineStatus from '../offline';
-import { getData, storeData } from '../async-storage';
+import { customQueryService, residentIDQuery } from '../../services/parse/crud';
 import getTasks from '../../services/tasky';
+import { getData, storeData } from '../async-storage';
+import checkOnlineStatus from '../offline';
 
 async function residentQuery(queryParams) {
   let records = await residentIDQuery(queryParams);
@@ -76,8 +76,8 @@ function getTasksAsync() {
 }
 
 export {
-  residentQuery,
   cacheAutofillData,
   customFormsQuery,
-  getTasksAsync
+  getTasksAsync,
+  residentQuery
 };
