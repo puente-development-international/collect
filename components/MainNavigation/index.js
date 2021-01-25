@@ -35,7 +35,7 @@ const MainNavigation = () => {
           <Stack.Screen
             name="Root"
             component={BottomTabNavigator}
-            options={{ headerShown: false }}
+            options={{ headerShown: false, gestureEnabled: false }}
           />
         </Stack.Navigator>
       </NavigationContainer>
