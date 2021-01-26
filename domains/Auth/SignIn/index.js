@@ -73,8 +73,8 @@ const SignIn = ({ navigation }) => {
     Alert.alert(
       I18n.t('signIn.unableLogin'),
       I18n.t('signIn.usernamePasswordIncorrect'), [
-      { text: 'OK' }
-    ],
+        { text: 'OK' }
+      ],
       { cancelable: true }
     );
   };
@@ -96,15 +96,17 @@ const SignIn = ({ navigation }) => {
         {
           text: 'Yes',
           onPress: () => {
-            let credentials = values;
-            credentials['store'] = 'Yes'
+            const credentials = values;
+            credentials.store = 'Yes';
             storeData(credentials, 'credentials');
             navigation.navigate('StorePincode');
           }
         },
         {
-          text: 'No', style: 'cancel', onPress: () => {
-            navigation.navigate('Root')
+          text: 'No',
+          style: 'cancel',
+          onPress: () => {
+            navigation.navigate('Root');
           }
         },
       ],
@@ -133,8 +135,8 @@ const SignIn = ({ navigation }) => {
   const storeUserInformation = (userData, userCreds) => {
     // store username and password
     if (userCreds) {
-      let credentials = userCreds;
-      credentials['store'] = 'No'
+      const credentials = userCreds;
+      credentials.store = 'No';
       storeData(credentials, 'credentials');
     }
     populateCache(userData);
@@ -180,7 +182,6 @@ const SignIn = ({ navigation }) => {
                     });
                   } else {
                     // offline
-                    console.log("offline")
                     getData('credentials').then((userCreds) => {
                       // username and password entered (or saved in creds) match the saved cred
                       if (values.username === userCreds.username
@@ -243,8 +244,8 @@ const SignIn = ({ navigation }) => {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
-                    )}
+                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                  )}
                   <CredentialsModal
                     modalVisible={modalVisible}
                     formikProps={formikProps}
