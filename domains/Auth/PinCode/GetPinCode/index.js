@@ -6,7 +6,6 @@ import FormInput from '../../../../components/FormikFields/FormInput';
 import { getData, deleteData } from '../../../../modules/async-storage';
 import { retrieveSignInFunction } from '../../../../services/parse/auth';
 import I18n from '../../../../modules/i18n';
-import { populateCache } from '../../../../modules/cached-resources';
 
 const GetPinCode = ({ navigation }) => {
   const [failedAttempts, setFailedAttempts] = useState(1);
@@ -21,8 +20,18 @@ const GetPinCode = ({ navigation }) => {
             getData('credentials')
               .then((userCreds) => {
                 retrieveSignInFunction(userCreds.username, userCreds.password)
-                  .then((currentUser) => {
-                    populateCache(currentUser);
+                  .then(() => {
+                    const currentUser = retrieveCurrentUserAsyncFunction();
+                    getData('currentUser').then((user) => {
+                      if (user !== currentUser) {
+                        storeData(currentUser, 'currentUser');
+                      }
+                    });
+                    getData('organization').then((organization) => {
+                      if (organization !== currentUser.organization) {
+                        storeData(currentUser.organization, 'organization');
+                      }
+                    });
                   });
                 navigation.navigate('Root');
               }, () => {
