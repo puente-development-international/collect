@@ -63,7 +63,7 @@ const SignIn = ({ navigation }) => {
   useEffect(() => {
     getData('credentials').then((values) => {
       setUser(values);
-      if (values != null) {
+      if (values.store === 'Yes') {
         setModalVisible(true);
       }
     });
@@ -73,8 +73,8 @@ const SignIn = ({ navigation }) => {
     Alert.alert(
       I18n.t('signIn.unableLogin'),
       I18n.t('signIn.usernamePasswordIncorrect'), [
-        { text: 'OK' }
-      ],
+      { text: 'OK' }
+    ],
       { cancelable: true }
     );
   };
@@ -96,11 +96,17 @@ const SignIn = ({ navigation }) => {
         {
           text: 'Yes',
           onPress: () => {
-            storeData(values, 'credentials');
+            let credentials = values;
+            credentials['store'] = 'Yes'
+            storeData(credentials, 'credentials');
             navigation.navigate('StorePincode');
           }
         },
-        { text: 'No', style: 'cancel' },
+        {
+          text: 'No', style: 'cancel', onPress: () => {
+            navigation.navigate('Root')
+          }
+        },
       ],
       { cancelable: false }
       // clicking out side of alert will not cancel
@@ -124,7 +130,13 @@ const SignIn = ({ navigation }) => {
     deleteData('credentials');
   };
 
-  const storeUserInformation = (userData) => {
+  const storeUserInformation = (userData, userCreds) => {
+    // store username and password
+    if (userCreds) {
+      let credentials = userCreds;
+      credentials['store'] = 'No'
+      storeData(credentials, 'credentials');
+    }
     populateCache(userData);
   };
 
@@ -147,26 +159,28 @@ const SignIn = ({ navigation }) => {
                       getData('credentials').then((userCreds) => {
                         // credentials saved do not match those entered, overwrite saved
                         // credentials
-                        if (userCreds === null || values.username !== userCreds.username
+                        if (userCreds === null || userCreds.store === 'No' || values.username !== userCreds.username
                           || values.password !== userCreds.password) {
                           // Store user organization
-                          storeUserInformation(userData);
+                          storeUserInformation(userData, values);
                           handleSaveCredentials(values);
                         } else {
                           storeUserInformation(userData);
+                          handleSignIn(values, actions.resetForm());
                         }
                       }, () => {
                         // Store user organization
-                        storeUserInformation(userData);
+                        storeUserInformation(userData, values);
                         // no credentials saved, give option to save
                         handleSaveCredentials(values);
                       });
-                      handleSignIn(values, actions.resetForm());
+                      // handleSignIn(values, actions.resetForm());
                     }, (err) => {
                       handleFailedAttempt(err);
                     });
                   } else {
                     // offline
+                    console.log("offline")
                     getData('credentials').then((userCreds) => {
                       // username and password entered (or saved in creds) match the saved cred
                       if (values.username === userCreds.username
@@ -229,8 +243,8 @@ const SignIn = ({ navigation }) => {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
-                  )}
+                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                    )}
                   <CredentialsModal
                     modalVisible={modalVisible}
                     formikProps={formikProps}
