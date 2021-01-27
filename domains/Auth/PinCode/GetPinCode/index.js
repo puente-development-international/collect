@@ -3,8 +3,8 @@ import { ActivityIndicator } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import { Formik } from 'formik';
 import FormInput from '../../../../components/FormikFields/FormInput';
-import { storeData, getData, deleteData } from '../../../../modules/async-storage';
-import { retrieveSignInFunction, retrieveCurrentUserAsyncFunction } from '../../../../services/parse/auth';
+import { getData, deleteData } from '../../../../modules/async-storage';
+import { retrieveSignInFunction } from '../../../../services/parse/auth';
 import I18n from '../../../../modules/i18n';
 
 const GetPinCode = ({ navigation }) => {
