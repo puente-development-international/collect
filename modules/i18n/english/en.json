@@ -302,8 +302,10 @@
   },
   "dataCollection": {
     "newRecord": "New Record",
+    "newAsset": "New Asset",
     "findRecord": "Find Record",
     "viewAll": "View All Forms",
+    "viewAssets": "View All Assets",
     "back": "Back"
   },
   "home": {

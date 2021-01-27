@@ -304,8 +304,10 @@
   },
   "dataCollection": {
     "newRecord": "Nuevo record",
+    "newAsset": "New Asset",
     "findRecord": "Buscar registro",
     "viewAll": "Ver todos los formularios",
+    "viewAssets": "View All Assets",
     "back": "Atrás"
   },
   "home": {

@@ -26,7 +26,7 @@ const Maps = ({ organization }) => {
   }, []);
 
   const handleLocation = async () => {
-    const currentLocation = await getLocation().catch((e) => e);
+    const currentLocation = await getLocation().then().catch((e) => e);
     const { latitude, longitude } = currentLocation.coords;
     setRegion({
       ...region,
