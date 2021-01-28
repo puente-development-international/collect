@@ -12,8 +12,10 @@ async function residentQuery(queryParams) {
 
 async function cacheResidentData(queryParams) {
   const records = await residentQuery(queryParams);
-  storeData(records, 'residentData');
-  console.log("Stored records")
+  if (records !== null && records !== undefined && records !== '') {
+    storeData(records, 'residentData');
+    console.log("Stored records")
+  }
 }
 
 async function cacheAutofillData(parameter) {
