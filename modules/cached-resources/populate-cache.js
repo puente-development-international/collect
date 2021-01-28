@@ -1,4 +1,4 @@
-import { cacheAutofillData } from './read';
+import { cacheAutofillData, cacheResidentData } from './read';
 import { retrieveCurrentUserAsyncFunction } from '../../services/parse/auth';
 import { storeData } from '../async-storage';
 
@@ -22,5 +22,15 @@ export default function populateCache(user) {
             await storeData(currentUser, 'currentUser');
           });
       }
-    });
+    })
+    .then(() => {
+      const queryParams = {
+        skip: 0,
+        offset: 0,
+        limit: 100000,
+        parseColumn: 'surveyingOrganization',
+        parseParam: user.get("organization"),
+      };
+      cacheResidentData(queryParams);
+    })
 }

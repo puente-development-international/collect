@@ -10,6 +10,12 @@ async function residentQuery(queryParams) {
   return records;
 }
 
+async function cacheResidentData(queryParams) {
+  const records = await residentQuery(queryParams);
+  storeData(records, 'residentData');
+  console.log("Stored records")
+}
+
 async function cacheAutofillData(parameter) {
   return new Promise((resolve, reject) => {
     checkOnlineStatus().then((connected) => {
@@ -77,6 +83,7 @@ function getTasksAsync() {
 
 export {
   residentQuery,
+  cacheResidentData,
   cacheAutofillData,
   customFormsQuery,
   getTasksAsync

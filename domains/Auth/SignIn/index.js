@@ -34,7 +34,7 @@ import TermsModal from '../../../components/TermsModal';
 import BlackLogo from '../../../assets/graphics/static/Logo-Black.svg';
 import ForgotPassword from './ForgotPassword';
 import checkOnlineStatus from '../../../modules/offline';
-import { populateCache } from '../../../modules/cached-resources';
+import { populateCache, cacheResidentData } from '../../../modules/cached-resources';
 
 // components/FormikFields/PaperInputPicker';
 const validationSchema = yup.object().shape({
@@ -73,8 +73,8 @@ const SignIn = ({ navigation }) => {
     Alert.alert(
       I18n.t('signIn.unableLogin'),
       I18n.t('signIn.usernamePasswordIncorrect'), [
-        { text: 'OK' }
-      ],
+      { text: 'OK' }
+    ],
       { cancelable: true }
     );
   };
@@ -139,7 +139,16 @@ const SignIn = ({ navigation }) => {
       credentials.store = 'No';
       storeData(credentials, 'credentials');
     }
-    populateCache(userData);
+    populateCache(userData)
+    const queryParams = {
+      skip: 0,
+      offset: 0,
+      limit: 100000,
+      parseColumn: 'surveyingOrganization',
+      parseParam: userData.get("organization"),
+    };
+    // cacheResidentData()
+    // })
   };
 
   return (
@@ -244,8 +253,8 @@ const SignIn = ({ navigation }) => {
                   {formikProps.isSubmitting ? (
                     <ActivityIndicator />
                   ) : (
-                    <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
-                  )}
+                      <Button mode="contained" theme={theme} style={styles.submitButton} onPress={formikProps.handleSubmit}>{I18n.t('signIn.login')}</Button>
+                    )}
                   <CredentialsModal
                     modalVisible={modalVisible}
                     formikProps={formikProps}
