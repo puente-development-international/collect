@@ -42,8 +42,17 @@ function customFormsQuery(surveyingOrganization) {
     checkOnlineStatus().then((online) => {
       if (online) {
         customQueryService(0, 5000, 'FormSpecificationsV2', 'organizations', surveyingOrganization).then(async (forms) => {
-          await storeData(forms, 'customForms');
-          resolve(JSON.parse(JSON.stringify(forms)));
+          if (forms !== null && forms !== undefined && forms !== '') {
+            await storeData(forms, 'customForms');
+            resolve(JSON.parse(JSON.stringify(forms)));
+          }
+          else {
+            getData('customForms').then((forms) => {
+              resolve(forms);
+            }, (error) => {
+              reject(error);
+            });
+          }
         }, (error) => {
           reject(error);
         });
