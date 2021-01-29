@@ -38,7 +38,7 @@ const IdentificationForm = ({
   const [inputs, setInputs] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
   const [validationSchema, setValidationSchema] = useState();
-  const [submitting, setSubmitting] = useState(false)
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     setInputs(configArray);
@@ -50,7 +50,7 @@ const IdentificationForm = ({
         <Formik
           initialValues={{}}
           onSubmit={async (values) => {
-            setSubmitting(true)
+            setSubmitting(true);
             setPhotoFile('Submitted Photo String');
 
             const formObject = values;
@@ -71,7 +71,7 @@ const IdentificationForm = ({
             const submitAction = () => {
               setTimeout(() => {
                 setSelectedForm('');
-                setSubmitting(false)
+                setSubmitting(false);
               }, 1000);
             };
 
@@ -118,14 +118,14 @@ const IdentificationForm = ({
                   color={theme.colors.primary}
                 />
               ) : (
-                  <PaperButton
-                    onPressEvent={formikProps.handleSubmit}
-                    buttonText={I18n.t('global.submit')}
-                  />
-                  // <Button icon="human" onPress={formikProps.handleSubmit}>
-                  //   <Text>Submit</Text>
-                  // </Button>
-                )}
+                <PaperButton
+                  onPressEvent={formikProps.handleSubmit}
+                  buttonText={I18n.t('global.submit')}
+                />
+              // <Button icon="human" onPress={formikProps.handleSubmit}>
+              //   <Text>Submit</Text>
+              // </Button>
+              )}
             </View>
           )}
         </Formik>
