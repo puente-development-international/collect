@@ -14,7 +14,6 @@ async function cacheResidentData(queryParams) {
   const records = await residentQuery(queryParams);
   if (records !== null && records !== undefined && records !== '') {
     storeData(records, 'residentData');
-    console.log("Stored records")
   }
 }
 
@@ -45,10 +44,9 @@ function customFormsQuery(surveyingOrganization) {
           if (forms !== null && forms !== undefined && forms !== '') {
             await storeData(forms, 'customForms');
             resolve(JSON.parse(JSON.stringify(forms)));
-          }
-          else {
-            getData('customForms').then((forms) => {
-              resolve(forms);
+          } else {
+            getData('customForms').then((customForms) => {
+              resolve(customForms);
             }, (error) => {
               reject(error);
             });

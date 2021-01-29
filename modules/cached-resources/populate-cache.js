@@ -48,5 +48,5 @@ export default function populateCache(user) {
     })
     .then(() => {
       customFormsQuery(user.get('organization'));
-    })
+    });
 }
