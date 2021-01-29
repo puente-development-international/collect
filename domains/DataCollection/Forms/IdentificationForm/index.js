@@ -85,6 +85,9 @@ const IdentificationForm = ({
             postIdentificationForm(postParams).then((surveyee) => {
               setSurveyee(surveyee);
               submitAction();
+            }, () => {
+              // perhaps an alert to let the user know there was an error
+              setSubmitting(false);
             });
           }}
           validationSchema={validationSchema}
@@ -118,14 +121,14 @@ const IdentificationForm = ({
                   color={theme.colors.primary}
                 />
               ) : (
-                <PaperButton
-                  onPressEvent={formikProps.handleSubmit}
-                  buttonText={I18n.t('global.submit')}
-                />
-              // <Button icon="human" onPress={formikProps.handleSubmit}>
-              //   <Text>Submit</Text>
-              // </Button>
-              )}
+                  <PaperButton
+                    onPressEvent={formikProps.handleSubmit}
+                    buttonText={I18n.t('global.submit')}
+                  />
+                  // <Button icon="human" onPress={formikProps.handleSubmit}>
+                  //   <Text>Submit</Text>
+                  // </Button>
+                )}
             </View>
           )}
         </Formik>
