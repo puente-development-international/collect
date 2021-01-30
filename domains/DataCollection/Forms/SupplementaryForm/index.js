@@ -11,8 +11,9 @@ import ErrorPicker from '../../../../components/FormikFields/ErrorPicker';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
 import { postSupplementaryForm } from '../../../../modules/cached-resources';
+
+import { layout, theme } from '../../../../modules/theme';
 import I18n from '../../../../modules/i18n';
-import { layout } from '../../../../modules/theme';
 import { isEmpty } from '../../../../modules/utils';
 import surveyingUserFailsafe from '../utils';
 import envConfig from './configs/envhealth.config';
@@ -27,6 +28,7 @@ const SupplementaryForm = ({
   const [config, setConfig] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
   const [validationSchema, setValidationSchema] = useState();
+  const [submitting, setSubmitting] = useState(false);
 
   const toRoot = () => {
     navigation.navigate('Root');
@@ -51,7 +53,8 @@ const SupplementaryForm = ({
   return (
     <Formik
       initialValues={{}}
-      onSubmit={async (values, actions) => {
+      onSubmit={async (values) => {
+        setSubmitting(true);
         setPhotoFile('Submitted Photo String');
 
         const formObject = values;
@@ -89,11 +92,18 @@ const SupplementaryForm = ({
           };
         }
 
-        postSupplementaryForm(postParams).then(() => {
+        const submitAction = () => {
           setTimeout(() => {
-            actions.setSubmitting(false);
+            setSubmitting(false);
             toRoot();
           }, 1000);
+        };
+
+        postSupplementaryForm(postParams).then(() => {
+          submitAction();
+        }, () => {
+          // perhaps an alert to let the user know there was an error
+          setSubmitting(false);
         });
       }}
       validationSchema={validationSchema}
@@ -119,17 +129,20 @@ const SupplementaryForm = ({
             inputs={config.fields}
           />
 
-          {formikProps.isSubmitting ? (
-            <ActivityIndicator />
+          {submitting ? (
+            <ActivityIndicator
+              size="large"
+              color={theme.colors.primary}
+            />
           ) : (
-            <Button
-              disabled={!surveyee.objectId}
-              onPress={formikProps.handleSubmit}
-            >
-              {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
-              {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
-            </Button>
-          )}
+              <Button
+                disabled={!surveyee.objectId}
+                onPress={formikProps.handleSubmit}
+              >
+                {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
+                {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
+              </Button>
+            )}
         </View>
       )}
     </Formik>
