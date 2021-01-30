@@ -11,9 +11,8 @@ import ErrorPicker from '../../../../components/FormikFields/ErrorPicker';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
 import { postSupplementaryForm } from '../../../../modules/cached-resources';
-
-import { layout, theme } from '../../../../modules/theme';
 import I18n from '../../../../modules/i18n';
+import { layout, theme } from '../../../../modules/theme';
 import { isEmpty } from '../../../../modules/utils';
 import surveyingUserFailsafe from '../utils';
 import envConfig from './configs/envhealth.config';
@@ -135,14 +134,14 @@ const SupplementaryForm = ({
               color={theme.colors.primary}
             />
           ) : (
-              <Button
-                disabled={!surveyee.objectId}
-                onPress={formikProps.handleSubmit}
-              >
-                {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
-                {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
-              </Button>
-            )}
+            <Button
+              disabled={!surveyee.objectId}
+              onPress={formikProps.handleSubmit}
+            >
+              {surveyee.objectId && <Text>{I18n.t('global.submit')}</Text>}
+              {!surveyee.objectId && <Text>{I18n.t('supplementaryForms.attachResident')}</Text>}
+            </Button>
+          )}
         </View>
       )}
     </Formik>

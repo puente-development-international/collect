@@ -115,9 +115,8 @@ function getTasksAsync() {
 
 export {
   assetFormsQuery,
-  residentQuery,
-  cacheResidentData,
   cacheAutofillData,
+  cacheResidentData,
   customFormsQuery,
   getTasksAsync,
   residentQuery
