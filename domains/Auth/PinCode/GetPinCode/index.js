@@ -4,9 +4,10 @@ import { ActivityIndicator } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 
 import FormInput from '../../../../components/FormikFields/FormInput';
-import { deleteData, getData, storeData } from '../../../../modules/async-storage';
+import { getData, deleteData } from '../../../../modules/async-storage';
+import { retrieveSignInFunction } from '../../../../services/parse/auth';
 import I18n from '../../../../modules/i18n';
-import { retrieveCurrentUserAsyncFunction, retrieveSignInFunction } from '../../../../services/parse/auth';
+import { populateCache } from '../../../../modules/cached-resources';
 
 const GetPinCode = ({ navigation }) => {
   const [failedAttempts, setFailedAttempts] = useState(1);
@@ -21,18 +22,8 @@ const GetPinCode = ({ navigation }) => {
             getData('credentials')
               .then((userCreds) => {
                 retrieveSignInFunction(userCreds.username, userCreds.password)
-                  .then(() => {
-                    const currentUser = retrieveCurrentUserAsyncFunction();
-                    getData('currentUser').then((user) => {
-                      if (user !== currentUser) {
-                        storeData(currentUser, 'currentUser');
-                      }
-                    });
-                    getData('organization').then((organization) => {
-                      if (organization !== currentUser.organization) {
-                        storeData(currentUser.organization, 'organization');
-                      }
-                    });
+                  .then((currentUser) => {
+                    populateCache(currentUser);
                   });
                 navigation.navigate('Root');
               }, () => {
@@ -71,10 +62,10 @@ const GetPinCode = ({ navigation }) => {
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
-              <Text>{I18n.t('global.submit')}</Text>
-            </Button>
-          )}
+              <Button onPress={formikProps.handleSubmit}>
+                <Text>{I18n.t('global.submit')}</Text>
+              </Button>
+            )}
         </>
       )}
     </Formik>
