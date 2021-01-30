@@ -22,7 +22,7 @@ const Maps = ({ organization }) => {
 
   useEffect(() => {
     retriveAsyncMarkers();
-    handleLocation();
+    handleLocation().then().catch();
   }, []);
 
   const handleLocation = async () => {

@@ -4,10 +4,10 @@ import { ActivityIndicator } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 
 import FormInput from '../../../../components/FormikFields/FormInput';
-import { getData, deleteData } from '../../../../modules/async-storage';
-import { retrieveSignInFunction } from '../../../../services/parse/auth';
-import I18n from '../../../../modules/i18n';
+import { deleteData, getData } from '../../../../modules/async-storage';
 import { populateCache } from '../../../../modules/cached-resources';
+import I18n from '../../../../modules/i18n';
+import { retrieveSignInFunction } from '../../../../services/parse/auth';
 
 const GetPinCode = ({ navigation }) => {
   const [failedAttempts, setFailedAttempts] = useState(1);
@@ -62,10 +62,10 @@ const GetPinCode = ({ navigation }) => {
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-              <Button onPress={formikProps.handleSubmit}>
-                <Text>{I18n.t('global.submit')}</Text>
-              </Button>
-            )}
+            <Button onPress={formikProps.handleSubmit}>
+              <Text>{I18n.t('global.submit')}</Text>
+            </Button>
+          )}
         </>
       )}
     </Formik>

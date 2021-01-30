@@ -285,6 +285,9 @@
   "supplementaryForms": {
     "attachResident": "Attach a Community Resident"
   },
+  "assetForms": {
+    "attachForm": "Attach a Form to the Asset"
+  },
   "forms": {
     "successfullySubmitted": "Form successfully submitted",
     "grabCoffee": "Great job, grab yourself a coffee",

@@ -2,8 +2,6 @@ import {
   StyleSheet
 } from 'react-native';
 
-import { theme } from '../../../../../modules/theme';
-
 const styles = StyleSheet.create({
   assetContainer: {
     flex: 1,

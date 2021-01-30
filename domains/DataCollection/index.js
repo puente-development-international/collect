@@ -85,7 +85,7 @@ const DataCollection = ({ navigation }) => {
     await getData('organization').then((org) => {
       setSurveyingOrganization(org || surveyingOrganization || '');
       setView('Assets');
-      setSelectedAsset(null);
+      setSelectedAsset({});
     });
   };
 
@@ -93,7 +93,7 @@ const DataCollection = ({ navigation }) => {
     await getData('organization').then((org) => {
       setSurveyingOrganization(org || surveyingOrganization || '');
       setView('Assets');
-      setSelectedAsset('');
+      setSelectedAsset(null);
     });
   };
 
@@ -205,7 +205,9 @@ const DataCollection = ({ navigation }) => {
                   <Text>{I18n.t('dataCollection.back')}</Text>
                 </Button>
                 <Assets
+                  surveyingOrganization={surveyingOrganization}
                   selectedAsset={selectedAsset}
+                  setSelectedAsset={setSelectedAsset}
                   navigateToNewAssets={navigateToNewAssets}
                   navigateToViewAllAssets={navigateToViewAllAssets}
                 />

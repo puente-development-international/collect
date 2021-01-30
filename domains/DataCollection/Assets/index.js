@@ -5,17 +5,20 @@ import NewAssets from './NewAssets';
 import ViewAssets from './ViewAssets';
 
 const Assets = ({
-  selectedAsset
+  selectedAsset, setSelectedAsset, surveyingOrganization
+  //  navigateToNewAssets, navigateToViewAllAssets
 }) => (
   <View>
-    {/* <TouchableWithoutFeedback  accessible={false}> */}
-    {selectedAsset === null && (
-      <NewAssets />
+    {selectedAsset && (
+      <NewAssets
+        setSelectedAsset={setSelectedAsset}
+        selectedAsset={selectedAsset}
+        surveyingOrganization={surveyingOrganization}
+      />
     )}
-    {selectedAsset === '' && (
+    {selectedAsset === null && (
       <ViewAssets />
     )}
-    {/* </TouchableWithoutFeedback> */}
   </View>
 );
 

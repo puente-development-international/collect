@@ -1,6 +1,6 @@
 import { retrieveCurrentUserAsyncFunction } from '../../services/parse/auth';
-import { cacheAutofillData } from './read';
 import { getData, storeData } from '../async-storage';
+import { cacheAutofillData } from './read';
 
 export default function populateCache(user) {
   // communities called since we need a paramter, all data would be cached in the

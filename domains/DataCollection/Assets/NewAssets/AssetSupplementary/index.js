@@ -1,82 +1,116 @@
 import { Formik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { ScrollView } from 'react-native-gesture-handler';
+import { Button, Headline, Text } from 'react-native-paper';
 
+import PaperInputPicker from '../../../../../components/FormikFields/PaperInputPicker';
+import { postSupplementaryForm } from '../../../../../modules/cached-resources';
 import I18n from '../../../../../modules/i18n';
 import { layout } from '../../../../../modules/theme';
-import styles from './index.styles';
-import SelectedAsset from './SelectedAsset';
+import { addSelectTextInputs } from '../../../Forms/SupplementaryForm/utils';
+import AssetSelect from './AssetSelect';
 
-const AssetSupplementary = () => (
-  <Formik
-    initialValues={{}}
-    onSubmit={async (values, actions) => {
-      setPhotoFile('Submitted Photo String');
+const AssetSupplementary = ({ selectedAsset, surveyingOrganization }) => {
+  const [viewSupplementaryForms, setViewSupplementaryForms] = useState(false);
+  const [selectedForm, setSelectedForm] = useState();
+  const [photoFile, setPhotoFile] = useState('State Photo String');
+  return (
+    <ScrollView>
+      <Formik
+        initialValues={{}}
+        onSubmit={async (values, actions) => {
+          setPhotoFile('Submitted Photo String');
 
-      const formObject = values;
-      // formObject.surveyingOrganization = surveyingOrganization;
-      // formObject.surveyingUser = await surveyingUserFailsafe(surveyingUser, isEmpty);
+          const formObject = values;
+          // formObject.latitude = values.location?.latitude || 0;
+          // formObject.longitude = values.location?.longitude || 0;
+          // formObject.altitude = values.location?.altitude || 0;
 
-      // formObject.latitude = values.location?.latitude || 0;
-      // formObject.longitude = values.location?.longitude || 0;
-      // formObject.altitude = values.location?.altitude || 0;
+          let formObjectUpdated = addSelectTextInputs(values, formObject);
 
-      // const submitAction = () => {
-      //   setTimeout(() => {
-      //     actions.setSubmitting(false);
-      //   }, 1000);
-      //   setSelectedForm('');
-      // };
+          const fieldsArray = Object.entries(formObject).map((obj) => ({
+            title: obj[0],
+            answer: obj[1]
+          }));
 
-      // const postParams = {
-      //   parseClass: 'SurveyData',
-      //   signature: 'Sample Signature',
-      //   photoFile,
-      //   localObject: formObject
-      // };
+          formObjectUpdated = {
+            title: selectedForm.name || '',
+            description: selectedForm.description || '',
+            formSpecificationsId: selectedForm.objectId,
+            fields: fieldsArray,
+            // surveyingUser: formObject.surveyingUser,
+            surveyingOrganization,
+          };
 
-      // postIdentificationForm(postParams).then((surveyee) => {
-      //   setSurveyee(surveyee);
-      //   submitAction();
-      // });
-    }}
-  >
-    {(formikProps) => (
-      <View>
-        <View>
-          <SelectedAsset />
-          <Button compact mode="contained">Plus Button for Attaching New Forms</Button>
-        </View>
-        <View>
-          <View style={layout.formContainer}>
+          const postParams = {
+            parseParentClass: 'FormResults',
+            parseClass: selectedForm.class,
+            photoFile,
+            localObject: formObjectUpdated,
+            typeOfForm: 'Asset'
 
-            {/* {inputs.length && inputs.map((result) => (
-              <View key={result.formikKey}>
-                <PaperInputPicker
-                  data={result}
-                  formikProps={formikProps}
-                  surveyingOrganization={surveyingOrganization}
-                  scrollViewScroll={scrollViewScroll}
-                  setScrollViewScroll={setScrollViewScroll}
-                  customForm={false}
-                />
+          };
+          const submitAction = () => {
+            setTimeout(() => {
+              actions.setSubmitting(false);
+            }, 1000);
+            setSelectedForm('');
+          };
+
+          postSupplementaryForm(postParams)
+            .then(() => {
+              submitAction();
+              setSelectedForm({});
+            })
+            .catch((e) => console.log(e)); //eslint-disable-line
+        }}
+      >
+        {(formikProps) => (
+          <View>
+            <View>
+              <Button compact mode="contained" onPress={() => setViewSupplementaryForms(!viewSupplementaryForms)}>Show Available Asset Forms</Button>
+              {viewSupplementaryForms === true
+                && (
+                  <AssetSelect
+                    setViewSupplementaryForms={setViewSupplementaryForms}
+                    setSelectedForm={setSelectedForm}
+                  />
+                )}
+            </View>
+            <View>
+              {Object.keys(selectedAsset).length !== 0 && selectedAsset.constructor !== Object
+                && <Headline>{selectedAsset.get('Name')}</Headline>}
+            </View>
+            <View>
+              <View style={layout.formContainer}>
+                {selectedForm?.fields.length && selectedForm.fields.map((result) => (
+                  <View key={result.formikKey}>
+                    <PaperInputPicker
+                      data={result}
+                      formikProps={formikProps}
+                      customForm
+                    />
+                  </View>
+                ))}
+                {formikProps.isSubmitting ? (
+                  <ActivityIndicator />
+                ) : (
+                  <Button
+                    disabled={!selectedAsset?.id}
+                    onPress={formikProps.handleSubmit}
+                    mode="outlined"
+                  >
+                    {selectedAsset?.id && <Text>{I18n.t('global.submit')}</Text>}
+                    {!selectedAsset?.id && <Text>{I18n.t('assetForms.attachForm')}</Text>}
+                  </Button>
+                )}
               </View>
-            ))} */}
-            <Text>AssetSupplementary</Text>
-            {formikProps.isSubmitting ? (
-              <ActivityIndicator />
-            ) : (
-              <Button
-                onPressEvent={formikProps.handleSubmit}
-                buttonText={I18n.t('global.submit')}
-              />
-            )}
+            </View>
           </View>
-        </View>
-      </View>
-    )}
-  </Formik>
-);
-
+        )}
+      </Formik>
+    </ScrollView>
+  );
+};
 export default AssetSupplementary;

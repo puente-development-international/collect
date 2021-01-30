@@ -52,6 +52,29 @@ function customFormsQuery(surveyingOrganization) {
   });
 }
 
+function assetFormsQuery() {
+  return new Promise((resolve, reject) => {
+    checkOnlineStatus().then((online) => {
+      if (online) {
+        customQueryService(0, 5000, 'FormSpecificationsV2', 'typeOfForm', 'Assets').then(async (forms) => {
+          await storeData(forms, 'assetForms');
+          resolve(JSON.parse(JSON.stringify(forms)));
+        }, (error) => {
+          reject(error);
+        });
+      } else {
+        getData('assetForms').then((forms) => {
+          resolve(forms);
+        }, (error) => {
+          reject(error);
+        });
+      }
+    }, (error) => {
+      reject(error);
+    });
+  });
+}
+
 function getTasksAsync() {
   return new Promise((resolve, reject) => {
     checkOnlineStatus().then(async (online) => {
@@ -76,6 +99,7 @@ function getTasksAsync() {
 }
 
 export {
+  assetFormsQuery,
   cacheAutofillData,
   customFormsQuery,
   getTasksAsync,

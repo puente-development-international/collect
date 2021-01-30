@@ -1,8 +1,4 @@
-import {
-  StyleSheet
-} from 'react-native';
-
-import { theme } from '../../../../../modules/theme';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   assetContainer: {

@@ -5,13 +5,20 @@ import { StyleSheet, View } from 'react-native';
 import AssetCore from './AssetCore';
 import AssetSupplementary from './AssetSupplementary';
 
-const NewAsset = () => (
+const NewAsset = ({ selectedAsset, setSelectedAsset, surveyingOrganization }) => (
   <ViewPager style={styles.viewPager} initialPage={0}>
     <View key="1" style={styles.page}>
-      <AssetCore />
+      <AssetCore
+        setSelectedAsset={setSelectedAsset}
+        selectedAsset={selectedAsset}
+        surveyingOrganization={surveyingOrganization}
+      />
     </View>
     <View key="2" style={styles.page}>
-      <AssetSupplementary />
+      <AssetSupplementary
+        selectedAsset={selectedAsset}
+        surveyingOrganization={surveyingOrganization}
+      />
     </View>
   </ViewPager>
 );

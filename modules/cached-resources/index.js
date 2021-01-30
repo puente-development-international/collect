@@ -7,6 +7,7 @@ import {
   postSupplementaryForm
 } from './Post/post';
 import {
+  assetFormsQuery,
   cacheAutofillData,
   customFormsQuery,
   getTasksAsync,
@@ -14,6 +15,7 @@ import {
 } from './read';
 
 export {
+  assetFormsQuery,
   cacheAutofillData,
   customFormsQuery,
   getTasksAsync,
