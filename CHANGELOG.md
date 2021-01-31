@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [10.4.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.3.2...v10.4.0) (2021-01-31)
+
+
+### New Features
+
+* add a1c levels to vitals forms ([2f9e61f](https://github.com/hopetambala/puente-reactnative-collect/commit/2f9e61f66254f7e4db79fd08d8c9a56abe54b4a8))
+* asset forms completed :tada: ([a948e74](https://github.com/hopetambala/puente-reactnative-collect/commit/a948e74f94a80b891d2ba86e862ca8bbbe609f9e))
+* offline sign in, fix for memory leak ([8fa16c0](https://github.com/hopetambala/puente-reactnative-collect/commit/8fa16c01032efe18784b14e60a0276f4c5dcea97))
+
+
+### Bug fixes
+
+* add other as option to env health ([dcec088](https://github.com/hopetambala/puente-reactnative-collect/commit/dcec0880e54ab30651c5c8751497b3bd33c5edc1))
+* add surveyingUser and surveyingOrganization to custom forms ([1bbaa39](https://github.com/hopetambala/puente-reactnative-collect/commit/1bbaa39b89e25246635b8286c2c751d70e049485))
+* async currentUser logic updated ([806b1b3](https://github.com/hopetambala/puente-reactnative-collect/commit/806b1b3911a3ba9dd92fe94e9e48b4cd04d0c90c))
+* cauche custom forms in populate cache ([d79778c](https://github.com/hopetambala/puente-reactnative-collect/commit/d79778c3b0cced404bee83514626c57714f0075c))
+* cleanup submission logic and remove autoposting of offline ([db5a158](https://github.com/hopetambala/puente-reactnative-collect/commit/db5a158b50957dea47711857b1fd88b7e8ec3ae7))
+* error handling for submissino activityIndicator ([db8f4b4](https://github.com/hopetambala/puente-reactnative-collect/commit/db8f4b45cd8129779be97c6b8935b6d6f8165856))
+* loading icon on submit ([cc67451](https://github.com/hopetambala/puente-reactnative-collect/commit/cc674511b169fdb1794bac2d62d1c8e01ad0dd7d))
+* merge conflicts between master and asset form ([219b5b4](https://github.com/hopetambala/puente-reactnative-collect/commit/219b5b4a82da909091a8a6bddef949c9790fb6d4))
+* remove gestures that enabled swiping to login screen error ([6bb8c27](https://github.com/hopetambala/puente-reactnative-collect/commit/6bb8c27fe2fd8abe5b9da3130c2a9a93c86078c4))
+* store surveyData on sign in ([be8f088](https://github.com/hopetambala/puente-reactnative-collect/commit/be8f0889455096dd4a367fcee2fcb38d7c82b15f))
+
 ### [10.3.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.3.1...v10.3.2) (2021-01-10)
 
 
