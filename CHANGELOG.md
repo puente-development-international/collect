@@ -17,7 +17,7 @@ All notable changes to this project will be documented in this file. See [standa
 * add other as option to env health ([dcec088](https://github.com/hopetambala/puente-reactnative-collect/commit/dcec0880e54ab30651c5c8751497b3bd33c5edc1))
 * add surveyingUser and surveyingOrganization to custom forms ([1bbaa39](https://github.com/hopetambala/puente-reactnative-collect/commit/1bbaa39b89e25246635b8286c2c751d70e049485))
 * async currentUser logic updated ([806b1b3](https://github.com/hopetambala/puente-reactnative-collect/commit/806b1b3911a3ba9dd92fe94e9e48b4cd04d0c90c))
-* cauche custom forms in populate cache ([d79778c](https://github.com/hopetambala/puente-reactnative-collect/commit/d79778c3b0cced404bee83514626c57714f0075c))
+* cache custom forms in populate cache ([d79778c](https://github.com/hopetambala/puente-reactnative-collect/commit/d79778c3b0cced404bee83514626c57714f0075c))
 * cleanup submission logic and remove autoposting of offline ([db5a158](https://github.com/hopetambala/puente-reactnative-collect/commit/db5a158b50957dea47711857b1fd88b7e8ec3ae7))
 * error handling for submissino activityIndicator ([db8f4b4](https://github.com/hopetambala/puente-reactnative-collect/commit/db8f4b45cd8129779be97c6b8935b6d6f8165856))
 * loading icon on submit ([cc67451](https://github.com/hopetambala/puente-reactnative-collect/commit/cc674511b169fdb1794bac2d62d1c8e01ad0dd7d))

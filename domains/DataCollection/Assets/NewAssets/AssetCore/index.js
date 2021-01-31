@@ -76,22 +76,17 @@ const AssetCore = ({ setSelectedAsset, surveyingOrganization }) => {
               <View id="middle" style={{ flexDirection: 'row' }}>
                 <View>
                   <PaperButton
-                    buttonText="Show People"
+                    buttonText='Show "Add People"'
                     onPressEvent={toggleModal}
                   />
-                  {/* <PaperButton
-                    buttonText="GPS"
-                    onPressEvent
-                  />
-                  <PaperButton
-                    buttonText="Camera"
-                  /> */}
                 </View>
                 <Portal>
-
                   <Modal visible={visible} onDismiss={toggleModal}>
+                    <PaperButton
+                      buttonText='Hide "Add People"'
+                      onPressEvent={toggleModal}
+                    />
                     <ScrollView>
-
                       {people.map((x, i) => (
                         <View>
                           <TextInput
