@@ -10,6 +10,7 @@ import {
 
 import ComingSoonSVG from '../../assets/graphics/static/Adventurer.svg';
 import FindRecordSVG from '../../assets/graphics/static/Find-Record-Icon.svg';
+import ResearchSVG from '../../assets/graphics/static/Research.svg';
 import NewRecordSVG from '../../assets/icons/New-Record-icon.svg';
 import FindResidents from '../../components/FindResidents';
 import Header from '../../components/Header';
@@ -161,13 +162,12 @@ const DataCollection = ({ navigation }) => {
                   </Card>
                   <View style={styles.cardContainer}>
                     <Card style={styles.cardSmallStyle} onPress={navigateToNewAssets}>
-                      {/* <NewRecordSVG height={70} style={styles.svg} /> */}
+                      <ResearchSVG height={70} width={70} style={styles.svg} />
                       <Text style={styles.text}>{I18n.t('dataCollection.newAsset')}</Text>
                     </Card>
-                    <Card style={styles.cardSmallStyle} onPress={navigateToViewAllAssets}>
-                      {/* <FindRecordSVG height={65} style={styles.svg} /> */}
-                      <Text style={styles.text}>{I18n.t('dataCollection.viewAssets')}</Text>
-                    </Card>
+                    <View style={styles.cardSmallStyle} onPress={navigateToViewAllAssets}>
+                      {/* <Text style={styles.text}>{I18n.t('dataCollection.viewAssets')}</Text> */}
+                    </View>
                   </View>
                 </View>
               </View>

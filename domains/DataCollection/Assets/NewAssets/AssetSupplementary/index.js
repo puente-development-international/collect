@@ -99,7 +99,6 @@ const AssetSupplementary = ({ selectedAsset, surveyingOrganization }) => {
                   <Button
                     disabled={!selectedAsset?.id}
                     onPress={formikProps.handleSubmit}
-                    mode="outlined"
                   >
                     {selectedAsset?.id && <Text>{I18n.t('global.submit')}</Text>}
                     {!selectedAsset?.id && <Text>{I18n.t('assetForms.attachForm')}</Text>}
