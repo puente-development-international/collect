@@ -22,8 +22,7 @@ const Maps = ({ organization }) => {
 
   useEffect(() => {
     retriveAsyncMarkers();
-    handleLocation().then().catch();
-  }, []);
+  });
 
   const handleLocation = async () => {
     const currentLocation = await getLocation().then().catch((e) => e);
