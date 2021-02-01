@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.4.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.4.1...v10.4.2) (2021-02-01)
+
+
+### Bug fixes
+
+* hotfix to have mapview render once ([57066ed](https://github.com/hopetambala/puente-reactnative-collect/commit/57066ed783f723b0c18e784ed565f447ac42eb3f))
+
 ### [10.4.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.4.0...v10.4.1) (2021-02-01)
 
 ## [10.4.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.3.2...v10.4.0) (2021-01-31)
