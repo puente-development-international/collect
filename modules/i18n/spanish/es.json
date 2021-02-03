@@ -287,6 +287,9 @@
   "supplementaryForms": {
     "attachResident": "Adjuntar una residente de la comunidad"
   },
+  "assetForms": {
+    "attachForm": "Adjuntar una forma al activo"
+  },
   "forms": {
     "successfullySubmitted": "Formulario entregado satisfactoriamente",
     "grabCoffee": "Buen trabajo, tómate un café",
@@ -304,8 +307,10 @@
   },
   "dataCollection": {
     "newRecord": "Nuevo record",
+    "newAsset": "New Asset",
     "findRecord": "Buscar registro",
     "viewAll": "Ver todos los formularios",
+    "viewAssets": "View All Assets",
     "back": "Atrás"
   },
   "home": {

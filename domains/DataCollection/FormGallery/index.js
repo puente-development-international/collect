@@ -1,17 +1,17 @@
 import React from 'react';
 import {
-  View, ScrollView, StyleSheet
+  ScrollView, StyleSheet,
+  View
 } from 'react-native';
 import {
-  Text, Button, Title, Paragraph, Card
+  Button, Card,
+  Paragraph, Text, Title
 } from 'react-native-paper';
 
-import { theme, layout } from '../../../modules/theme';
-import I18n from '../../../modules/i18n';
-
-import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
-
 import ComingSoonSVG from '../../../assets/graphics/static/Adventurer.svg';
+import SmallCardsCarousel from '../../../components/Cards/SmallCardsCarousel';
+import I18n from '../../../modules/i18n';
+import { layout, theme } from '../../../modules/theme';
 
 const FormGallery = (props) => {
   const {

@@ -1,12 +1,13 @@
+import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { ActivityIndicator } from 'react-native';
-import { Text, Button } from 'react-native-paper';
-import { Formik } from 'formik';
+import { Button, Text } from 'react-native-paper';
+
 import FormInput from '../../../../components/FormikFields/FormInput';
-import { getData, deleteData } from '../../../../modules/async-storage';
-import { retrieveSignInFunction } from '../../../../services/parse/auth';
-import I18n from '../../../../modules/i18n';
+import { deleteData, getData } from '../../../../modules/async-storage';
 import { populateCache } from '../../../../modules/cached-resources';
+import I18n from '../../../../modules/i18n';
+import { retrieveSignInFunction } from '../../../../services/parse/auth';
 
 const GetPinCode = ({ navigation }) => {
   const [failedAttempts, setFailedAttempts] = useState(1);
