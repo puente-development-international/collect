@@ -1,11 +1,12 @@
 import { Spinner } from 'native-base';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { IconButton } from 'react-native-paper';
 
 import { getData } from '../../modules/async-storage';
 import getLocation from '../../modules/geolocation';
+import checkOnlineStatus from '../../modules/offline';
 import { theme } from '../../modules/theme';
 import { residentIDQuery } from '../../services/parse/crud';
 
@@ -20,10 +21,6 @@ const Maps = ({ organization }) => {
   const [markers, setMarkers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    retriveAsyncMarkers();
-  });
-
   const handleLocation = async () => {
     const currentLocation = await getLocation().then().catch((e) => e);
     const { latitude, longitude } = currentLocation.coords;
@@ -35,14 +32,16 @@ const Maps = ({ organization }) => {
   };
 
   const retriveAsyncMarkers = () => {
+    setLoading(true);
     getData('residentData').then((residentData) => {
       if (residentData) {
         setMarkers(residentData);
       }
+      setLoading(false);
     });
   };
 
-  const retrieveMarkers = () => {
+  const retrieveOnlineMarkers = () => {
     setLoading(true);
     const queryParams = {
       skip: 0,
@@ -56,6 +55,16 @@ const Maps = ({ organization }) => {
       const records = JSON.parse(JSON.stringify(recs));
       setMarkers(records);
       setLoading(false);
+    });
+  };
+
+  const retrieveMarkers = () => {
+    checkOnlineStatus().then(async (online) => {
+      if (online) {
+        retrieveOnlineMarkers();
+      } else {
+        retriveAsyncMarkers();
+      }
     });
   };
 
