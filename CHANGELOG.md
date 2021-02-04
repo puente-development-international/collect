@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.5.4](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.5.3...v10.5.4) (2021-02-04)
+
+
+### Bug fixes
+
+* inability to refresh custom forms on or offline ([21c85e9](https://github.com/hopetambala/puente-reactnative-collect/commit/21c85e9e20688b0d042bb4dd77b66d8ec4587247))
+* refresh check online status for search bar ([e8fa6a0](https://github.com/hopetambala/puente-reactnative-collect/commit/e8fa6a0e9a282176a13e9af4d8a364fb5d823c04))
+
 ### [10.5.3](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.5.2...v10.5.3) (2021-02-04)
 
 ### [10.5.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.5.1...v10.5.2) (2021-02-04)
