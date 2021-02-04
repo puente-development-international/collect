@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
+import React, { useEffect } from 'react';
 
-import { storeData, getData } from '../async-storage';
 import { residentIDQuery } from '../../services/parse/crud';
+import { getData, storeData } from '../async-storage';
 
 const fetchResidentData = async (surveyingOrganization) => {
   const queryParams = {
