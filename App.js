@@ -5,7 +5,6 @@ import { enableScreens } from 'react-native-screens';
 import { Provider as StoreProvider } from 'react-redux';
 
 import MainNavigation from './components/MainNavigation';
-import useCachedResources from './modules/cached-resources/useCachedResources';
 import configureStore from './modules/state-management/configure-store';
 import { theme } from './modules/theme';
 
@@ -16,11 +15,11 @@ if (Platform.OS === 'android') {
 }
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
+  // const isLoadingComplete = useCachedResources();
 
-  if (!isLoadingComplete) {
-    return null;
-  }
+  // if (!isLoadingComplete) {
+  //   return null;
+  // }
   return (
     <StoreProvider store={store}>
       <PaperProvider theme={theme}>
