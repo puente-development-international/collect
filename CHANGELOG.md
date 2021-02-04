@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [10.5.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.5.1...v10.5.2) (2021-02-04)
+
+### [10.5.1](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.5.0...v10.5.1) (2021-02-04)
+
+
+### Bug fixes
+
+* customFormsQuery has empty arrays when connected ([23e31cc](https://github.com/hopetambala/puente-reactnative-collect/commit/23e31cc8d393843adab3e8d6040aceeecc65003c))
+* hotfix for pincode offline ([9ff9159](https://github.com/hopetambala/puente-reactnative-collect/commit/9ff915970b5573a26b1d10a6db2bbb13e23abec6))
+* remove deletes ([0b93ddb](https://github.com/hopetambala/puente-reactnative-collect/commit/0b93ddb5e7db8ad688c369253e8fecdd9fe303a9))
+
 ## [10.5.0](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.4.2...v10.5.0) (2021-02-03)
 
 ### [10.4.2](https://github.com/hopetambala/puente-reactnative-collect/compare/v10.4.1...v10.4.2) (2021-02-01)
