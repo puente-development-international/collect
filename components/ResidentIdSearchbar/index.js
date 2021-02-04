@@ -8,6 +8,7 @@ import { residentQuery } from '../../modules/cached-resources';
 import I18n from '../../modules/i18n';
 import ResidentCard from '../FindResidents/Resident/ResidentCard';
 import styles from './index.styles';
+import checkOnlineStatus from '../../modules/offline'
 
 const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) => {
   const [data, setData] = useState([]);
@@ -42,27 +43,31 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
 
   const fetchData = async () => {
     setLoading(true);
-    const queryParams = {
-      skip: 0,
-      offset: 0,
-      limit: 100000,
-      parseColumn: 'surveyingOrganization',
-      parseParam: surveyingOrganization,
-    };
-    const records = await residentQuery(queryParams);
-    let offlineData = [];
-    await getData('offlineIDForms').then((offlineResidentData) => {
-      if (offlineResidentData !== null) {
-        Object.entries(offlineResidentData).forEach(([key, value]) => { //eslint-disable-line
-          offlineData = offlineData.concat(value.localObject);
+    checkOnlineStatus().then(async (connected) => {
+      if (connected) {
+        const queryParams = {
+          skip: 0,
+          offset: 0,
+          limit: 100000,
+          parseColumn: 'surveyingOrganization',
+          parseParam: surveyingOrganization,
+        };
+        const records = await residentQuery(queryParams);
+        let offlineData = [];
+        await getData('offlineIDForms').then((offlineResidentData) => {
+          if (offlineResidentData !== null) {
+            Object.entries(offlineResidentData).forEach(([key, value]) => { //eslint-disable-line
+              offlineData = offlineData.concat(value.localObject);
+            });
+          }
         });
+        // console.log(allData)
+        const allData = records.concat(offlineData);
+        setData(allData);
+        setResidents(allData.slice());
       }
-    });
-    // console.log(allData)
-    const allData = records.concat(offlineData);
-    setData(allData);
-    setResidents(allData.slice());
-    setLoading(false);
+      setLoading(false);
+    })
   };
 
   const filterList = () => data.filter(
