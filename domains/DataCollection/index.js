@@ -15,7 +15,7 @@ import NewRecordSVG from '../../assets/icons/New-Record-icon.svg';
 import FindResidents from '../../components/FindResidents';
 import Header from '../../components/Header';
 import MapView from '../../components/MapView';
-import { deleteData, getData } from '../../modules/async-storage';
+import { getData } from '../../modules/async-storage';
 import { customFormsQuery } from '../../modules/cached-resources';
 import I18n from '../../modules/i18n';
 import { layout } from '../../modules/theme';
@@ -117,10 +117,6 @@ const DataCollection = ({ navigation }) => {
 
   const logOut = () => {
     retrieveSignOutFunction().then(() => {
-      deleteData('credentials');
-      deleteData('pincode');
-      deleteData('organization');
-      deleteData('currentUser');
       navigation.navigate('Sign In');
     });
   };
