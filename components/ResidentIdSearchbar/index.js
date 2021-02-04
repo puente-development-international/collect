@@ -61,7 +61,6 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
             });
           }
         });
-        // console.log(allData)
         const allData = records.concat(offlineData);
         setData(allData);
         setResidents(allData.slice());
@@ -125,7 +124,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
         onChangeText={onChangeSearch}
         value={query}
       />
-      <Button onPress={fetchData}>Refresh</Button>
+      <Button onPress={fetchData}>{I18n.t('global.refresh')}</Button>
       {loading
         && <Spinner color="blue" />}
 
