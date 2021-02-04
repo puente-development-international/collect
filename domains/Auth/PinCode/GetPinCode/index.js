@@ -8,6 +8,7 @@ import { deleteData, getData } from '../../../../modules/async-storage';
 import { populateCache } from '../../../../modules/cached-resources';
 import I18n from '../../../../modules/i18n';
 import { retrieveSignInFunction } from '../../../../services/parse/auth';
+import checkOnlineStatus from '../../../../modules/offline';
 
 const GetPinCode = ({ navigation }) => {
   const [failedAttempts, setFailedAttempts] = useState(1);
@@ -19,16 +20,23 @@ const GetPinCode = ({ navigation }) => {
         getData('pincode').then((pincode) => {
           if (values.pincode === pincode) {
             // IF ONLINE, otherwise just log in
-            getData('credentials')
-              .then((userCreds) => {
-                retrieveSignInFunction(userCreds.username, userCreds.password)
-                  .then((currentUser) => {
-                    populateCache(currentUser);
+            checkOnlineStatus().then((connected) => {
+              if (connected) {
+                getData('credentials')
+                  .then((userCreds) => {
+                    retrieveSignInFunction(userCreds.username, userCreds.password)
+                      .then((currentUser) => {
+                        populateCache(currentUser);
+                      });
+                    navigation.navigate('Root');
+                  }, () => {
+                    // error with stored credentials
                   });
-                navigation.navigate('Root');
-              }, () => {
-                // error with stored credentials
-              });
+              }
+              else {
+                navigation.navigate('Root')
+              }
+            })
           } else {
             setFailedAttempts(failedAttempts + 1);
             // go back to sign in on 3rd attempt
@@ -48,7 +56,8 @@ const GetPinCode = ({ navigation }) => {
         setTimeout(() => {
           actions.setSubmitting(false);
         }, 1000);
-      }}
+      }
+      }
     >
       {(formikProps) => (
         <>
@@ -62,13 +71,13 @@ const GetPinCode = ({ navigation }) => {
           {formikProps.isSubmitting ? (
             <ActivityIndicator />
           ) : (
-            <Button onPress={formikProps.handleSubmit}>
-              <Text>{I18n.t('global.submit')}</Text>
-            </Button>
-          )}
+              <Button onPress={formikProps.handleSubmit}>
+                <Text>{I18n.t('global.submit')}</Text>
+              </Button>
+            )}
         </>
       )}
-    </Formik>
+    </Formik >
   );
 };
 
