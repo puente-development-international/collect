@@ -6,9 +6,9 @@ import { Button, Headline, Searchbar } from 'react-native-paper';
 import { getData } from '../../modules/async-storage';
 import { residentQuery } from '../../modules/cached-resources';
 import I18n from '../../modules/i18n';
+import checkOnlineStatus from '../../modules/offline';
 import ResidentCard from '../FindResidents/Resident/ResidentCard';
 import styles from './index.styles';
-import checkOnlineStatus from '../../modules/offline'
 
 const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) => {
   const [data, setData] = useState([]);
@@ -67,7 +67,7 @@ const ResidentIdSearchbar = ({ surveyee, setSurveyee, surveyingOrganization }) =
         setResidents(allData.slice());
       }
       setLoading(false);
-    })
+    });
   };
 
   const filterList = () => data.filter(
