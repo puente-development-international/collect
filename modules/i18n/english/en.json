@@ -9,7 +9,8 @@
     "lName": "Last Name",
     "city": "City",
     "commName": "Community Name",
-    "notes": "Notes"
+    "notes": "Notes",
+    "refresh": "Refresh"
   },
   "signUp": {
     "firstName": "First Name",
@@ -275,14 +276,18 @@
     },
     "bloodOxygen": "Blood Oxygen",
     "mmHg": "mm Hg",
-    "bloodSugar": "Blood Sugar",
+    "bloodSugar": "Fasting Blood Glucose",
     "mgdL": "mg/dL",
-    "hemoglobinLevels": "Hemoglobin Levels",
+    "hemoglobinLevels": "Hemoglobin Levels (Hb)",
+    "hemoglobinA1c": "Hemoglobin A1c (HbA1c)",
     "gdL": "g/dL",
     "pain": "Pain"
   },
   "supplementaryForms": {
     "attachResident": "Attach a Community Resident"
+  },
+  "assetForms": {
+    "attachForm": "Attach a Form to the Asset"
   },
   "forms": {
     "successfullySubmitted": "Form successfully submitted",
@@ -301,8 +306,10 @@
   },
   "dataCollection": {
     "newRecord": "New Record",
+    "newAsset": "New Asset",
     "findRecord": "Find Record",
     "viewAll": "View All Forms",
+    "viewAssets": "View All Assets",
     "back": "Back"
   },
   "home": {
@@ -380,14 +387,14 @@
     "puente": "PUENTE",
     "volunteerSince": "Volunteer Since",
     "surveysCollected": "Surveys Collected",
-    "submitOffline":"Submit Offline Forms",
-    "failedAttempt":"Failed Attempt Submitting Offline Forms.",
-    "tryAgain":"Please ensure that you are connected to the internet and try again.",
-    "ok":"Ok",
-    "success":"Success!",
-    "justSubmitted":"You have just submitted",
-    "form":"form!",
-    "forms":"forms!"
+    "submitOffline": "Submit Offline Forms",
+    "failedAttempt": "Failed Attempt Submitting Offline Forms.",
+    "tryAgain": "Please ensure that you are connected to the internet and try again.",
+    "ok": "Ok",
+    "success": "Success!",
+    "justSubmitted": "You have just submitted",
+    "form": "form!",
+    "forms": "forms!"
   },
   "languagePicker": {
     "english": "English",
@@ -402,6 +409,6 @@
     "ok": "Ok"
   },
   "errorPicker": {
-    "invalidFields":"Invalid Fields:"
+    "invalidFields": "Invalid Fields:"
   }
 }

@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import { Formik } from 'formik';
+import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
-  View, TouchableWithoutFeedback, Keyboard,
+  Keyboard,
+  TouchableWithoutFeedback, View,
 } from 'react-native';
-import { Formik } from 'formik';
-
-import { postIdentificationForm } from '../../../../modules/cached-resources';
-import { isEmpty } from '../../../../modules/utils';
-import { layout } from '../../../../modules/theme';
-import I18n from '../../../../modules/i18n';
 
 import PaperButton from '../../../../components/Button';
+import ErrorPicker from '../../../../components/FormikFields/ErrorPicker';
 import PaperInputPicker from '../../../../components/FormikFields/PaperInputPicker';
 import yupValidationPicker from '../../../../components/FormikFields/YupValidation';
-import ErrorPicker from '../../../../components/FormikFields/ErrorPicker';
-import backgroundPostPatient from './utils';
+import { postIdentificationForm } from '../../../../modules/cached-resources';
+import I18n from '../../../../modules/i18n';
+import { layout, theme } from '../../../../modules/theme';
+import { isEmpty } from '../../../../modules/utils';
 import surveyingUserFailsafe from '../utils';
-
 import configArray from './config/config';
 
 const IdentificationForm = ({
@@ -24,20 +22,13 @@ const IdentificationForm = ({
   setSelectedForm, setSurveyee, surveyingUser, surveyingOrganization
 }) => {
   useEffect(() => {
-    const interval = setInterval(() => {
-      backgroundPostPatient();
-    }, 10000);
-
     setValidationSchema(yupValidationPicker(configArray));
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [clearInterval]);
+  }, []);
 
   const [inputs, setInputs] = useState({});
   const [photoFile, setPhotoFile] = useState('State Photo String');
   const [validationSchema, setValidationSchema] = useState();
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     setInputs(configArray);
@@ -48,7 +39,8 @@ const IdentificationForm = ({
       <TouchableWithoutFeedback onPress={Keyboard.dismiss()} accessible={false}>
         <Formik
           initialValues={{}}
-          onSubmit={async (values, actions) => {
+          onSubmit={async (values,) => {
+            setSubmitting(true);
             setPhotoFile('Submitted Photo String');
 
             const formObject = values;
@@ -69,7 +61,7 @@ const IdentificationForm = ({
             const submitAction = () => {
               setTimeout(() => {
                 setSelectedForm('');
-                actions.setSubmitting(false);
+                setSubmitting(false);
               }, 1000);
             };
 
@@ -83,6 +75,9 @@ const IdentificationForm = ({
             postIdentificationForm(postParams).then((surveyee) => {
               setSurveyee(surveyee);
               submitAction();
+            }, () => {
+              // perhaps an alert to let the user know there was an error
+              setSubmitting(false);
             });
           }}
           validationSchema={validationSchema}
@@ -101,17 +96,18 @@ const IdentificationForm = ({
                     scrollViewScroll={scrollViewScroll}
                     setScrollViewScroll={setScrollViewScroll}
                     customForm={false}
-                  // placeholder="Ana"
                   />
                 </View>
               ))}
               <ErrorPicker
-                // data={result}
                 formikProps={formikProps}
                 inputs={inputs}
               />
-              {formikProps.isSubmitting ? (
-                <ActivityIndicator />
+              {submitting ? (
+                <ActivityIndicator
+                  size="large"
+                  color={theme.colors.primary}
+                />
               ) : (
                 <PaperButton
                   onPressEvent={formikProps.handleSubmit}

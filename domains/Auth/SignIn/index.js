@@ -1,40 +1,38 @@
 /* eslint no-param-reassign: ["error",
 { "props": true, "ignorePropertyModificationsFor": ["formikProps"] }] */
+import { Formik } from 'formik';
 import React, {
-  useState, useEffect
+  useEffect,
+  useState
 } from 'react';
 import {
-  SafeAreaView,
   ActivityIndicator,
-  View,
-  StyleSheet,
   Alert,
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  ScrollView
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View
 } from 'react-native';
 import {
-  Checkbox, Button, Text
+  Button, Checkbox, Text
 } from 'react-native-paper';
-
-import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import { retrieveSignInFunction } from '../../../services/parse/auth';
-
-import { storeData, getData, deleteData } from '../../../modules/async-storage';
-import I18n from '../../../modules/i18n';
-import { theme } from '../../../modules/theme';
-
+import BlackLogo from '../../../assets/graphics/static/Logo-Black.svg';
 import FormInput from '../../../components/FormikFields/FormInput';
 import LanguagePicker from '../../../components/LanguagePicker';
-import CredentialsModal from './CredentialsModal';
 import TermsModal from '../../../components/TermsModal';
-import BlackLogo from '../../../assets/graphics/static/Logo-Black.svg';
-import ForgotPassword from './ForgotPassword';
-import checkOnlineStatus from '../../../modules/offline';
+import { deleteData, getData, storeData } from '../../../modules/async-storage';
 import { populateCache } from '../../../modules/cached-resources';
+import I18n from '../../../modules/i18n';
+import checkOnlineStatus from '../../../modules/offline';
+import { theme } from '../../../modules/theme';
+import { retrieveSignInFunction } from '../../../services/parse/auth';
+import CredentialsModal from './CredentialsModal';
+import ForgotPassword from './ForgotPassword';
 
 // components/FormikFields/PaperInputPicker';
 const validationSchema = yup.object().shape({
@@ -63,7 +61,7 @@ const SignIn = ({ navigation }) => {
   useEffect(() => {
     getData('credentials').then((values) => {
       setUser(values);
-      if (values != null) {
+      if (values?.store === 'Yes') {
         setModalVisible(true);
       }
     });
@@ -96,11 +94,19 @@ const SignIn = ({ navigation }) => {
         {
           text: 'Yes',
           onPress: () => {
-            storeData(values, 'credentials');
+            const credentials = values;
+            credentials.store = 'Yes';
+            storeData(credentials, 'credentials');
             navigation.navigate('StorePincode');
           }
         },
-        { text: 'No', style: 'cancel' },
+        {
+          text: 'No',
+          style: 'cancel',
+          onPress: () => {
+            navigation.navigate('Root');
+          }
+        },
       ],
       { cancelable: false }
       // clicking out side of alert will not cancel
@@ -124,7 +130,13 @@ const SignIn = ({ navigation }) => {
     deleteData('credentials');
   };
 
-  const storeUserInformation = (userData) => {
+  const storeUserInformation = (userData, userCreds) => {
+    // store username and password
+    if (userCreds) {
+      const credentials = userCreds;
+      credentials.store = 'No';
+      storeData(credentials, 'credentials');
+    }
     populateCache(userData);
   };
 
@@ -147,21 +159,22 @@ const SignIn = ({ navigation }) => {
                       getData('credentials').then((userCreds) => {
                         // credentials saved do not match those entered, overwrite saved
                         // credentials
-                        if (userCreds === null || values.username !== userCreds.username
+                        if (userCreds === null || userCreds.store === 'No' || values.username !== userCreds.username
                           || values.password !== userCreds.password) {
                           // Store user organization
-                          storeUserInformation(userData);
+                          storeUserInformation(userData, values);
                           handleSaveCredentials(values);
                         } else {
                           storeUserInformation(userData);
+                          handleSignIn(values, actions.resetForm());
                         }
                       }, () => {
                         // Store user organization
-                        storeUserInformation(userData);
+                        storeUserInformation(userData, values);
                         // no credentials saved, give option to save
                         handleSaveCredentials(values);
                       });
-                      handleSignIn(values, actions.resetForm());
+                      // handleSignIn(values, actions.resetForm());
                     }, (err) => {
                       handleFailedAttempt(err);
                     });

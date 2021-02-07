@@ -9,7 +9,8 @@
     "lName": "Apellido",
     "city": "Ciudad",
     "commName": "Nombre de comunidad",
-    "notes": "Notas"
+    "notes": "Notas",
+    "refresh": "Actualiza"
   },
   "signUp": {
     "firstName": "Nombre de verdadero",
@@ -280,11 +281,15 @@
     "bloodSugar": "Nivel de azucar",
     "mgdL": "mg/dL",
     "hemoglobinLevels": "Niveles de hemoglobina",
+    "hemoglobinA1c": "Hemoglobina de A1c",
     "gdL": "g/dL",
     "pain": "Nivel de dolor"
   },
   "supplementaryForms": {
     "attachResident": "Adjuntar una residente de la comunidad"
+  },
+  "assetForms": {
+    "attachForm": "Adjuntar una forma al activo"
   },
   "forms": {
     "successfullySubmitted": "Formulario entregado satisfactoriamente",
@@ -303,8 +308,10 @@
   },
   "dataCollection": {
     "newRecord": "Nuevo record",
+    "newAsset": "New Asset",
     "findRecord": "Buscar registro",
     "viewAll": "Ver todos los formularios",
+    "viewAssets": "View All Assets",
     "back": "Atrás"
   },
   "home": {
@@ -382,14 +389,14 @@
     "puente": "PUENTE",
     "volunteerSince": "Voluntaria desde",
     "surveysCollected": "Encuestas recopiladas",
-    "submitOffline":"Enviar formularios sin conexión",
-    "failedAttempt":"Intento fallido de envío de formularios sin conexión.",
-    "tryAgain":"Asegúrese de estar conectado a Internet y vuelva a intentarlo.",
-    "ok":"Okay",
-    "success":"¡Éxito!",
-    "justSubmitted":"Usted acaba de enviar",
-    "form":"formar!",
-    "forms":"formas!"
+    "submitOffline": "Enviar formularios sin conexión",
+    "failedAttempt": "Intento fallido de envío de formularios sin conexión.",
+    "tryAgain": "Asegúrese de estar conectado a Internet y vuelva a intentarlo.",
+    "ok": "Okay",
+    "success": "¡Éxito!",
+    "justSubmitted": "Usted acaba de enviar",
+    "form": "formar!",
+    "forms": "formas!"
   },
   "languagePicker": {
     "english": "Ingles",
@@ -404,6 +411,6 @@
     "ok": "Ok"
   },
   "errorPicker": {
-    "invalidFields":"Campos inválidos:"
+    "invalidFields": "Campos inválidos:"
   }
 }

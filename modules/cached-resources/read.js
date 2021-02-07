@@ -1,13 +1,20 @@
-import { residentIDQuery, customQueryService } from '../../services/parse/crud';
 import retrievePuenteAutofillData from '../../services/aws';
-import checkOnlineStatus from '../offline';
-import { getData, storeData } from '../async-storage';
+import { customQueryService, residentIDQuery } from '../../services/parse/crud';
 import getTasks from '../../services/tasky';
+import { getData, storeData } from '../async-storage';
+import checkOnlineStatus from '../offline';
 
 async function residentQuery(queryParams) {
   let records = await residentIDQuery(queryParams);
   records = JSON.parse(JSON.stringify(records));
   return records;
+}
+
+async function cacheResidentData(queryParams) {
+  const records = await residentQuery(queryParams);
+  if (records !== null && records !== undefined && records !== '') {
+    storeData(records, 'residentData');
+  }
 }
 
 async function cacheAutofillData(parameter) {
@@ -34,13 +41,44 @@ function customFormsQuery(surveyingOrganization) {
     checkOnlineStatus().then((online) => {
       if (online) {
         customQueryService(0, 5000, 'FormSpecificationsV2', 'organizations', surveyingOrganization).then(async (forms) => {
-          await storeData(forms, 'customForms');
-          resolve(JSON.parse(JSON.stringify(forms)));
+          if (forms !== null && forms !== undefined && forms !== '') {
+            await storeData(forms, 'customForms');
+            resolve(JSON.parse(JSON.stringify(forms)));
+          } else {
+            getData('customForms').then((customForms) => {
+              resolve(customForms);
+            }, (error) => {
+              reject(error);
+            });
+          }
         }, (error) => {
           reject(error);
         });
       } else {
         getData('customForms').then((forms) => {
+          resolve(forms);
+        }, (error) => {
+          reject(error);
+        });
+      }
+    }, (error) => {
+      reject(error);
+    });
+  });
+}
+
+function assetFormsQuery() {
+  return new Promise((resolve, reject) => {
+    checkOnlineStatus().then((online) => {
+      if (online) {
+        customQueryService(0, 5000, 'FormSpecificationsV2', 'typeOfForm', 'Assets').then(async (forms) => {
+          await storeData(forms, 'assetForms');
+          resolve(JSON.parse(JSON.stringify(forms)));
+        }, (error) => {
+          reject(error);
+        });
+      } else {
+        getData('assetForms').then((forms) => {
           resolve(forms);
         }, (error) => {
           reject(error);
@@ -76,8 +114,10 @@ function getTasksAsync() {
 }
 
 export {
-  residentQuery,
+  assetFormsQuery,
   cacheAutofillData,
+  cacheResidentData,
   customFormsQuery,
-  getTasksAsync
+  getTasksAsync,
+  residentQuery
 };
